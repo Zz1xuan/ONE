@@ -188,7 +188,7 @@ HOST,hmma.baidu.com, reject
 
 # > C
 # > 菜鸟裹裹
-HOST-SUFFIX, nbnestcdn.cainiao.com ,REJECT
+HOST-SUFFIX,nbnestcdn.cainiao.com,REJECT
 # > 车来了（包括小程序）
 host-suffix, atrace.chelaile.net.cn, reject
 host, logs.chelaile.net.cn, reject

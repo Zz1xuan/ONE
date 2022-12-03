@@ -187,7 +187,8 @@ HOST,hm.baidu.com, reject
 HOST,hmma.baidu.com, reject
 
 # > C
-
+# > 菜鸟裹裹
+HOST-SUFFIX,nbnestcdn.cainiao.com,REJECT
 # > 车来了（包括小程序）
 host-suffix, atrace.chelaile.net.cn, reject
 host, logs.chelaile.net.cn, reject
@@ -251,7 +252,7 @@ HOST,ads.youtube.com, reject
 # > HDO
 HOST-SUFFIX, applovin.com,REJECT
 HOST-SUFFIX, applvn.com,REJECT
-HOST-SUFFIX,
+HOST-SUFFIX, doubleclick.net,REJECT
 # > 虎扑
 HOST,adx.hupu.com, reject
 HOST,adx-api.hupu.com, reject

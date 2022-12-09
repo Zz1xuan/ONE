@@ -697,7 +697,8 @@ HOST,n.3g.163.com, reject
 HOST,nex.163.com, reject
 HOST,yt-adp.nosdn.127.net, reject
 HOST,yt-adp.ws.126.net, reject
-
+# > 网易邮箱
+HOST,dsp-text-x.jd.com, reject
 
 # > X
 

@@ -1,5 +1,5 @@
 // https://github.com/zmqcherish/proxy-script/blob/main/weibo_main.js
-// 2022-12-08 19:20
+// 2022-12-10 11:15
 
 // 主要的选项配置
 const mainConfig = {
@@ -17,7 +17,7 @@ const mainConfig = {
   removeRecommendItem: true, // 评论区推荐内容
   removeRewardItem: true, // 微博详情页打赏模块
 
-  removeLiveMedia: true, // 首页顶部直播
+  // removeLiveMedia: true, // 首页顶部直播
   removeNextVideo: true, // 关闭自动播放下一个视频
   removePinedTrending: true, // 删除热搜列表置顶条目
 
@@ -77,7 +77,7 @@ const otherUrls = {
   "/statuses/extend": "itemExtendHandler", // 微博详情页
   "/video/remind_info": "removeVideoRemind", // tab2 菜单上的假通知
   "/checkin/show": "removeCheckin", // 签到任务
-  "/live/media_homelist": "removeMediaHomelist", // 首页直播
+  "/!/live/media_homelist": "removeMediaHomelist", // 首页直播
   "/comments/build_comments": "removeComments", // 微博详情页评论区相关内容
   "/container/get_item": "containerHandler", // 列表相关
   "/profile/container_timeline": "userHandler", // 用户主页
@@ -154,7 +154,7 @@ function topicHandler(data) {
         let cGroup = c.card_group;
         if (!cGroup) continue;
         let cGroup0 = cGroup[0];
-        if (["guess_like_title", "cats_top_title", "chaohua_home_readpost_samecity_title"].indexOf(cGroup0.itemid) > -1) {
+        if (["guess_like_title", "cats_top_title", "chaohua_home_readpost_samecity_title"].indexOf(cGroup0.itemid) != -1) {
           addFlag = false;
         } else if (cGroup.length > 1) {
           let newCardGroup = [];
@@ -423,8 +423,10 @@ function removeHome(data) {
         "100505_-_newusertask",
         "100505_-_vipkaitong",
         "100505_-_hongbao2022",
-        "100505_-_adphoto"
-      ].indexOf(itemId) > -1
+        "100505_-_adphoto",
+        "100505_-_advideo",
+        "2022pk_game_tonglan"
+      ].indexOf(itemId) != -1
     ) {
       continue;
     } else if (itemId.match(/100505_-_meattent_-_\d+/)) {
@@ -443,13 +445,13 @@ function removeCheckin(data) {
   data.show = 0;
 }
 
-// 首页直播
-function removeMediaHomelist(data) {
-  if (mainConfig.removeLiveMedia) {
-    log("remove 首页直播");
-    data.data = {};
-  }
-}
+// // 首页直播
+// function removeMediaHomelist(data) {
+//   if (mainConfig.removeLiveMedia) {
+//     log("remove 首页直播");
+//     data.data = [];
+//   }
+// }
 
 // 评论区相关和推荐内容
 function removeComments(data) {

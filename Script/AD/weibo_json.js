@@ -10,6 +10,7 @@
 > 问题反馈：ddgksf2013@163.com
 > 特别提醒：如需转载请注明出处，谢谢合作！
 > 脚本声明：特别感谢Zmqcherish的付出，本脚本只是在他原创脚本的基础上优化自用
+> 原创地址：https://github.com/zmqcherish/proxy-script/raw/main/weibo.conf
 > 特别说明：⚠️⚠️⚠️
           本脚本仅供学习交流使用，禁止转载售卖
           ⚠️⚠️⚠️
@@ -17,7 +18,7 @@
 ***********************************/	  
 
 
-const version = 'V2.0.19';
+const version = 'V2.0.22';
 
 /*主要的选项配置*/
 const mainConfig = {
@@ -286,6 +287,9 @@ function removeSearch(data) {
 		}
 	}
 	data.items = newItems;
+	if(data.loadedInfo){
+		data.loadedInfo.searchBarContent=[];
+	}
 	log('remove_search success');
 	return data;
 }
@@ -311,7 +315,7 @@ function removePage(data){
 
 	// 删除热搜列表置顶条目
 	if (mainConfig.removePinedTrending && data.cards && data.cards.length > 0) {
-		if (data.cards[0].card_group) {
+		if (data.cards[0].card_group&&data.cards[0].card_group[0].itemid) {
 			data.cards[0].card_group = data.cards[0].card_group.filter(c=>!c.itemid.includes("t:51"));
 		}
 	}

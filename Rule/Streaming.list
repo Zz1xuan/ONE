@@ -59,8 +59,11 @@ DOMAIN-SUFFIX,overcast.fm
 USER-AGENT,AbemaTV*
 DOMAIN-SUFFIX,abema.io
 DOMAIN-SUFFIX,abema.tv
+DOMAIN-SUFFIX,abema-tv.com
 DOMAIN-SUFFIX,ameba.jp
 DOMAIN-SUFFIX,hayabusa.io
+DOMAIN-SUFFIX,hayabusa.media
+DOMAIN,api-abematv.bucketeer.jp
 DOMAIN-KEYWORD,abematv.akamaized.net
 # > All 4
 USER-AGENT,All4*
@@ -148,6 +151,11 @@ USER-AGENT,encoreTVB*
 DOMAIN-SUFFIX,encoretvb.com
 DOMAIN,edge.api.brightcove.com
 DOMAIN,bcbolt446c5271-a.akamaihd.net
+# > Hami Video
+DOMAIN-SUFFIX,ott.hinet.net
+DOMAIN-SUFFIX,hamivideo.hinet.net
+DOMAIN,hls-hichannel.cdn.hinet.net
+DOMAIN-KEYWORD,hamivideo.cdn.hinet.net
 # > HBO NOW & Max
 USER-AGENT,HBO%20NOW*
 DOMAIN-SUFFIX,hbo.com
@@ -193,32 +201,13 @@ USER-AGENT,ITV_Player*
 DOMAIN-SUFFIX,itv.com
 DOMAIN-SUFFIX,itvstatic.com
 DOMAIN,itvpnpmobile-a.akamaihd.net
-# > iQIYI
-DOMAIN-SUFFIX,iq.com
-DOMAIN,intl.iqiyi.com
-DOMAIN,intl-rcd.iqiyi.com
-DOMAIN,intl-subscription.iqiyi.com
-IP-CIDR,23.53.32.88/32,no-resolve
-IP-CIDR,23.211.15.99/32,no-resolve
-IP-CIDR,103.5.34.153/32,no-resolve
-IP-CIDR,104.109.129.153/32,no-resolve
-IP-CIDR,110.238.107.47/32,no-resolve
-IP-CIDR,118.26.32.178/32,no-resolve
-IP-CIDR,203.74.95.131/32,no-resolve
-IP-CIDR,203.74.95.139/32,no-resolve
-IP-CIDR,203.74.95.153/32,no-resolve
-IP-CIDR,203.211.4.169/32,no-resolve
-IP-CIDR,203.211.4.193/32,no-resolve
-IP-CIDR,210.71.227.200/32,no-resolve
-IP-CIDR,210.71.227.202/32,no-resolve
-IP-CIDR,210.201.32.8/32,no-resolve
-IP-CIDR,210.201.32.11/32,no-resolve
 # > KKTV
 USER-AGENT,KKTV*
 USER-AGENT,com.kktv.ios.kktv*
 DOMAIN-SUFFIX,kktv.com.tw
 DOMAIN-SUFFIX,kktv.me
 DOMAIN,kktv-theater.kk.stream
+DOMAIN,theater-kktv.cdn.hinet.net
 # > LINE TV
 USER-AGENT,LINE%20TV*
 DOMAIN-SUFFIX,linetv.tw

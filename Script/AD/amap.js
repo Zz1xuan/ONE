@@ -1,34 +1,32 @@
-#取自https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/myBlockAds.js
+// 2023-01-04 17:42
 
 var body = $response.body;
 var method = $request.method;
 var url = $request.url;
 
-if (!body) $done({});  
-
-function adAppName(adUrls) {
-  if (/^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\?/.test(adUrls)) return "高德地图-首页卡片";
-  if (/^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page-assets\?/.test(adUrls)) return "高德地图-首页消息";
-  if (/^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull(3|_mp)\?/.test(adUrls)) return "高德地图-首页消息";
-  if (/^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?/.test(adUrls)) return "高德地图-我的";
-return "";
-}
-
-switch (adAppName(url)) {
-case "高德地图-首页卡片":
-    try {
-      let obj = JSON.parse(body);
+if (!body) $done({});
+  //首页卡片
+  if (/^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\?/.test(url)) {
+    let obj = JSON.parse(body);
       if (obj.data && obj.data.cardList) {
         obj.data.cardList = obj.data.cardList.filter((item) => {
           return item.dataKey === "LoginCard";
         });
       }
       body = JSON.stringify(obj);
-    } catch (error) {
-      console.log(`高德地图-首页卡片, 出现异常`);
-    }
-    break;
-  case "高德地图-首页消息":
+  }
+  //首页消息
+  if (/^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page-assets\?/.test(url)) {
+    let obj = JSON.parse(body);
+      if (obj.msgs) {
+        obj.msgs = [];
+      } else if (obj.data.pull3 && obj.data.pull3.msgs) {
+        obj.data.pull3.msgs = [];
+      }
+      body = JSON.stringify(obj);
+  }
+  //首页消息
+  if (/^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull(3|_mp)\?/.test(adUrls)) {
     try {
       let obj = JSON.parse(body);
       if (obj.msgs) {
@@ -37,13 +35,10 @@ case "高德地图-首页卡片":
         obj.data.pull3.msgs = [];
       }
       body = JSON.stringify(obj);
-    } catch (error) {
-      console.log(`高德地图-首页消息, 出现异常`);
-    }
-    break;
-  case "高德地图-我的":
-    try {
-      let obj = JSON.parse(body);
+  }
+  //我的
+  if (/^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?/.test(adUrls)) {
+    let obj = JSON.parse(body);
       if (obj.data && obj.data.cardList) {
         for (let i = 0; i < obj.data.cardList.length; i++) {
           obj.data.cardList.localCache = false;
@@ -63,10 +58,6 @@ case "高德地图-首页卡片":
         });
       }
       body = JSON.stringify(obj);
-    } catch (error) {
-      console.log(`高德地图-我的, 出现异常`);
-    }
-    break;
-}
-
+  }
+    
 $done({ body });

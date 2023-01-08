@@ -942,3 +942,6 @@ HOST,staticsns.cdn.bcebos.com,reject
 
 # > 飞猪旅行
 HOST,amdc.m.taobao.com,reject
+
+# > 芒果TV
+HOST,mobile.da.mgtv.com,reject

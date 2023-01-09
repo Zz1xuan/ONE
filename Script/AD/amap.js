@@ -29,11 +29,11 @@ if (url.includes("/msgbox/pull")) {
       obj.data.cardList = obj.data.cardList.filter((item) => {
         return (
           // item.dataKey === "AnnualBillCardV2" || // 年度报告
-          item.dataKey === "MyOrderCard" // 我的订单
-          // item.dataKey === "GdRecommendCard" || // 高德推荐
-          // item.dataKey === "SceneVehicleCard_recommend" || // 我的车辆
-          // item.dataKey === "SceneVehicleCard_function" || // 我的车辆
-          // item.dataKey === "PopularActivitiesCard" || // 热门活动
+          item.dataKey === "MyOrderCard" || // 我的订单
+          item.dataKey === "GdRecommendCard" || // 高德推荐
+          item.dataKey === "SceneVehicleCard_recommend" || // 我的车辆
+          item.dataKey === "SceneVehicleCard_function" || // 我的车辆
+          item.dataKey === "PopularActivitiesCard" // 热门活动
           // item.dataKey === "GameExcitation" || // 小德爱消除
           // item.dataKey === "GoodsShelvesCard" || // 精选服务
           // item.dataKey === "DiyMap_function" || // DIY 地图

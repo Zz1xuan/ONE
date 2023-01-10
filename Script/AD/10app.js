@@ -11,10 +11,6 @@ function adAppName(adUrls) {
   if (/^https:\/\/(api-access\.pangolin-sdk-toutiao|is\.snssdk)\.com\/api\/ad\/union\/sdk\/get_ads/.test(adUrls) && method === "POST") return "广告联盟-穿山甲";
   if (/^https:\/\/open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ$/.test(adUrls) && method === "POST") return "广告联盟-快手联盟";
   if (/^https:\/\/mi\.gdt\.qq\.com\/gdt_mview\.fcg\?/.test(adUrls) && method === "GET") return "广告联盟-优量汇";
-  if (/^https:\/\/api\.ithome\.com\/json\/(listpage|newslist)\/news/.test(adUrls)) return "IT之家-appList";
-  if (/^https:\/\/api\.ithome\.com\/json\/slide\/index/.test(adUrls)) return "IT之家-appSlide";
-  if (/^https:\/\/m\.ithome\.com\/api\/news\/newslistpageget/.test(adUrls)) return "IT之家-mobileWeb";
-  if (/^https:\/\/napi\.ithome\.com\/api\/(news|topmenu)\/(getfeeds|index)/.test(adUrls)) return "IT之家-newAppFeed";
   if (/^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=start/.test(adUrls)) return "京东-开屏广告";
   if (/^https:\/\/api.coolapk.com\/v6\/feed\/detail/.test(adUrls)) return "酷安-detail";
   if (/^https:\/\/api.coolapk.com\/v6\/feed\/replyList/.test(adUrls)) return "酷安-replyList";
@@ -89,61 +85,6 @@ switch (adAppName(url)) {
       body = JSON.stringify(obj);
     } catch (error) {
       console.log(`广告联盟-优量汇, 出现异常`);
-    }
-    break;
-  case "IT之家-appList":
-    try {
-      let obj = JSON.parse(body);
-      obj.newslist = obj.newslist.filter((n) => !n.aid);
-      body = JSON.stringify(obj);
-    } catch (error) {
-      console.log(`IT之家-appList, 出现异常`);
-    }
-    break;
-  case "IT之家-appSlide":
-    try {
-      let obj = JSON.parse(body);
-      const newList = obj.filter((i) => !i.isad);
-      obj.splice(0, obj.length);
-      obj.push(...newList);
-      body = JSON.stringify(obj);
-    } catch (error) {
-      console.log(`IT之家-appSlide, 出现异常`);
-    }
-    break;
-  case "IT之家-mobileWeb":
-    try {
-      let obj = JSON.parse(body);
-      obj.Result = obj.Result.filter((r) =>
-        r.NewsTips.every((t) => t.TipName !== "广告")
-      );
-      body = JSON.stringify(obj);
-    } catch (error) {
-      console.log(`IT之家-mobileWebx, 出现异常`);
-    }
-    break;
-  case "IT之家-newAppFeed":
-    try {
-      let obj = JSON.parse(body);
-      let list = obj.data.list;
-      const newList = [];
-      for (const item of list) {
-        if (
-          item.feedContent.smallTags &&
-          item.feedContent.smallTags.some((s) => s.text === "广告")
-        ) {
-          continue;
-        }
-        if (item.feedContent.focusNewsData) {
-          const newNewsData = item.feedContent.focusNewsData.filter((n) => !n.isAd);
-          item.feedContent.focusNewsData = newNewsData;
-        }
-        newList.push(item);
-      }
-      obj.data.list = newList;
-      body = JSON.stringify(obj);
-    } catch (error) {
-      console.log(`IT之家-newAppFeed, 出现异常`);
     }
     break;
   case "京东-开屏广告":

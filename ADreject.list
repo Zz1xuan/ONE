@@ -14,8 +14,9 @@ host, f74f7f7765f8a2f6.ngaa.net.cn, reject
 host, ef-dongfeng.tanx.com, reject
 host, iqiyim.adtrack.enlightent.cn, reject
 HOST,dig.bdurl.net, reject
-HOST,ads3-normal-lq.zijieapi.com, reject
-HOST,ads5-normal-lq.zijieapi.com, reject
+HOST-KEYWORD,zijieapi,REJECT
+#HOST,ads3-normal-lq.zijieapi.com, reject
+#HOST,ads5-normal-lq.zijieapi.com, reject
 
 
 # > B
@@ -201,8 +202,8 @@ HOST,data-hoisin.coocaa.com, reject
 # > D
 
 # > 懂车帝
-host-keyword, p3-pack.byteimg.com, reject
-host-keyword, p6-pack.byteimg.com, reject
+host, p3-pack.byteimg.com, reject
+host, p6-pack.byteimg.com, reject
 # > E
 # > F
 # > G
@@ -274,26 +275,26 @@ HOST,richmanapi.jxedt.com, reject
 HOST,richmanmain.jxedt.com, reject
 HOST,richmanrules.jxedt.com, reject
 # > 今日头条
-host-keyword, ad.toutiao.com, reject
-host-keyword, clk.gentags.net, reject
-host-keyword, dm.toutiao.com, reject
-host-keyword, dm.pstatp.com, reject
-host-keyword, dm.bytedance.com, reject
-host-keyword, uop.umeng.com, reject
-host-keyword, policy.jd.com, reject
-host-keyword, kepler.jd.com, reject
-host-keyword, bdsp.x.jd.com, reject
-host-keyword, keplerapi.jd.com, reject
-host-keyword, m.suning.com, reject
-host-keyword, adshare.toutiao.com, reject
-host-keyword, tunion-api.m.taobao.com, reject
-host-keyword, mapi.m.jd.com, reject
-host-keyword, s1.pstatp.com, reject
-host-keyword, s2.pstatp.com, reject
-host-keyword, s3.pstatp.com, reject
-host-keyword, a3.pstatp.com, reject
-host-keyword, a3.bytecdn.cn, reject
-host-keyword, ichannel.snssdk.com, reject
+HOST-SUFFIX, ad.toutiao.com, reject
+HOST-SUFFIX, clk.gentags.net, reject
+HOST-SUFFIX, dm.toutiao.com, reject
+HOST-SUFFIX, dm.pstatp.com, reject
+HOST-SUFFIX, bytedance.com, reject
+HOST-SUFFIX, uop.umeng.com, reject
+HOST-SUFFIX, policy.jd.com, reject
+HOST-SUFFIX, kepler.jd.com, reject
+HOST-SUFFIX, bdsp.x.jd.com, reject
+HOST-SUFFIX, keplerapi.jd.com, reject
+HOST-SUFFIX, m.suning.com, reject
+HOST-SUFFIX, adshare.toutiao.com, reject
+HOST-SUFFIX, tunion-api.m.taobao.com, reject
+HOST-SUFFIX, mapi.m.jd.com, reject
+HOST-SUFFIX, s1.pstatp.com, reject
+HOST-SUFFIX, s2.pstatp.com, reject
+HOST-SUFFIX, s3.pstatp.com, reject
+HOST-SUFFIX, a3.pstatp.com, reject
+HOST-SUFFIX, a3.bytecdn.cn, reject
+HOST-SUFFIX, ichannel.snssdk.com, reject
 
 # > K
 
@@ -945,3 +946,39 @@ HOST,amdc.m.taobao.com,reject
 
 # > 芒果TV
 HOST,mobile.da.mgtv.com,reject
+
+# > 番茄小说
+#host, p3-pack.byteimg.com, reject
+#host, p6-pack.byteimg.com, reject
+HOST,i.snssdk.com,REJECT
+HOST,i-lq.snssdk.com,REJECT
+#HOST,dig.bdurl.net,REJECT
+#HOST-KEYWORD,zijieapi,REJECT
+HOST,activity-ag.awemeughun.com,REJECT
+
+HOST,mcs.snssdk.com,REJECT
+HOST,tnc3-alisc1.snssdk.com,REJECT
+HOST,security-lq.snssdk.com,REJECT
+HOST,tnc3-aliec2.snssdk.com,REJECT
+HOST,is.snssdk.com,REJECT
+
+HOST,v6-novelapp.ixigua.com,REJECT
+HOST,*novelapp.ixigua.com,REJECT
+HOST,*default.ixigua.com,REJECT
+HOST,msync-im1-vip6-std.easemob.com,REJECT
+HOST,apd-pcdnwxlogin.teg.tencent-cloud.net,REJECT
+HOST,api.iegadp.qq.com,REJECT
+HOST,sf3-ttcdn-tos.pstatp.com,REJECT
+HOST-SUFFIX,pglstatp-toutiao.com,REJECT
+
+
+HOST-SUFFIX,byteorge.com,REJECT
+HOST-SUFFIX,bytegoofy.com,REJECT
+#HOST-SUFFIX,bytedance.com,REJECT
+
+IP-CIDR,49.71.37.101/32,REJECT
+IP-CIDR,117.71.105.23/32,REJECT
+IP-CIDR,218.94.207.205/32,REJECT
+IP-CIDR,117.92.229.188/32,REJECT
+IP-CIDR,101.36.166.16/32,REJECT
+IP-CIDR,180.96.2.114/32,REJECT

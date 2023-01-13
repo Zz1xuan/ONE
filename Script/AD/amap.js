@@ -14,7 +14,11 @@ if (obj.data) {
     }
   } else if (url.includes("/promotion-web/resource")) {
     // 高德地图-打车
-    if (obj.data.banner) delete obj.data.banner;
+    if (obj.data.banner) {
+      for (let item of obj.data.banner) {
+        item.dataKey === "ad"
+      }
+    };
     if (obj.data.bubble) delete obj.data.bubble;
     if (obj.data.icon) delete obj.data.icon;
     if (obj.data.popup) delete obj.data.popup;

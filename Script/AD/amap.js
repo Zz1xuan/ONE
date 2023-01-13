@@ -15,10 +15,10 @@ if (obj.data) {
   } else if (url.includes("/promotion-web/resource")) {
     // 高德地图-打车
     if (obj.data.banner) delete obj.data.banner;
-    //if (obj.data.bubble) delete obj.data.bubble;
-    //if (obj.data.icon) delete obj.data.icon;
-    //if (obj.data.popup) delete obj.data.popup;
-    //if (obj.data.tips) delete obj.data.tips;
+    if (obj.data.bubble) delete obj.data.bubble;
+    if (obj.data.icon) delete obj.data.icon;
+    if (obj.data.popup) delete obj.data.popup;
+    if (obj.data.tips) delete obj.data.tips;
   } else if (url.includes("/shield/dsp/profile/index/nodefaasv3")) {
     // 高德地图-我的
     if (obj.data.cardList) {

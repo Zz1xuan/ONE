@@ -15,9 +15,8 @@ if (obj.data) {
   } else if (url.includes("/promotion-web/resource")) {
     // 高德地图-打车
     if (obj.data.banner) {
-      for (let item of obj.data.banner) {
-        item.dataKey === "ad"
-      }
+      obj.data.banner = obj.data.banner.filter((item) =>
+        item.banner_type === "ad"                                      
     };
     if (obj.data.bubble) delete obj.data.bubble;
     if (obj.data.icon) delete obj.data.icon;

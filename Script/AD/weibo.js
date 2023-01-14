@@ -316,7 +316,7 @@ function removeHome(data) {
     let itemId = item.itemId;
     if (itemId === "profileme_mine") {
       if (mainConfig.removeHomeVip) item = removeHomeVip(item);
-//        updateFollowOrder(item);
+        updateFollowOrder(item);
         newItems.push(item);
     } else if (itemId === "100505_-_top8") {
       removeTop8(item);

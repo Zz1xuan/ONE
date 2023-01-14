@@ -316,15 +316,15 @@ function removeHome(data) {
     let itemId = item.itemId;
     if (itemId === "profileme_mine") {
       if (mainConfig.removeHomeVip) item = removeHomeVip(item);
-//     updateFollowOrder(item);
-//      newItems.push(item);
+//        updateFollowOrder(item);
+        newItems.push(item);
     } else if (itemId === "100505_-_top8") {
       removeTop8(item);
-//     newItems.push(item);
+     newItems.push(item);
     } else if (item.category === "mine") {
       if (itemId === "100505_-_manage") {
-//        if (item.style) delete item.style;
- //       if (item.images) delete item.images;
+        if (item.style) delete item.style;
+        if (item.images) delete item.images;
         newItems.push(item);
       } else {
         continue;

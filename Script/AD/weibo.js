@@ -323,7 +323,7 @@ function removeHome(data) {
       newItems.push(item);
     } else if (item.category === "mine") {
       if (itemId === "100505_-_manage") {
-        if (item.style) delete item.style;
+        //if (item.style) delete item.style;
         if (item.images) delete item.images;
         newItems.push(item);
       } else {

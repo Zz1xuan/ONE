@@ -69,7 +69,7 @@ const otherUrls = {
   "/2/page?": "removePage", // 超话签到的按钮 /2/page/button 加?区别
   "/2/profile/container_timeline": "userHandler", // 用户主页
   "/2/profile/me": "removeHome", // 个人页模块
-  "/2/push/active": "removeRed", // 右上角红包
+//  "/2/push/active": "removeRed", // 右上角红包
   "/2/search/container_discover": "removeSearch", // 搜索 tab 信息流
   "/2/search/container_timeline": "removeSearch", // 搜索 tab 信息流
   "/2/search/finder": "removeSearchMain",

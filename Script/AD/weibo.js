@@ -337,17 +337,17 @@ function removeTop8(data) {
 // return data;
 //}
 
-function removeRed(data) {
-  if (!data) return data;
-  if (data.feed_redpacket) {
-    data.feed_redpacket.starttime = "2208960000";
-    data.feed_redpacket.interval = "31536000";
-    data.feed_redpacket.endtime = "2209046399";
-    data.feed_redpacket.icon = null;
-    data.feed_redpacket.finish_icon = null;
-  }
-  return data;
-}
+//function removeRed(data) {
+//  if (!data) return data;
+//  if (data.feed_redpacket) {
+//    data.feed_redpacket.starttime = "2208960000";
+//    data.feed_redpacket.interval = "31536000";
+//    data.feed_redpacket.endtime = "2209046399";
+//    data.feed_redpacket.icon = null;
+//    data.feed_redpacket.finish_icon = null;
+//  }
+//  return data;
+//}
 
 function checkSearchWindow(item) {
   if (!mainConfig.removeSearchWindow) return false;

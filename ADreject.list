@@ -952,7 +952,7 @@ HOST,mobile.da.mgtv.com,reject
 HOST,i.snssdk.com,REJECT
 HOST,i-lq.snssdk.com,REJECT
 #HOST,dig.bdurl.net,REJECT
-#HOST-KEYWORD,zijieapi,REJECT
+HOST-KEYWORD,zijieapi,REJECT
 HOST,activity-ag.awemeughun.com,REJECT
 
 HOST,mcs.snssdk.com,REJECT

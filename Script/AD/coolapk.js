@@ -1,7 +1,5 @@
 /*
-version     v0.0.1
-updatetime  2022-11-04
-tgchannel   https://t.me/ddgksf2021
+author      RuCu6
 function    酷安去首页广告、信息流广告、评论广告
 author      kk pp
 
@@ -14,34 +12,41 @@ hostname = api.coolapk.com
 
 */
 
-if ($request.url.indexOf("replyList") != -1) {
-    var bodyObj = JSON.parse($response.body);
-    bodyObj.data = Object.values(bodyObj.data).filter((item) => item.id);
-    $done({
-        body: JSON.stringify(bodyObj),
-    });
-} else if ($request.url.indexOf("indexV8") != -1) {
-    var bodyObj = JSON.parse($response.body);
-    bodyObj.data = Object.values(bodyObj.data).filter((item) => !(item["entityTemplate"] == "sponsorCard" || item.entityId == 8639 || item.entityId == 33006 || item.entityId == 32557 || item.title.indexOf("值得买") != -1||item.title.indexOf("红包") != -1));
-    //去除头条信息流推广和首页轮转
-    $done({
-        body: JSON.stringify(bodyObj),
-    });
-} else if ($request.url.indexOf("dataList") != -1) {
-    var bodyObj = JSON.parse($response.body);
-    bodyObj.data = Object.values(bodyObj.data).filter((item) => !(item["entityTemplate"] == "sponsorCard" || item.title == "精选配件"));
-    $done({
-        body: JSON.stringify(bodyObj),
-    });
-} else if ($request.url.indexOf("detail") != -1) {
-    var bodyObj = JSON.parse($response.body);
-    bodyObj.data.hotReplyRows = Object.values(bodyObj.data.hotReplyRows).filter((item) => item["id"]);
-    bodyObj.data.include_goods_ids = [];
-    bodyObj.data.include_goods = [];
-    $done({
-        body: JSON.stringify(bodyObj),
-    });
-} else {
-    $done($response);
+if (!$response.body) $done({});
+const url = $request.url;
+let obj = JSON.parse($response.body);
+
+if (obj.data) {
+  // 酷安-detail
+  if (url.includes("/feed/detail")) {
+    if (obj.data.hotReplyRows) {
+      obj.data.hotReplyRows = obj.data.hotReplyRows.filter((item) => item.id);
+    }
+    obj.data.include_goods_ids = [];
+    obj.data.include_goods = [];
+  } else if (url.includes("/feed/replyList")) {
+    // 酷安-replyList
+    obj.data = obj.data.filter((item) => item.id);
+  } else if (url.includes("/main/dataList")) {
+    // 酷安-dataList
+    obj.data = obj.data.filter(
+      (item) => !(item.entityTemplate === "sponsorCard" || item.title === "精选配件")
+    );
+  } else if (url.includes("/main/indexV8")) {
+    // 酷安-index
+    obj.data = obj.data.filter(
+      (item) =>
+        !(
+          item.entityTemplate === "sponsorCard" ||
+          item.entityId === 8639 ||
+          item.entityId === 33006 ||
+          item.entityId === 32557 ||
+          item.title.includes("值得买") ||
+          item.title.includes("红包")
+        )
+    );
+  }
 }
 
+body = JSON.stringify(obj);
+$done({ body });

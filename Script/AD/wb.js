@@ -232,8 +232,6 @@ function removeTimeLine(data) {
   data.statuses = newStatuses;
 }
 
-
-
 // 评论区相关和推荐内容
 function removeComments(data) {
   let delType = ["广告"];
@@ -365,6 +363,77 @@ function updateFollowOrder(item) {
       return item;
     }
   }
+}
+
+// 我的页面置顶项目
+function removeTop8(data) {
+  if (!data) {
+    return data;
+  }
+  if (data.items) {
+    data.items = data.items.filter(
+      (i) =>
+        i.itemId === "100505_-_album" || // 我的相册
+        i.itemId === "100505_-_like" || // 赞/收藏
+        i.itemId === "100505_-_watchhistory" || // 浏览记录
+        i.itemId === "100505_-_draft" // 草稿箱
+      // i.itemId === "100505_-_pay" || // 我的钱包
+      // i.itemId === "100505_-_ordercenter" || // 我的订单
+      // i.itemId === "100505_-_productcenter" || // 创作中心
+      // i.itemId === "100505_-_promote" || // 广告中心
+    );
+  }
+  return data;
+}
+
+// 我的页面
+function removeHome(data) {
+  if (!data.items) {
+    return data;
+  }
+  let newItems = [];
+  for (let item of data.items) {
+    let itemId = item.itemId;
+    if (itemId === "profileme_mine") {
+      if (mainConfig.removeHomeVip) {
+        item = removeHomeVip(item);
+      }
+      updateFollowOrder(item);
+      newItems.push(item);
+    } else if (itemId === "100505_-_top8") {
+      removeTop8(item);
+      newItems.push(item);
+    } else if (item.category === "mine") {
+      if (itemId === "100505_-_manage") {
+        if (item.style) {
+          item.style = {};
+        }
+        // 移除分隔符的点点点
+        if (item.images) {
+          item.images = {};
+        }
+        newItems.push(item);
+      } else if (itemId === "100505_-_manage2") {
+        // 移除面板样式
+        if (item.footer) {
+          item.footer = {};
+        }
+        // 移除框内推广
+        if (item.body) {
+          item.body = {};
+        }
+        newItems.push(item);
+      } else {
+        // 其他项目全部移除
+        continue;
+      }
+    } else {
+      // 其他项目全部移除
+      continue;
+    }
+  }
+  data.items = newItems;
+  return data;
 }
 
 // 移除首页右上角红包

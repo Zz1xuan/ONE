@@ -978,7 +978,7 @@ HOST,punion.tjjt360.com,reject
 HOST,staticsns.cdn.bcebos.com,reject
 
 # > 飞猪旅行
-HOST,amdc.m.taobao.com,reject
+#HOST,amdc.m.taobao.com,reject
 
 # > 芒果TV
 HOST,mobile.da.mgtv.com,reject

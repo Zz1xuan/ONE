@@ -25,4 +25,12 @@ hostname=api.aliyundrive.com
 
 ***********************************/
 
-let ddgksf2013=JSON.parse($response.body);ddgksf2013.result&&(ddgksf2013.result=Object.values(ddgksf2013.result).filter(d=>"file"==d.appCode||"video"==d.appCode)),ddgksf2013.activities&&delete ddgksf2013.activities,ddgksf2013.myBackup&&delete ddgksf2013.myBackup,$done({body:JSON.stringify(ddgksf2013)});
+let obj = JSON.parse($response.body);
+
+if (obj.result) {
+  obj.result = obj.result.filter((item) => item.appCode === "file" || item.appCode === "video");
+}
+if (obj.activities) delete obj.activities;
+if (obj.myBackup) delete obj.myBackup;
+
+$done({ body: JSON.stringify(obj) });

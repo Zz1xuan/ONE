@@ -1,5 +1,3 @@
-// 2023-01-13 17:00
-
 if (!$response.body) $done({});
 const url = $request.url;
 let obj = JSON.parse($response.body);
@@ -8,40 +6,59 @@ if (obj.data) {
   if (url.includes("/faas/amap-navigation/main-page")) {
     // 高德地图-首页卡片
     if (obj.data.cardList) {
-      obj.data.cardList = obj.data.cardList.filter((item) =>
-        item.dataKey === "LoginCard"
+      obj.data.cardList = obj.data.cardList.filter(
+        (item) => item.dataKey === "LoginCard"
       );
+    }
+    if (obj.data.mapBizList) {
+      obj.data.mapBizList = [];
     }
   } else if (url.includes("/promotion-web/resource")) {
     // 高德地图-打车
-    if (obj.data.banner) delete obj.data.banner;
-    if (obj.data.bubble) delete obj.data.bubble;
-    if (obj.data.icon) delete obj.data.icon;
-    if (obj.data.popup) delete obj.data.popup;
-    if (obj.data.tips) delete obj.data.tips;
+    if (obj.data.banner) {
+      obj.data.banner = [];
+    }
+    if (obj.data.bubble) {
+      obj.data.bubble = [];
+    }
+    if (obj.data.icon) {
+      obj.data.icon = [];
+    }
+    if (obj.data.popup) {
+      obj.data.popup = [];
+    }
+    if (obj.data.tips) {
+      obj.data.tips = [];
+    }
   } else if (url.includes("/shield/dsp/profile/index/nodefaasv3")) {
     // 高德地图-我的
     if (obj.data.cardList) {
-      obj.data.cardList = obj.data.cardList.filter((item) =>
-        item.dataKey === "MyOrderCard" || // 我的订单
-        item.dataKey === "GdRecommendCard" // 高德推荐
-        //item.dataKey === "SceneVehicleCard_recommend" || // 我的车辆
-        //item.dataKey === "SceneVehicleCard_function" || // 我的车辆
-        //item.dataKey === "PopularActivitiesCard" || // 热门活动
-        // item.dataKey === "GameExcitation" || // 小德爱消除
-        // item.dataKey === "GoodsShelvesCard" || // 精选服务
-        // item.dataKey === "DiyMap_function" || // DIY 地图
+      obj.data.cardList = obj.data.cardList.filter((item) => 
+          item.dataKey === "MyOrderCard" || // 我的订单
+          item.dataKey === "GdRecommendCard" || // 高德推荐
+          item.dataKey === "SceneVehicleCard_recommend" || // 我的车辆
+          item.dataKey === "SceneVehicleCard_function" || // 我的车辆
+          item.dataKey === "PopularActivitiesCard" // 热门活动
+          // item.dataKey === "GameExcitation" || // 小德爱消除
+          // item.dataKey === "GoodsShelvesCard" || // 精选服务
+          // item.dataKey === "DiyMap_function" || // DIY 地图
       );
+    }
+  } else if (url.includes("/shield/frogserver/aocs")) {
+    // 高德地图-首页右上角动图
+    if (obj.data.home_business_position_config) {
+      obj.data.home_business_position_config = {
+        status: 1,
+        version: "",
+        value: ""
+      };
     }
   } else if (url.includes("/shield/search/nearbyrec_smart")) {
     // 高德地图-附近
     if (obj.data.modules) {
-      obj.data.modules = obj.data.modules.filter((item) =>
-        (
-          item === "head" ||
-          item === "search_hot_words" ||
-          item === "feed_rec"
-        )
+      obj.data.modules = obj.data.modules.filter(
+        (item) =>
+          item === "head" || item === "search_hot_words" || item === "feed_rec"
       );
     }
   } else if (url.includes("/valueadded/alimama/splash_screen")) {

@@ -734,7 +734,7 @@ HOST,n.3g.163.com, reject
 HOST,nex.163.com, reject
 HOST,yt-adp.nosdn.127.net, reject
 HOST,yt-adp.ws.126.net, reject
-
+HOST,interface*.music.163.com.163jiasu.com,reject
 
 # > X
 

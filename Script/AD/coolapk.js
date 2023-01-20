@@ -22,15 +22,26 @@ if (obj.data) {
     if (obj.data.hotReplyRows) {
       obj.data.hotReplyRows = obj.data.hotReplyRows.filter((item) => item.id);
     }
-    obj.data.include_goods_ids = [];
-    obj.data.include_goods = [];
+    if (obj.data.topReplyRows) {
+      obj.data.topReplyRows = obj.data.topReplyRows.filter((item) => item.id);
+    }
+    if (obj.data.include_goods_ids) {
+      obj.data.include_goods_ids = [];
+    }
+    if (obj.data.include_goods) {
+      obj.data.include_goods = [];
+    }
+    if (obj.data.detailSponsorCard) {
+      obj.data.detailSponsorCard = [];
+    }
   } else if (url.includes("/feed/replyList")) {
     // 酷安-replyList
     obj.data = obj.data.filter((item) => item.id);
   } else if (url.includes("/main/dataList")) {
     // 酷安-dataList
     obj.data = obj.data.filter(
-      (item) => !(item.entityTemplate === "sponsorCard" || item.title === "精选配件")
+      (item) =>
+        !(item.entityTemplate === "sponsorCard" || item.title === "精选配件")
     );
   } else if (url.includes("/main/indexV8")) {
     // 酷安-index

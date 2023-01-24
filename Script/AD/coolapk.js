@@ -12,52 +12,6 @@ hostname = api.coolapk.com
 
 */
 
-if (!$response.body) $done({});
-const url = $request.url;
-let obj = JSON.parse($response.body);
-
-if (obj.data) {
-  // 酷安-detail
-  if (url.includes("/feed/detail")) {
-    if (obj.data.hotReplyRows) {
-      obj.data.hotReplyRows = obj.data.hotReplyRows.filter((item) => item.id);
-    }
-    if (obj.data.topReplyRows) {
-      obj.data.topReplyRows = obj.data.topReplyRows.filter((item) => item.id);
-    }
-    if (obj.data.include_goods_ids) {
-      obj.data.include_goods_ids = [];
-    }
-    if (obj.data.include_goods) {
-      obj.data.include_goods = [];
-    }
-    if (obj.data.detailSponsorCard) {
-      obj.data.detailSponsorCard = [];
-    }
-  } else if (url.includes("/feed/replyList")) {
-    // 酷安-replyList
-    obj.data = obj.data.filter((item) => item.id);
-  } else if (url.includes("/main/dataList")) {
-    // 酷安-dataList
-    obj.data = obj.data.filter(
-      (item) =>
-        !(item.entityTemplate === "sponsorCard" || item.title === "精选配件")
-    );
-  } else if (url.includes("/main/indexV8")) {
-    // 酷安-index
-    obj.data = obj.data.filter(
-      (item) =>
-        !(
-          item.entityTemplate === "sponsorCard" ||
-          item.entityId === 8639 ||
-          item.entityId === 33006 ||
-          item.entityId === 32557 ||
-          item.title.includes("值得买") ||
-          item.title.includes("红包")
-        )
-    );
-  }
-}
-
-body = JSON.stringify(obj);
-$done({ body });
+const version = 'V1.0.9';
+ 
+if(-1!=$request.url.indexOf("replyList")){var t=JSON.parse($response.body);t.data.length&&(t.data=t.data.filter(t=>t.id)),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("indexV8")){var t=JSON.parse($response.body);t.data=t.data.filter(t=>!("sponsorCard"==t.entityTemplate||8639==t.entityId||29349==t.entityId||33006==t.entityId||32557==t.entityId||-1!=t.title.indexOf("值得买")||-1!=t.title.indexOf("红包"))),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("dataList")){var t=JSON.parse($response.body);t.data=t.data.filter(t=>!("sponsorCard"==t.entityTemplate||-1!=t.title.indexOf("精选配件"))),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("detail")){var t=JSON.parse($response.body);t.data?.hotReplyRows?.length&&(t.data.hotReplyRows=t.data.hotReplyRows.filter(t=>t.id)),t.data?.topReplyRows?.length&&(t.data.topReplyRows=t.data.topReplyRows.filter(t=>t.id)),t.data?.include_goods_ids&&(t.data.include_goods_ids=[]),t.data?.include_goods&&(t.data.include_goods=[]),t.data?.detailSponsorCard&&(t.data.detailSponsorCard=[]),$done({body:JSON.stringify(t)})}else $done($response);

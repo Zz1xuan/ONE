@@ -1,3 +1,7 @@
+# > Outlook
+HOST,acdn.adnxs.com,REJECT
+HOST,mediation.adnxs.com,REJECT
+HOST,sin3-ib.adnxs.com,REJECT
 # > 飞猪旅行
 HOST,amdc.m.taobao.com,reject
 # > 番茄小说

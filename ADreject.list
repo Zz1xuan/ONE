@@ -78,7 +78,6 @@ HOST-SUFFIX,duapps.com, reject
 HOST-SUFFIX,cpro.baidu.com, reject
 HOST-SUFFIX,pos.baidu.com, reject
 HOST,afd.baidu.com, reject
-HOST,als.baidu.com, reject
 HOST,duclick.baidu.com, reject
 HOST,mobads.baidu.com, reject
 HOST,mobads-logs.baidu.com, reject
@@ -219,7 +218,6 @@ HOST-SUFFIX,yingxiao.baidu.com, reject
 HOST-SUFFIX,znsv.baidu.com, reject
 HOST-SUFFIX,baidustatic.com, reject
 HOST-SUFFIX,afd.baidu.com, reject
-HOST-SUFFIX,als.baidu.com, reject
 HOST-SUFFIX,duclick.baidu.com, reject
 HOST-SUFFIX,hm.baidu.com, reject
 HOST-SUFFIX,hmma.baidu.com, reject
@@ -230,9 +228,7 @@ HOST,hm.baidu.com, reject
 HOST,hmma.baidu.com, reject
 
 # > C
-# > 菜鸟裹裹
-HOST,nbnestcdn.cainiao.com,reject
-HOST,nbnestcreativecdn.cainiao.com,REJECT
+
 # > 车来了（包括小程序）
 host-suffix, atrace.chelaile.net.cn, reject
 host, logs.chelaile.net.cn, reject

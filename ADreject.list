@@ -74,6 +74,7 @@ HOST-SUFFIX,cm.track.biligame.bilibili.com, reject
 HOST,advertise.baicizhan.com, reject
 HOST,advertise.baicizhan.org, reject
 # > 百度
+HOST-SUFFIX,als.baidu.com, reject
 HOST-SUFFIX,duapps.com, reject
 HOST-SUFFIX,cpro.baidu.com, reject
 HOST-SUFFIX,pos.baidu.com, reject

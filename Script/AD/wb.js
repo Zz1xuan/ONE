@@ -733,12 +733,12 @@ function removePhp(data) {
     data.realtime_ad_timeout_duration = 31536000;
   }
   if (data.ads) {
-    for (let item of data["ads"]) {
-      item["displaytime"] = 0;
-      item["displayintervel"] = 31536000;
-      item["allowdaydisplaynum"] = 0;
-      item["begintime"] = "2040-01-01 00:00:00";
-      item["endtime"] = "2040-01-01 23:59:59";
+    for (let item of data.ads) {
+      item.displaytime = 0;
+      item.displayintervel = 31536000;
+      item.allowdaydisplaynum = 0;
+      item.begintime = "2040-01-01 00:00:00";
+      item.endtime = "2040-01-01 23:59:59";
     }
   }
   return data;
@@ -747,11 +747,11 @@ function removePhp(data) {
 // 移除开屏广告
 function removeLua(data) {
   if (data.cached_ad.ads) {
-    for (let item of data["cached_ad"]["ads"]) {
-      item["start_date"] = 2208960000; // Unix 时间戳 2040-01-01 00:00:00
-      item["show_count"] = 0;
-      item["duration"] = 31536000; // 60 * 60 * 24 * 365 = 31536000
-      item["end_date"] = 2209046399; // Unix 时间戳 2040-01-01 23:59:59
+    for (let item of data.cached_ad.ads) {
+      item.start_date = 2208960000; // Unix 时间戳 2040-01-01 00:00:00
+      item.show_count = 0;
+      item.duration = 31536000; // 60 * 60 * 24 * 365 = 31536000
+      item.end_date = 2209046399; // Unix 时间戳 2040-01-01 23:59:59
     }
   }
   return data;

@@ -1,4 +1,4 @@
-// 2023-02-07 19:58
+// 2023-02-07 19:58 rucu6
 
 if (!$response.body) $done({});
 const url = $request.url;
@@ -76,16 +76,6 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     // 首页签到
     if (obj.show) {
       obj.show = 0;
-    }
-  } else if (url.includes("/2/client/publisher_list")) {
-    // 首页右上角按钮
-    if (obj.elements) {
-      obj.elements = obj.elements.filter(
-        (a) =>
-          a.app_name === "写微博" ||
-          a.app_name === "图片" ||
-          a.app_name === "视频"
-      );
     }
   } else if (url.includes("/2/comments/build_comments")) {
     // 评论区

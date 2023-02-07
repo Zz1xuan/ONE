@@ -515,6 +515,9 @@ function isAd(data) {
     if (data.mblogtypename === "热推") {
       return true;
     }
+    if (data.mblogtypename === "粉丝头条") {
+      return true;
+    }
     if (data.promotion?.type === "ad") {
       return true;
     }

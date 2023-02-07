@@ -465,8 +465,13 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj.button_configs) {
       delete obj.button_configs;
     }
-    
-    if (url.includes("/v1/ad/realtime")) {
+    // 广场页
+    if (obj.channelInfo.channel_list) {
+      obj.channelInfo.channel_list = obj.channelInfo.channel_list.filter(
+        (t) => t.title !== "广场"
+      );
+    }
+  } else if (url.includes("/v1/ad/realtime")) {
     // 开屏广告
     if (obj?.ads) {
       for (let item of obj.ads) {

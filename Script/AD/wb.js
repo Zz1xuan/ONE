@@ -77,6 +77,16 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj.show) {
       obj.show = 0;
     }
+  } else if (url.includes("/2/client/publisher_list")) {
+    // 首页右上角按钮
+    if (obj.elements) {
+      obj.elements = obj.elements.filter(
+        (a) =>
+          a.app_name === "写微博" ||
+          a.app_name === "图片" ||
+          a.app_name === "视频"
+      );
+    }
   } else if (url.includes("/2/comments/build_comments")) {
     // 评论区
     let delType = ["广告"];
@@ -272,6 +282,13 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
       obj.items = newItems;
     }
+  } else if (url.includes("/2/push/active")) {
+    // 首页右上角红包图标
+    if (obj?.feed_redpacket) {
+      obj.feed_redpacket.starttime = "2208960000";
+      obj.feed_redpacket.interval = "31536000";
+      obj.feed_redpacket.endtime = "2209046399";
+    }
   } else if (url.includes("/2/search/")) {
     // 搜索页信息流
     if (url.includes("container_timeline")) {
@@ -464,12 +481,6 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     // 超话左上角,右上角图标
     if (obj.button_configs) {
       delete obj.button_configs;
-    }
-    // 广场页
-    if (obj.channelInfo.channel_list) {
-      obj.channelInfo.channel_list = obj.channelInfo.channel_list.filter(
-        (t) => t.title !== "广场"
-      );
     }
   } else if (url.includes("/v1/ad/realtime")) {
     // 开屏广告

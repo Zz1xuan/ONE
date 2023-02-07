@@ -1,5 +1,5 @@
 // https://github.com/zmqcherish/proxy-script/blob/main/weibo_main.js
-// 2023-02-06 19:25
+// 2023-02-07 14:46
 
 if (!$response.body) $done({});
 const url = $request.url;
@@ -78,17 +78,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj.show) {
       obj.show = 0;
     }
-  } else if (url.includes("/2/client/publisher_list")) {
-    // 首页右上角按钮
-    if (obj.elements) {
-      obj.elements = obj.elements.filter(
-        (a) =>
-          a.app_name === "写微博" ||
-          a.app_name === "图片" ||
-          a.app_name === "视频"
-      );
-    }
-  } else if (url.includes("/2/comments/build_comments")) {
+  }  lse if (url.includes("/2/comments/build_comments")) {
     // 评论区
     let delType = ["广告"];
     delType.push("相关内容");
@@ -98,10 +88,14 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       if (items.length > 0) {
         let newItems = [];
         for (let item of items) {
-          // 移除头像挂件、勋章、评论气泡
-          if (item.data?.user) {
+          // 移除超话社区,头像挂件,勋章,评论气泡
+          if (item.data.user) {
+            if (item.data.user.name === "超话社区") {
+              continue;
+            }
             removeAvatar(item.data.user);
           }
+          // 移除评论气泡
           if (item.data?.comment_bubble) {
             delete item.data.comment_bubble;
           }
@@ -158,6 +152,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       obj.messages = newMsgs;
     }
   } else if (url.includes("/2/page")) {
+    // 搜索页列表
     if (obj.cards?.length > 0) {
       if (obj.cards[0].card_group) {
         obj.cards[0].card_group = obj.cards[0].card_group.filter(
@@ -270,13 +265,43 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       obj.feed_redpacket.endtime = "2209046399";
     }
   } else if (url.includes("/2/search/")) {
-    // 搜索页
+    // 搜索页信息流
     if (url.includes("container_discover")) {
       removeSearch(obj);
     } else if (url.includes("container_timeline")) {
       removeSearch(obj);
     } else if (url.includes("finder")) {
       removeSearchMain(obj);
+    }
+  } else if (url.includes("/2/cardlist") || url.includes("/2/searchall")) {
+    if (obj.cards) {
+      let newCards = [];
+      for (const card of obj.cards) {
+        let cardGroup = card.card_group;
+        if (cardGroup?.length > 0) {
+          let newGroup = [];
+          for (const group of cardGroup) {
+            let cardType = group.card_type;
+            if (cardType !== 118) {
+              if (!isAd(group.mblog)) {
+                newGroup.push(group);
+              }
+            }
+          }
+          card.card_group = newGroup;
+          newCards.push(card);
+        } else {
+          let cardType = card.card_type;
+          if ([9, 17, 165, 180, 1007].indexOf(cardType) !== -1) {
+            continue;
+          } else {
+            if (!isAd(card.mblog)) {
+              newCards.push(card);
+            }
+          }
+        }
+      }
+      obj.cards = newCards;
     }
   } else if (
     url.includes("/2/statuses/container_timeline?") ||
@@ -301,6 +326,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       obj.items = newItems;
     }
   } else if (url.includes("/2/statuses/container_timeline_topic")) {
+    // 超话信息流
     if (obj.items) {
       let newItems = [];
       for (let item of obj.items) {
@@ -372,46 +398,10 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
       obj.custom_action_list = newActions;
     }
-  } else if (url.includes("/2/cardlist")) {
-    // 卡片
-    if (obj.cards) {
-      let newCards = [];
-      for (let card of obj.cards) {
-        let cardGroup = card.card_group;
-        if (cardGroup?.length > 0) {
-          let newGroup = [];
-          for (let group of cardGroup) {
-            let cardType = group.card_type;
-            if (cardType !== 118) {
-              if (!isAd(group.mblog)) {
-                removeAvatar(group.mblog);
-                // 关注按钮
-                if (group.mblog?.buttons) {
-                  group.mblog.buttons = [];
-                }
-                newGroup.push(group);
-              }
-            }
-          }
-          card.card_group = newGroup;
-          newCards.push(card);
-        } else {
-          let cardType = card.card_type;
-          if ([9, 165, 180, 1007].indexOf(cardType) !== -1) {
-            if (!isAd(card.mblog)) {
-              newCards.push(card);
-            }
-          } else {
-            newCards.push(card);
-          }
-        }
-      }
-      obj.cards = newCards;
-    }
   } else if (url.includes("/2/!/huati/discovery_home_bottom_channels")) {
     // 超话左上角,右上角图标
     if (obj.button_configs) {
-      obj.button_configs = [];
+      delete obj.button_configs;
     }
     // 广场页
     if (obj.channelInfo.channel_list) {
@@ -419,14 +409,9 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         (t) => t.title !== "广场"
       );
     }
-  } else if (url.includes("/2/!/live/media_homelist")) {
-    // 首页顶部直播
-    if (obj.data) {
-      obj.data = [];
-    }
   } else if (url.includes("/v1/ad/realtime")) {
     // 开屏广告
-    if (obj.ads) {
+    if (obj?.ads) {
       for (let item of obj.ads) {
         item.daily_display_cnt = 50; // "total_display_cnt" : 50,
         item.end_time = 2209046399; // Unix 时间戳 2040-01-01 23:59:59
@@ -450,30 +435,28 @@ if (url.includes("/interface/sdk/sdkad.php")) {
 
 // 判断信息流是不是广告、热推
 function isAd(data) {
-  if (!data) {
-    return false;
-  }
-  if (data.mblogtypename === "广告") {
-    return true;
-  }
-  if (data.mblogtypename === "热推") {
-    return true;
-  }
-  if (data.promotion?.type === "ad") {
-    return true;
+  if (data) {
+    if (data.mblogtypename === "广告") {
+      return true;
+    }
+    if (data.mblogtypename === "热推") {
+      return true;
+    }
+    if (data.promotion?.type === "ad") {
+      return true;
+    }
   }
   return false;
 }
 
 // 屏蔽用户id
 function isBlock(data) {
-  if (blockIds.length === 0) {
-    return false;
-  }
-  let uid = data.user.id;
-  for (let blockId of blockIds) {
-    if (blockId == uid) {
-      return true;
+  if (blockIds?.length > 0) {
+    let uid = data.user.id;
+    for (let blockId of blockIds) {
+      if (blockId == uid) {
+        return true;
+      }
     }
   }
   return false;
@@ -481,31 +464,30 @@ function isBlock(data) {
 
 // 移除头像挂件、勋章
 function removeAvatar(data) {
-  if (!data) {
-    return data;
-  }
-  if (data.cardid) {
-    data.cardid = "";
-  }
-  if (data.icons) {
-    data.icons = [];
-  }
-  if (data.avatargj_id) {
-    data.avatargj_id = "";
+  if (data) {
+    if (data.cardid) {
+      delete data.cardid;
+    }
+    if (data.avatar_extend_info) {
+      delete avatar_extend_info;
+    }
+    if (data.icons) {
+      delete data.icons;
+    }
+    if (data.avatargj_id) {
+      delete data.avatargj_id;
+    }
   }
   return data;
 }
 
 function checkSearchWindow(item) {
-  if (item.category !== "card") {
-    return false;
-  }
   if (
-    item.data?.card_type === 19 ||
-    item.data?.card_type === 208 ||
+    item.data?.card_type === 19 || // 找人 热议 本地
+    item.data?.card_type === 118 || // finder_window 横版大图
+    item.data?.card_type === 208 || // 实况热聊
     item.data?.card_type === 217 ||
     item.data?.card_type === 1005 ||
-    item.data?.itemid === "finder_window" ||
     item.data?.itemid === "more_frame" ||
     item.data?.mblog?.page_info?.actionlog?.source?.includes("ad")
   ) {
@@ -516,50 +498,47 @@ function checkSearchWindow(item) {
 
 // 发现页
 function removeSearch(data) {
-  if (data.loadedInfo) {
-    // 去除搜索框填充词
-    if (data.loadedInfo.searchBarContent) {
-      delete data.loadedInfo.searchBarContent;
-    }
-    // 去除搜索背景图片
-    if (data.loadedInfo.headerBack?.channelStyleMap) {
-      delete data.loadedInfo.headerBack.channelStyleMap;
-    }
-  }
-  if (!data.items) {
-    return data;
-  }
-  let newItems = [];
-  for (let item of data.items) {
-    if (item.category === "feed") {
-      if (!isAd(item.data)) {
-        newItems.push(item);
-      }
-    } else {
-      if (!checkSearchWindow(item)) {
-        // 搜索页中间的热议话题、热门人物
-        if (item.category === "group") {
-          continue;
+  if (data.items) {
+    let newItems = [];
+    for (let item of data.items) {
+      if (item.category === "feed") {
+        if (!isAd(item.data)) {
+          newItems.push(item);
         }
-        newItems.push(item);
+      } else {
+        if (!checkSearchWindow(item)) {
+          // 搜索页中间的热议话题、热门人物
+          if (item.category === "group") {
+            continue;
+          }
+          newItems.push(item);
+        }
       }
     }
+    data.items = newItems;
   }
-  data.items = newItems;
   return data;
 }
 
 function removeSearchMain(data) {
   let channels = data.channelInfo.channels;
-  if (!channels) {
-    return data;
-  }
-  for (let channel of channels) {
-    let payload = channel.payload;
-    if (!payload) {
-      continue;
+  if (channels) {
+    for (let channel of channels) {
+      let payload = channel.payload;
+      if (payload) {
+        if (payload.loadedInfo) {
+          // 去除搜索框填充词
+          if (payload.loadedInfo.searchBarContent) {
+            delete payload.loadedInfo.searchBarContent;
+          }
+          // 去除搜索背景图片
+          if (payload.loadedInfo.headerBack?.channelStyleMap) {
+            delete payload.loadedInfo.headerBack.channelStyleMap;
+          }
+        }
+        removeSearch(payload);
+      }
     }
-    removeSearch(payload);
   }
   return data;
 }

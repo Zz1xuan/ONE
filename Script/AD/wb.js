@@ -1,4 +1,3 @@
-// https://github.com/zmqcherish/proxy-script/blob/main/weibo_main.js
 // 2023-02-07 14:46
 
 if (!$response.body) $done({});
@@ -78,7 +77,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj.show) {
       obj.show = 0;
     }
-  }  lse if (url.includes("/2/comments/build_comments")) {
+  } else if (url.includes("/2/comments/build_comments")) {
     // 评论区
     let delType = ["广告"];
     delType.push("相关内容");
@@ -398,17 +397,6 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
       obj.custom_action_list = newActions;
     }
-  } else if (url.includes("/2/!/huati/discovery_home_bottom_channels")) {
-    // 超话左上角,右上角图标
-    if (obj.button_configs) {
-      delete obj.button_configs;
-    }
-    // 广场页
-    if (obj.channelInfo.channel_list) {
-      obj.channelInfo.channel_list = obj.channelInfo.channel_list.filter(
-        (t) => t.title !== "广场"
-      );
-    }
   } else if (url.includes("/v1/ad/realtime")) {
     // 开屏广告
     if (obj?.ads) {
@@ -542,4 +530,3 @@ function removeSearchMain(data) {
   }
   return data;
 }
-

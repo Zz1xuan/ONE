@@ -477,11 +477,6 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj.statuses) {
       obj.statuses = obj.statuses.filter((m) => !(m.mblogtypename === "广告"));
     }
-  } else if (url.includes("/2/!/huati/discovery_home_bottom_channels")) {
-    // 超话左上角,右上角图标
-    if (obj.button_configs) {
-      delete obj.button_configs;
-    }
   } else if (url.includes("/v1/ad/realtime")) {
     // 开屏广告
     if (obj?.ads) {

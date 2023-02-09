@@ -1,17 +1,85 @@
-/*
-author      RuCu6
-function    酷安去首页广告、信息流广告、评论广告
-author      kk pp
-
-
-[rewrite_local]
-^https?:\/\/api.coolapk.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|dataList) url script-response-body https://ocd0522.tk/ddgksf2013/Cuttlefish/raw/branch/master/Script/coolapk.js
-
-[mitm]
-hostname = api.coolapk.com
-
-*/
-
-const version = 'V1.0.9';
+// 2023-02-09 15:35
+/***********************************
+> 应用名称：酷安净化
+> 脚本作者：ddgksf2013,RuCu6
  
-if(-1!=$request.url.indexOf("replyList")){var t=JSON.parse($response.body);t.data.length&&(t.data=t.data.filter(t=>t.id)),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("indexV8")){var t=JSON.parse($response.body);t.data=t.data.filter(t=>!("sponsorCard"==t.entityTemplate||8639==t.entityId||29349==t.entityId||33006==t.entityId||32557==t.entityId||-1!=t.title.indexOf("值得买")||-1!=t.title.indexOf("红包"))),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("dataList")){var t=JSON.parse($response.body);t.data=t.data.filter(t=>!("sponsorCard"==t.entityTemplate||-1!=t.title.indexOf("精选配件"))),$done({body:JSON.stringify(t)})}else if(-1!=$request.url.indexOf("detail")){var t=JSON.parse($response.body);t.data?.hotReplyRows?.length&&(t.data.hotReplyRows=t.data.hotReplyRows.filter(t=>t.id)),t.data?.topReplyRows?.length&&(t.data.topReplyRows=t.data.topReplyRows.filter(t=>t.id)),t.data?.include_goods_ids&&(t.data.include_goods_ids=[]),t.data?.include_goods&&(t.data.include_goods=[]),t.data?.detailSponsorCard&&(t.data.detailSponsorCard=[]),$done({body:JSON.stringify(t)})}else $done($response);
+    
+[rewrite_local]
+
+# > 酷安_推广广告@ddgksf2013
+^https?:\/\/api.coolapk.com\/v6\/dataList url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/coolapk.js
+# > 酷安_首页广告@ddgksf2013
+^https?:\/\/api.coolapk.com\/v6\/main\/indexV8 url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/coolapk.js
+# > 酷安_评论广告@ddgksf2013
+^https?:\/\/api.coolapk.com\/v6\/feed\/replyList url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/coolapk.js
+# > 酷安_商品推广@ddgksf2013
+^https?:\/\/api.coolapk.com\/v6\/feed\/detail url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/coolapk.js
+# > 酷安_热搜@RuCu6
+^https:\/\/api\.coolapk\.com\/v6\/page\/dataList\? url script-response-body https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/coolapk.js
+# > 酷安_屏蔽热词@ddgksf2013
+^https?:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch url reject-dict
+[mitm] 
+
+hostname=api.coolapk.com
+
+
+***********************************/
+
+if (!$response.body) $done({});
+const url = $request.url;
+let obj = JSON.parse($response.body);
+
+if (obj.data) {
+  // detail
+  if (url.includes("/feed/detail")) {
+    if (obj.data.hotReplyRows && obj.data.hotReplyRows.length > 0) {
+      obj.data.hotReplyRows = obj.data.hotReplyRows.filter((item) => item.id);
+    }
+    if (obj.data.topReplyRows && obj.data.topReplyRows.length > 0) {
+      obj.data.topReplyRows = obj.data.topReplyRows.filter((item) => item.id);
+    }
+    if (obj.data.include_goods_ids) {
+      obj.data.include_goods_ids = [];
+    }
+    if (obj.data.include_goods) {
+      obj.data.include_goods = [];
+    }
+    if (obj.data.detailSponsorCard) {
+      obj.data.detailSponsorCard = [];
+    }
+  } else if (url.includes("/feed/replyList")) {
+    // replyList
+    if (obj.data.length > 0) {
+      obj.data = obj.data.filter((item) => item.id);
+    }
+  } else if (url.includes("/main/dataList")) {
+    // dataList
+    obj.data = obj.data.filter(
+      (item) =>
+        !(item.entityTemplate === "sponsorCard" || item.title === "精选配件")
+    );
+  } else if (url.includes("/main/indexV8")) {
+    // index
+    obj.data = obj.data.filter(
+      (item) =>
+        !(
+          item.entityTemplate === "sponsorCard" ||
+          item.entityId === 8639 ||
+          item.entityId === 29349 ||
+          item.entityId === 33006 ||
+          item.entityId === 32557 ||
+          item.title.includes("值得买") ||
+          item.title.includes("红包")
+        )
+    );
+  } else if (url.includes("/page/dataList")) {
+    // 酷安热搜
+    obj.data = obj.data.filter(
+      (item) =>
+        !(item.title === "酷安热搜")
+    );
+  }
+}
+
+body = JSON.stringify(obj);
+$done({ body });

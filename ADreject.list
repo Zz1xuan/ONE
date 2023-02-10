@@ -496,7 +496,6 @@ HOST-SUFFIX,gdt.qq.com, reject
 HOST-SUFFIX,android.rqd.qq.com, reject
 HOST-SUFFIX,e.qq.com, reject
 HOST-SUFFIX,beacon.qq.com, reject
-HOST-SUFFIX,v.gdt.qq.com, reject
 
 # > R
 # > S
@@ -602,10 +601,7 @@ HOST-SUFFIX,adver.qq.com, reject
 HOST-SUFFIX,aeventlog.beacon.qq.com, reject
 HOST-SUFFIX,analy.qq.com, reject
 HOST-SUFFIX,astrategy.beacon.qq.com, reject
-HOST-SUFFIX,c.gdt.qq.com, reject
 HOST-SUFFIX,c.gj.qq.com, reject
-HOST-SUFFIX,canvas.gdt.qq.com, reject
-HOST-SUFFIX,d.gdt.qq.com, reject
 HOST-SUFFIX,d3g.qq.com, reject
 HOST-SUFFIX,download.sj.qq.com, reject
 HOST-SUFFIX,dp3.qq.com, reject
@@ -618,7 +614,6 @@ HOST-SUFFIX,jrlt.beacon.qq.com, reject
 HOST-SUFFIX,jsqmt.qq.com, reject
 HOST-SUFFIX,lives.l.qq.com, reject
 HOST-SUFFIX,livep.l.qq.com, reject
-HOST-SUFFIX,mi.gdt.qq.com, reject
 HOST-SUFFIX,livep.l.ott.video.qq.com, reject
 HOST-SUFFIX,lives.l.ott.video.qq.com, reject
 HOST-SUFFIX,masdk.3g.qq.com, reject
@@ -628,7 +623,6 @@ HOST-SUFFIX,monitor.uu.qq.com, reject
 HOST-SUFFIX,mqqad.cs0309.html5.qq.com, reject
 HOST-SUFFIX,mqqad.html5.qq.com, reject
 HOST-SUFFIX,mqqadr.reader.qq.com, reject
-HOST-SUFFIX,nc.gdt.qq.com, reject
 HOST-SUFFIX,news.mpush.qq.com, reject
 HOST-SUFFIX,news-l.play.ott.video.qq.com, reject
 HOST-SUFFIX,novelsns.html5.qq.com, reject
@@ -636,14 +630,11 @@ HOST-SUFFIX,oth.update.mdt.qq.com, reject
 HOST-SUFFIX,pcbrowser.dd.qq.com, reject
 HOST-SUFFIX,pmir.3g.qq.com, reject
 HOST-SUFFIX,pvstat.html5.qq.com, reject
-HOST-SUFFIX,q.i.gdt.qq.com, reject
 HOST-SUFFIX,qqshow2-item.qq.com, reject
-HOST-SUFFIX,rm.gdt.qq.com, reject
 HOST-SUFFIX,scdown.qq.com, reject
 HOST-SUFFIX,setting.snswin.qq.com, reject
 HOST-SUFFIX,sngmta.qq.com, reject
 HOST-SUFFIX,strategy.beacon.qq.com, reject
-HOST-SUFFIX,t.gdt.qq.com, reject
 HOST-SUFFIX,t.sj.qq.com, reject
 HOST-SUFFIX,ta.qq.com, reject
 HOST-SUFFIX,tcss.qq.com, reject
@@ -653,7 +644,6 @@ HOST-SUFFIX,video.ureport.push.qq.com, reject
 HOST-SUFFIX,video.wap.mpush.qq.com, reject
 HOST-SUFFIX,vlive.qqvideo.tc.qq.com, reject
 HOST-SUFFIX,wap.mpush.qq.com, reject
-HOST-SUFFIX,win.gdt.qq.com, reject
 HOST-SUFFIX,ws.sj.qq.com, reject
 HOST-SUFFIX,wxsnsdy.tc.qq.com, reject
 HOST-SUFFIX,wxsnsdy.video.qq.com, reject
@@ -740,7 +730,7 @@ HOST,n.3g.163.com, reject
 HOST,nex.163.com, reject
 HOST,yt-adp.nosdn.127.net, reject
 HOST,yt-adp.ws.126.net, reject
-HOST-SUFFIX,163jiasu.com,reject
+HOST,interface*.music.163.com.163jiasu.com,reject
 
 # > X
 
@@ -945,11 +935,9 @@ HOST,tracklog.58.com, reject
 
 # > 易校园
 HOST-SUFFIX,p1.adkwai.com, reject
-HOST,v2.gdt.qq.com, reject
 HOST-SUFFIX,rayjump.com, reject
 HOST,bgg.baidu.com,reject
 HOST,tk.anythinktech.com,reject
-HOST,v2.gdt.qq.com,reject
 HOST,static.yximgs.com,reject
 HOST,qzs.gdtimg.com,reject
 HOST,adx-cn.anythinktech.com,reject
@@ -957,7 +945,6 @@ HOST,pgdt.ugdtimg.com,reject
 HOST,api.anythinktech.com,reject
 HOST-SUFFIX,rayjump.com,reject
 # > HOST,h.trace,qq.com,reject
-# > HOST,win.gdt.qq.com, reject
 # > HOST-SUFFIX,ios.bugly.qq.com,reject
 HOST,y.tcp.push.mob.com,direct
 

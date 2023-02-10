@@ -1,5 +1,4 @@
-# > 微博 
-HOST,boot.biz.weibo.com,REJECT
+
 # > Outlook
 HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT

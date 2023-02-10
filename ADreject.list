@@ -1,4 +1,3 @@
-
 # > Outlook
 HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT
@@ -6,14 +5,9 @@ HOST,sin3-ib.adnxs.com,REJECT
 # > 飞猪旅行
 HOST,amdc.m.taobao.com,reject
 # > 番茄小说
-#host, p3-pack.byteimg.com, reject
-#host, p6-pack.byteimg.com, reject
 HOST,i.snssdk.com,REJECT
 HOST,i-lq.snssdk.com,REJECT
-#HOST,dig.bdurl.net,REJECT
-#HOST-KEYWORD,zijieapi,REJECT
 HOST,activity-ag.awemeughun.com,REJECT
-
 HOST,mcs.snssdk.com,REJECT
 HOST,tnc3-alisc1.snssdk.com,REJECT
 HOST,security-lq.snssdk.com,REJECT
@@ -28,12 +22,8 @@ HOST,apd-pcdnwxlogin.teg.tencent-cloud.net,REJECT
 HOST,api.iegadp.qq.com,REJECT
 HOST,sf3-ttcdn-tos.pstatp.com,REJECT
 HOST-SUFFIX,pglstatp-toutiao.com,REJECT
-
-
 HOST-SUFFIX,byteorge.com,REJECT
 HOST-SUFFIX,bytegoofy.com,REJECT
-#HOST-SUFFIX,bytedance.com,REJECT
-
 IP-CIDR,49.71.37.101/32,REJECT
 IP-CIDR,117.71.105.23/32,REJECT
 IP-CIDR,218.94.207.205/32,REJECT
@@ -44,7 +34,6 @@ IP-CIDR,180.96.2.114/32,REJECT
 # > A
 
 # > 爱奇艺
-HOST,t7z.cupid.iqiyi.com, reject
 HOST,t7z.cupid.ptqy.gitv.tv, reject
 IP-CIDR,203.107.63.154/32, reject
 IP-CIDR,101.227.97.240/32, reject
@@ -57,7 +46,6 @@ host, f74f7f7765f8a2f6.ngaa.net.cn, reject
 host, ef-dongfeng.tanx.com, reject
 host, iqiyim.adtrack.enlightent.cn, reject
 HOST,dig.bdurl.net, reject
-#HOST-KEYWORD,zijieapi,reject
 HOST,ads3-normal-lq.zijieapi.com, reject
 HOST,ads5-normal-lq.zijieapi.com, reject
 
@@ -79,12 +67,10 @@ HOST-SUFFIX,als.baidu.com, reject
 HOST-SUFFIX,duapps.com, reject
 HOST-SUFFIX,cpro.baidu.com, reject
 HOST-SUFFIX,pos.baidu.com, reject
-HOST,afd.baidu.com, reject
-HOST,duclick.baidu.com, reject
-HOST,mobads.baidu.com, reject
-HOST,mobads-logs.baidu.com, reject
-HOST,nadvideo2.baidu.com, reject
-HOST,nsclick.baidu.com, reject
+HOST-SUFFIX,mobads.baidu.com, reject
+HOST-SUFFIX,mobads-logs.baidu.com, reject
+HOST-SUFFIX,nadvideo2.baidu.com, reject
+HOST-SUFFIX,nsclick.baidu.com, reject
 HOST-SUFFIX,bce.baidu.com, reject
 HOST-SUFFIX,bar.baidu.com, reject
 HOST-SUFFIX,baiduyubaidu.com, reject
@@ -223,11 +209,8 @@ HOST-SUFFIX,afd.baidu.com, reject
 HOST-SUFFIX,duclick.baidu.com, reject
 HOST-SUFFIX,hm.baidu.com, reject
 HOST-SUFFIX,hmma.baidu.com, reject
-HOST-SUFFIX,mobads.baidu.com, reject
-HOST-SUFFIX,mobads-logs.baidu.com, reject
-HOST-SUFFIX,nsclick.baidu.com, reject
 HOST,hm.baidu.com, reject
-HOST,hmma.baidu.com, reject
+ 
 
 # > C
 
@@ -962,16 +945,9 @@ HOST,y.tcp.push.mob.com,direct
 # HOST-SUFFIX,ads.internal.unity3d.com, reject
 # HOST-SUFFIX,ads.prd.ie.internal.unity3d.com, reject
 # HOST-SUFFIX,unityads.unity3d.com, reject
-
 #金融
 HOST,punion.tjjt360.com,reject
-
 #有道
 HOST,staticsns.cdn.bcebos.com,reject
-
-
-
 # > 芒果TV
 HOST,mobile.da.mgtv.com,reject
-
-

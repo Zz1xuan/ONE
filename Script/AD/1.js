@@ -11,7 +11,9 @@ obj = {
   },
   {
     code: 0,
-    data: [{}]
+    data: {
+      images:[{}]
+    }
   },
   regeocode:{
     roadinters: [{}]

@@ -5,8 +5,10 @@ obj = {
     total: 0,
     datas: [{}]
   };
+  {
     code: 0,
     datas: [{}]
+  }
 };
 
 $done({ body: JSON.stringify(obj) });

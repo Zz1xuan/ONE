@@ -4,11 +4,11 @@ obj = {
   data: {
     total: 0,
     datas: [{}]
-  };
+  },
   {
     code: 0,
     datas: [{}]
-  };
+  },
   regeocode:{
     roadinters: [{}]
   }

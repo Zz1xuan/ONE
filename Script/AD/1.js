@@ -8,15 +8,6 @@ obj = {
   {
     code: 0,
     datas: [{}]
-  },
-  {
-    code: 0,
-    data: {
-      images:[{}]
-    }
-  },
-  regeocode:{
-    roadinters: [{}]
   }
 };
 

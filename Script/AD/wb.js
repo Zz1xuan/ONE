@@ -1,7 +1,7 @@
-// 2023-02-08 12:45
+// 2023-02-13 11:15
 
-if (!$response.body) $done({});
 const url = $request.url;
+if (!$response.body) $done({});
 let body = $response.body;
 
 // 屏蔽用户id获取方法
@@ -68,14 +68,23 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       item.endtime = "2040-01-01 23:59:59";
     }
   }
-  body = JSON.stringify(obj) + "OK";
-  $done({ body });
+  $done({ body: JSON.stringify(obj) + "OK" });
 } else {
   let obj = JSON.parse(body);
   if (url.includes("/2/checkin/show")) {
     // 首页签到
     if (obj.show) {
       obj.show = 0;
+    }
+  } else if (url.includes("/2/client/publisher_list")) {
+    // 首页右上角按钮
+    if (obj.elements) {
+      obj.elements = obj.elements.filter(
+        (a) =>
+          a.app_name === "写微博" ||
+          a.app_name === "图片" ||
+          a.app_name === "视频"
+      );
     }
   } else if (url.includes("/2/comments/build_comments")) {
     // 评论区
@@ -241,30 +250,30 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             );
           }
           newItems.push(item);
-        } else if (item.category === "mine") {
-          if (itemId === "100505_-_manage") {
-            if (item.style) {
-              delete item.style;
-            }
-            // 移除分隔符的点点点
-            if (item.images) {
-              delete item.images;
-            }
-            newItems.push(item);
-          } else if (itemId === "100505_-_manage2") {
-            // 移除面板样式
-            if (item.footer) {
-              delete item.footer;
-            }
-            // 移除框内推广
-            if (item.body) {
-              delete item.body;
-            }
-            newItems.push(item);
-          } else {
-            // 其他项目全部移除
-            continue;
+        } else if (itemId === "100505_-_manage") {
+          if (item.style) {
+           delete item.style;
           }
+          // 移除分隔符的点点点
+          if (item.images) {
+            delete item.images;
+          }
+          newItems.push(item);
+        } else if (itemId === "100505_-_manage2") {
+          // 移除面板样式
+          if (item.footer) {
+            delete item.footer;
+          }
+          // 移除框内推广
+          if (item.body) {
+            delete item.body;
+          }
+          newItems.push(item);
+        } else if (
+          itemId === "100505_-_chaohua" ||
+          itemId === "100505_-_recentlyuser"
+        ) {
+          newItems.push(item);
         } else {
           // 其他项目全部移除
           continue;
@@ -486,6 +495,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     }
   } else if (url.includes("/v2/strategy/ad")) {
     // 开屏广告
+    obj.data = {};
     obj.end = "2040-01-01 23:59:59";
     obj.start = "2040-01-01 00:00:00";
   } else if (url.includes("/wbapplua/wbpullad.lua")) {
@@ -499,8 +509,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
     }
   }
-  body = JSON.stringify(obj);
-  $done({ body });
+  $done({ body: JSON.stringify(obj) });
 }
 
 // 判断信息流
@@ -575,5 +584,3 @@ function checkSearchWindow(item) {
   }
   return false;
 }
-
-

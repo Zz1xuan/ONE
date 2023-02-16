@@ -1,3 +1,9 @@
+# 微博 开屏广告
+HOST,adstrategy.biz.weibo.com,REJECT
+;HOST,boot.biz.weibo.com,REJECT
+HOST,kadmimage.biz.weibo.com,REJECT
+HOST,sdkaction.biz.weibo.com,REJECT
+HOST,sdkclick.biz.weibo.com,REJECT
 # > Outlook
 HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT

@@ -1,4 +1,4 @@
-const urlRegex = 'me';
+const urlRegex = /^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab\?/;
 // 圈x处理HTTP响应的函数
 function responseHandler(responseDetails) {
   // 如果URL匹配

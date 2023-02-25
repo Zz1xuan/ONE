@@ -8,7 +8,7 @@ HOST,sdkclick.biz.weibo.com,REJECT
 HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT
 HOST,sin3-ib.adnxs.com,REJECT
-# > 飞猪旅行&高德&淘宝
+# > 飞猪旅行&高德
 HOST,amdc.m.taobao.com,reject
 
 # > A
@@ -26,7 +26,8 @@ host, f74f7f7765f8a2f6.ngaa.net.cn, reject
 host, ef-dongfeng.tanx.com, reject
 host, iqiyim.adtrack.enlightent.cn, reject
 HOST,dig.bdurl.net, reject
-
+HOST,ads3-normal-lq.zijieapi.com, reject
+HOST,ads5-normal-lq.zijieapi.com, reject
 
 
 # > B
@@ -489,14 +490,11 @@ HOST-SUFFIX,apoll.m.taobao.com, reject
 # > TalkingData
 HOST-SUFFIX,cpatrk.net, reject
 # > 腾讯视频
-host, h.trace.qq.com, reject
-HOST-SUFFIX,oth.str.mdt.qq.com, reject
-
 host-suffix, tetrack.qq.com, reject
 host-suffix, tpns.tencent.com, reject
 host-suffix, api.poll.video.qq.com, reject
 host-suffix, static-res.qq.com, reject
-
+host, h.trace.qq.com, reject
 # >  腾讯
 HOST-SUFFIX,news.ssp.qq.com, reject
 HOST-SUFFIX,activeqq.3g.qq.com, reject
@@ -571,7 +569,7 @@ HOST-SUFFIX,wxsnsdythumb.wxs.qq.com, reject
 HOST-SUFFIX,fusion.qq.com, reject
 HOST-SUFFIX,ios.bugly.qq.com, reject
 HOST,safebrowsing.urlsec.qq.com, reject
-
+HOST-SUFFIX,oth.str.mdt.qq.com, reject
 HOST-SUFFIX,l.qq.com, reject
 HOST,adsmind.apdcdn.tc.qq.com, reject
 HOST,adsmind.ugdtimg.com, reject
@@ -723,13 +721,24 @@ HOST-SUFFIX,jpush.cn, reject
 HOST-SUFFIX,im64.jpush.cn, reject
 HOST-SUFFIX,im.jpush.cn, reject
 HOST-SUFFIX,jpush.html5.qq.com, reject
-
+# > 字节跳动
+HOST-SUFFIX,pangolin-sdk-toutiao.com, reject
+HOST-SUFFIX,pangolin-sdk-toutiao-b.com, reject
+HOST-SUFFIX,api-access.pangolin-sdk-toutiao-b.com, reject
+HOST,dsp.toutiao.com, reject
+host-keyword,pangolin.snssdk.com, reject
 # > 中国电信
 HOST,ad.21cn.com, reject
 HOST,ad.k.21cn.com, reject
 HOST,admarket.21cn.com, reject
 HOST,adshows.21cn.com, reject
-
+# > 中华万年历广告
+host-keyword, lkme.cc, reject
+host-keyword, api.freed.so, reject
+host-keyword, log-dmp.suishenyun.cn, reject
+host-keyword, client-dmp.suishenyun.cn, reject
+host-keyword, pc.suishenyun.net, reject
+host-keyword, v0-client-lz.rili.cn, reject
 # > 知乎
 USER-AGENT,AVOS*, reject
 HOST,appcloud2.in.zhihu.com, reject
@@ -738,6 +747,7 @@ HOST,sugar.zhihu.com, reject
 HOST,118.89.204.198, reject
 IP-CIDR,118.89.204.198/32, reject
 IP6-CIDR,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT
+
 
 # > ChinaMobile
 IP-CIDR,120.240.95.37/32, reject
@@ -789,6 +799,8 @@ HOST,punion.tjjt360.com,reject
 
 #有道
 HOST,staticsns.cdn.bcebos.com,reject
+
+
 
 # > 芒果TV
 HOST,mobile.da.mgtv.com,reject

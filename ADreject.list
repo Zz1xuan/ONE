@@ -8,7 +8,7 @@ HOST,sdkclick.biz.weibo.com,REJECT
 HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT
 HOST,sin3-ib.adnxs.com,REJECT
-# > 飞猪旅行&高德
+# > 飞猪旅行&高德&淘宝
 HOST,amdc.m.taobao.com,reject
 
 # > A
@@ -487,44 +487,17 @@ HOST,adsapi.snapchat.com, reject
 HOST-SUFFIX,h-adashx.ut.taobao.com, reject
 HOST-SUFFIX,apoll.m.taobao.com, reject
 
-
-HOST-SUFFIX,w.m.taobao.com, reject
-HOST-SUFFIX,ai.m.taobao.com, reject
-HOST-SUFFIX,re.m.taobao.com, reject
-HOST-SUFFIX,agoodm.m.taobao.com, reject
-HOST-SUFFIX,ai.taobao.com, reject
-HOST-SUFFIX,api.waptest.taobao.com, reject
-HOST-SUFFIX,dsp.simba.taobao.com, reject
-HOST-SUFFIX,fav.simba.taobao.com, reject
-HOST-SUFFIX,m.simba.taobao.com, reject
-HOST-SUFFIX,mclick.simba.taobao.com, reject
-HOST-SUFFIX,re.taobao.com, reject
-HOST-SUFFIX,redirect.simba.taobao.com, reject
-HOST-SUFFIX,simba.m.taobao.com, reject
-HOST-SUFFIX,srd.simba.taobao.com, reject
-HOST-SUFFIX,temai.taobao.com, reject
-HOST-SUFFIX,textlink.simba.taobao.com, reject
-HOST-SUFFIX,unitacs.m.taobao.com, reject
-HOST-SUFFIX,acs4baichuan.m.taobao.com, reject
-HOST-SUFFIX,adashbc.ut.taobao.com, reject
-HOST-SUFFIX,adash-c.ut.taobao.com, reject
-HOST-SUFFIX,adashxgc.ut.taobao.com, reject
-HOST-SUFFIX,adashx4yt.m.taobao.com, reject
-HOST-SUFFIX,tns.simba.taobao.com, reject
-HOST-SUFFIX,click.mz.simba.taobao.com, reject
-HOST-SUFFIX,click.simba.taobao.com, reject
-HOST-SUFFIX,click.tz.simba.taobao.com, reject
-HOST-SUFFIX,stat.simba.taobao.com, reject
-HOST-SUFFIX,m-adash.m.taobao.com, reject
-HOST-SUFFIX,adashbc.m.taobao.com, reject
 # > TalkingData
 HOST-SUFFIX,cpatrk.net, reject
 # > 腾讯视频
+host, h.trace.qq.com, reject
+HOST-SUFFIX,oth.str.mdt.qq.com, reject
+
 host-suffix, tetrack.qq.com, reject
 host-suffix, tpns.tencent.com, reject
 host-suffix, api.poll.video.qq.com, reject
 host-suffix, static-res.qq.com, reject
-host, h.trace.qq.com, reject
+
 # >  腾讯
 HOST-SUFFIX,news.ssp.qq.com, reject
 HOST-SUFFIX,activeqq.3g.qq.com, reject
@@ -599,7 +572,7 @@ HOST-SUFFIX,wxsnsdythumb.wxs.qq.com, reject
 HOST-SUFFIX,fusion.qq.com, reject
 HOST-SUFFIX,ios.bugly.qq.com, reject
 HOST,safebrowsing.urlsec.qq.com, reject
-HOST-SUFFIX,oth.str.mdt.qq.com, reject
+
 HOST-SUFFIX,l.qq.com, reject
 HOST,adsmind.apdcdn.tc.qq.com, reject
 HOST,adsmind.ugdtimg.com, reject
@@ -751,24 +724,13 @@ HOST-SUFFIX,jpush.cn, reject
 HOST-SUFFIX,im64.jpush.cn, reject
 HOST-SUFFIX,im.jpush.cn, reject
 HOST-SUFFIX,jpush.html5.qq.com, reject
-# > 字节跳动
-HOST-SUFFIX,pangolin-sdk-toutiao.com, reject
-HOST-SUFFIX,pangolin-sdk-toutiao-b.com, reject
-HOST-SUFFIX,api-access.pangolin-sdk-toutiao-b.com, reject
-HOST,dsp.toutiao.com, reject
-host-keyword,pangolin.snssdk.com, reject
+
 # > 中国电信
 HOST,ad.21cn.com, reject
 HOST,ad.k.21cn.com, reject
 HOST,admarket.21cn.com, reject
 HOST,adshows.21cn.com, reject
-# > 中华万年历广告
-host-keyword, lkme.cc, reject
-host-keyword, api.freed.so, reject
-host-keyword, log-dmp.suishenyun.cn, reject
-host-keyword, client-dmp.suishenyun.cn, reject
-host-keyword, pc.suishenyun.net, reject
-host-keyword, v0-client-lz.rili.cn, reject
+
 # > 知乎
 USER-AGENT,AVOS*, reject
 HOST,appcloud2.in.zhihu.com, reject
@@ -778,29 +740,6 @@ HOST,118.89.204.198, reject
 IP-CIDR,118.89.204.198/32, reject
 IP6-CIDR,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT
 
-
-
-
-
-
-
-
-# 运营商劫持
-HOST-SUFFIX,189key.com, reject
-HOST-SUFFIX,bkyhq.cn, reject
-HOST-SUFFIX,gscxs.cn, reject
-HOST-SUFFIX,hbssjd.cn, reject
-HOST-SUFFIX,hyunke.com, reject
-HOST-SUFFIX,jsncke.com, reject
-HOST-SUFFIX,junkucm.com, reject
-HOST-SUFFIX,lvehaisen.com, reject
-HOST-SUFFIX,tt114.net, reject
-HOST-SUFFIX,urlaw.cn, reject
-HOST-SUFFIX,urlet.cn, reject
-HOST-SUFFIX,wsgblw.com, reject
-HOST-SUFFIX,xchmai.com, reject
-HOST-SUFFIX,ygyzx.cn, reject
-HOST-SUFFIX,zmlled.cn, reject
 # > ChinaMobile
 IP-CIDR,120.240.95.37/32, reject
 # > Dr.Peng
@@ -816,48 +755,7 @@ HOST-SUFFIX,zryydi.com, reject
 # > Adobe Flash China Special Edition
 # https://www.zhihu.com/question/281163698/answer/441388130, reject
 HOST,geo2.adobe.com, reject
-# 隐私保护
-HOST-SUFFIX,airpr.com, reject
-HOST-SUFFIX,hotjar.com, reject
-HOST-SUFFIX,hotjar.io, reject
-HOST-SUFFIX,hs-analytics.net, reject
-HOST-SUFFIX,kissmetrics.com, reject
-HOST-SUFFIX,liadm.com, reject
-HOST-SUFFIX,mparticle.com, reject
-HOST-SUFFIX,nexac.com, reject
-HOST-SUFFIX,nr-data.net, reject
-HOST-SUFFIX,pardot.com, reject
-HOST-SUFFIX,parrable.com, reject
-HOST-SUFFIX,petametrics.com, reject
-HOST-SUFFIX,predic.io, reject
-HOST-SUFFIX,seewhy.com, reject
-HOST-SUFFIX,segment.io, reject
-HOST-SUFFIX,segmentify.com, reject
-HOST-SUFFIX,sentiance.com, reject
-HOST-SUFFIX,serverbid.com, reject
-HOST-SUFFIX,sessionm.com, reject
-HOST-SUFFIX,smartlook.com, reject
-HOST-SUFFIX,socdm.com, reject
-HOST-SUFFIX,socialannex.com, reject
-HOST-SUFFIX,socialbakers.com, reject
-HOST-SUFFIX,sociaplus.com, reject
-HOST-SUFFIX,stathat.com, reject
-HOST-SUFFIX,stats-locations.com, reject
-HOST-SUFFIX,tagcommander.com, reject
-HOST-SUFFIX,tailtarget.com, reject
-HOST-SUFFIX,tapad.com, reject
-HOST-SUFFIX,tapfiliate.com, reject
-HOST-SUFFIX,tapinfluence.com, reject
-HOST-SUFFIX,tapstream.com, reject
-HOST-SUFFIX,tend.io, reject
-HOST-SUFFIX,trackingio.com, reject
-HOST-SUFFIX,woopra.com, reject
-HOST-SUFFIX,wootric.com, reject
-HOST-SUFFIX,wowanalytics.co.uk, reject
-HOST-SUFFIX,zoomanalytics.co, reject
-HOST-SUFFIX,ads.linkedin.com, reject
-HOST,analytics.slashdotmedia.com, reject
-HOST,zgsdk.zhugeio.com, reject
+
 # >58
 HOST,track.58.com, reject
 HOST,tracklog.58.com, reject
@@ -876,10 +774,6 @@ HOST-SUFFIX,rayjump.com,reject
 HOST,y.tcp.push.mob.com,direct
 
 
-# > 智行火车票
-#HOST,m.ctrip.com,reject
-
-
 # > 屏蔽苹果系统更新
 # host, ns.itunes.apple.com, reject
 # host, appldnld.apple.com, reject
@@ -896,8 +790,6 @@ HOST,punion.tjjt360.com,reject
 
 #有道
 HOST,staticsns.cdn.bcebos.com,reject
-
-
 
 # > 芒果TV
 HOST,mobile.da.mgtv.com,reject

@@ -10,32 +10,6 @@ HOST,mediation.adnxs.com,REJECT
 HOST,sin3-ib.adnxs.com,REJECT
 # > 飞猪旅行&高德
 HOST,amdc.m.taobao.com,reject
-# > 番茄小说
-HOST,i.snssdk.com,REJECT
-HOST,i-lq.snssdk.com,REJECT
-HOST,activity-ag.awemeughun.com,REJECT
-HOST,mcs.snssdk.com,REJECT
-HOST,tnc3-alisc1.snssdk.com,REJECT
-HOST,security-lq.snssdk.com,REJECT
-HOST,tnc3-aliec2.snssdk.com,REJECT
-HOST,is.snssdk.com,REJECT
-
-HOST,v6-novelapp.ixigua.com,REJECT
-HOST,*novelapp.ixigua.com,REJECT
-HOST,*default.ixigua.com,REJECT
-HOST,msync-im1-vip6-std.easemob.com,REJECT
-HOST,apd-pcdnwxlogin.teg.tencent-cloud.net,REJECT
-HOST,api.iegadp.qq.com,REJECT
-HOST,sf3-ttcdn-tos.pstatp.com,REJECT
-HOST-SUFFIX,pglstatp-toutiao.com,REJECT
-HOST-SUFFIX,byteorge.com,REJECT
-HOST-SUFFIX,bytegoofy.com,REJECT
-IP-CIDR,49.71.37.101/32,REJECT
-IP-CIDR,117.71.105.23/32,REJECT
-IP-CIDR,218.94.207.205/32,REJECT
-IP-CIDR,117.92.229.188/32,REJECT
-IP-CIDR,101.36.166.16/32,REJECT
-IP-CIDR,180.96.2.114/32,REJECT
 
 # > A
 
@@ -65,6 +39,10 @@ HOST-SUFFIX,cm.ad.bilibili.com, reject
 HOST-SUFFIX,cm.adcommon.bilibili.com, reject
 HOST-SUFFIX,cm.game.bilibili.com, reject
 HOST-SUFFIX,cm.track.biligame.bilibili.com, reject
+# 哔哩哔哩 proto支持
+HOST, grpc.biliapi.net, REJECT
+# 哔哩哔哩 自动换区支持
+IP-CIDR, 203.107.1.1/32, REJECT
 # > 百词斩
 HOST,advertise.baicizhan.com, reject
 HOST,advertise.baicizhan.org, reject
@@ -237,19 +215,21 @@ host, p6-pack.byteimg.com, reject
 # > G
 
 # > 高德
-HOST-SUFFIX,adiu.amap.com,REJECT
-HOST,aboard.apilocate.amap.com,REJECT
-HOST,apiinit.amap.com,REJECT
-HOST,icloud-amap.com,REJECT
- 
-HOST-SUFFIX,dualstack-logs.amap.com,REJECT
-HOST-SUFFIX,logs.amap.com,REJECT
-HOST-SUFFIX,optimus-ads.amap.com,REJECT
-HOST-SUFFIX,page.amap.com,REJECT
- 
-HOST,optimus-ads.amap.com.w.alikunlun.com, reject
-HOST-SUFFIX, shouji.sougou.com, reject
-HOST-SUFFIX, u51.me, reject
+HOST, amap-aos-info-nogw.amap.com, REJECT
+#HOST, amdc.m.taobao.com, REJECT
+HOST, awaken.amap.com, REJECT
+HOST, free-aos-cdn-image.amap.com, REJECT
+#HOST-SUFFIX,adiu.amap.com,REJECT
+#HOST,aboard.apilocate.amap.com,REJECT
+#HOST,apiinit.amap.com,REJECT
+#HOST,icloud-amap.com,REJECT
+#HOST-SUFFIX,dualstack-logs.amap.com,REJECT
+#HOST-SUFFIX,logs.amap.com,REJECT
+#HOST-SUFFIX,optimus-ads.amap.com,REJECT
+#HOST-SUFFIX,page.amap.com,REJECT
+#HOST,optimus-ads.amap.com.w.alikunlun.com, reject
+#HOST-SUFFIX, shouji.sougou.com, reject
+#HOST-SUFFIX, u51.me, reject
 # > 谷歌
 HOST-SUFFIX,google-analytics.com, reject
 HOST,safebrowsing.googleapis.com, reject
@@ -504,8 +484,10 @@ HOST,adsapi.snapchat.com, reject
 
 
 # > 淘宝
-HOST-SUFFIX,apoll.m.taobao.com, reject
 HOST-SUFFIX,h-adashx.ut.taobao.com, reject
+HOST-SUFFIX,apoll.m.taobao.com, reject
+
+
 HOST-SUFFIX,w.m.taobao.com, reject
 HOST-SUFFIX,ai.m.taobao.com, reject
 HOST-SUFFIX,re.m.taobao.com, reject

@@ -275,6 +275,10 @@ HOST,ads.youtube.com, reject
 HOST-SUFFIX, applovin.com,REJECT
 HOST-SUFFIX, applvn.com,REJECT
 #HOST-SUFFIX, doubleclick.net,REJECT
+HOST, googleads.g.doubleclick-cn.net, REJECT
+HOST, googleads.g.doubleclick.net, REJECT
+HOST, pubads.g.doubleclick.net, REJECT
+HOST, pagead2.googlesyndication.com, REJECT
 # > 虎扑
 HOST,adx.hupu.com, reject
 HOST,adx-api.hupu.com, reject

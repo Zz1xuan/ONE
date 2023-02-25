@@ -8,7 +8,7 @@ HOST,sdkclick.biz.weibo.com,REJECT
 HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT
 HOST,sin3-ib.adnxs.com,REJECT
-# > 飞猪旅行
+# > 飞猪旅行&高德
 HOST,amdc.m.taobao.com,reject
 # > 番茄小说
 HOST,i.snssdk.com,REJECT

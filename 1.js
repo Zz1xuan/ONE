@@ -1,5 +1,10 @@
-var jsonData = JSON.parse($response.body);
-if (jsonData.banner_ad && jsonData.banner_ad.right_ad) {
-    delete jsonData.banner_ad.right_ad;
+// 获取数据
+var data = $response.body;
+
+// 如果数据存在right_ad属性，就删除它
+if (data.hasOwnProperty('right_ad')) {
+  delete data.right_ad;
 }
-$done({ body: JSON.stringify(jsonData) });
+
+// 返回修改后的数据
+$done({body: JSON.stringify(data)});

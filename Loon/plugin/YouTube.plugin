@@ -1,6 +1,6 @@
 #!name = YouTube去广告
 #!desc = 采用新的方法过滤视频、瀑布流、搜索和Shorts中的广告，并删除底部的上传按钮，增加画中画。
-#!openUrl = 
+#!openUrl =  
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/YouTube.png
 
 [Rewrite]

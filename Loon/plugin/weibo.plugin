@@ -1,4 +1,4 @@
-#!desc = 去除微博大多数广告
+#!desc = 去除微博广告
 
 [Rule]
 DOMAIN, adstrategy.biz.weibo.com, REJECT

@@ -1,0 +1,9 @@
+[Script]
+generic script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/Geo_location.js, tag=GeoIP查询, timeout=10
+generic script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/Youtube_check.js, tag=YouTube解锁查询
+generic script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/Netflix_check.js, tag=Netflix解锁查询
+generic script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/Disney+_check.js, tag=Disney+解锁查询
+generic script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/Paramount+_check.js, tag=Paramount解锁查询
+generic script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/Dazn_check.js, tag=Dazn解锁查询
+generic script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/Discovery_check.js, tag=Discovery解锁查询
+generic script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/main/Resource/Script/Node_detection_tool/Media_check.js, tag=流媒体解锁查询

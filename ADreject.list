@@ -10,7 +10,7 @@ HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT
 HOST,sin3-ib.adnxs.com,REJECT
 # > 飞猪旅行&高德
-HOST,amdc.m.taobao.com,reject
+#HOST,amdc.m.taobao.com,reject
 
 # > A
 

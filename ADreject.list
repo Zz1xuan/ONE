@@ -727,7 +727,7 @@ HOST-SUFFIX,pangolin-sdk-toutiao.com, reject
 HOST-SUFFIX,pangolin-sdk-toutiao-b.com, reject
 HOST-SUFFIX,api-access.pangolin-sdk-toutiao-b.com, reject
 HOST,dsp.toutiao.com, reject
-host-keyword,pangolin.snssdk.com, reject
+host-suffix,pangolin.snssdk.com, reject
 # > 中国电信
 HOST,ad.21cn.com, reject
 HOST,ad.k.21cn.com, reject

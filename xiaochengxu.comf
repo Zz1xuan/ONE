@@ -1,0 +1,4 @@
+hostname = ccmsupport-sz.tenpay.com, 
+
+# 乘车码
+^https:\/\/ccmsupport-sz\.tenpay\.com\/cgi-bin\/common\/ccm_page_element.cgi url reject

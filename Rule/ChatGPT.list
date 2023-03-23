@@ -1,4 +1,4 @@
-host, cdn.auth0.com, ChatGPT
-host, openaiapi-site.azureedge.net, ChatGPT
-host-suffix, openai.com, ChatGPT
-host-suffix, ai.com, ChatGPT
+HOST,cdn.auth0.com,ChatGPT
+HOST,openaiapi-site.azureedge.net,ChatGPT
+HOST-SUFFIX,openai.com,ChatGPT
+HOST-SUFFIX,ai.com,ChatGPT

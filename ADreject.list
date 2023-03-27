@@ -41,9 +41,9 @@ HOST-SUFFIX,cm.adcommon.bilibili.com, reject
 HOST-SUFFIX,cm.game.bilibili.com, reject
 HOST-SUFFIX,cm.track.biligame.bilibili.com, reject
 # 哔哩哔哩 proto支持
-HOST, grpc.biliapi.net, REJECT
+#HOST, grpc.biliapi.net, REJECT
 # 哔哩哔哩 自动换区支持
-IP-CIDR, 203.107.1.1/32, REJECT
+#IP-CIDR, 203.107.1.1/32, REJECT
 # > 百词斩
 HOST,advertise.baicizhan.com, reject
 HOST,advertise.baicizhan.org, reject

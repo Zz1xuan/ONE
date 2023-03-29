@@ -1,0 +1,36 @@
+#!name = 高德地图去广告
+#!desc = 过滤高德地图广告
+#!open= 
+#!author = RuCu6 kokoryh ddgksf2013
+#!homepage = https://gitlab.com/lodepuly/vpn_tool/-/tree/main/Tool/Loon/Plugin
+#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
+
+[Rule]
+
+[Rewrite]
+^https:\/\/m5\.amap\.com\/ws\/asa\/ads_attribution reject-dict
+^https:\/\/m5\.amap\.com\/ws\/shield\/scene\/recommend reject-dict
+# 搜索框热词
+^https:\/\/m5\.amap\.com\/ws\/shield\/search\/new_hotword\? reject-dict
+# 路线规划推广
+^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/card-service-route-plan\? reject-dict
+# 首页顶部消息横幅
+^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page-assets\? reject-dict
+# 首页天气
+^https:\/\/m5\.amap\.com\/ws\/valueadded\/weather\/v2\? reject-dict
+# 打车弹窗
+^https:\/\/m5-zb\.amap\.com\/ws\/boss\/order_web\/friendly_information\? reject-dict
+
+[Script]
+http-response ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页卡片
+
+http-response ^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 开屏
+http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 我的页面卡片
+http-response ^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull(3|_mp)\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true
+http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 附近
+http-response ^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 打车卡片
+http-response https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页右上角动图
+
+
+[MITM]
+hostname = m5.amap.com, sns.amap.com, m5-zb.amap.com,

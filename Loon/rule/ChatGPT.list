@@ -1,0 +1,4 @@
+DOMAIN,cdn.auth0.com,ChatGPT
+DOMAIN,openaiapi-site.azureedge.net,ChatGPT
+DOMAIN-SUFFIX,openai.com,ChatGPT
+DOMAIN-SUFFIX,ai.com,ChatGPT

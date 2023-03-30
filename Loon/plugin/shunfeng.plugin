@@ -14,5 +14,5 @@
 http-response ^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/ad\/queryInfoFlow script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/shunfeng_json.js, requires-body = true, tag = 顺丰广告
 
 [MITM]
-ccsp-egmas.sf-express.com, shopic.sf-express.com
+hostname = ccsp-egmas.sf-express.com, shopic.sf-express.com
 

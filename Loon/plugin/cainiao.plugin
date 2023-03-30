@@ -1,0 +1,31 @@
+#!name = 菜鸟去广告
+#!desc = 过滤菜鸟广告
+#!openUrl = 
+#!author = ddgksf2013
+#!homepage = 
+#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Cainiao.png
+
+[Rule]
+DOMAIN, amdc.m.taobao.com, REJECT
+[Rewrite]
+# > 菜鸟裹裹_通用广告请求@ddgksf2013
+^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.(show|mshow)\.cn\/ - reject-200
+# > 菜鸟裹裹_支付宝小程序_通用广告请求@ddgksf2013
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.show - reject-200
+# > 菜鸟裹裹_支付宝小程序_匿名选择@ddgksf2013
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.consultmerge - reject-200
+[Script]
+# > 菜鸟裹裹_首页中部的惊喜福利推广@ddgksf2013
+http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 首页中部的惊喜福利推广
+# > 菜鸟裹裹_搜索框下方今日好物推荐@ddgksf2013
+http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.adkeyword script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 搜索框下方今日好物推荐
+# > 菜鸟裹裹_首页底部商品推广@ddgksf2013
+http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.index\.cn script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 首页底部商品推广
+# > 菜鸟裹裹_支付宝小程序_中部的寄件推广[导致的空白占位后续处理]@ddgksf2013
+http-response ^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 支付宝小程序_中部的寄件推广
+[MITM]
+hostname = cn-acs.m.cainiao.com, guide-acs.m.taobao.com
+
+
+
+

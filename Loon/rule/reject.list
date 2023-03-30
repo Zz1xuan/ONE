@@ -4,6 +4,11 @@ DAMAIN,acdn.adnxs.com
 DAMAIN,mediation.adnxs.com
 DAMAIN,sin3-ib.adnxs.com
 # > 爱奇艺
+IP-CIDR,203.107.63.154/32,no-resolve 
+IP-CIDR,101.227.97.240/32,no-resolve 
+IP-CIDR,101.227.200.11/32,no-resolve 
+IP-CIDR,101.227.200.28/32,no-resolve 
+IP-CIDR,124.192.153.42/32,no-resolve 
 DAMAIN,t7z.cupid.ptqy.gitv.tv 
 DAMAIN, cr-status.iqiyi.com 
 DAMAIN-suffix, cupid.iqiyi.com 
@@ -225,6 +230,7 @@ DAMAIN-SUFFIX,goblin.hupu.com
 # > J
 # > 交管12123
 DAMAIN, static.122.gov.cn 
+ip-cidr, 203.107.1.1/24,no-resolve
 DAMAIN-SUFFIX, v3.fstats.xyz 
 DAMAIN-SUFFIX, wss.haoyundmn.com  
 DAMAIN-SUFFIX, new.xiongzhangad.com   
@@ -651,11 +657,7 @@ DAMAIN,staticsns.cdn.bcebos.com
 # > 芒果
 DAMAIN,mobile.da.mgtv.com
 #iqiyi
-IP-CIDR,203.107.63.154/32,no-resolve 
-IP-CIDR,101.227.97.240/32,no-resolve 
-IP-CIDR,101.227.200.11/32,no-resolve 
-IP-CIDR,101.227.200.28/32,no-resolve 
-IP-CIDR,124.192.153.42/32,no-resolve 
+
 # > 百度贴吧屏蔽域名dns查询
 IP-CIDR,180.76.76.200/32,no-resolve
 # > ChinaMobile
@@ -663,5 +665,3 @@ IP-CIDR,120.240.95.37/32,no-resolve
 # > Dr.Peng
 # IP-CIDR,10.72.25.0/24,no-resolve
 IP-CIDR,211.161.101.110/32,no-resolve 
-# > 交管12123
-ip-cidr, 203.107.1.1/24,no-resolve

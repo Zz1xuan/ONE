@@ -1,4 +1,8 @@
-
+# > soul
+ip-cidr, 47.110.187.87/32, no-resolve
+ip-cidr, 47.96.15.52/32, no-resolve
+ip-cidr, 116.62.220.39/32, no-resolve
+DOMAIN, ssp.soulapp.cn
 # > Outlook
 DOMAIN,acdn.adnxs.com
 DOMAIN,mediation.adnxs.com

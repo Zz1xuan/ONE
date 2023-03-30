@@ -6,6 +6,7 @@
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
 
 [Rule]
+DOMAIN, amdc.m.taobao.com, REJECT
 
 [Rewrite]
 ^https:\/\/m5\.amap\.com\/ws\/asa\/ads_attribution reject-dict

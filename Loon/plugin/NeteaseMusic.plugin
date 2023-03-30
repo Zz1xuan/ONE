@@ -1,0 +1,40 @@
+#!name = 网易云音乐去广告
+#!desc = 过滤网易云音乐广告
+#!open= 
+#!author = Keywos RuCu6 kokoryh
+#!homepage = 
+#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/NeteaseCloudMusic.png
+
+
+[Rule]
+DOMAIN, gdt.qq.com, REJECT
+DOMAIN, httpdns.n.netease.com, REJECT
+DOMAIN, iadmat.nosdn.127.net, REJECT
+DOMAIN, iadmusicmat.music.126.net, REJECT
+DOMAIN, iadmusicmatvideo.music.126.net, REJECT
+DOMAIN-SUFFIX, 163jiasu.com, REJECT
+
+[Rewrite]
+# 开屏广告、开屏歌曲热评、搜索页下方横幅广告
+^https?:\/\/interface3?\.music\.163\.com\/eapi\/ad - reject-dict
+
+## 热搜,填充词,排行榜
+^https:\/\/interface3\.music\.163\.com\/api\/search\/rcmd\/keyword\/get\/v2\? - reject-dict
+^https?:\/\/interface3?\.music\.163.com\/eapi\/search\/default\/keyword\/list\? - reject-dict
+^https?:\/\/interface3?\.music\.163.com\/eapi\/search\/rcmd\/keyword\/get\/v2$ - reject-dict
+^https?:\/\/interface3?\.music\.163.com\/eapi\/search\/specialkeyword\/get\? - reject-dict
+# 播放页,多余图标,各种小提示,高品质音乐试用弹窗
+^https:\/\/interface3\.music\.163\.com\/eapi\/community\/friends\/fans-group\/artist\/group\/get\? - reject-dict
+^https:\/\/interface3\.music\.163\.com\/eapi\/link\/position\/show\/(resource|strategy)\? - reject-dict
+^https:\/\/interface3\.music\.163\.com\/eapi\/mlivestream\/entrance\/playpage\/v7\/get\? - reject-dict
+^https:\/\/interface3\.music\.163\.com\/eapi\/music\/songshare\/text\/recommend\/get\? - reject-dict
+^https:\/\/interface3\.music\.163\.com\/eapi\/user\/sub\/artist\/exist\? - reject-dict
+^https:\/\/interface3\.music\.163\.com\/eapi\/vipcenter\/tspopup\/get\? - reject-dict
+^https?:\/\/interface3\.music\.163\.com\/eapi\/resniche\/position\/play\/new\/get\? - reject-dict
+# 评论页,回复广告,星评馆
+^https?:\/\/interface3\.music\.163\.com\/eapi\/comment\/(hotcomment\/collect\/fetchmodelinfov2|feed\/inserted\/resources)\? - reject-dict
+^https?:\/\/interface3\.music\.163\.com\/eapi\/v1\/content\/exposure\/comment\/banner\/get\? - reject-dict
+
+[MITM]
+hostname = interface*.music.163.com, 112.13.*, 59.111.*
+

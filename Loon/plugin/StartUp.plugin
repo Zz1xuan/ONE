@@ -16,8 +16,16 @@
 ^https?:\/\/pan\.baidu\.com\/(act\/(api\/activityentry|v2\/(bchannel|welfare)\/list)|rest\/2\.0\/pcs\/ad) - reject
 # > C
 # > 彩云天气
-^https?:\/\/wrapper\.cyapi\.cn\/v1\/activity? - reject-200
+^https?:\/\/wrapper\.cyapi\.cn\/v1\/activity? - reject
+# > 乘车码  ccmsupport-sz.tenpay.com, 
+^https:\/\/ccmsupport-sz\.tenpay\.com\/cgi-bin\/common\/ccm_page_element.cgi - reject
+# > 车来了  *.chelaile.net.cn, cdn.api.chelaileapp.cn
+^https?:\/\/web\.chelaile\.net\.cn\/api\/adpub\/ad - reject
+^https?:\/\/(cdn.)?api.chelaile.net.cn|124.71.153.172\/(goocity\/)?adpub\/ - reject
+^https?:\/\/atrace.chelaile.net.cn\/(adpub|exhibit\?&adv_image) - reject
 # > D
+# > 大众点评
+^https:\/\/img\.meituan\.net\/dpmobile\/([a-fA-F0-9]+)\.jpg\.webp - reject
 # > 大麦  acs.m.taobao.com,
 ^http?:\/\/acs\.m\.taobao\.com\/gw\/mtop.damai.wireless.home.welcome - reject
 # > 大师兄影视 sdk.alibaba.com,
@@ -41,7 +49,7 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 # > F
 # > 飞猪    acs.m.taobao.com,
 # 需要配合分流  HOST,amdc.m.taobao.com,reject
-^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.allresource\/ - reject
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.allresource\/ - reject-dict
 # > 飞客茶馆@ddgksf2013       47.100.65.202,
 ^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=advis - reject
 # > G
@@ -50,13 +58,17 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 # > J
 # > 建行生活  yunbusiness.ccb.com,
 ^https?:\/\/yunbusiness\.ccb\.com\/clp_service\/txCtrl\?txcode=A3341A00(6|9) - reject
-# > 京东
-^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(start|queryMaterialAdverts) - reject
+# > 京东  api.m.jd.com,bdsp-x.jd.com, dsp-x.jd.com, *.360buyimg.com, union.click.jd.com, ms.jr.jd.com,
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=start - reject
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=queryMaterialAdverts - reject
+^https:\/\/m\.360buyimg\.com\/mobilecms\/s1125x2436_jfs\/ - reject
 ^https:\/\/(bdsp-x|dsp-x)\.jd\.com\/adx - reject
 ^https:\/\/ms\.jr\.jd\.com\/gw\/generic\/(aladdin|base)\/(new)?na\/m\/(getLoadingPicture|adInfo) - reject
 # > 京东金融   ms.jr.jd.com,
 ^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/(getLoadingPicture|adInfo) - reject
 # > K
+# > 快手  open.e.kuaishou.com
+^https:\/\/open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ - reject
 # > L
 # > M
 # > N

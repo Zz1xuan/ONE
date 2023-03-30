@@ -18,584 +18,510 @@ DAMAIN, iqiyim.adtrack.enlightent.cn
 DAMAIN,dig.bdurl.net 
 DAMAIN,ads3-normal-lq.zijieapi.com 
 DAMAIN,ads5-normal-lq.zijieapi.com 
-	
-
-	
-
-	# > B
-	
-
-	# > 哔哩哔哩
-	DAMAIN-SUFFIX,cm.bilibili.com 
-	DAMAIN-keyword, api.sobot.com 
-	DAMAIN-SUFFIX,cm.ad.bilibili.com 
-	DAMAIN-SUFFIX,cm.adcommon.bilibili.com 
-	DAMAIN-SUFFIX,cm.game.bilibili.com 
-	DAMAIN-SUFFIX,cm.track.biligame.bilibili.com 
-	# 哔哩哔哩 proto支持
-	#DAMAIN, grpc.biliapi.net 
-	# 哔哩哔哩 自动换区支持
-	#IP-CIDR, 203.107.1.1/32 
-	# > 百词斩
-	DAMAIN,advertise.baicizhan.com 
-	DAMAIN,advertise.baicizhan.org 
-	# > 百度
-	DAMAIN-SUFFIX,als.baidu.com 
-	DAMAIN-SUFFIX,duapps.com 
-	DAMAIN-SUFFIX,cpro.baidu.com 
-	DAMAIN-SUFFIX,pos.baidu.com 
-	DAMAIN-SUFFIX,mobads.baidu.com 
-	DAMAIN-SUFFIX,mobads-logs.baidu.com 
-	DAMAIN-SUFFIX,nadvideo2.baidu.com 
-	DAMAIN-SUFFIX,nsclick.baidu.com 
-	DAMAIN-SUFFIX,bce.baidu.com 
-	DAMAIN-SUFFIX,bar.baidu.com 
-	DAMAIN-SUFFIX,baiduyubaidu.com 
-	DAMAIN-SUFFIX,baidutv.baidu.com 
-	DAMAIN-SUFFIX,baichuan.baidu.com 
-	DAMAIN-SUFFIX,appc.baidu.com 
-	DAMAIN-SUFFIX,anquan.baidu.com 
-	DAMAIN-SUFFIX,adscdn.baidu.com 
-	DAMAIN-SUFFIX,adm.baidu.com 
-	DAMAIN-SUFFIX,ad.player.baidu.com 
-	DAMAIN-SUFFIX,a.baidu.com 
-	DAMAIN-SUFFIX,antivirus.baidu.com 
-	DAMAIN-SUFFIX,baifen.music.baidu.com 
-	DAMAIN-SUFFIX,banlv.baidu.com 
-	DAMAIN-SUFFIX,cm.baidu.com 
-	DAMAIN-SUFFIX,cpro.zhidao.baidu.com 
-	DAMAIN-SUFFIX,cleaner.baidu.com 
-	DAMAIN-SUFFIX,cjhq.baidu.com 
-	DAMAIN-SUFFIX,cb.baidu.com 
-	DAMAIN-SUFFIX,c.baidu.com 
-	DAMAIN-SUFFIX,btlaunch.baidu.com 
-	DAMAIN-SUFFIX,bdplus.baidu.com 
-	DAMAIN-SUFFIX,cbjs.baidu.com 
-	DAMAIN-SUFFIX,cpro2.baidu.com 
-	DAMAIN-SUFFIX,cpu-admin.baidu.com 
-	# > 百度贴吧屏蔽域名dns查询
-	IP-CIDR,180.76.76.200/32,REJECT
-	# > 百度贴吧屏蔽ws(副作用:消息通知功能失效,需手动进入查看),强制帖子接口走http
-	#DAMAIN,im.tieba.baidu.com,REJECT
-	## /*  
-	DAMAIN-SUFFIX,10086.cn.baidu.cdn.yiwk.com 
-	DAMAIN-SUFFIX,360baidus.com 
-	DAMAIN-SUFFIX,app.ibaiducdn.com 
-	DAMAIN-SUFFIX,baidu.cybcyw.com 
-	DAMAIN-SUFFIX,baidu.dsp.tansuotv.com 
-	DAMAIN-SUFFIX,baidu.greenxf.cn 
-	DAMAIN-SUFFIX,baidu.jz5u.net 
-	DAMAIN-SUFFIX,baiduace.com 
-	DAMAIN-SUFFIX,baidujs.cnys.com 
-	DAMAIN-SUFFIX,baidulao.com 
-	DAMAIN-SUFFIX,baidut.github.io 
-	DAMAIN-SUFFIX,baidu-union-js.xiachufang.com 
-	DAMAIN-SUFFIX,baidu-union-pos.xiachufang.com 
-	DAMAIN-SUFFIX,baiduzhidahao.cc 
-	DAMAIN-SUFFIX,cpro.baidu.cn 
-	DAMAIN-SUFFIX,crs.baidu.com 
-	DAMAIN-SUFFIX,datax.baidu.com 
-	DAMAIN-SUFFIX,dl.client.baidu.com 
-	DAMAIN-SUFFIX,dl.ops.baidu.com 
-	DAMAIN-SUFFIX,dl1sw.baidu.com 
-	DAMAIN-SUFFIX,dl2.bav.baidu.com 
-	DAMAIN-SUFFIX,dlsw.baidu.com 
-	DAMAIN-SUFFIX,dlsw.br.baidu.com 
-	DAMAIN-SUFFIX,dl-vip.bav.baidu.com 
-	DAMAIN-SUFFIX,dl-vip.pcfaster.baidu.co.th 
-	DAMAIN-SUFFIX,download.bav.baidu.com 
-	DAMAIN-SUFFIX,download.sd.baidu.com 
-	DAMAIN-SUFFIX,drmcmm.baidu.com 
-	DAMAIN-SUFFIX,duiwai.baidu.com 
-	DAMAIN-SUFFIX,dxp.baidu.com 
-	DAMAIN-SUFFIX,dzl.baidu.com 
-	DAMAIN-SUFFIX,e.baidu.com 
-	DAMAIN-SUFFIX,eclick.baidu.com 
-	DAMAIN-SUFFIX,eiv.baidu.com 
-	DAMAIN-SUFFIX,em.baidu.com 
-	DAMAIN-SUFFIX,entry.baidu.com 
-	DAMAIN-SUFFIX,ers.baidu.com 
-	DAMAIN-SUFFIX,fclick.baidu.com 
-	DAMAIN-SUFFIX,feed.baidu.com 
-	DAMAIN-SUFFIX,fexclick.baidu.com 
-	DAMAIN-SUFFIX,g.baidu.com 
-	DAMAIN-SUFFIX,gimg.baidu.com 
-	DAMAIN-SUFFIX,guanjia.baidu.com 
-	DAMAIN-SUFFIX,hc.baidu.com 
-	DAMAIN-SUFFIX,hdj.baidu.com 
-	DAMAIN-SUFFIX,hpd.baidu.com 
-	DAMAIN-SUFFIX,idm-su.baidu.com 
-	DAMAIN-SUFFIX,iebar.baidu.com 
-	DAMAIN-SUFFIX,ikcode.baidu.com 
-	DAMAIN-SUFFIX,iwanad.baidu.com 
-	DAMAIN-SUFFIX,j.br.baidu.com 
-	DAMAIN-SUFFIX,jb.mbaidu.top 
-	DAMAIN-SUFFIX,js.mbaidu.top 
-	DAMAIN-SUFFIX,kstj.baidu.com 
-	DAMAIN-SUFFIX,m.baidu.com.yiqisee.cn 
-	DAMAIN-SUFFIX,m.baidu.com.zhiduo.org 
-	DAMAIN-SUFFIX,m1.baidu.com 
-	DAMAIN-SUFFIX,ma.baidu.com 
-	DAMAIN-SUFFIX,mpro.baidu.com 
-	DAMAIN-SUFFIX,msite.baidu.com 
-	DAMAIN-SUFFIX,mssp.baidu.com 
-	DAMAIN-SUFFIX,mtj.baidu.com 
-	DAMAIN-SUFFIX,neirong.baidu.com 
-	DAMAIN-SUFFIX,nlog.baidu.com 
-	DAMAIN-SUFFIX,nsclickvideo.baidu.com 
-	DAMAIN-SUFFIX,openrcv.baidu.com 
-	DAMAIN-SUFFIX,paimgcdn.baidu.com 
-	DAMAIN-SUFFIX,pc.videoclick.baidu.com 
-	DAMAIN-SUFFIX,push.zhanzhang.baidu.com 
-	DAMAIN-SUFFIX,qianclick.baidu.com 
-	DAMAIN-SUFFIX,release.baidu.com 
-	DAMAIN-SUFFIX,river.zhidao.baidu.com 
-	DAMAIN-SUFFIX,rj.baidu.com 
-	DAMAIN-SUFFIX,rplog.baidu.com 
-	DAMAIN-SUFFIX,s.baidu.com 
-	DAMAIN-SUFFIX,sclick.baidu.com 
-	DAMAIN-SUFFIX,sestat.baidu.com 
-	DAMAIN-SUFFIX,shadu.baidu.com 
-	DAMAIN-SUFFIX,sobar.baidu.com 
-	DAMAIN-SUFFIX,sobartop.baidu.com 
-	DAMAIN-SUFFIX,spcode.baidu.com 
-	DAMAIN-SUFFIX,tk.baidu.com 
-	DAMAIN-SUFFIX,tkweb.baidu.com 
-	DAMAIN-SUFFIX,toolbar.baidu.com 
-	DAMAIN-SUFFIX,tuijian.baidu.com 
-	DAMAIN-SUFFIX,tuisong.baidu.com 
-	DAMAIN-SUFFIX,ucstat.baidu.com 
-	DAMAIN-SUFFIX,ulic.baidu.com 
-	DAMAIN-SUFFIX,ulog.imap.baidu.com 
-	DAMAIN-SUFFIX,union.baidu.com 
-	DAMAIN-SUFFIX,union.baidustatic.guannin.com 
-	DAMAIN-SUFFIX,unionimage.baidu.com 
-	DAMAIN-SUFFIX,utility.baidu.com 
-	DAMAIN-SUFFIX,utk.baidu.com 
-	DAMAIN-SUFFIX,videopush.baidu.com 
-	DAMAIN-SUFFIX,w.gdown.baidu.com 
-	DAMAIN-SUFFIX,w.x.baidu.com 
-	DAMAIN-SUFFIX,wangmeng.baidu.com 
-	DAMAIN-SUFFIX,weishi.baidu.com 
-	DAMAIN-SUFFIX,wisepush.video.baidu.com 
-	DAMAIN-SUFFIX,wm.baidu.com 
-	DAMAIN-SUFFIX,yingxiao.baidu.com 
-	DAMAIN-SUFFIX,znsv.baidu.com 
-	DAMAIN-SUFFIX,baidustatic.com 
-	DAMAIN-SUFFIX,afd.baidu.com 
-	DAMAIN-SUFFIX,duclick.baidu.com 
-	DAMAIN-SUFFIX,hm.baidu.com 
-	DAMAIN-SUFFIX,hmma.baidu.com 
-	
-
-	# > C
-	
-
-	# > 车来了（包括小程序）
-	DAMAIN-suffix, atrace.chelaile.net.cn 
-	DAMAIN, logs.chelaile.net.cn 
-	DAMAIN, ad.chelaile.net.cn 
-	# > 创维
-	DAMAIN-SUFFIX,hoisin.coocaa.com 
-	DAMAIN-SUFFIX,hoisin.coocaatv.com 
-	DAMAIN,data-hoisin.coocaa.com 
-	
-
-	# > D
-	
-
-	# > 懂车帝
-	DAMAIN, p3-pack.byteimg.com 
-	DAMAIN, p6-pack.byteimg.com 
-	# > E
-	# > F
-	# > G
-	
-
-	# > 高德
-	DAMAIN, amap-aos-info-nogw.amap.com 
-	#DAMAIN, amdc.m.taobao.com 
-	DAMAIN, awaken.amap.com 
-	DAMAIN, free-aos-cdn-image.amap.com 
-	#DAMAIN-SUFFIX,adiu.amap.com,REJECT
-	#DAMAIN,aboard.apilocate.amap.com,REJECT
-	#DAMAIN,apiinit.amap.com,REJECT
-	#DAMAIN,icloud-amap.com,REJECT
-	#DAMAIN-SUFFIX,dualstack-logs.amap.com,REJECT
-	#DAMAIN-SUFFIX,logs.amap.com,REJECT
-	#DAMAIN-SUFFIX,optimus-ads.amap.com,REJECT
-	#DAMAIN-SUFFIX,page.amap.com,REJECT
-	#DAMAIN,optimus-ads.amap.com.w.alikunlun.com 
-	#DAMAIN-SUFFIX, shouji.sougou.com 
-	#DAMAIN-SUFFIX, u51.me 
-	# > 谷歌
-	DAMAIN-SUFFIX,google-analytics.com 
-	DAMAIN,safebrowsing.googleapis.com 
-	DAMAIN-SUFFIX,doubleclick.net 
-	DAMAIN-SUFFIX,googleadservices.com 
-	DAMAIN-SUFFIX,googleadsserving.cn 
-	DAMAIN-SUFFIX,googlesyndication.com 
-	DAMAIN-SUFFIX,googletagservices.com 
-	DAMAIN-SUFFIX,googletagmanager.com 
-	DAMAIN-SUFFIX,pagead.google.com 
-	DAMAIN-SUFFIX,pagead.l.google.com 
-	DAMAIN-SUFFIX,pagead-tpc.l.google.com 
-	DAMAIN-SUFFIX,mobileads.google.com 
-	DAMAIN-SUFFIX,googlecommerce.com 
-	DAMAIN-SUFFIX,blaaaa12.googlecode.com 
-	DAMAIN-SUFFIX,badad.googleplex.com 
-	DAMAIN-SUFFIX,afd.l.google.com 
-	DAMAIN,ads.youtube.com 
-	
-
-	# > H
-	
-
-	# > HDO
-	DAMAIN-SUFFIX, applovin.com,REJECT
-	DAMAIN-SUFFIX, applvn.com,REJECT
-	#DAMAIN-SUFFIX, doubleclick.net,REJECT
-	DAMAIN, googleads.g.doubleclick-cn.net 
-	DAMAIN, googleads.g.doubleclick.net 
-	DAMAIN, pubads.g.doubleclick.net 
-	DAMAIN, pagead2.googlesyndication.com 
-	# > 虎扑
-	DAMAIN,adx.hupu.com 
-	DAMAIN,adx-api.hupu.com 
-	DAMAIN-SUFFIX,goblin.hupu.com 
-	
-
-	# > I
-	# > J
-	
-
-	# > 交管12123
-	DAMAIN, static.122.gov.cn 
-	ip-cidr, 203.107.1.1/24 
-	DAMAIN-SUFFIX, v3.fstats.xyz 
-	DAMAIN-SUFFIX, wss.haoyundmn.com  
-	DAMAIN-SUFFIX, new.xiongzhangad.com   
-	DAMAIN-SUFFIX, alexametrics.com  
-	DAMAIN-KEYWORD, in-page-push 
-	# >驾校一点通
-	DAMAIN,richmanapi.jxedt.com 
-	DAMAIN,richmanmain.jxedt.com 
-	DAMAIN,richmanrules.jxedt.com 
-	# > 今日头条
-	DAMAIN-SUFFIX, ad.toutiao.com 
-	DAMAIN-SUFFIX, clk.gentags.net 
-	DAMAIN-SUFFIX, dm.toutiao.com 
-	DAMAIN-SUFFIX, dm.pstatp.com 
-	DAMAIN-SUFFIX, bytedance.com 
-	DAMAIN-SUFFIX, uop.umeng.com 
-	DAMAIN-SUFFIX, policy.jd.com 
-	DAMAIN-SUFFIX, kepler.jd.com 
-	DAMAIN-SUFFIX, bdsp.x.jd.com 
-	DAMAIN-SUFFIX, keplerapi.jd.com 
-	DAMAIN-SUFFIX, m.suning.com 
-	DAMAIN-SUFFIX, adshare.toutiao.com 
-	DAMAIN-SUFFIX, tunion-api.m.taobao.com 
-	DAMAIN-SUFFIX, mapi.m.jd.com 
-	DAMAIN-SUFFIX, s1.pstatp.com 
-	DAMAIN-SUFFIX, s2.pstatp.com 
-	DAMAIN-SUFFIX, s3.pstatp.com 
-	DAMAIN-SUFFIX, a3.pstatp.com 
-	DAMAIN-SUFFIX, a3.bytecdn.cn 
-	DAMAIN-SUFFIX, ichannel.snssdk.com 
-	
-
-	# > K
-	
-
-	# > 快手
-	# DAMAIN-SUFFIX,yximgs.com 
-	DAMAIN-SUFFIX,e.kuaishou.com 
-	#DAMAIN,js-ad.a.yximgs.com 
-	DAMAIN-SUFFIX,cm.downloader.commercial.kuaishou.com 
-	DAMAIN-SUFFIX,cm.ad.gifshow.com 
-	DAMAIN-SUFFIX,cm.kwad.com 
-	
-
-	# > 酷狗音乐
-	DAMAIN-SUFFIX, searchrecommend.kugou.com 
-	DAMAIN-SUFFIX, nbcollectretry.kugou.com 
-	DAMAIN-SUFFIX, rtmretry.kugou.com 
-	DAMAIN-SUFFIX, rt-m.kugou.com 
-	DAMAIN-SUFFIX, nbcollect.kugou.com 
-	DAMAIN-SUFFIX, c1img.ali.kugou.com 
-	DAMAIN-SUFFIX, kgstaticdlbssdlbig.tx.kugou.com 
-	DAMAIN-SUFFIX, adsfilebssdlbig.ali.kugou.com 
-	DAMAIN-SUFFIX, splashimgbssdl.yun.kugou.com 
-	DAMAIN-SUFFIX, adservice.kugou.com,REJECT
-	DAMAIN-SUFFIX, kgipadstat.kugou.com,REJECT
-	DAMAIN-SUFFIX, kgipadstatbak.kugou.com,REJECT
-	DAMAIN-SUFFIX, logwebs.kugou.com,REJECT
-	DAMAIN-SUFFIX, tracker.kugou.com,REJECT
-	DAMAIN-SUFFIX, trackercdnbj.kugou.com,REJECT
-	DAMAIN-SUFFIX, rich.kuwo.cn 
-	DAMAIN-SUFFIX, mobilead.kuwo.cn 
-	DAMAIN-SUFFIX,oth.eve.mdt.qq.com 
-	DAMAIN-SUFFIX,pgdt.gtimg.cn 
-	DAMAIN,pgdt.gtimg.com 
-	DAMAIN,adsmind.gdtimg.com 
-	DAMAIN-SUFFIX,channel.fanxing.kugou.com 
-	DAMAIN-SUFFIX,d.kugou.com 
-	DAMAIN-SUFFIX,downmobile.kugou.com 
-	DAMAIN-SUFFIX,gad.kugou.com 
-	DAMAIN-SUFFIX,game.kugou.com 
-	DAMAIN-SUFFIX,gamebox.kugou.com 
-	DAMAIN-SUFFIX,gcapi.sy.kugou.com 
-	DAMAIN-SUFFIX,gg.kugou.com 
-	DAMAIN-SUFFIX,install.kugou.com 
-	DAMAIN-SUFFIX,install2.kugou.com 
-	DAMAIN-SUFFIX,minidcsc.kugou.com 
-	DAMAIN-SUFFIX,mo.kugou.com 
-	DAMAIN-SUFFIX,msg.mobile.kugou.com 
-	DAMAIN-SUFFIX,mvads.kugou.com 
-	DAMAIN-SUFFIX,p.kugou.com 
-	DAMAIN-SUFFIX,push.mobile.kugou.com 
-	DAMAIN-SUFFIX,rtmonitor.kugou.com 
-	DAMAIN-SUFFIX,sdn.kugou.com 
-	DAMAIN-SUFFIX,song.fanxing.kugou.com 
-	DAMAIN-SUFFIX,update.mobile.kugou.com 
-	DAMAIN-SUFFIX,youxi.kugou.com 
-	DAMAIN-SUFFIX,adserviceretry.kugou.com 
-	DAMAIN-SUFFIX,ads.service.kugou.com 
-	DAMAIN-SUFFIX,adsfile.bssdlbig.kugou.com 
-	DAMAIN-SUFFIX,log.stat.kugou.com 
-	DAMAIN-SUFFIX,log.web.kugou.com 
-	DAMAIN-SUFFIX,kgmobilestat.kugou.com 
-	DAMAIN-SUFFIX,kgmobilestatbak.kugou.com 
-	DAMAIN-SUFFIX,mobilelog.kugou.com 
-	# > 酷我音乐
-	DAMAIN-SUFFIX,c.kuwo.cn 
-	DAMAIN-SUFFIX,deliver.kuwo.cn 
-	DAMAIN-SUFFIX,game.kuwo.cn 
-	DAMAIN-SUFFIX,kuwoyy.com 
-	DAMAIN-SUFFIX,kwmsg.kuwo.cn 
-	DAMAIN-SUFFIX,msclick2.kuwo.cn 
-	DAMAIN-SUFFIX,msphoneclick.kuwo.cn 
-	DAMAIN-SUFFIX,updatepage.kuwo.cn 
-	DAMAIN-SUFFIX,wa.kuwo.cn 
-	DAMAIN-SUFFIX,webstat.kuwo.cn 
-	# L
-	# > 两步路
-	DAMAIN-SUFFIX,admobile.top 
-	# > 蓝奏云
-	DAMAIN-SUFFIX, statics.woozooo.com 
-	# M
-	
-
-	# > 美团
-	DAMAIN, flowplus.meituan.net 
-	DAMAIN-SUFFIX, analytics.meituan.net 
-	DAMAIN-SUFFIX, meituan.yoga 
-	DAMAIN-SUFFIX, meituangov.cn 
-	DAMAIN-SUFFIX, report.meituan.com 
-	DAMAIN-SUFFIX, wmlog.meituan.com 
-	# > 墨迹天气
-	DAMAIN-SUFFIX, fds.api.moji.com 
-	DAMAIN-SUFFIX, me.api.moji.com 
-	DAMAIN-SUFFIX, android.bugly.qq.com 
-	DAMAIN-SUFFIX, av1.xdrig.com 
-	DAMAIN-SUFFIX, adash.man.aliyuncs.com 
-	DAMAIN-SUFFIX, v1.log.moji.com 
-	DAMAIN-SUFFIX, ad.api.moji.com 
-	DAMAIN,adlaunch.moji.com 
-	DAMAIN,ads.mojicdn.com 
-	# > 咪咕视频
-	DAMAIN-SUFFIX,ad.cmvideo.cn 
-	DAMAIN,ggc.cmvideo.cn 
-	DAMAIN,ggic03.miguvideo.com 
-	DAMAIN,ggmk.miguvideo.com 
-	DAMAIN,ggv.cmvideo.cn 
-	DAMAIN,ggx.cmvideo.cn 
-	DAMAIN,ggx03.miguvideo.com 
-	
-
-	# > N
-	# > NicoNico
-	DAMAIN, ads.nicovideo.jp 
-	# > O
-	
-
-	# > 皮皮虾（推荐视频不能预览）
-	DAMAIN-SUFFIX,log-api.pangolin-sdk-toutiao-b.com 
-	DAMAIN-SUFFIX,log-api.pangolin-sdk-toutiao.com 
-	DAMAIN-SUFFIX,api-access.pangolin-sdk-toutiao.com 
-	# > OPPO
-	DAMAIN-SUFFIX,ads.oppomobile.com 
-	DAMAIN,adsfs.oppomobile.com 
-	
-
-	# > P
-	
-
-	# > PPTV
-	DAMAIN,ads.aplus.pptv.com 
-	DAMAIN,ads.aplusapi.pptv.com 
-	DAMAIN,asimgs.pplive.cn 
-	DAMAIN,de.as.pptv.com 
-	# > Photoable
-	DAMAIN,regist.fotoable.com 
-	DAMAIN,cdn.adapi.fotoable.com 
-	# > PConline
-	DAMAIN,ad-analysis.pconline.com.cn 
-	DAMAIN,iad0ssl.pcauto.com.cn 
-	DAMAIN,iad0ssl.pconline.com.cn 
-	DAMAIN,imgad0.pcauto.com.cn 
-	DAMAIN,imgad0.pconline.com.cn 
-	DAMAIN,ivy.pchouse.com.cn 
-	
-
-	# > Q
-	
-
-	# QQ音乐广告
-	DAMAIN,tmeadcomm.y.qq.com 
-	DAMAIN,ad.tencentmusic.com 
-	DAMAIN,adstats.tencentmusic.com 
-	DAMAIN,tmead.y.qq.com 
-	DAMAIN-SUFFIX,rqd.qq.com 
-	DAMAIN-SUFFIX,wup.imtt.qq.com 
-	DAMAIN-SUFFIX,gdt.qq.com 
-	DAMAIN-SUFFIX,e.qq.com 
-	DAMAIN-SUFFIX,beacon.qq.com 
-	
-
-	# > R
-	# > S
-	
-
-	# > 搜狗
-	
-
-	DAMAIN-SUFFIX,epro.sogou.com 
-	DAMAIN-SUFFIX,golden1.sogou.com 
-	DAMAIN-SUFFIX,inte.sogou.com 
-	DAMAIN-SUFFIX,inte.sogoucdn.com 
-	DAMAIN-SUFFIX,lu.sogoucdn.com 
-	DAMAIN-SUFFIX,theta.sogoucdn.com 
-	DAMAIN-SUFFIX,uranus.sogou.com 
-	DAMAIN-SUFFIX,123.sogou.com 
-	DAMAIN-SUFFIX,a1click.cpc.sogou.com 
-	DAMAIN-SUFFIX,adsence.sogou.com 
-	DAMAIN-SUFFIX,adstream.123.sogoucdn.com 
-	DAMAIN-SUFFIX,amfi.gou.sogou.com 
-	DAMAIN-SUFFIX,athena.wan.sogou.com 
-	DAMAIN-SUFFIX,bazinga.mse.sogou.com 
-	DAMAIN-SUFFIX,brand.sogou.com 
-	DAMAIN-SUFFIX,bsiet.husky.sogou.com 
-	# > 搜狐
-	DAMAIN-SUFFIX,ad.sohu.com 
-	DAMAIN-SUFFIX,ads.sohu.com 
-	DAMAIN-SUFFIX,aty.sohu.com 
-	DAMAIN-SUFFIX,hui.sohu.com 
-	# > Snapchat
-	DAMAIN,ads.snapchat.com 
-	DAMAIN,adsapi.snapchat.com 
-	
-
-	# > T
-	
-
-	
-
-	# > 淘宝
-	DAMAIN-SUFFIX,h-adashx.ut.taobao.com 
-	DAMAIN-SUFFIX,apoll.m.taobao.com 
-	
-
-	# > TalkingData
-	DAMAIN-SUFFIX,cpatrk.net 
-	# > 腾讯视频
-	DAMAIN-suffix, tetrack.qq.com 
-	DAMAIN-suffix, tpns.tencent.com 
-	DAMAIN-suffix, api.poll.video.qq.com 
-	DAMAIN-suffix, static-res.qq.com 
-	DAMAIN, h.trace.qq.com 
-	# >  腾讯
-	DAMAIN-SUFFIX,news.ssp.qq.com 
-	DAMAIN-SUFFIX,activeqq.3g.qq.com 
-	DAMAIN-SUFFIX,ad.qq.com 
-	DAMAIN-SUFFIX,adping.qq.com 
-	DAMAIN-SUFFIX,adpm.app.qq.com 
-	DAMAIN-SUFFIX,adrdir.qq.com 
-	DAMAIN-SUFFIX,adsclick.qq.com 
-	DAMAIN-SUFFIX,adsense.html5.qq.com 
-	DAMAIN-SUFFIX,adsfile.qq.com 
-	DAMAIN-SUFFIX,adsgroup.qq.com 
-	DAMAIN-SUFFIX,adshmct.qq.com 
-	DAMAIN-SUFFIX,adshmmsg.qq.com 
-	DAMAIN-SUFFIX,adslvfile.qq.com 
-	DAMAIN-SUFFIX,adslvseed.qq.com 
-	DAMAIN-SUFFIX,adsolution.imtt.qq.com 
-	DAMAIN-SUFFIX,adsqqclick.qq.com 
-	DAMAIN-SUFFIX,adstextview.qq.com 
-	DAMAIN-SUFFIX,adsview.qq.com 
-	DAMAIN-SUFFIX,adsview2.qq.com 
-	DAMAIN-SUFFIX,adv.app.qq.com 
-	DAMAIN-SUFFIX,adver.qq.com 
-	DAMAIN-SUFFIX,analy.qq.com 
-	DAMAIN-SUFFIX,c.gj.qq.com 
-	DAMAIN-SUFFIX,d3g.qq.com 
-	DAMAIN-SUFFIX,download.sj.qq.com 
-	DAMAIN-SUFFIX,dp3.qq.com 
-	DAMAIN-SUFFIX,game.html5.qq.com 
-	DAMAIN-SUFFIX,ggmmqq.com 
-	DAMAIN-SUFFIX,j.wit.qq.com 
-	DAMAIN-SUFFIX,jqmt.qq.com 
-	DAMAIN-SUFFIX,jsqmt.qq.com 
-	DAMAIN-SUFFIX,livep.l.ott.video.qq.com 
-	DAMAIN-SUFFIX,lives.l.ott.video.qq.com 
-	DAMAIN-SUFFIX,masdk.3g.qq.com 
-	DAMAIN-SUFFIX,mfm.video.qq.com 
-	DAMAIN-SUFFIX,mini2015.qq.com 
-	DAMAIN-SUFFIX,monitor.uu.qq.com 
-	DAMAIN-SUFFIX,mqqad.cs0309.html5.qq.com 
-	DAMAIN-SUFFIX,mqqad.html5.qq.com 
-	DAMAIN-SUFFIX,mqqadr.reader.qq.com 
-	DAMAIN-SUFFIX,news.mpush.qq.com 
-	DAMAIN-SUFFIX,news-l.play.ott.video.qq.com 
-	DAMAIN-SUFFIX,novelsns.html5.qq.com 
-	DAMAIN-SUFFIX,oth.update.mdt.qq.com 
-	DAMAIN-SUFFIX,pcbrowser.dd.qq.com 
-	DAMAIN-SUFFIX,pmir.3g.qq.com 
-	DAMAIN-SUFFIX,pvstat.html5.qq.com 
-	DAMAIN-SUFFIX,qqshow2-item.qq.com 
-	DAMAIN-SUFFIX,scdown.qq.com 
-	DAMAIN-SUFFIX,setting.snswin.qq.com 
-	DAMAIN-SUFFIX,sngmta.qq.com 
-	DAMAIN-SUFFIX,t.sj.qq.com 
-	DAMAIN-SUFFIX,ta.qq.com 
-	DAMAIN-SUFFIX,tcss.qq.com 
-	DAMAIN-SUFFIX,tpush.html5.qq.com 
-	DAMAIN-SUFFIX,updatecenter.qq.com 
-	DAMAIN-SUFFIX,video.ureport.push.qq.com 
-	DAMAIN-SUFFIX,vlive.qqvideo.tc.qq.com 
-	DAMAIN-SUFFIX,wap.mpush.qq.com 
-	DAMAIN-SUFFIX,ws.sj.qq.com 
-	DAMAIN-SUFFIX,wxsnsdy.tc.qq.com 
-	DAMAIN-SUFFIX,wxsnsdy.video.qq.com 
-	DAMAIN-SUFFIX,adsmind.tc.qq.com 
-	DAMAIN-SUFFIX,btrace.qq.com 
-	DAMAIN-SUFFIX,mtrace.qq.com 
-	DAMAIN-SUFFIX,pingma.qq.com 
-	DAMAIN-SUFFIX,pingtcss.qq.com 
-	DAMAIN-SUFFIX,tajs.qq.com 
-	DAMAIN-SUFFIX,wxsnsdy.wxs.qq.com 
-	DAMAIN-SUFFIX,wxsnsdythumb.wxs.qq.com 
-	DAMAIN-SUFFIX,fusion.qq.com 
-	DAMAIN-SUFFIX,ios.bugly.qq.com 
-	DAMAIN,safebrowsing.urlsec.qq.com 
-	DAMAIN-SUFFIX,oth.str.mdt.qq.com 
-	DAMAIN-SUFFIX,l.qq.com 
-	DAMAIN,adsmind.apdcdn.tc.qq.com 
-	DAMAIN,adsmind.ugdtimg.com 
-	DAMAIN,livep.l.t002.ottcn.com 
-	DAMAIN,pgdt.ugdtimg.com 
-	DAMAIN,splashqqlive.gtimg.com 
-	DAMAIN,vv.video.qq.com 
+# > B
+# > 哔哩哔哩
+DAMAIN-SUFFIX,cm.bilibili.com 
+DAMAIN-keyword, api.sobot.com 
+DAMAIN-SUFFIX,cm.ad.bilibili.com 
+DAMAIN-SUFFIX,cm.adcommon.bilibili.com 
+DAMAIN-SUFFIX,cm.game.bilibili.com 
+DAMAIN-SUFFIX,cm.track.biligame.bilibili.com 
+# > 百词斩
+DAMAIN,advertise.baicizhan.com 
+DAMAIN,advertise.baicizhan.org 
+# > 百度
+DAMAIN-SUFFIX,als.baidu.com 
+DAMAIN-SUFFIX,duapps.com 
+DAMAIN-SUFFIX,cpro.baidu.com 
+DAMAIN-SUFFIX,pos.baidu.com 
+DAMAIN-SUFFIX,mobads.baidu.com 
+DAMAIN-SUFFIX,mobads-logs.baidu.com 
+DAMAIN-SUFFIX,nadvideo2.baidu.com 
+DAMAIN-SUFFIX,nsclick.baidu.com 
+DAMAIN-SUFFIX,bce.baidu.com 
+DAMAIN-SUFFIX,bar.baidu.com 
+DAMAIN-SUFFIX,baiduyubaidu.com 
+DAMAIN-SUFFIX,baidutv.baidu.com 
+DAMAIN-SUFFIX,baichuan.baidu.com 
+DAMAIN-SUFFIX,appc.baidu.com 
+DAMAIN-SUFFIX,anquan.baidu.com 
+DAMAIN-SUFFIX,adscdn.baidu.com 
+DAMAIN-SUFFIX,adm.baidu.com 
+DAMAIN-SUFFIX,ad.player.baidu.com 
+DAMAIN-SUFFIX,a.baidu.com 
+DAMAIN-SUFFIX,antivirus.baidu.com 
+DAMAIN-SUFFIX,baifen.music.baidu.com 
+DAMAIN-SUFFIX,banlv.baidu.com 
+DAMAIN-SUFFIX,cm.baidu.com 
+DAMAIN-SUFFIX,cpro.zhidao.baidu.com 
+DAMAIN-SUFFIX,cleaner.baidu.com 
+DAMAIN-SUFFIX,cjhq.baidu.com 
+DAMAIN-SUFFIX,cb.baidu.com 
+DAMAIN-SUFFIX,c.baidu.com 
+DAMAIN-SUFFIX,btlaunch.baidu.com 
+DAMAIN-SUFFIX,bdplus.baidu.com 
+DAMAIN-SUFFIX,cbjs.baidu.com 
+DAMAIN-SUFFIX,cpro2.baidu.com 
+DAMAIN-SUFFIX,cpu-admin.baidu.com 
+# > 百度贴吧屏蔽域名dns查询
+IP-CIDR,180.76.76.200/32,REJECT
+# > 百度贴吧屏蔽ws(副作用:消息通知功能失效,需手动进入查看),强制帖子接口走http
+#DAMAIN,im.tieba.baidu.com,REJECT
+## /*  
+DAMAIN-SUFFIX,10086.cn.baidu.cdn.yiwk.com 
+DAMAIN-SUFFIX,360baidus.com 
+DAMAIN-SUFFIX,app.ibaiducdn.com 
+DAMAIN-SUFFIX,baidu.cybcyw.com 
+DAMAIN-SUFFIX,baidu.dsp.tansuotv.com 
+DAMAIN-SUFFIX,baidu.greenxf.cn 
+DAMAIN-SUFFIX,baidu.jz5u.net 
+DAMAIN-SUFFIX,baiduace.com 
+DAMAIN-SUFFIX,baidujs.cnys.com 
+DAMAIN-SUFFIX,baidulao.com 
+DAMAIN-SUFFIX,baidut.github.io 
+DAMAIN-SUFFIX,baidu-union-js.xiachufang.com 
+DAMAIN-SUFFIX,baidu-union-pos.xiachufang.com 
+DAMAIN-SUFFIX,baiduzhidahao.cc 
+DAMAIN-SUFFIX,cpro.baidu.cn 
+DAMAIN-SUFFIX,crs.baidu.com 
+DAMAIN-SUFFIX,datax.baidu.com 
+DAMAIN-SUFFIX,dl.client.baidu.com 
+DAMAIN-SUFFIX,dl.ops.baidu.com 
+DAMAIN-SUFFIX,dl1sw.baidu.com 
+DAMAIN-SUFFIX,dl2.bav.baidu.com 
+DAMAIN-SUFFIX,dlsw.baidu.com 
+DAMAIN-SUFFIX,dlsw.br.baidu.com 
+DAMAIN-SUFFIX,dl-vip.bav.baidu.com 
+DAMAIN-SUFFIX,dl-vip.pcfaster.baidu.co.th 
+DAMAIN-SUFFIX,download.bav.baidu.com 
+DAMAIN-SUFFIX,download.sd.baidu.com 
+DAMAIN-SUFFIX,drmcmm.baidu.com 
+DAMAIN-SUFFIX,duiwai.baidu.com 
+DAMAIN-SUFFIX,dxp.baidu.com 
+DAMAIN-SUFFIX,dzl.baidu.com 
+DAMAIN-SUFFIX,e.baidu.com 
+DAMAIN-SUFFIX,eclick.baidu.com 
+DAMAIN-SUFFIX,eiv.baidu.com 
+DAMAIN-SUFFIX,em.baidu.com 
+DAMAIN-SUFFIX,entry.baidu.com 
+DAMAIN-SUFFIX,ers.baidu.com 
+DAMAIN-SUFFIX,fclick.baidu.com 
+DAMAIN-SUFFIX,feed.baidu.com 
+DAMAIN-SUFFIX,fexclick.baidu.com 
+DAMAIN-SUFFIX,g.baidu.com 
+DAMAIN-SUFFIX,gimg.baidu.com 
+DAMAIN-SUFFIX,guanjia.baidu.com 
+DAMAIN-SUFFIX,hc.baidu.com 
+DAMAIN-SUFFIX,hdj.baidu.com 
+DAMAIN-SUFFIX,hpd.baidu.com 
+DAMAIN-SUFFIX,idm-su.baidu.com 
+DAMAIN-SUFFIX,iebar.baidu.com 
+DAMAIN-SUFFIX,ikcode.baidu.com 
+DAMAIN-SUFFIX,iwanad.baidu.com 
+DAMAIN-SUFFIX,j.br.baidu.com 
+DAMAIN-SUFFIX,jb.mbaidu.top 
+DAMAIN-SUFFIX,js.mbaidu.top 
+DAMAIN-SUFFIX,kstj.baidu.com 
+DAMAIN-SUFFIX,m.baidu.com.yiqisee.cn 
+DAMAIN-SUFFIX,m.baidu.com.zhiduo.org 
+DAMAIN-SUFFIX,m1.baidu.com 
+DAMAIN-SUFFIX,ma.baidu.com 
+DAMAIN-SUFFIX,mpro.baidu.com 
+DAMAIN-SUFFIX,msite.baidu.com 
+DAMAIN-SUFFIX,mssp.baidu.com 
+DAMAIN-SUFFIX,mtj.baidu.com 
+DAMAIN-SUFFIX,neirong.baidu.com 
+DAMAIN-SUFFIX,nlog.baidu.com 
+DAMAIN-SUFFIX,nsclickvideo.baidu.com 
+DAMAIN-SUFFIX,openrcv.baidu.com 
+DAMAIN-SUFFIX,paimgcdn.baidu.com 
+DAMAIN-SUFFIX,pc.videoclick.baidu.com 
+DAMAIN-SUFFIX,push.zhanzhang.baidu.com 
+DAMAIN-SUFFIX,qianclick.baidu.com 
+DAMAIN-SUFFIX,release.baidu.com 
+DAMAIN-SUFFIX,river.zhidao.baidu.com 
+DAMAIN-SUFFIX,rj.baidu.com 
+DAMAIN-SUFFIX,rplog.baidu.com 
+DAMAIN-SUFFIX,s.baidu.com 
+DAMAIN-SUFFIX,sclick.baidu.com 
+DAMAIN-SUFFIX,sestat.baidu.com 
+DAMAIN-SUFFIX,shadu.baidu.com 
+DAMAIN-SUFFIX,sobar.baidu.com 
+DAMAIN-SUFFIX,sobartop.baidu.com 
+DAMAIN-SUFFIX,spcode.baidu.com 
+DAMAIN-SUFFIX,tk.baidu.com 
+DAMAIN-SUFFIX,tkweb.baidu.com 
+DAMAIN-SUFFIX,toolbar.baidu.com 
+DAMAIN-SUFFIX,tuijian.baidu.com 
+DAMAIN-SUFFIX,tuisong.baidu.com 
+DAMAIN-SUFFIX,ucstat.baidu.com 
+DAMAIN-SUFFIX,ulic.baidu.com 
+DAMAIN-SUFFIX,ulog.imap.baidu.com 
+DAMAIN-SUFFIX,union.baidustatic.guannin.com 
+DAMAIN-SUFFIX,unionimage.baidu.com 
+DAMAIN-SUFFIX,utility.baidu.com 
+DAMAIN-SUFFIX,utk.baidu.com 
+DAMAIN-SUFFIX,videopush.baidu.com 
+DAMAIN-SUFFIX,w.gdown.baidu.com 
+DAMAIN-SUFFIX,w.x.baidu.com 
+DAMAIN-SUFFIX,wangmeng.baidu.com 
+DAMAIN-SUFFIX,weishi.baidu.com 
+DAMAIN-SUFFIX,wisepush.video.baidu.com 
+DAMAIN-SUFFIX,wm.baidu.com 
+DAMAIN-SUFFIX,yingxiao.baidu.com 
+DAMAIN-SUFFIX,znsv.baidu.com 
+DAMAIN-SUFFIX,baidustatic.com 
+DAMAIN-SUFFIX,afd.baidu.com 
+DAMAIN-SUFFIX,duclick.baidu.com 
+DAMAIN-SUFFIX,hm.baidu.com 
+DAMAIN-SUFFIX,hmma.baidu.com 
+# > C
+# > 车来了（包括小程序）
+DAMAIN-suffix, atrace.chelaile.net.cn 
+DAMAIN, logs.chelaile.net.cn 
+DAMAIN, ad.chelaile.net.cn 
+# > 创维
+DAMAIN-SUFFIX,hoisin.coocaa.com 
+DAMAIN-SUFFIX,hoisin.coocaatv.com 
+DAMAIN,data-hoisin.coocaa.com 
+# > D
+# > 懂车帝
+DAMAIN, p3-pack.byteimg.com 
+DAMAIN, p6-pack.byteimg.com 
+# > E
+# > F
+# > G
+# > 高德
+DAMAIN, amap-aos-info-nogw.amap.com 
+#DAMAIN, amdc.m.taobao.com 
+DAMAIN, awaken.amap.com 
+DAMAIN, free-aos-cdn-image.amap.com 
+# > 谷歌
+DAMAIN-SUFFIX,google-analytics.com 
+DAMAIN,safebrowsing.googleapis.com 
+DAMAIN-SUFFIX,doubleclick.net 
+DAMAIN-SUFFIX,googleadservices.com 
+DAMAIN-SUFFIX,googleadsserving.cn 
+DAMAIN-SUFFIX,googlesyndication.com 
+DAMAIN-SUFFIX,googletagservices.com 
+DAMAIN-SUFFIX,googletagmanager.com 
+DAMAIN-SUFFIX,pagead.google.com 
+DAMAIN-SUFFIX,pagead.l.google.com 
+DAMAIN-SUFFIX,pagead-tpc.l.google.com 
+DAMAIN-SUFFIX,mobileads.google.com 
+DAMAIN-SUFFIX,googlecommerce.com 
+DAMAIN-SUFFIX,blaaaa12.googlecode.com 
+DAMAIN-SUFFIX,badad.googleplex.com 
+DAMAIN-SUFFIX,afd.l.google.com 
+DAMAIN,ads.youtube.com 
+# > H
+# > HDO
+DAMAIN-SUFFIX, applovin.com,REJECT
+DAMAIN-SUFFIX, applvn.com,REJECT
+#DAMAIN-SUFFIX, doubleclick.net,REJECT
+DAMAIN, googleads.g.doubleclick-cn.net 
+DAMAIN, googleads.g.doubleclick.net 
+DAMAIN, pubads.g.doubleclick.net 
+DAMAIN, pagead2.googlesyndication.com 
+# > 虎扑
+DAMAIN,adx.hupu.com 
+DAMAIN,adx-api.hupu.com 
+DAMAIN-SUFFIX,goblin.hupu.com 
+# > I
+# > J
+# > 交管12123
+DAMAIN, static.122.gov.cn 
+ip-cidr, 203.107.1.1/24 
+DAMAIN-SUFFIX, v3.fstats.xyz 
+DAMAIN-SUFFIX, wss.haoyundmn.com  
+DAMAIN-SUFFIX, new.xiongzhangad.com   
+DAMAIN-SUFFIX, alexametrics.com  
+DAMAIN-KEYWORD, in-page-push 
+# >驾校一点通
+DAMAIN,richmanapi.jxedt.com 
+DAMAIN,richmanmain.jxedt.com 
+DAMAIN,richmanrules.jxedt.com 
+# > 今日头条
+DAMAIN-SUFFIX, ad.toutiao.com 
+DAMAIN-SUFFIX, clk.gentags.net 
+DAMAIN-SUFFIX, dm.toutiao.com 
+DAMAIN-SUFFIX, dm.pstatp.com 
+DAMAIN-SUFFIX, bytedance.com 
+DAMAIN-SUFFIX, uop.umeng.com 
+DAMAIN-SUFFIX, policy.jd.com 
+DAMAIN-SUFFIX, kepler.jd.com 
+DAMAIN-SUFFIX, bdsp.x.jd.com 
+DAMAIN-SUFFIX, keplerapi.jd.com 
+DAMAIN-SUFFIX, m.suning.com 
+DAMAIN-SUFFIX, adshare.toutiao.com 
+DAMAIN-SUFFIX, tunion-api.m.taobao.com 
+DAMAIN-SUFFIX, mapi.m.jd.com 
+DAMAIN-SUFFIX, s1.pstatp.com 
+DAMAIN-SUFFIX, s2.pstatp.com 
+DAMAIN-SUFFIX, s3.pstatp.com 
+DAMAIN-SUFFIX, a3.pstatp.com 
+DAMAIN-SUFFIX, a3.bytecdn.cn 
+DAMAIN-SUFFIX, ichannel.snssdk.com 
+# > K
+# > 快手
+# DAMAIN-SUFFIX,yximgs.com 
+DAMAIN-SUFFIX,e.kuaishou.com 
+#DAMAIN,js-ad.a.yximgs.com 
+DAMAIN-SUFFIX,cm.downloader.commercial.kuaishou.com 
+DAMAIN-SUFFIX,cm.ad.gifshow.com 
+DAMAIN-SUFFIX,cm.kwad.com 
+# > 酷狗音乐
+DAMAIN-SUFFIX, searchrecommend.kugou.com 
+DAMAIN-SUFFIX, nbcollectretry.kugou.com 
+DAMAIN-SUFFIX, rtmretry.kugou.com 
+DAMAIN-SUFFIX, rt-m.kugou.com 
+DAMAIN-SUFFIX, nbcollect.kugou.com 
+DAMAIN-SUFFIX, c1img.ali.kugou.com 
+DAMAIN-SUFFIX, kgstaticdlbssdlbig.tx.kugou.com 
+DAMAIN-SUFFIX, adsfilebssdlbig.ali.kugou.com 
+DAMAIN-SUFFIX, splashimgbssdl.yun.kugou.com 
+DAMAIN-SUFFIX, adservice.kugou.com
+DAMAIN-SUFFIX, kgipadstat.kugou.com
+DAMAIN-SUFFIX, kgipadstatbak.kugou.com
+DAMAIN-SUFFIX, logwebs.kugou.com
+DAMAIN-SUFFIX, tracker.kugou.com
+DAMAIN-SUFFIX, trackercdnbj.kugou.com
+DAMAIN-SUFFIX, rich.kuwo.cn 
+DAMAIN-SUFFIX, mobilead.kuwo.cn 
+DAMAIN-SUFFIX,oth.eve.mdt.qq.com 
+DAMAIN-SUFFIX,pgdt.gtimg.cn 
+DAMAIN,pgdt.gtimg.com 
+DAMAIN,adsmind.gdtimg.com 
+DAMAIN-SUFFIX,channel.fanxing.kugou.com 
+DAMAIN-SUFFIX,d.kugou.com 
+DAMAIN-SUFFIX,downmobile.kugou.com 
+DAMAIN-SUFFIX,gad.kugou.com 
+DAMAIN-SUFFIX,game.kugou.com 
+DAMAIN-SUFFIX,gamebox.kugou.com 
+DAMAIN-SUFFIX,gcapi.sy.kugou.com 
+DAMAIN-SUFFIX,gg.kugou.com 
+DAMAIN-SUFFIX,install.kugou.com 
+DAMAIN-SUFFIX,install2.kugou.com 
+DAMAIN-SUFFIX,minidcsc.kugou.com 
+DAMAIN-SUFFIX,mo.kugou.com 
+DAMAIN-SUFFIX,msg.mobile.kugou.com 
+DAMAIN-SUFFIX,mvads.kugou.com 
+DAMAIN-SUFFIX,p.kugou.com 
+DAMAIN-SUFFIX,push.mobile.kugou.com 
+DAMAIN-SUFFIX,rtmonitor.kugou.com 
+DAMAIN-SUFFIX,sdn.kugou.com 
+DAMAIN-SUFFIX,song.fanxing.kugou.com 
+DAMAIN-SUFFIX,update.mobile.kugou.com 
+DAMAIN-SUFFIX,youxi.kugou.com 
+DAMAIN-SUFFIX,adserviceretry.kugou.com 
+DAMAIN-SUFFIX,ads.service.kugou.com 
+DAMAIN-SUFFIX,adsfile.bssdlbig.kugou.com 
+DAMAIN-SUFFIX,log.stat.kugou.com 
+DAMAIN-SUFFIX,log.web.kugou.com 
+DAMAIN-SUFFIX,kgmobilestat.kugou.com 
+DAMAIN-SUFFIX,kgmobilestatbak.kugou.com 
+DAMAIN-SUFFIX,mobilelog.kugou.com 
+# > 酷我音乐
+DAMAIN-SUFFIX,c.kuwo.cn 
+DAMAIN-SUFFIX,deliver.kuwo.cn 
+DAMAIN-SUFFIX,game.kuwo.cn 
+DAMAIN-SUFFIX,kuwoyy.com 
+DAMAIN-SUFFIX,kwmsg.kuwo.cn 
+DAMAIN-SUFFIX,msclick2.kuwo.cn 
+DAMAIN-SUFFIX,msphoneclick.kuwo.cn 
+DAMAIN-SUFFIX,updatepage.kuwo.cn 
+DAMAIN-SUFFIX,wa.kuwo.cn 
+DAMAIN-SUFFIX,webstat.kuwo.cn 
+# L
+# > 两步路
+DAMAIN-SUFFIX,admobile.top 
+# > 蓝奏云
+DAMAIN-SUFFIX, statics.woozooo.com 
+# M
+# > 美团
+DAMAIN, flowplus.meituan.net 
+DAMAIN-SUFFIX, analytics.meituan.net 
+DAMAIN-SUFFIX, meituan.yoga 
+DAMAIN-SUFFIX, meituangov.cn 
+DAMAIN-SUFFIX, report.meituan.com 
+DAMAIN-SUFFIX, wmlog.meituan.com 
+# > 墨迹天气
+DAMAIN-SUFFIX, fds.api.moji.com 
+DAMAIN-SUFFIX, me.api.moji.com 
+DAMAIN-SUFFIX, android.bugly.qq.com 
+DAMAIN-SUFFIX, av1.xdrig.com 
+DAMAIN-SUFFIX, adash.man.aliyuncs.com 
+DAMAIN-SUFFIX, v1.log.moji.com 
+DAMAIN-SUFFIX, ad.api.moji.com 
+DAMAIN,adlaunch.moji.com 
+DAMAIN,ads.mojicdn.com 
+# > 咪咕视频
+DAMAIN-SUFFIX,ad.cmvideo.cn 
+DAMAIN,ggc.cmvideo.cn 
+DAMAIN,ggic03.miguvideo.com 
+DAMAIN,ggmk.miguvideo.com 
+DAMAIN,ggv.cmvideo.cn 
+DAMAIN,ggx.cmvideo.cn 
+DAMAIN,ggx03.miguvideo.com 
+# > N
+# > NicoNico
+DAMAIN, ads.nicovideo.jp 
+# > O
+# > 皮皮虾（推荐视频不能预览）
+DAMAIN-SUFFIX,log-api.pangolin-sdk-toutiao-b.com 
+DAMAIN-SUFFIX,log-api.pangolin-sdk-toutiao.com 
+DAMAIN-SUFFIX,api-access.pangolin-sdk-toutiao.com 
+# > OPPO
+DAMAIN-SUFFIX,ads.oppomobile.com 
+DAMAIN,adsfs.oppomobile.com 
+# > P
+# > PPTV
+DAMAIN,ads.aplus.pptv.com 
+DAMAIN,ads.aplusapi.pptv.com 
+DAMAIN,asimgs.pplive.cn 
+DAMAIN,de.as.pptv.com 
+# > Photoable
+DAMAIN,regist.fotoable.com 
+DAMAIN,cdn.adapi.fotoable.com 
+# > PConline
+DAMAIN,ad-analysis.pconline.com.cn 
+DAMAIN,iad0ssl.pcauto.com.cn 
+DAMAIN,iad0ssl.pconline.com.cn 
+DAMAIN,imgad0.pcauto.com.cn 
+DAMAIN,imgad0.pconline.com.cn 
+DAMAIN,ivy.pchouse.com.cn 
+# > Q
+# QQ音乐广告
+DAMAIN,tmeadcomm.y.qq.com 
+DAMAIN,ad.tencentmusic.com 
+DAMAIN,adstats.tencentmusic.com 
+DAMAIN,tmead.y.qq.com 
+DAMAIN-SUFFIX,rqd.qq.com 
+DAMAIN-SUFFIX,wup.imtt.qq.com 
+DAMAIN-SUFFIX,gdt.qq.com 
+DAMAIN-SUFFIX,e.qq.com 
+DAMAIN-SUFFIX,beacon.qq.com 
+# > R
+# > S
+# > 搜狗
+DAMAIN-SUFFIX,epro.sogou.com 
+DAMAIN-SUFFIX,golden1.sogou.com 
+DAMAIN-SUFFIX,inte.sogou.com 
+DAMAIN-SUFFIX,inte.sogoucdn.com 
+DAMAIN-SUFFIX,lu.sogoucdn.com 
+DAMAIN-SUFFIX,theta.sogoucdn.com 
+DAMAIN-SUFFIX,uranus.sogou.com 
+DAMAIN-SUFFIX,123.sogou.com 
+DAMAIN-SUFFIX,a1click.cpc.sogou.com 
+DAMAIN-SUFFIX,adsence.sogou.com 
+DAMAIN-SUFFIX,adstream.123.sogoucdn.com 
+DAMAIN-SUFFIX,amfi.gou.sogou.com 
+DAMAIN-SUFFIX,athena.wan.sogou.com 
+DAMAIN-SUFFIX,bazinga.mse.sogou.com 
+DAMAIN-SUFFIX,brand.sogou.com 
+DAMAIN-SUFFIX,bsiet.husky.sogou.com 
+# > 搜狐
+DAMAIN-SUFFIX,ad.sohu.com 
+DAMAIN-SUFFIX,ads.sohu.com 
+DAMAIN-SUFFIX,aty.sohu.com 
+DAMAIN-SUFFIX,hui.sohu.com 
+# > Snapchat
+DAMAIN,ads.snapchat.com 
+DAMAIN,adsapi.snapchat.com 
+# > T
+# > 淘宝
+DAMAIN-SUFFIX,h-adashx.ut.taobao.com 
+DAMAIN-SUFFIX,apoll.m.taobao.com 
+# > TalkingData
+DAMAIN-SUFFIX,cpatrk.net 
+# > 腾讯视频
+DAMAIN-suffix, tetrack.qq.com 
+DAMAIN-suffix, tpns.tencent.com 
+DAMAIN-suffix, api.poll.video.qq.com 
+DAMAIN-suffix, static-res.qq.com 
+DAMAIN, h.trace.qq.com 
+# >  腾讯
+DAMAIN-SUFFIX,news.ssp.qq.com 
+DAMAIN-SUFFIX,activeqq.3g.qq.com 
+DAMAIN-SUFFIX,ad.qq.com 
+DAMAIN-SUFFIX,adping.qq.com 
+DAMAIN-SUFFIX,adpm.app.qq.com 
+DAMAIN-SUFFIX,adrdir.qq.com 
+DAMAIN-SUFFIX,adsclick.qq.com 
+DAMAIN-SUFFIX,adsense.html5.qq.com 
+DAMAIN-SUFFIX,adsfile.qq.com 
+DAMAIN-SUFFIX,adsgroup.qq.com 
+DAMAIN-SUFFIX,adshmct.qq.com 
+DAMAIN-SUFFIX,adshmmsg.qq.com 
+DAMAIN-SUFFIX,adslvfile.qq.com 
+DAMAIN-SUFFIX,adslvseed.qq.com 
+DAMAIN-SUFFIX,adsolution.imtt.qq.com 
+DAMAIN-SUFFIX,adsqqclick.qq.com 
+DAMAIN-SUFFIX,adstextview.qq.com 
+DAMAIN-SUFFIX,adsview.qq.com 
+DAMAIN-SUFFIX,adsview2.qq.com 
+DAMAIN-SUFFIX,adv.app.qq.com 
+DAMAIN-SUFFIX,adver.qq.com 
+DAMAIN-SUFFIX,analy.qq.com 
+DAMAIN-SUFFIX,c.gj.qq.com 
+DAMAIN-SUFFIX,d3g.qq.com 
+DAMAIN-SUFFIX,download.sj.qq.com 
+DAMAIN-SUFFIX,dp3.qq.com 
+DAMAIN-SUFFIX,game.html5.qq.com 
+DAMAIN-SUFFIX,ggmmqq.com 
+DAMAIN-SUFFIX,j.wit.qq.com 
+DAMAIN-SUFFIX,jqmt.qq.com 
+DAMAIN-SUFFIX,jsqmt.qq.com 
+DAMAIN-SUFFIX,livep.l.ott.video.qq.com 
+DAMAIN-SUFFIX,lives.l.ott.video.qq.com 
+DAMAIN-SUFFIX,masdk.3g.qq.com 
+DAMAIN-SUFFIX,mfm.video.qq.com 
+DAMAIN-SUFFIX,mini2015.qq.com 
+DAMAIN-SUFFIX,monitor.uu.qq.com 
+DAMAIN-SUFFIX,mqqad.cs0309.html5.qq.com 
+DAMAIN-SUFFIX,mqqad.html5.qq.com 
+DAMAIN-SUFFIX,mqqadr.reader.qq.com 
+DAMAIN-SUFFIX,news.mpush.qq.com 
+DAMAIN-SUFFIX,news-l.play.ott.video.qq.com 
+DAMAIN-SUFFIX,novelsns.html5.qq.com 
+DAMAIN-SUFFIX,oth.update.mdt.qq.com 
+DAMAIN-SUFFIX,pcbrowser.dd.qq.com 
+DAMAIN-SUFFIX,pmir.3g.qq.com 
+DAMAIN-SUFFIX,pvstat.html5.qq.com 
+DAMAIN-SUFFIX,qqshow2-item.qq.com 
+DAMAIN-SUFFIX,scdown.qq.com 
+DAMAIN-SUFFIX,setting.snswin.qq.com 
+DAMAIN-SUFFIX,sngmta.qq.com 
+DAMAIN-SUFFIX,t.sj.qq.com 
+DAMAIN-SUFFIX,ta.qq.com 
+DAMAIN-SUFFIX,tcss.qq.com 
+DAMAIN-SUFFIX,tpush.html5.qq.com 
+DAMAIN-SUFFIX,updatecenter.qq.com 
+DAMAIN-SUFFIX,video.ureport.push.qq.com 
+DAMAIN-SUFFIX,vlive.qqvideo.tc.qq.com 
+DAMAIN-SUFFIX,wap.mpush.qq.com 
+DAMAIN-SUFFIX,ws.sj.qq.com 
+DAMAIN-SUFFIX,wxsnsdy.tc.qq.com 
+DAMAIN-SUFFIX,wxsnsdy.video.qq.com 
+DAMAIN-SUFFIX,adsmind.tc.qq.com 
+DAMAIN-SUFFIX,btrace.qq.com 
+DAMAIN-SUFFIX,mtrace.qq.com 
+DAMAIN-SUFFIX,pingma.qq.com 
+DAMAIN-SUFFIX,pingtcss.qq.com 
+DAMAIN-SUFFIX,tajs.qq.com 
+DAMAIN-SUFFIX,wxsnsdy.wxs.qq.com 
+DAMAIN-SUFFIX,wxsnsdythumb.wxs.qq.com 
+DAMAIN-SUFFIX,fusion.qq.com 
+DAMAIN-SUFFIX,ios.bugly.qq.com 
+DAMAIN,safebrowsing.urlsec.qq.com 
+DAMAIN-SUFFIX,oth.str.mdt.qq.com 
+DAMAIN-SUFFIX,l.qq.com 
+DAMAIN,adsmind.apdcdn.tc.qq.com 
+DAMAIN,adsmind.ugdtimg.com 
+DAMAIN,livep.l.t002.ottcn.com 
+DAMAIN,pgdt.ugdtimg.com 
+DAMAIN,splashqqlive.gtimg.com 
+DAMAIN,vv.video.qq.com 
 DAMAIN,wa.gtimg.com 
 DAMAIN,g.koowo.com 
 # > The Paper
@@ -727,18 +653,18 @@ DAMAIN,tracklog.58.com
 # > 易校园
 DAMAIN-SUFFIX,p1.adkwai.com 
 DAMAIN-SUFFIX,rayjump.com 
-DAMAIN,bgg.baidu.com,reject
-DAMAIN,tk.anythinktech.com,reject
-DAMAIN,static.yximgs.com,reject
-DAMAIN,qzs.gdtimg.com,reject
-DAMAIN,adx-cn.anythinktech.com,reject
-DAMAIN,api.anythinktech.com,reject
-DAMAIN-SUFFIX,rayjump.com,reject
-# > DAMAIN,h.trace,qq.com,reject
-DAMAIN,y.tcp.push.mob.com,direct	
+DAMAIN,bgg.baidu.com
+DAMAIN,tk.anythinktech.com
+DAMAIN,static.yximgs.com
+DAMAIN,qzs.gdtimg.com
+DAMAIN,adx-cn.anythinktech.com
+DAMAIN,api.anythinktech.com
+DAMAIN-SUFFIX,rayjump.com
+# > DAMAIN,h.trace,qq.com
+DAMAIN,y.tcp.push.mob.com	
 #金融
-DAMAIN,punion.tjjt360.com,reject
+DAMAIN,punion.tjjt360.com
 #有道
-DAMAIN,staticsns.cdn.bcebos.com,reject
+DAMAIN,staticsns.cdn.bcebos.com
 # > 芒果
-DAMAIN,mobile.da.mgtv.com,reject
+DAMAIN,mobile.da.mgtv.com

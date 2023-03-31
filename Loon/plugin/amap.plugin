@@ -6,7 +6,7 @@
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
 
 [Rule]
-DOMAIN, amdc.m.taobao.com, REJECT
+#DOMAIN, amdc.m.taobao.com, REJECT
 
 [Rewrite]
 ^https:\/\/m5\.amap\.com\/ws\/asa\/ads_attribution reject-dict
@@ -23,6 +23,7 @@ DOMAIN, amdc.m.taobao.com, REJECT
 ^https:\/\/m5-zb\.amap\.com\/ws\/boss\/order_web\/friendly_information\? reject-dict
 
 [Script]
+http-response ^http:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/self_use.js
 http-response ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页卡片
 http-response ^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 开屏
 http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 我的页面卡片

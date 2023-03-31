@@ -635,7 +635,8 @@ HOST,yt-adp.ws.126.net, reject
 HOST,interface*.music.163.com.163jiasu.com,reject
 
 # > X
-
+# > 闲鱼
+HOST,aid.m.taobao.com,reject
 # > 向日葵
 host-keyword, upload-cdn.orayimg.com, reject
 host, ddns.oray.com, reject

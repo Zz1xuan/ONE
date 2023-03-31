@@ -1,3 +1,5 @@
+# > 闲鱼
+DOMAIN,aid.m.taobao.com
 # > soul
 ip-cidr, 47.110.187.87/32, no-resolve
 ip-cidr, 47.96.15.52/32, no-resolve

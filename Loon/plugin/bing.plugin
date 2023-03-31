@@ -1,0 +1,13 @@
+#!name = Bing AI
+#!desc = 将Safari浏览器伪装为Edge浏览器，以便绕过BingAI的使用限制，同时解除IP黑名单限制。
+#!openUrl = 
+#!author = LiuYaChen 
+#!homepage = 
+#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Bing.png
+
+
+[Script]
+http-request ^https:\/\/www\.bing\.com\/(search|new) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Loon/Script/bing.js, requires-body = false, tag = BingAI
+
+[MITM]
+hostname = www.bing.com

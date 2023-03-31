@@ -15,7 +15,7 @@ DOMAIN, sdkmonitor.biz.weibo.com, REJECT
 
 [Rewrite]
 # 去除开屏广告
-^https:\/\/boot\.biz\.weibo\.com\/v1\/ad\/realtime$ reject-dict
+^https:\/\/boot.*weibo\.com\/v\d\/ad\/realtime$ reject-dict
 ^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/(get-lbs-cell-info\.php$|sdkconfig\.php\?) reject
 ^https:\/\/api\.weibo\.cn\/2\/search\/container_discover\? reject-dict
 # > 微博_应用内弹窗广告@ddgksf2013

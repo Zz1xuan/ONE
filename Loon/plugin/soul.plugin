@@ -6,11 +6,11 @@
 [Rule]
 IP-CIDR, 47.110.187.87/32, REJECT
 IP-CIDR, 47.96.15.52/32, REJECT
-IP-CIDR, 116.62.220.39/32, REJECT
+IP-CIDR, 47.96.15.52/32, REJECT
 
 [Rewrite]
 ^https:\/\/ssp\.soulapp\.cn\/api reject
 
 [MITM]
-hostname = ssp.soulapp.cn
+hostname = ssp.soulapp.cn, 47.110.187.87, 47.96.15.52, 47.96.15.52
 

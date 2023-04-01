@@ -4,9 +4,9 @@
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/soul.png
 
 [Rule]
-IP-CIDR, 47.110.0.0/16, REJECT
-IP-CIDR, 47.96.0.0/16, REJECT
-IP-CIDR, 116.62.0.0/16, REJECT
+IP-CIDR, 47.110.0.0/16, REJECT, no-resolve
+IP-CIDR, 47.96.0.0/16, REJECT, no-resolve
+IP-CIDR, 116.62.0.0/16, REJECT, no-resolve
 
 [Rewrite]
 ^https:\/\/ssp\.soulapp\.cn\/api reject

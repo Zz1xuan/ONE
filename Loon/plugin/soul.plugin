@@ -3,8 +3,10 @@
 #!author = 
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/meituanwaimai.png
 
-[General]
-force-http-engine-hosts = 47.110.*:0, 47.96.*:0, 116.62.*:0
+[Rule]
+IP-CIDR, 47.110.187.87/32, reject
+IP-CIDR, 47.96.15.52/32, reject
+IP-CIDR, 116.62.220.39/32, reject
 
 [Rewrite]
 ^https:\/\/ssp\.soulapp\.cn\/api reject

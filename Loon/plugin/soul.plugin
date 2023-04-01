@@ -1,0 +1,14 @@
+#!name = soul去开屏
+#!desc = 屏蔽soul的开屏广告
+#!author = 
+#!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/meituanwaimai.png
+
+[General]
+force-http-engine-hosts = 47.110.*:0, 47.96.*:0, 116.62.*:0
+
+[Rewrite]
+^https:\/\/ssp\.soulapp\.cn\/api reject
+
+[MITM]
+hostname = ssp.soulapp.cn
+

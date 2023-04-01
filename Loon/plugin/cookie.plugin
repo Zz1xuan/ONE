@@ -15,8 +15,8 @@ http-response https:\/\/auth.aliyundrive.com\/v2\/account\/token script-path=htt
 # > 账号密码登录
 http-request ^https?:\/\/api.wfdata.club\/v1\/auth\/signin script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/feng/feng.cookie.js, requires-body=true, tag=Rewrite: feng
 # > 进入app
-http-request ^https:\/\/api\.weibo\.cn\/\d\/users\/show script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js, tag=获取微博Token
-http-request ^https:\/\/api\.weibo\.cn\/2\/logservice\/attach script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js, tag=获取微博Cookie
+http-request ^https:\/\/api\.weibo\.cn\/\d\/users\/show script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js,requires-body=0, tag=获取微博Token
+http-request ^https:\/\/api\.weibo\.cn\/2\/logservice\/attach script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js,requires-body=0, tag=获取微博Cookie
 # > 添加重写规则并打开捷停车APP即可获取userId
 http-request ^https:\/\/sytgate\.jslife\.com\.cn\/core-gateway\/order\/carno\/pay\/info script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/jparking_sign.js, requires-body=true, timeout=10, enabled=false, tag=获取捷停车userId
 # > 手动签到一次

@@ -1,0 +1,4 @@
+ip-cidr, 47.110.187.87/32, reject
+ip-cidr, 47.96.15.52/32, reject
+ip-cidr, 116.62.220.39/32, reject
+host, ssp.soulapp.cn, reject

@@ -5,7 +5,7 @@
 
 [Rule]
 IP-CIDR, 47.110.187.87/32, REJECT, no-resolve
-IP-CIDR, 47.96.15.0/24, REJECT, no-resolve
+IP-CIDR, 47.96.15.52/32, REJECT, no-resolve
 IP-CIDR, 116.62.220.0/24, REJECT, no-resolve
 
 [Rewrite]

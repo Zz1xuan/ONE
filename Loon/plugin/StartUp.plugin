@@ -6,6 +6,7 @@
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/Other_icon/80px/Ads.png
 
 [General]
+# > 美团
 force-http-engine-hosts = 101.236.*:0, 103.37.*:0, 119.29.*:0, 203.76.*:0
 
 [Rewrite]

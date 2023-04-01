@@ -10,16 +10,16 @@
 # ✅ Spotify  spclient.wg.spotify.com, 
 http-response ^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=spotifyProto
 # ✅ WPS(国区) *account.wps.cn, *account.wps.com
-http-response ^https?:\/\/[a-z-]*account\.wps\.c(n|om)(:\d+|)\/api\/users requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js
+http-response ^https?:\/\/[a-z-]*account\.wps\.c(n|om)(:\d+|)\/api\/users requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js, tag=Wps
 # ✅ VSCO|1Blocker
-http-request ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js
-http-response ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js
+http-request ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, tag=vsco
+http-response ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, tag=vsco
 # ～ 百度文库☆解锁VIP文档阅读权限（2022-10-17）@ddgksf2013
-http-response ^https:\/\/appwk\.baidu\.com\/naapi\/user\/getinfo requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/baidulibrary.js
+http-response ^https:\/\/appwk\.baidu\.com\/naapi\/user\/getinfo requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/baidulibrary.js, tag=百度文库
 # ✅ 彩云天气
-http-response ^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v\d\/user requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/caiyun.js
+http-response ^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v\d\/user requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/caiyun.js, tag=彩云天气
 # ✅ 百度云
-http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js
+http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js, tag=百度云
 
 [MITM]
 hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com

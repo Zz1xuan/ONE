@@ -83,10 +83,6 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 # > 每日优鲜   j-image.missfresh.cn,
 ^https:\/\/j-image\.missfresh\.cn\/img_(.+)\.gif$ - reject
 ^https:\/\/j-image\.missfresh\.cn\/img_(.+)\.(jpg|jpeg|gif|png)\?iopcmd=convert&dst=webp&q=85$ - reject
-# > 美团外卖 www.meituan.com, img.meituan.net,
-^https?:\/\/img\.meituan\.net\/(bizad|brandCpt)\/\w+\.(png|jpg) - reject
-^https?:\/\/.*\.meituan\.com\/api\/v\d\/(openscreen\?ad|appstatus\?ad|loadInfo\?|startpicture) - reject
-^http:\/\/s3plus\.meituan\.net\/v\d\/\w+\/brandcpt-vedio\/ - reject
 # > N
 # > O
 # > P

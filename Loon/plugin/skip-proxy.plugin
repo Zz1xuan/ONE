@@ -1,6 +1,7 @@
 #!name=Skip Proxy Lists
 #!author = mieqq
 #!desc=跳过部分应用的代理检测
+#!icon = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Blinkload.png
 
 [General]
 

@@ -23,6 +23,6 @@ http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires
 # ✅ 有道词典
 http-response ^https:\/\/dict\.youdao\.com\/vip\/user\/status requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/wyydcd.js, tag=有道词典, img-yrl=https://raw.githubusercontent.com/deezertidal/private/main/icons/ydcd.png
 [MITM]
-hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com
+hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com
 
 

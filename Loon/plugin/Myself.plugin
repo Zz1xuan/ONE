@@ -20,7 +20,8 @@ http-response ^https:\/\/appwk\.baidu\.com\/naapi\/user\/getinfo requires-body=1
 http-response ^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v\d\/user requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/caiyun.js, tag=彩云天气
 # ✅ 百度云
 http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js, tag=百度云
-
+# ✅ 有道词典
+http-response ^https:\/\/dict\.youdao\.com\/vip\/user\/status requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/wyydcd.js, tag=有道词典, img-yrl=https://raw.githubusercontent.com/deezertidal/private/main/icons/ydcd.png
 [MITM]
 hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com
 

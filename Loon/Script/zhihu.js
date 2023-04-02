@@ -1,6 +1,3 @@
-/*
-引用地址https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/zhihu.js
-*/
 // 2023-03-26 17:25
 
 if (!$response.body) $done({});

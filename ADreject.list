@@ -1,3 +1,5 @@
+#彩云天气
+host, ad.cyapi.cn, reject
 # 微博 开屏广告
 HOST, adstrategy.biz.weibo.com, REJECT
 ;HOST, boot.biz.weibo.com, REJECT

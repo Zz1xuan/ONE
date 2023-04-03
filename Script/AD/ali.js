@@ -16,19 +16,22 @@ if (body) {
         }
         return item;
       });
-      const removeKeys = [
-        "recentUsed", // 最近在看
-        "coreFeatures", // 顶部图标
-        "activities", // 精选活动
-        "myBackup", // 我的备份
-        "recentSaved", // 最近转存
-        "signIn" // 顶部签到
-      ];
-      removeKeys.forEach(key => delete home[key]);
+      // const removeKeys = [
+      //   "recentUsed", // 最近在看
+      //   // "coreFeatures", // 顶部图标
+      //   "activities", // 精选活动
+      //   "myBackup", // 我的备份
+      //   // "recentSaved", // 最近转存
+      //   //"signIn" // 顶部签到
+      // ];
+      // removeKeys.forEach(key => delete home[key]);
       body = JSON.stringify(home);
       break;
     default:
       $done({})
       break;
-  }$done({ 'body': body })
-} else $done({});
+  }
+  $done({ 'body': body })
+} else {
+  $done({});
+}

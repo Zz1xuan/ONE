@@ -5,7 +5,23 @@
 #!homepage=https://github.com/Semporia/TikTok-Unlock
 #!icon= https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/TikTok.png
 
+[Rule]
 
+DOMAIN,p16-tiktokcdn-com.akamaized.net, Proxy
+DOMAIN-SUFFIX,byteoversea.com, Proxy
+DOMAIN-SUFFIX,ibytedtos.com, Proxy
+DOMAIN-SUFFIX,ibyteimg.com, Proxy
+DOMAIN-SUFFIX,ipstatp.com, Proxy
+DOMAIN-SUFFIX,muscdn.com, Proxy
+DOMAIN-SUFFIX,musical.ly, Proxy
+DOMAIN-SUFFIX,sgpstatp.com, Proxy
+DOMAIN-SUFFIX,snssdk.com, Proxy
+DOMAIN-SUFFIX,tik-tokapi.com, Proxy
+DOMAIN-SUFFIX,tiktok.com, Proxy
+DOMAIN-SUFFIX,tiktokcdn.com, Proxy
+DOMAIN-SUFFIX,tiktokv.com, Proxy
+DOMAIN-KEYWORD,-tiktokcdn-com, Proxy
+USER-AGENT,TikTok*, Proxy
 
 [URL Rewrite]
 

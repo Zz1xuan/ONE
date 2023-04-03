@@ -7,6 +7,7 @@
 [mitm]
 hostname = userapi.qiekj.com, qemyapi.qiekj.com,
 
+
 let obj = JSON.parse($response.body);
 
 obj = {
@@ -14,10 +15,8 @@ obj = {
     total: 0,
     datas: [{}]
   },
-  {
-    code: 0,
-    datas: [{}]
-  }
+  code: 0,
+  datas: [{}]
 };
 
 $done({ body: JSON.stringify(obj) });

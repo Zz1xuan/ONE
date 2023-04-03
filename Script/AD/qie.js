@@ -1,6 +1,6 @@
 [rewrite_local]
 
-^https?:\/\/userapi\.qiekj\.com\/slot\/get url reject-200
+^https?:\/\/userapi\.qiekj\.com\/slot\/get url reject
 ^https?:\/\/userapi\.qiekj\.com\/appTitle\/get url script-response-body https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/qie.js
 ^https?:\/\/qemyapi\.qiekj\.com\/api\/item_list url script-response-body https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/qie.js
 

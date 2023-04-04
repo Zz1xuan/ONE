@@ -279,9 +279,9 @@ HOST-SUFFIX,goblin.hupu.com, reject
 #HOST-SUFFIX, alexametrics.com, reject 
 #HOST-KEYWORD, in-page-push, reject
 # >驾校一点通
-HOST,richmanapi.jxedt.com, reject
-HOST,richmanmain.jxedt.com, reject
-HOST,richmanrules.jxedt.com, reject
+#HOST,richmanapi.jxedt.com, reject
+#HOST,richmanmain.jxedt.com, reject
+#HOST,richmanrules.jxedt.com, reject
 # > 今日头条
 HOST-SUFFIX, ad.toutiao.com, reject
 HOST-SUFFIX, clk.gentags.net, reject

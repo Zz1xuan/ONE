@@ -271,7 +271,7 @@ HOST-SUFFIX,goblin.hupu.com, reject
 # > J
 
 # > 交管12123
-host, static.122.gov.cn, reject
+#host, static.122.gov.cn, reject
 ip-cidr, 203.107.1.1/24, reject
 HOST-SUFFIX, v3.fstats.xyz, reject
 HOST-SUFFIX, wss.haoyundmn.com, reject 

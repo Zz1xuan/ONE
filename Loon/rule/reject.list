@@ -235,16 +235,16 @@ DOMAIN-SUFFIX,goblin.hupu.com
 # > J
 # > 交管12123
 #DOMAIN, static.122.gov.cn 
-ip-cidr, 203.107.1.1/24,no-resolve
-DOMAIN-SUFFIX, v3.fstats.xyz 
-DOMAIN-SUFFIX, wss.haoyundmn.com  
-DOMAIN-SUFFIX, new.xiongzhangad.com   
-DOMAIN-SUFFIX, alexametrics.com  
-DOMAIN-KEYWORD, in-page-push 
+#ip-cidr, 203.107.1.1/24,no-resolve
+#DOMAIN-SUFFIX, v3.fstats.xyz 
+#DOMAIN-SUFFIX, wss.haoyundmn.com  
+#DOMAIN-SUFFIX, new.xiongzhangad.com   
+#DOMAIN-SUFFIX, alexametrics.com  
+#DOMAIN-KEYWORD, in-page-push 
 # >驾校一点通
-DOMAIN,richmanapi.jxedt.com 
-DOMAIN,richmanmain.jxedt.com 
-DOMAIN,richmanrules.jxedt.com 
+#DOMAIN,richmanapi.jxedt.com 
+#DOMAIN,richmanmain.jxedt.com 
+#DOMAIN,richmanrules.jxedt.com 
 # > 今日头条
 DOMAIN-SUFFIX, ad.toutiao.com 
 DOMAIN-SUFFIX, clk.gentags.net 

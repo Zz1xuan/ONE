@@ -3,13 +3,10 @@
  * https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/streaming-ui-check.js
  * 流媒体解锁查询
  * 脚本功能：检查节点是否支持以下流媒体服务：NetFlix、Disney、YouTuBe、Dazn、Param
- * For Loon 373+ Only, 小于373版本会有bug
  * 更新于：2022-04-11
- * 原作者：XIAO_KOP
- * 现作者：Loon0x00
  */
 
-const NF_BASE_URL = "https://www.netflix.com/title/81215567";
+const NF_BASE_URL = "https://www.netflix.com/title/70143836";
 const DISNEY_BASE_URL = 'https://www.disneyplus.com';
 const DISNEY_LOCATION_BASE_URL = 'https://disney.api.edge.bamgrid.com/graph/v1/device/graphql';
 const YTB_BASE_URL = "https://www.youtube.com/premium";
@@ -37,15 +34,15 @@ let result = {
 let arrow = " ➟ "
 
 Promise.all([ytbTest(),disneyLocation(),nfTest(),daznTest(),parmTest(),discoveryTest()]).then(value => {
-    let content = "--------------------------------------</br>"+([result["Dazn"],result["Discovery"],result["Paramount"],result["Disney"],result["Netflix"],result["YouTube"]]).join("</br></br>")
-    content = content + "</br>--------------------------------------</br>"+"<font color=#CD5C5C>"+"<b>节点</b> ➟ " + nodeName+ "</font>"
+    let content = "------------------------------------</br>"+([result["Dazn"],result["Discovery"],result["Paramount"],result["Disney"],result["Netflix"],result["YouTube"]]).join("</br></br>")
+    content = content + "</br>------------------------------------</br>"+"<font color=#CD5C5C>"+"<b>节点</b> ➟ " + nodeName+ "</font>"
     content =`<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">` + content + `</p>`
     console.log(content);
     $done({"title":result["title"],"htmlMessage":content})
 }).catch (values => {
     console.log("reject:" + values);
-    let content = "--------------------------------------</br>"+([result["Dazn"],result["Discovery"],result["Paramount"],result["Disney"],result["Netflix"],result["YouTube"]]).join("</br></br>")
-    content = content + "</br>--------------------------------------</br>"+"<font color=#CD5C5C>"+"<b>节点</b> ➟ " + nodeName+ "</font>"
+    let content = "------------------------------------</br>"+([result["Dazn"],result["Discovery"],result["Paramount"],result["Disney"],result["Netflix"],result["YouTube"]]).join("</br></br>")
+    content = content + "</br>------------------------------------</br>"+"<font color=#CD5C5C>"+"<b>节点</b> ➟ " + nodeName+ "</font>"
     content =`<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">` + content + `</p>`
     $done({"title":result["title"],"htmlMessage":content})
 })

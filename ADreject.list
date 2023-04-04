@@ -272,12 +272,12 @@ HOST-SUFFIX,goblin.hupu.com, reject
 
 # > 交管12123
 #host, static.122.gov.cn, reject
-ip-cidr, 203.107.1.1/24, reject
-HOST-SUFFIX, v3.fstats.xyz, reject
-HOST-SUFFIX, wss.haoyundmn.com, reject 
-HOST-SUFFIX, new.xiongzhangad.com, reject  
-HOST-SUFFIX, alexametrics.com, reject 
-HOST-KEYWORD, in-page-push, reject
+#ip-cidr, 203.107.1.1/24, reject
+#HOST-SUFFIX, v3.fstats.xyz, reject
+#HOST-SUFFIX, wss.haoyundmn.com, reject 
+#HOST-SUFFIX, new.xiongzhangad.com, reject  
+#HOST-SUFFIX, alexametrics.com, reject 
+#HOST-KEYWORD, in-page-push, reject
 # >驾校一点通
 HOST,richmanapi.jxedt.com, reject
 HOST,richmanmain.jxedt.com, reject

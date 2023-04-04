@@ -234,7 +234,7 @@ DOMAIN-SUFFIX,goblin.hupu.com
 # > I
 # > J
 # > 交管12123
-DOMAIN, static.122.gov.cn 
+#DOMAIN, static.122.gov.cn 
 ip-cidr, 203.107.1.1/24,no-resolve
 DOMAIN-SUFFIX, v3.fstats.xyz 
 DOMAIN-SUFFIX, wss.haoyundmn.com  

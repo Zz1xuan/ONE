@@ -34,7 +34,7 @@ http-response ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/search\/hint s
 # > 小红书_猜你想搜@ddgksf2013
 http-response ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/search\/trending script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/xiaohongshu.js, requires-body = true, tag = 猜你想搜
 # > 小红书去水印 @RuCu6
-http-response ^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v[23]\/note\/(video)?feed\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body = true, argument=""disable_watermark":false,->"disable_watermark":true,", tag = 移除图片视频水印
+http-response ^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v[23]\/note\/(video)?feed\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body = true, argument="disable_watermark":false,->"disable_watermark":true,", tag = 移除图片视频水印
 [MITM]
 hostname = edith.xiaohongshu.com, pages.xiaohongshu.com, www.xiaohongshu.com,referee.xiaohongshu.com,
 

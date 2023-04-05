@@ -6,8 +6,8 @@
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/IThome.png
 
 [Rewrite]
-^https?:\/\/api\.zuihuimai\.com\/static\/.*\/hongbao reject
-^https?:\/\/dat\.ruanmei\.com\/ithome\/money\/acd\.json$ reject
+^https?:\/\/api\.zuihuimai\.com\/static\/.*\/hongbao - reject
+^https?:\/\/dat\.ruanmei\.com\/ithome\/money\/acd\.json$ - reject
 
 [Script]
 http-response ^https?:\/\/(api\.ithome\.com\/json\/(((newslist|listpage)\/news)|(slide\/index)))|(napi\.ithome\.com\/api\/news\/index) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/IThome.js,requires-body = true, tag = IT之家去广告

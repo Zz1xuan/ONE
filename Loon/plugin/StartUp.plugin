@@ -142,7 +142,7 @@ http-response ^https?:\/\/i.\.hdslb\.com\/bfs\/subtitle\/.+\.json$ script-path =
 # ～ BiliBili_哔哩哔哩_应用开屏广告预加载@yjqiang   app.bilibili.com,
 http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/bilibili_json.js, requires-body=true, tag=b站开屏
 # > 飞客茶馆
-http-response ^https?:\/\/47\.100\.65\.202\/api\/mobile\/index\.php\?version=\d&mobile=yes&module=basicdata&type=forumlist script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body = true, argument=adv->ddgksf2013, tag = 去广告
+http-response ^https?:\/\/47\.100\.65\.202\/api\/mobile\/index\.php\?version=\d&mobile=yes&module=basicdata&type=forumlist script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body=true, timeout=10, tag=去广告, argument="adv->ddgksf2013"
 http-response ^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1 script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/fly.js, requires-body=true, tag=fly
 # > 京喜   api.m.jd.com,
 http-response ^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/jingxi.js, requires-body=true, tag=京喜

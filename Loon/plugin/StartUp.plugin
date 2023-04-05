@@ -93,9 +93,6 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 https://homefront.qunar.com/front/splash/ad - reject
 ^https?:\/\/client\.qunar\.com\/pitcher-proxy\?qrt=p_splashAd - reject
 # > R
-# > 瑞幸咖啡   m.lkcoffee.com, 124.71.225.147, ecapi.lkcoffee.com,
-^https:\/\/capi\.lkcoffee\.com\/resource\/m\/sys\/app\/adposNew - reject
-^https:\/\/(ec|c)api\.lkcoffee\.com\/resource\/m\/eorder\/product\/popAppTagProductList - reject
 
 # > S
 # > spotify pro@app2smile   spclient.wg.spotify.com,
@@ -149,13 +146,10 @@ http-response ^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\
 http-response ^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/jingxi.js, requires-body=true, tag=京喜
 # > 米家
 http-response ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/mihome.js, requires-body=true, tag=米家
-# > 瑞星咖啡
-http-request ^https:\/\/m\.lkcoffee\.com\/ecapi\/resource\/m\/member\/exchange\/page script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body = true, argument=\{.+\}->{"status":"SUCCESS"}, tag = 瑞星去广告
-http-request ^https:\/\/m\.lkcoffee\.com\/capi\/resource\/m\/growUp\/main script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body = true, argument="popTitle":".+?",->"popTitle":"", tag = 瑞星去广告
 # > spotify
 http-response ^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path = https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, tag=spotify-proto
 
 
 
 [MITM]
-hostname = vip7.fzwdyy.cn, pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, 47.100.65.202, yunbusiness.ccb.com, api.m.jd.com,bdsp-x.jd.com, dsp-x.jd.com, *.360buyimg.com, ms.jr.jd.com, open.e.kuaishou.com, j-image.missfresh.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, homefront.qunar.com, client.qunar.com, m.lkcoffee.com, 124.71.225.147, ecapi.lkcoffee.com, spclient.wg.spotify.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, gw.alicdn.com, api.xiachufang.com, api.m.mi.com, t1.market.xiaomi.com, home.mi.com, i.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com,
+hostname = vip7.fzwdyy.cn, pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, 47.100.65.202, yunbusiness.ccb.com, api.m.jd.com,bdsp-x.jd.com, dsp-x.jd.com, *.360buyimg.com, ms.jr.jd.com, open.e.kuaishou.com, j-image.missfresh.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, homefront.qunar.com, client.qunar.com, spclient.wg.spotify.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, gw.alicdn.com, api.xiachufang.com, api.m.mi.com, t1.market.xiaomi.com, home.mi.com, i.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com,

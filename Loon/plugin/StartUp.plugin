@@ -100,8 +100,8 @@ https://homefront.qunar.com/front/splash/ad - reject
 ^https:\/\/(ec|c)api\.lkcoffee\.com\/resource\/m\/eorder\/product\/popAppTagProductList - reject
 # > S
 # > spotify pro@app2smile   spclient.wg.spotify.com,
-^https?://spclient.wg.spotify.com/(ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+promoted_offer) - reject-img
-^https?:\/\/api\d?\.musical\.ly\/api\/ad\/ - reject-img
+#^https?://spclient.wg.spotify.com/(ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+promoted_offer) - reject-img
+#^https?:\/\/api\d?\.musical\.ly\/api\/ad\/ - reject-img
 # > T
 # > 淘宝 heic.alicdn.com, gw.alicdn.com,
 ^https:\/\/(gw|heic)\.alicdn\.com\/imgextra\/i\d\/\d*\/?[\w!]+-\d-(octopus|tps-1125-1602)\.jpg_(1\d{3}|9\d{2})x(1\d{3}|9\d{2})q[59]0 - reject-dict

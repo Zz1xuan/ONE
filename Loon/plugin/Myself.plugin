@@ -17,10 +17,7 @@ http-response ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ requires-body
 # ～ 百度文库☆解锁VIP文档阅读权限（2022-10-17）@ddgksf2013
 http-response ^https:\/\/appwk\.baidu\.com\/naapi\/user\/getinfo requires-body=true,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/baidulibrary.js, tag=百度文库
 # ✅ 彩云天气
-#http-response ^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v\d\/user requires-body=true,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/caiyun.js, tag=彩云天气
-
-http-response ^https:\/\/biz\.caiyunapp\.com\/v2\/user\?app_name\=weather script-path=https://raw.githubusercontent.com/Maasea/surgeModule/master/Script/Weather/weather.js, requires-body=true, tag=彩云天气
-
+http-response ^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v\d\/user requires-body=true,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/caiyun.js, tag=彩云天气
 # ✅ 百度云
 http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires-body=true,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js, tag=百度云
 # ✅ 有道词典

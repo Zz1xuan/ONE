@@ -18,7 +18,7 @@
 # > 哔哩哔哩_开屏广告 app.bilibili.com,
 ^https://app.bilibili.com/x/v2/splash/show - reject-dict
 # > 哔哩哔哩漫画
-^https:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/(Flash|ListFlash|GetActivityTab|GetBubbles) - reject-dict
+^https:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/(Flash|ListFlash|GetActivityTab|GetBubbles|AppInit) - reject-dict
 # > 百度地图 *.bdstatic.com, bp-api.bestv.com.cn,
 ^https:\/\/dss0\.bdstatic\.com\/.+/tam-ogel\/.+\.(jpg|mp4) - reject
 ^https?:\/\/bp-api\.bestv\.com\.cn\/cms\/api\/(free\/open\/advertisingV2|c\/home\/searchMark) - reject

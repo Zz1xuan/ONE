@@ -10,9 +10,7 @@ IP-CIDR, 116.62.220.39/32, REJECT, no-resolve
 
 [Rewrite]
 ^https:\/\/ssp\.soulapp\.cn\/api - reject
-^https:\/\/api-user\.soulapp\.cn\/furion\/position\/content - reject-dict
-^https:\/\/api-user\.soulapp\.cn\/user\/setting\/get?bi - reject-dict
 
 [MITM]
-hostname = ssp.soulapp.cn, api-user.soulapp.cn
+hostname = ssp.soulapp.cn, 
 

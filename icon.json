@@ -1,0 +1,46 @@
+{
+  "name": "常规图标",
+  "description": "收集一些常用的图标，尺寸为144px",
+  "icons": [
+    {
+      "name": "Spotify",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/Spotify.png"
+    },
+    {
+      "name": "aliyunpan",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/aliyunpan.png"
+    },
+    {
+      "name": "citybox",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/citybox.png"
+    },
+    {
+      "name": "cool",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/cool.png"
+    },
+    {
+      "name": "jietingche",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/jietingche.png"
+    },
+    {
+      "name": "meituanwaimai",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/meituanwaimai.png"
+    },
+    {
+      "name": "redbook",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/redbook.png"
+    },
+    {
+      "name": "shunfeng",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/shunfeng.png"
+    },
+    {
+      "name": "soul",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/soul.png"
+    },
+    {
+      "name": "weifen",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/weifen.png"
+    }
+  ]
+}

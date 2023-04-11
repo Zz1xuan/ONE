@@ -1,3 +1,6 @@
+#https://raw.githubusercontent.com/Tartarus2014/Script/master/Tiktok.js
+#去水印
+
 var watermark = body => {
     try {
         body.replace(/\"room_id\":(\d{2,})/g, '"room_id":"$1"');

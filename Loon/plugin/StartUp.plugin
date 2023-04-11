@@ -139,7 +139,7 @@ https://homefront.qunar.com/front/splash/ad - reject
 # > 12306 ad.12306.cn,
 http-request ^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/12306.js, requires-body=true, tag=12306
 # > 哔哩哔哩_繁体CC字幕转中文简体 *.hdslb.com,
-http-response ^https?:\/\/i.\.hdslb\.com\/bfs\/subtitle\/.+\.json$ script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/bilibili_cc.js, requires-body=true, tag=繁体转简体
+http-response ^https?:\/\/aisubtitle\.hdslb\.com\/bfs\/subtitle\/.+\.json script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/bilibili_cc.js, requires-body=true, tag=繁体转简体
 # ～ BiliBili_哔哩哔哩_应用开屏广告预加载@yjqiang   app.bilibili.com,
 http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/bilibili_json.js, requires-body=true, tag=b站开屏
 # > 飞客茶馆

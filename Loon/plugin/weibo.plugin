@@ -7,7 +7,7 @@
 
 [Rule]
 DOMAIN, adstrategy.biz.weibo.com, REJECT
-;DOMAIN, boot.biz.weibo.com, REJECT
+#DOMAIN, boot.biz.weibo.com, REJECT
 DOMAIN, kadmimage.biz.weibo.com, REJECT
 DOMAIN, sdkaction.biz.weibo.com, REJECT
 DOMAIN, sdkclick.biz.weibo.com, REJECT
@@ -43,7 +43,7 @@ DOMAIN, sdkmonitor.biz.weibo.com, REJECT
 # 去除开屏广告
 http-response ^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php$ script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
 http-response ^https:\/\/wbapp\.uve\.weibo\.com\/wbapplua\/wbpullad\.lua\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
-
+http-response ^https:\/\/(bootpreload|bootrealtime)\.uve\.weibo\.com\/v\d\/ad\/(preload$|rea(ltime)?) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
 # 去除信息流广告和各种推广模块
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(searchall|page\?|messageflow) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(unread_)?friends(/|_)timeline script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告

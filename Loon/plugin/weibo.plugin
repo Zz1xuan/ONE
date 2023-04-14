@@ -3,8 +3,7 @@
 #!openUrl = 
 #!author = RuCu6 zmqcherish Cuttlefish
 #!homepage = 
-#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Weibo.png
-
+#!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/weibo.png
 [Rule]
 DOMAIN, adstrategy.biz.weibo.com, REJECT
 #DOMAIN, boot.biz.weibo.com, REJECT

@@ -3,6 +3,10 @@
   "description": "收集一些常用的图标，尺寸为144px",
   "icons": [
     {
+      "name": "bing",
+      "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/bing.png"
+    },
+    {
       "name": "Spotify",
       "url": "https://raw.githubusercontent.com/OocMe/ONE/main/icon/Spotify.png"
     },

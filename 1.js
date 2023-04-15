@@ -1,6 +1,10 @@
 var response = $response.body;
 var jsonData = JSON.parse(response);
-delete jsonData.admin;
-delete jsonData.home;
+delete jsonData.p_webapp_home_preferential_banner;
+delete jsonData.p_webapp_home_bottom_xpanel;
+delete jsonData.p_webapp_home_bottom_xpanel;
+delete jsonData.p_webapp_home_map_p2d;
+delete jsonData.p_webapp_home_xpanel;
+delete jsonData.p_webapp_home_popup;
 var modifiedData = JSON.stringify(jsonData);
-$done(modifiedData);
+$done({ body: modifiedData });

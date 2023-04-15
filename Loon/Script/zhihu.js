@@ -84,10 +84,16 @@ if (url.includes("/appview/v3/zhmore")) {
     if (obj.data) {
       obj.data = obj.data.filter((i) => !i?.title?.includes("为您推荐"));
     }
+  } else if (url.includes("/next-bff")) {
+    if (obj.data) {
+      obj.data = obj.data.filter(
+        (i) => !(i?.origin_data?.type?.includes("ad"))
+      );
+    }  
   } else if (url.includes("/next-data")) {
     if (obj.data.data) {
       obj.data.data = obj.data.data.filter(
-        (i) => !(i?.type?.includes("ad") || i.data.answer_type === "PAID")
+        (i) => !(i?.type?.includes("ad") || i?.data?.answer_type?.includes("PAID"))
       );
     }
   } else if (url.includes("/people/homepage_entry")) {

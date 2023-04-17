@@ -1,0 +1,12 @@
+#!name= bilibili去广告
+#!desc= 开屏页广告,推荐页广告,动态(最常访问/推荐话题/列表广告)视频播放页面
+#!author= app2smile
+#!homepage= https://github.com/app2smile/rules
+#!icon= https://github.com/shindgewongxj/WHATSINStash/raw/main/icon/bilibilitv.png
+
+[Mitm]
+hostname = app.bilibili.com, grpc.biliapi.net
+
+[Script]
+http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/(splash\/(list|show)|feed\/index\?) script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/bilibili-json.js, requires-body=true, timeout=10, tag=bili-json
+http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.(view\.v1\.View\/View|dynamic\.v2\.Dynamic\/DynAll|playurl\.v1\.PlayURL\/PlayView)$ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/bilibili-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=bili-proto

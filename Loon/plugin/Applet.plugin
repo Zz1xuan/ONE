@@ -1,0 +1,22 @@
+#!name= 小程序去广告
+#!desc= 
+#!author= 我不是小黑子
+#!homepage= 
+#!icon= https://raw.githubusercontent.com/OocMe/ONE/main/icon/Applet.png
+
+
+[rewrite]
+
+#羊城通
+^https:\/\/r2\.gzyct\.com\/qrcode\/advert\/query url reject
+
+[script]
+
+#屈臣氏
+http-response ^https:\/\/mystore-gw\.watsonsvip\.com\.cn\/gfu\/popup\/advert\/launch script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body=true, timeout=10, tag=屈臣氏开屏, argument=""data":\{.+\},->"data":{},"
+
+[mitm]
+
+hostname = r2.gzyct.com, mystore-gw.watsonsvip.com.cn
+
+

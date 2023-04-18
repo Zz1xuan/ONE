@@ -1,10 +1,15 @@
-var response = $response.body;
-var jsonData = JSON.parse(response);
-delete jsonData.p_webapp_home_preferential_banner;
-delete jsonData.p_webapp_home_bottom_xpanel;
-delete jsonData.p_webapp_home_bottom_xpanel;
-delete jsonData.p_webapp_home_map_p2d;
-delete jsonData.p_webapp_home_xpanel;
-delete jsonData.p_webapp_home_popup;
-var modifiedData = JSON.stringify(jsonData);
-$done({ body: modifiedData });
+
+
+let url = "http://api.btstu.cn/sjbz/api.php?method=pc&lx=meizi";
+
+$httpClient.get(url, (error, response, data) => {
+  if (error) {
+    console.log(error);
+    $notification.post("推送美女图片出错啦", error);
+    $done();
+  } else {
+    let image = $image.fromData(data);
+    $notification.post("美女来啦", "", "", {"attachment": image});
+    $done();
+  }
+});

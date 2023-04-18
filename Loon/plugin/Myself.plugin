@@ -22,7 +22,10 @@ http-response ^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v\d\/user requires-b
 http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js, tag=百度云
 # ✅ 有道词典
 http-response ^https:\/\/dict\.youdao\.com\/vip\/user\/status requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/wyydcd.js, tag=有道词典
+# ✅ 搜图神器
+http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/.+\/account\/token requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/soutu.js, tag=搜图神器
+
 [MITM]
-hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com
+hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com
 
 

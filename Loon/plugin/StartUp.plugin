@@ -11,7 +11,7 @@
 # > A
 # > 安居客   pic*.ajkimg.com,
 ^https?:\/\/pic6\.ajkimg\.com\/news\/\w*.\w*\/format\/jpg\/thumbnail\/1125x2436 - reject-dict
-# > 阿里巴巴 acs.m.taobao.com,
+# > 阿里巴巴(配合admc.m.taobao.com) acs.m.taobao.com,
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv\/ - reject
 # > B
 # > 哔哩哔哩_开屏广告 app.bilibili.com,

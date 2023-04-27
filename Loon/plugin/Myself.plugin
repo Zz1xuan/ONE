@@ -27,6 +27,6 @@ http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/.+\/account\/token req
 # ✅ AccuWeather
 http-response ^https:\/\/app-subscription-proxy\.accuweather\.com\/subscriptions\/v1\/apple\/validate requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/accuweather.js, tag=AccuWeather
 [MITM]
-hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com
+hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, app-subscription-proxy.accuweather.com
 
 

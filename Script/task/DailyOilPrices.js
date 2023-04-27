@@ -1,4 +1,4 @@
-const apiurl = "https://apis.tianapi.com/oilprice/index??key=7de401b696e9905ca60899d9945a1996&prov=%E6%B5%99%E6%B1%9F";
+const apiurl = "https://apis.tianapi.com/oilprice/index?key=7de401b696e9905ca60899d9945a1996&prov=%E6%B5%99%E6%B1%9F";
 
 $httpClient.get(apiurl,function(error,reponse,data){
     if (error){

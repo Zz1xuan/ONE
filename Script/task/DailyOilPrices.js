@@ -2,7 +2,7 @@
 [task_local]
 0 0 8 ? * * https://raw.githubusercontent.com/deezertidal/shadowrocket-rules/main/js/oil.js, tag=每日油价, enabled=true
 */
-const apiurl = "https://apis.tianapi.com/oilprice/index?key=d718b0f7c2b6d71cb3a9814e90bf847f&prov=%E6%B1%9F%E8%8B%8F";
+const apiurl = "?key=7de401b696e9905ca60899d9945a1996&prov=浙江";
 
 $task.fetch({ url: apiurl }).then(response => {
     var obj = JSON.parse(response.body);

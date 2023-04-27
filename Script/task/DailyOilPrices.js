@@ -1,6 +1,7 @@
+//  作者deezertidal
 /*
 [task_local]
-0 0 8 ? * * https://raw.githubusercontent.com/deezertidal/shadowrocket-rules/main/js/oil.js, tag=每日油价, enabled=true
+0 0 8 ? * * https://raw.githubusercontent.com/OocMe/ONE/main/Script/task/DailyOilPrices.js, tag=每日油价, enabled=true
 */
 const apiurl = "?key=7de401b696e9905ca60899d9945a1996&prov=浙江";
 

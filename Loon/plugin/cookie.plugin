@@ -12,20 +12,22 @@ cron "0 9 * * *" script-path=https://raw.githubusercontent.com/NobyDa/Script/mas
 # > 进入小程序
 http-request ^https:\/\/api\.icitybox\.cn\/index.php\/api\/user\/get_user_infoscript-path=https://raw.githubusercontent.com/chavyleung/scripts/master/citybox/citybox.cookie.js, tag=citybox
 # > 我的顺丰 > 任务中心 > 去签到
-http-request ^https:\/\/ccsp-egmas.sf-express.com\/cx-app-member\/member\/app\/user\/universalSign script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/sfexpress/sfexpress.cookie.js, requires-body=true, tag=Rewrite: 顺丰速运
+http-request ^https:\/\/ccsp-egmas.sf-express.com\/cx-app-member\/member\/app\/user\/universalSign script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/sfexpress/sfexpress.cookie.js, requires-body=true, tag=顺丰速运cookie
 # > 进入app
 http-response https:\/\/auth.aliyundrive.com\/v2\/account\/token script-path=https://raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js, requires-body=true, timeout=10, tag=阿里云盘签到cookie
 # > 账号密码登录
-http-request ^https?:\/\/api.wfdata.club\/v1\/auth\/signin script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/feng/feng.cookie.js, requires-body=true, tag=Rewrite: feng
+http-request ^https?:\/\/api.wfdata.club\/v1\/auth\/signin script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/feng/feng.cookie.js, requires-body=true, tag=威锋cookie
 # > 进入app
 http-request ^https:\/\/api\.weibo\.cn\/\d\/users\/show script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js,requires-body=0, tag=获取微博Token
 http-request ^https:\/\/api\.weibo\.cn\/2\/logservice\/attach script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js,requires-body=0, tag=获取微博Cookie
 # > 添加重写规则并打开捷停车APP即可获取userId
-http-request ^https:\/\/sytgate\.jslife\.com\.cn\/core-gateway\/order\/carno\/pay\/info script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/jparking_sign.js, requires-body=true, timeout=10, enabled=false, tag=获取捷停车userId
+http-request ^https:\/\/sytgate\.jslife\.com\.cn\/core-gateway\/order\/carno\/pay\/info script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/jparking_sign.js, requires-body=true, timeout=10, enabled=false, tag=捷停车cookie
 # > 手动签到一次
-http-request ^https:\/\/i.meituan.com\/evolve\/signin\/signpost\/ script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/meituan/meituan.cookie.js, requires-body=true, tag=Rewrite: 美团
+http-request ^https:\/\/i.meituan.com\/evolve\/signin\/signpost\/ script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/meituan/meituan.cookie.js, requires-body=true, tag=美团cookie
 # > 登录 https://rewards.bing.com 获取 Cookie
-http-request ^https:\/\/rewards\.bing\.com script-path=https://raw.githubusercontent.com/mw418/Loon/main/script/bingPoint.js, tag=Bing积分cookie
+http-request ^https:\/\/rewards\.bing\.com script-path=https://raw.githubusercontent.com/mw418/Loon/main/script/bingPoint.js
+
+http-request ^https:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js, tag=哔哩哔哩漫画
 
 [MITM]
 hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.aliyundrive.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com

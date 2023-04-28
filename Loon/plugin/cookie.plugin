@@ -10,7 +10,7 @@ http-request ^https:\/\/(api\.m|me-api|ms\.jr)\.jd\.com\/(client\.action\?functi
 #Safari浏览器打开 https://m.iqiyi.com/user.html 使用密码登录, 如通知成功获取cookie则可使用该脚本.
 http-request ^https:\/\/passport\.iqiyi\.com\/apis\/user\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js, tag=iQiYi cookie
 # > 进入小程序
-http-request ^https:\/\/api\.icitybox\.cn\/index.php\/api\/user\/get_user_infoscript-path=https://raw.githubusercontent.com/chavyleung/scripts/master/citybox/citybox.cookie.js, tag=citybox
+http-request ^https:\/\/api\.icitybox\.cn\/index.php\/api\/user\/get_user_info script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/citybox/citybox.cookie.js, tag=citybox
 # > 我的顺丰 > 任务中心 > 去签到
 http-request ^https:\/\/ccsp-egmas.sf-express.com\/cx-app-member\/member\/app\/user\/universalSign script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/sfexpress/sfexpress.cookie.js, requires-body=true, tag=顺丰速运cookie
 # > 进入app

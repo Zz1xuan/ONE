@@ -2,7 +2,7 @@
 #!desc = Spotify解锁
 #!openUrl = 
 #!author = app2smile
-#!homepage = 
+#!homepage = https://github.com/app2smile/rules
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/Spotify1.png
 
 
@@ -19,14 +19,13 @@ DOMAIN-SUFFIX,spotifycdn.net,Proxy
 DOMAIN-KEYWORD,spotify,Proxy
 
 [Rewrite]
-^https?://spclient.wg.spotify.com/(ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+promoted_offer) - reject-img
-^https?:\/\/api\d?\.musical\.ly\/api\/ad\/ - reject-img
+#^https?://spclient.wg.spotify.com/(ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+promoted_offer) - reject-img
+#^https?:\/\/api\d?\.musical\.ly\/api\/ad\/ - reject-img
 
 [Script]
 
 # ✅ Spotify  spclient.wg.spotify.com, 
 http-response ^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=spotifyProto
-
 [MITM]
 
 hostname = spclient.wg.spotify.com,

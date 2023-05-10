@@ -1,10 +1,10 @@
 #!name = 顺丰去广告
 #!desc = 顺丰广告
 #!openUrl = 
-#!author = ddgksf2013
 #!homepage = 
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/shunfeng.png
 
+#author = ddgksf2013
 
 [Rewrite]
 ^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/(appVersion\/detectionUpgrade|ad\/queryAdImages) - reject-dict

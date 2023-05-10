@@ -1,7 +1,8 @@
 #!name=Emby
 #!desc=Emby解锁
 #!icon=https://raw.githubusercontent.com/Tartarus2014/For-own-use/master/Color/EMBY.png
-#!author=Tartarus2014
+
+#author=Tartarus2014
 
 [MITM]
 hostname = mb3admin.com

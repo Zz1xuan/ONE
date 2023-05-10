@@ -1,8 +1,10 @@
 #!name= bilibili去广告
 #!desc= 推荐页广告,动态(最常访问/推荐话题/列表广告)视频播放页面
-#!author= app2smile
-#!homepage= https://github.com/app2smile/rules
+#!author= 
+#!homepage= 
 #!icon= https://github.com/shindgewongxj/WHATSINStash/raw/main/icon/bilibilitv.png
+
+#author= app2smile
 
 [Mitm]
 hostname = app.bilibili.com, grpc.biliapi.net

@@ -25,11 +25,11 @@ http-response ^https:\/\/dict\.youdao\.com\/vip\/user\/status requires-body=1,sc
 # ✅ 搜图神器  wallpaper.soutushenqi.com,
 http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/.+\/account\/token requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/soutu.js, tag=搜图神器
 # ✅ AccuWeather  app-subscription-proxy.accuweather.com,
-http-response ^https:\/\/app-subscription-proxy\.accuweather\.com\/subscriptions\/v1\/apple\/validate requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/accuweather.js, tag=AccuWeather
+#http-response ^https:\/\/app-subscription-proxy\.accuweather\.com\/subscriptions\/v1\/apple\/validate requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/accuweather.js, tag=AccuWeather
 # ✅ Emby   mb3admin.com,
 http-response ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/emby.js, tag=EMBY
 
 [MITM]
-hostname = *account.wps.cn, *account.wps.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, app-subscription-proxy.accuweather.com,mb3admin.com,
+hostname = *account.wps.cn, *account.wps.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, mb3admin.com,
 
 

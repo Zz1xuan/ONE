@@ -1,13 +1,13 @@
 #!name = 开屏广告过滤器
 #!desc = 自用过滤器
 #!openUrl = 
-#!author = ddgksf2013 rucu6 myself
+#!author = 
 #!homepage = 
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/smile.png
 
+#author = ddgksf2013 rucu6 myself
 
 [Rewrite]
-
 # > A
 # > 安居客   pic*.ajkimg.com,
 ^https?:\/\/pic6\.ajkimg\.com\/news\/\w*.\w*\/format\/jpg\/thumbnail\/1125x2436 - reject-dict

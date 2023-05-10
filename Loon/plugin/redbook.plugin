@@ -1,10 +1,10 @@
 #!name = 小红书去广告
 #!desc = 去除小红书大多数广告
 #!openUrl = 
-#!author = ddgksf2013 RuCu6
 #!homepage = 
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/redbook.png
 
+#author = ddgksf2013 RuCu6
 
 [Rewrite]
 # > 小红书_通用广告请求@ddgksf2013

@@ -1,9 +1,11 @@
 #!name = 菜鸟去广告
 #!desc = 过滤菜鸟广告
 #!openUrl = 
-#!author = ddgksf2013
+#!author = 
 #!homepage = 
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Cainiao.png
+
+# ddgksf2013
 
 [Rule]
 #DOMAIN, amdc.m.taobao.com, REJECT

@@ -11,22 +11,25 @@
 #http-response ^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=spotifyProto
 # ✅ WPS(国区) *account.wps.cn, *account.wps.com
 http-response ^https?:\/\/[a-z-]*account\.wps\.c(n|om)(:\d+|)\/api\/users requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js
-# ✅ VSCO|1Blocker
+# ✅ VSCO|1Blocker         api.revenuecat.com,
 #http-request ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, tag=vsco
 #http-response ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, tag=vsco
 # ～ 百度文库☆解锁VIP文档阅读权限（2022-10-17）@ddgksf2013
 http-response ^https:\/\/appwk\.baidu\.com\/naapi\/user\/getinfo requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/baidulibrary.js, tag=百度文库
-# ✅ 彩云天气
+# ✅ 彩云天气  biz.cyapi.cn, biz.caiyunapp.com,
 http-response ^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v\d\/user requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/caiyun.js, tag=彩云天气
-# ✅ 百度云
+# ✅ 百度云  pan.baidu.com,
 http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js, tag=百度云
-# ✅ 有道词典
+# ✅ 有道词典   dict.youdao.com,
 http-response ^https:\/\/dict\.youdao\.com\/vip\/user\/status requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/wyydcd.js, tag=有道词典
-# ✅ 搜图神器
+# ✅ 搜图神器  wallpaper.soutushenqi.com,
 http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/.+\/account\/token requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/soutu.js, tag=搜图神器
-# ✅ AccuWeather
+# ✅ AccuWeather  app-subscription-proxy.accuweather.com,
 http-response ^https:\/\/app-subscription-proxy\.accuweather\.com\/subscriptions\/v1\/apple\/validate requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/accuweather.js, tag=AccuWeather
+# ✅ Emby   mb3admin.com,
+http-response ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/emby.js, tag=EMBY
+
 [MITM]
-hostname = spclient.wg.spotify.com, *account.wps.cn, *account.wps.com, api.revenuecat.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, app-subscription-proxy.accuweather.com
+hostname = *account.wps.cn, *account.wps.com, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, app-subscription-proxy.accuweather.com,mb3admin.com,
 
 

@@ -1,11 +1,11 @@
 #!name = Spotify
 #!desc = Spotify解锁
 #!openUrl = 
-#!author = app2smile
-#!homepage = https://github.com/app2smile/rules
+#!author = 
+#!homepage = 
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/Spotify1.png
 
-
+#author = app2smile
 
 
 [Rule]

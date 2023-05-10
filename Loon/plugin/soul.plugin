@@ -1,6 +1,5 @@
 #!name = soul去开屏
 #!desc = 屏蔽soul的开屏广告
-#!author = 我不是小黑子
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/soul.png
 
 [Rule]

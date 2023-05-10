@@ -1,10 +1,12 @@
 #!name = QQ音乐去广告
 #!desc = 过滤QQ音乐广告
 #!openUrl = 
-#!author = 可莉🅥
-#!homepage = https://gitlab.com/lodepuly/vpn_tool/-/tree/main/Tool/Loon/Plugin
+#!author = 
+#!homepage = 
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/QQMusic.png
 
+
+#author = 可莉🅥
 [Rule]
 DOMAIN,tmeadcomm.y.qq.com,REJECT
 DOMAIN,ad.tencentmusic.com,REJECT

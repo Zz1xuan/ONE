@@ -1,10 +1,11 @@
 #!name = 高德地图去广告
 #!desc = 过滤高德地图广告
 #!open= 
-#!author = RuCu6 kokoryh ddgksf2013
-#!homepage = https://gitlab.com/lodepuly/vpn_tool/-/tree/main/Tool/Loon/Plugin
+#!author = 
+#!homepage = 
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Amap.png
 
+# author = RuCu6 kokoryh ddgksf2013
 [Rule]
 #DOMAIN, amdc.m.taobao.com, REJECT
 

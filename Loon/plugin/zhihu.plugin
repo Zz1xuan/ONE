@@ -1,9 +1,11 @@
 #!name = 知乎去广告
 #!desc = 去除各部广告
 #!openUrl = 
-#!author = RuCu6 blackmatrix7
+#!author = 
 #!homepage = 
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Zhihu.png
+
+#author = RuCu6 blackmatrix7
 
 [Rule]
 DOMAIN, appcloud.zhihu.com, REJECT

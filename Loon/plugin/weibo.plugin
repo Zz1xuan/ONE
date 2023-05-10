@@ -1,9 +1,12 @@
 #!name = 微博去广告
 #!desc = 过滤微博广告及去除各部分推广模块
 #!openUrl = 
-#!author = RuCu6 zmqcherish Cuttlefish
+#!author = 
 #!homepage = 
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/weibo.png
+
+#author = RuCu6 zmqcherish Cuttlefish
+
 [Rule]
 DOMAIN, adstrategy.biz.weibo.com, REJECT
 #DOMAIN, boot.biz.weibo.com, REJECT

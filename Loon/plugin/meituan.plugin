@@ -1,7 +1,8 @@
 #!name = 美团外卖去开屏
 #!desc = 屏蔽美团外卖的开屏广告
-#!author = kokoryh
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/meituanwaimai.png
+
+#author = kokoryh
 
 [General]
 force-http-engine-hosts = 101.236.*:0, 103.37.*:0, 119.29.*:0, 203.76.*:0

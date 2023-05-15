@@ -65,6 +65,8 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 ^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=advis - reject
 # > G
 # > H
+# > 航旅纵横  discardrp.umetrip.com, startup.umetrip.com,
+^https?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native url reject
 # > I
 # > J
 # > 建行生活  yunbusiness.ccb.com,
@@ -157,4 +159,4 @@ http-response ^https:\/\/m\.lkcoffee\.com\/capi\/resource\/m\/growUp\/main scrip
 
 
 [MITM]
-hostname = pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, 47.100.65.202, yunbusiness.ccb.com, api.m.jd.com,bdsp-x.jd.com, dsp-x.jd.com, *.360buyimg.com, ms.jr.jd.com, open.e.kuaishou.com, j-image.missfresh.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, homefront.qunar.com, client.qunar.com, spclient.wg.spotify.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, gw.alicdn.com, api.xiachufang.com, api.m.mi.com, t1.market.xiaomi.com, home.mi.com, i.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, 124.71.225.147,*capi.lkcoffee.com,m.lkcoffee.com,                                           
+hostname = pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, 47.100.65.202, yunbusiness.ccb.com, api.m.jd.com,bdsp-x.jd.com, dsp-x.jd.com, *.360buyimg.com, ms.jr.jd.com, open.e.kuaishou.com, j-image.missfresh.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, homefront.qunar.com, client.qunar.com, spclient.wg.spotify.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, gw.alicdn.com, api.xiachufang.com, api.m.mi.com, t1.market.xiaomi.com, home.mi.com, i.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, 124.71.225.147, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com,                                           

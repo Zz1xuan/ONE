@@ -149,6 +149,8 @@ http-response ^https?:\/\/47\.100\.65\.202\/api\/mobile\/index\.php\?version=\d&
 http-response ^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1 script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/fly.js, requires-body=true, tag=fly
 # > 京喜   api.m.jd.com,
 http-response ^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/jingxi.js, requires-body=true, tag=京喜
+# > 京喜特价
+http-response ^https?:\/\/api\.m\.jd\.com\/api\?functionId=lite_advertising script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/jingxi.js, requires-body=true, tag=京喜特价
 # > 米家
 http-response ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/mihome.js, requires-body=true, tag=米家
 # > spotify

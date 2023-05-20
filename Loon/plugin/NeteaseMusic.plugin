@@ -5,6 +5,8 @@
 #!homepage = 
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/NeteaseCloudMusic.png
 
+[General]
+force-http-engine-hosts = 59.111.*:0
 
 [Rule]
 DOMAIN, gdt.qq.com, REJECT
@@ -32,9 +34,9 @@ DOMAIN-SUFFIX, 163jiasu.com, REJECT
 ^https:\/\/interface3\.music\.163\.com\/eapi\/vipcenter\/tspopup\/get\? - reject-dict
 ^https?:\/\/interface3\.music\.163\.com\/eapi\/resniche\/position\/play\/new\/get\? - reject-dict
 # 评论页,回复广告,星评馆
-^https?:\/\/interface3\.music\.163\.com\/eapi\/comment\/(hotcomment\/collect\/fetchmodelinfov2|feed\/inserted\/resources)\? - reject-dict
+^https?:\/\/interface3\.music\.163\.com\/eapi\/comment\/(hotcomment\/collect\/fetchmodelinfov2|feed\/inserted\/resources|tips\/v2\/get)\? - reject-dict
 ^https?:\/\/interface3\.music\.163\.com\/eapi\/v1\/content\/exposure\/comment\/banner\/get\? - reject-dict
 
 [MITM]
-hostname = interface*.music.163.com, 112.13.*, 59.111.*
+hostname = interface*.music.163.com:0, httpdns.n.netease.com, 112.13.*, 59.111.*
 

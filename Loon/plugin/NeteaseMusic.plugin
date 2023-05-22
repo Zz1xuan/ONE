@@ -15,6 +15,7 @@ DOMAIN, iadmat.nosdn.127.net, REJECT
 DOMAIN, iadmusicmat.music.126.net, REJECT
 DOMAIN, iadmusicmatvideo.music.126.net, REJECT
 DOMAIN-SUFFIX, 163jiasu.com, REJECT
+URL-REGEX, ^http:\/\/iadmusicmatvideo\.music\.126\.net, REJECT-VIDEO
 
 [Rewrite]
 # 开屏广告、开屏歌曲热评、搜索页下方横幅广告

@@ -6,7 +6,8 @@
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/NeteaseCloudMusic.png
 
 [General]
-skip-proxy = 240.0.0.0/4
+force-http-engine-hosts = 59.111.*:0
+# skip-proxy = 240.0.0.0/4
 # skip-proxy = 240.0.0.0/4, 59.111.179.213/32, 59.111.179.214/32, 59.111.160.195/32, 59.111.160.197/32
 
 [Rule]

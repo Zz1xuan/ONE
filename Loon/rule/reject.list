@@ -1,5 +1,5 @@
 # ChatGPT
-HOST, o33249.ingest.sentry.io, REJECT
+DOMAIN, o33249.ingest.sentry.io, REJECT
 
 # > 彩云天气
 DOMAIN, ad.cyapi.cn

@@ -8,16 +8,17 @@
 
 [Rewrite]
 # > 小红书_通用广告请求@ddgksf2013
-^https?:\/\/www\.xiaohongshu\.com\/api\/sns\/v\d\/(tag\/)?ads reject-dict
+^https?:\/\/www\.xiaohongshu\.com\/api\/sns\/v\d\/(tag\/)?ads - reject-dict
 # > 小红书_隐私屏蔽@ddgksf2013
-^https?:\/\/referee\.xiaohongshu\.com\/v\d\/stateReport reject-dict
+^https?:\/\/referee\.xiaohongshu\.com\/v\d\/stateReport - reject-dict
 # > 小红书_Switches@ddgksf2013
-^https?:\/\/pages\.xiaohongshu\.com\/data\/native\/matrix_switches reject-dict
+^https?:\/\/pages\.xiaohongshu\.com\/data\/native\/matrix_switches - reject-dict
 # > 小红书_青少年请求@ddgksf2013
-^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/user\/teenager\/status reject-dict
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/user\/teenager\/status - reject-dict
 # > 小红书_启动引导@ddgksf2013
-^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/guide\/home_guide reject-dict
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/guide\/home_guide - reject-dict
 
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v3\/note\/guide\? - reject-dict
 [Script]
 # > 小红书_开屏广告@ddgksf2013
 http-response ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/system_service\/splash_config script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/xiaohongshu.js, requires-body = true, tag = 开屏广告

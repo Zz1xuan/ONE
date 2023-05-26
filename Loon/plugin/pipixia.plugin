@@ -7,7 +7,7 @@
 [rewrite]
 
 # ======= 去广告 ======= #
-app_name=super&([\S]*)aid=\d+ url 307 app_name=super_pro&$1aid=1412
+app_name=super&([\S]*)aid=\d+ 307 app_name=super_pro&$1aid=1412
 
 [script]
 

@@ -408,11 +408,6 @@ HOST,ggx03.miguvideo.com, reject
 # > NicoNico
 host, ads.nicovideo.jp, reject
 # > O
-
-# > 皮皮虾（推荐视频不能预览）
-host-SUFFIX,log-api.pangolin-sdk-toutiao-b.com, reject
-host-SUFFIX,log-api.pangolin-sdk-toutiao.com, reject
-host-SUFFIX,api-access.pangolin-sdk-toutiao.com, reject
 # > OPPO
 HOST-SUFFIX,ads.oppomobile.com, reject
 HOST,adsfs.oppomobile.com, reject

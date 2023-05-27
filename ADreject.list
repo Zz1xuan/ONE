@@ -93,24 +93,6 @@ HOST, p6-pack.byteimg.com, REJECT
 HOST, amap-aos-info-nogw.amap.com, REJECT
 HOST, awaken.amap.com, REJECT
 HOST, free-aos-cdn-image.amap.com, REJECT
-# > 谷歌
-HOST-SUFFIX,google-analytics.com, REJECT
-HOST,safebrowsing.googleapis.com, REJECT
-HOST-SUFFIX,doubleclick.net, REJECT
-HOST-SUFFIX,googleadservices.com, REJECT
-HOST-SUFFIX,googleadsserving.cn, REJECT
-HOST-SUFFIX,googlesyndication.com, REJECT
-HOST-SUFFIX,googletagservices.com, REJECT
-HOST-SUFFIX,googletagmanager.com, REJECT
-HOST-SUFFIX,pagead.google.com, REJECT
-HOST-SUFFIX,pagead.l.google.com, REJECT
-HOST-SUFFIX,pagead-tpc.l.google.com, REJECT
-HOST-SUFFIX,mobileads.google.com, REJECT
-HOST-SUFFIX,googlecommerce.com, REJECT
-HOST-SUFFIX,blaaaa12.googlecode.com, REJECT
-HOST-SUFFIX,badad.googleplex.com, REJECT
-HOST-SUFFIX,afd.l.google.com, REJECT
-HOST,ads.youtube.com, REJECT
 
 # > H
 
@@ -161,68 +143,14 @@ HOST-SUFFIX,cm.downloader.commercial.kuaishou.com, REJECT
 HOST-SUFFIX,cm.ad.gifshow.com, REJECT
 HOST-SUFFIX,cm.kwad.com, REJECT
 
-# > 酷狗音乐
-HOST-SUFFIX, searchrecommend.kugou.com, REJECT
-HOST-SUFFIX, nbcollectretry.kugou.com, REJECT
-HOST-SUFFIX, rtmretry.kugou.com, REJECT
-HOST-SUFFIX, rt-m.kugou.com, REJECT
-HOST-SUFFIX, nbcollect.kugou.com, REJECT
-HOST-SUFFIX, c1img.ali.kugou.com, REJECT
-HOST-SUFFIX, kgstaticdlbssdlbig.tx.kugou.com, REJECT
-HOST-SUFFIX, adsfilebssdlbig.ali.kugou.com, REJECT
-HOST-SUFFIX, splashimgbssdl.yun.kugou.com, REJECT
-HOST-SUFFIX, adservice.kugou.com,REJECT
-HOST-SUFFIX, kgipadstat.kugou.com,REJECT
-HOST-SUFFIX, kgipadstatbak.kugou.com,REJECT
-HOST-SUFFIX, logwebs.kugou.com,REJECT
-HOST-SUFFIX, tracker.kugou.com,REJECT
-HOST-SUFFIX, trackercdnbj.kugou.com,REJECT
-HOST-SUFFIX, rich.kuwo.cn, REJECT
-HOST-SUFFIX, mobilead.kuwo.cn, REJECT
-HOST-SUFFIX,oth.eve.mdt.qq.com, REJECT
-HOST-SUFFIX,pgdt.gtimg.cn, REJECT
-HOST,pgdt.gtimg.com, REJECT
-HOST,adsmind.gdtimg.com, REJECT
-HOST-SUFFIX,channel.fanxing.kugou.com, REJECT
-HOST-SUFFIX,d.kugou.com, REJECT
-HOST-SUFFIX,downmobile.kugou.com, REJECT
-HOST-SUFFIX,gad.kugou.com, REJECT
-HOST-SUFFIX,game.kugou.com, REJECT
-HOST-SUFFIX,gamebox.kugou.com, REJECT
-HOST-SUFFIX,gcapi.sy.kugou.com, REJECT
-HOST-SUFFIX,gg.kugou.com, REJECT
-HOST-SUFFIX,install.kugou.com, REJECT
-HOST-SUFFIX,install2.kugou.com, REJECT
-HOST-SUFFIX,minidcsc.kugou.com, REJECT
-HOST-SUFFIX,mo.kugou.com, REJECT
-HOST-SUFFIX,msg.mobile.kugou.com, REJECT
-HOST-SUFFIX,mvads.kugou.com, REJECT
-HOST-SUFFIX,p.kugou.com, REJECT
-HOST-SUFFIX,push.mobile.kugou.com, REJECT
-HOST-SUFFIX,rtmonitor.kugou.com, REJECT
-HOST-SUFFIX,sdn.kugou.com, REJECT
-HOST-SUFFIX,song.fanxing.kugou.com, REJECT
-HOST-SUFFIX,update.mobile.kugou.com, REJECT
-HOST-SUFFIX,youxi.kugou.com, REJECT
-HOST-SUFFIX,adserviceretry.kugou.com, REJECT
-HOST-SUFFIX,ads.service.kugou.com, REJECT
-HOST-SUFFIX,adsfile.bssdlbig.kugou.com, REJECT
-HOST-SUFFIX,log.stat.kugou.com, REJECT
-HOST-SUFFIX,log.web.kugou.com, REJECT
-HOST-SUFFIX,kgmobilestat.kugou.com, REJECT
-HOST-SUFFIX,kgmobilestatbak.kugou.com, REJECT
-HOST-SUFFIX,mobilelog.kugou.com, REJECT
-# > 酷我音乐
-HOST-SUFFIX,c.kuwo.cn, REJECT
-HOST-SUFFIX,deliver.kuwo.cn, REJECT
-HOST-SUFFIX,game.kuwo.cn, REJECT
-HOST-SUFFIX,kuwoyy.com, REJECT
-HOST-SUFFIX,kwmsg.kuwo.cn, REJECT
-HOST-SUFFIX,msclick2.kuwo.cn, REJECT
-HOST-SUFFIX,msphoneclick.kuwo.cn, REJECT
-HOST-SUFFIX,updatepage.kuwo.cn, REJECT
-HOST-SUFFIX,wa.kuwo.cn, REJECT
-HOST-SUFFIX,webstat.kuwo.cn, REJECT
+# 酷我音乐
+HOST, ad.tencentmusic.com, REJECT
+HOST, g.koowo.com, REJECT
+HOST, mobilead.kuwo.cn, REJECT
+HOST, rich.kuwo.cn, REJECT
+HOST, tmead.y.qq.com, REJECT
+HOST, tmeadcomm.y.qq.com, REJECT
+
 # L
 # > 两步路
 HOST-SUFFIX,admobile.top, REJECT
@@ -230,39 +158,12 @@ HOST-SUFFIX,admobile.top, REJECT
 HOST-SUFFIX, statics.woozooo.com, REJECT
 # M
 
-# > 美团
-HOST, flowplus.meituan.net, REJECT
-HOST-SUFFIX, analytics.meituan.net, REJECT
-HOST-SUFFIX, meituan.yoga, REJECT
-HOST-SUFFIX, meituangov.cn, REJECT
-HOST-SUFFIX, report.meituan.com, REJECT
-HOST-SUFFIX, wmlog.meituan.com, REJECT
-# > 墨迹天气
-HOST-SUFFIX, fds.api.moji.com, REJECT
-HOST-SUFFIX, me.api.moji.com, REJECT
-HOST-SUFFIX, android.bugly.qq.com, REJECT
-HOST-SUFFIX, av1.xdrig.com, REJECT
-HOST-SUFFIX, adash.man.aliyuncs.com, REJECT
-HOST-SUFFIX, v1.log.moji.com, REJECT
-HOST-SUFFIX, ad.api.moji.com, REJECT
-HOST,adlaunch.moji.com, REJECT
-HOST,ads.mojicdn.com, REJECT
-# > 咪咕视频
-HOST-SUFFIX,ad.cmvideo.cn, REJECT
-HOST,ggc.cmvideo.cn, REJECT
-HOST,ggic03.miguvideo.com, REJECT
-HOST,ggmk.miguvideo.com, REJECT
-HOST,ggv.cmvideo.cn, REJECT
-HOST,ggx.cmvideo.cn, REJECT
-HOST,ggx03.miguvideo.com, REJECT
 
 # > N
 # > NicoNico
 HOST, ads.nicovideo.jp, REJECT
 # > O
-# > OPPO
-HOST-SUFFIX,ads.oppomobile.com, REJECT
-HOST,adsfs.oppomobile.com, REJECT
+
 
 # > P
 
@@ -422,7 +323,6 @@ HOST,pgdt.ugdtimg.com, REJECT
 HOST,splashqqlive.gtimg.com, REJECT
 HOST,vv.video.qq.com, REJECT
 HOST,wa.gtimg.com, REJECT
-
 HOST,g.koowo.com, REJECT
 # > The Paper
 HOST,admonitor.thepaper.cn, REJECT
@@ -514,11 +414,12 @@ HOST,t-ads.xiaohongshu.com, REJECT
 # Y
 
 # > 云闪付
-HOST-keyword, switch.cup.com.cn, REJECT
-HOST-keyword, sdk.open.talk.getui.net, REJECT
-HOST-keyword, sdk-conf.getui.com, REJECT
-HOST-keyword, cm-10-138.getui.com, REJECT
-HOST-keyword, ads.95516.com, REJECT
+HOST, ads.95516.com, REJECT
+HOST, cm-10-138.getui.com, REJECT
+HOST, sdk.open.talk.getui.net, REJECT
+HOST, sdk-conf.getui.com, REJECT
+HOST, switch.cup.com.cn, REJECT
+HOST, tysdk.95516.com, REJECT
 # > 优酷
 HOST-SUFFIX,atm.youku.com, REJECT
 HOST,ad.mobile.youku.com, REJECT

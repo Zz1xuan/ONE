@@ -349,11 +349,12 @@ DOMAIN,ads-video-qc.xhscdn.com
 DOMAIN,t-ads.xiaohongshu.com 
 # Y
 # > 云闪付
-DOMAIN-keyword, switch.cup.com.cn 
-DOMAIN-keyword, sdk.open.talk.getui.net 
-DOMAIN-keyword, sdk-conf.getui.com 
-DOMAIN-keyword, cm-10-138.getui.com 
-DOMAIN-keyword, ads.95516.com 
+DOMAIN, ads.95516.com
+DOMAIN, cm-10-138.getui.com
+DOMAIN, sdk.open.talk.getui.net
+DOMAIN, sdk-conf.getui.com
+DOMAIN, switch.cup.com.cn
+DOMAIN, tysdk.95516.com
 # > 优酷
 DOMAIN-SUFFIX,atm.youku.com 
 DOMAIN,ad.mobile.youku.com 
@@ -372,24 +373,14 @@ DOMAIN,ad.21cn.com
 DOMAIN,ad.k.21cn.com 
 DOMAIN,admarket.21cn.com 
 DOMAIN,adshows.21cn.com 
-# > 中华万年历广告
-DOMAIN-keyword, lkme.cc 
-DOMAIN-keyword, api.freed.so 
-DOMAIN-keyword, log-dmp.suishenyun.cn 
-DOMAIN-keyword, client-dmp.suishenyun.cn 
-DOMAIN-keyword, pc.suishenyun.net 
-DOMAIN-keyword, v0-client-lz.rili.cn 
-
 
 # Malware
 # > Huawei AspiegelBot
 IP-CIDR,114.119.160.0/21,no-resolve 
 DOMAIN-SUFFIX,kuaizip.com 
 # > MacKeeper
-# https://www.lizhi.io/blog/40002904 
 DOMAIN-SUFFIX,zryydi.com 
 # > Adobe Flash China Special Edition
-# https://www.zhihu.com/question/281163698/answer/441388130 
 DOMAIN,geo2.adobe.com
 # >58
 DOMAIN,track.58.com 

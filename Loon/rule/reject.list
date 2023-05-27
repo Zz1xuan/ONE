@@ -1,3 +1,9 @@
+# 网易云
+DOMAIN-SUFFIX,gdt.qq.com 
+DOMAIN,httpdns.n.netease.com
+DOMAIN,iadmat.nosdn.127.net 
+DOMAIN,iadmusicmat.music.126.net 
+DOMAIN,iadmusicmatvideo.music.126.net 
 # ChatGPT
 DOMAIN, o33249.ingest.sentry.io
 
@@ -363,10 +369,6 @@ DOMAIN,ggx03.miguvideo.com
 # > NicoNico
 DOMAIN, ads.nicovideo.jp 
 # > O
-# > 皮皮虾（推荐视频不能预览）
-DOMAIN-SUFFIX,log-api.pangolin-sdk-toutiao-b.com 
-DOMAIN-SUFFIX,log-api.pangolin-sdk-toutiao.com 
-DOMAIN-SUFFIX,api-access.pangolin-sdk-toutiao.com 
 # > OPPO
 DOMAIN-SUFFIX,ads.oppomobile.com 
 DOMAIN,adsfs.oppomobile.com 
@@ -394,7 +396,6 @@ DOMAIN,adstats.tencentmusic.com
 DOMAIN,tmead.y.qq.com 
 DOMAIN-SUFFIX,rqd.qq.com 
 DOMAIN-SUFFIX,wup.imtt.qq.com 
-DOMAIN-SUFFIX,gdt.qq.com 
 DOMAIN-SUFFIX,e.qq.com 
 DOMAIN-SUFFIX,beacon.qq.com 
 # > R
@@ -543,9 +544,6 @@ DOMAIN,admusicpic.music.126.net
 DOMAIN,g1.163.com 
 DOMAIN,gorgon.youdao.com 
 DOMAIN,iad.g.163.com 
-DOMAIN,iadmat.nosdn.127.net 
-DOMAIN,iadmusicmat.music.126.net 
-DOMAIN,iadmusicmatvideo.music.126.net 
 DOMAIN,impservice.dictapp.youdao.com 
 DOMAIN,impservice.youdao.com 	
 DOMAIN,n.3g.163.com 

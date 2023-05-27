@@ -5,20 +5,25 @@ HOST,iadmat.nosdn.127.net, REJECT
 HOST,iadmusicmat.music.126.net, REJECT
 HOST,iadmusicmatvideo.music.126.net, REJECT
 HOST-SUFFIX,163jiasu.com,REJECT
+
 # ChatGPT
 HOST, o33249.ingest.sentry.io, REJECT
+
 #彩云天气
 HOST, ad.cyapi.cn, REJECT
+
 # 微博 开屏广告
 HOST, adstrategy.biz.weibo.com, REJECT
 HOST, kadmimage.biz.weibo.com, REJECT
 HOST, sdkaction.biz.weibo.com, REJECT
 HOST, sdkclick.biz.weibo.com, REJECT
 HOST, sdkmonitor.biz.weibo.com, REJECT
+
 # > Outlook
 HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT
 HOST,sin3-ib.adnxs.com,REJECT
+
 # > 飞猪旅行&高德
 #HOST,amdc.m.taobao.com,REJECT
 
@@ -405,11 +410,6 @@ HOST,adbehavior.wsa.ximalaya.com, REJECT
 HOST,adbehavior.ximalaya.com, REJECT
 HOST,adsebs.ximalaya.com, REJECT
 HOST,adwbs.ximalaya.com, REJECT
-# >小红书
-HOST,ads-img-qc.xhscdn.com, REJECT
-HOST,ads-video-al.xhscdn.com, REJECT
-HOST,ads-video-qc.xhscdn.com, REJECT
-HOST,t-ads.xiaohongshu.com, REJECT
 
 # Y
 
@@ -425,34 +425,7 @@ HOST-SUFFIX,atm.youku.com, REJECT
 HOST,ad.mobile.youku.com, REJECT
 HOST,iyes.youku.com, REJECT
 HOST,pl.cp31.ott.cibntv.net, REJECT
-# > 央视
-HOST-SUFFIX,a.cctv.com, REJECT
-HOST-SUFFIX,ad.cctv.com, REJECT
-HOST-SUFFIX,ad.cntv.cn, REJECT
-HOST-SUFFIX,adguanggao.eee114.com, REJECT
-HOST-SUFFIX,afp.qiyi.com, REJECT
-HOST-SUFFIX,cctv.adsunion.com, REJECT
-HOST-SUFFIX,d.cntv.cn, REJECT
-HOST-SUFFIX,de.pandora.xiaomi.com, REJECT
-HOST-SUFFIX,mishop.pandora.xiaomi.com, REJECT
-HOST-SUFFIX,cws-cctv.conviva.com, REJECT
-HOST,galaxy.bjcathay.com, REJECT
-HOST,mdrecv.app.cntvwb.cn, REJECT
-HOST,sdapprecv.app.cntvwb.cn, REJECT
-HOST,vdapprecv.app.cntvwb.cn, REJECT
-HOST-SUFFIX,mdrecv.app.cntvwb.cn, REJECT
-HOST-SUFFIX,sdapprecv.app.cntvwb.cn, REJECT
-HOST-SUFFIX,vdapprecv.app.cntvwb.cn, REJECT
-# > 雅虎
-HOST-SUFFIX,adserver.yahoo.com, REJECT
-HOST-SUFFIX,adspecs.yahoo.com, REJECT
-HOST-SUFFIX,advertising.yahoo.com, REJECT
-HOST-SUFFIX,gemini.yahoo.com, REJECT
-HOST,admarketing.yahoo.net, REJECT
-HOST,ads.auctions.yahoo.com, REJECT
-HOST,ads.finance.yahoo.com, REJECT
-HOST,ads.yahoo.com, REJECT
-HOST,ads.yahoo.de, REJECT
+
 
 # Z
 
@@ -474,22 +447,16 @@ HOST,ad.21cn.com, REJECT
 HOST,ad.k.21cn.com, REJECT
 HOST,admarket.21cn.com, REJECT
 HOST,adshows.21cn.com, REJECT
-# > 中华万年历广告
-HOST-keyword, lkme.cc, REJECT
-HOST-keyword, api.freed.so, REJECT
-HOST-keyword, log-dmp.suishenyun.cn, REJECT
-HOST-keyword, client-dmp.suishenyun.cn, REJECT
-HOST-keyword, pc.suishenyun.net, REJECT
-HOST-keyword, v0-client-lz.rili.cn, REJECT
-# > 知乎
-USER-AGENT,AVOS*, REJECT
-HOST,appcloud2.in.zhihu.com, REJECT
-HOST,mqtt.zhihu.com, REJECT
-HOST,sugar.zhihu.com, REJECT
-HOST,118.89.204.198, REJECT
-IP-CIDR,118.89.204.198/32, REJECT
-IP6-CIDR,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT
 
+# > 知乎
+HOST, appcloud.zhihu.com, REJECT
+HOST, appcloud2.in.zhihu.com, REJECT
+HOST, crash2.zhihu.com, REJECT
+HOST, mqtt.zhihu.com, REJECT
+HOST, sugar.zhihu.com, REJECT
+IP-CIDR, 118.89.204.198/32, REJECT
+IP-CIDR, 103.41.167.237/32, REJECT
+IP6-CIDR, 2402:4e00:1200:ed00:0:9089:6dac:96b6/128, REJECT
 
 # > ChinaMobile
 IP-CIDR,120.240.95.37/32, REJECT
@@ -501,10 +468,8 @@ IP-CIDR,211.161.101.110/32, REJECT
 IP-CIDR,114.119.160.0/21, REJECT
 HOST-SUFFIX,kuaizip.com, REJECT
 # > MacKeeper
-# https://www.lizhi.io/blog/40002904, REJECT
 HOST-SUFFIX,zryydi.com, REJECT
 # > Adobe Flash China Special Edition
-# https://www.zhihu.com/question/281163698/answer/441388130, REJECT
 HOST,geo2.adobe.com, REJECT
 
 # >58

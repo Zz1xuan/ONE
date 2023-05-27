@@ -11,7 +11,6 @@ HOST, o33249.ingest.sentry.io, REJECT
 HOST, ad.cyapi.cn, REJECT
 # 微博 开屏广告
 HOST, adstrategy.biz.weibo.com, REJECT
-;HOST, boot.biz.weibo.com, REJECT
 HOST, kadmimage.biz.weibo.com, REJECT
 HOST, sdkaction.biz.weibo.com, REJECT
 HOST, sdkclick.biz.weibo.com, REJECT
@@ -51,6 +50,8 @@ HOST-SUFFIX,cm.ad.bilibili.com, REJECT
 HOST-SUFFIX,cm.adcommon.bilibili.com, REJECT
 HOST-SUFFIX,cm.game.bilibili.com, REJECT
 HOST-SUFFIX,cm.track.biligame.bilibili.com, REJECT
+HOST, mall.bilibili.com, REJECT
+HOST, passport.bilibili.com, REJECT
 # 哔哩哔哩 proto支持
 #HOST, grpc.biliapi.net, REJECT
 # 哔哩哔哩 自动换区支持
@@ -59,152 +60,14 @@ HOST-SUFFIX,cm.track.biligame.bilibili.com, REJECT
 HOST,advertise.baicizhan.com, REJECT
 HOST,advertise.baicizhan.org, REJECT
 # > 百度
-HOST-SUFFIX,als.baidu.com, REJECT
-HOST-SUFFIX,duapps.com, REJECT
-HOST-SUFFIX,cpro.baidu.com, REJECT
-HOST-SUFFIX,pos.baidu.com, REJECT
-HOST-SUFFIX,mobads.baidu.com, REJECT
-HOST-SUFFIX,mobads-logs.baidu.com, REJECT
-HOST-SUFFIX,nadvideo2.baidu.com, REJECT
-HOST-SUFFIX,nsclick.baidu.com, REJECT
-HOST-SUFFIX,bce.baidu.com, REJECT
-HOST-SUFFIX,bar.baidu.com, REJECT
-HOST-SUFFIX,baiduyubaidu.com, REJECT
-HOST-SUFFIX,baidutv.baidu.com, REJECT
-HOST-SUFFIX,baichuan.baidu.com, REJECT
-HOST-SUFFIX,appc.baidu.com, REJECT
-HOST-SUFFIX,anquan.baidu.com, REJECT
-HOST-SUFFIX,adscdn.baidu.com, REJECT
-HOST-SUFFIX,adm.baidu.com, REJECT
-HOST-SUFFIX,ad.player.baidu.com, REJECT
-HOST-SUFFIX,a.baidu.com, REJECT
-HOST-SUFFIX,antivirus.baidu.com, REJECT
-HOST-SUFFIX,baifen.music.baidu.com, REJECT
-HOST-SUFFIX,banlv.baidu.com, REJECT
-HOST-SUFFIX,cm.baidu.com, REJECT
-HOST-SUFFIX,cpro.zhidao.baidu.com, REJECT
-HOST-SUFFIX,cleaner.baidu.com, REJECT
-HOST-SUFFIX,cjhq.baidu.com, REJECT
-HOST-SUFFIX,cb.baidu.com, REJECT
-HOST-SUFFIX,c.baidu.com, REJECT
-HOST-SUFFIX,btlaunch.baidu.com, REJECT
-HOST-SUFFIX,bdplus.baidu.com, REJECT
-HOST-SUFFIX,cbjs.baidu.com, REJECT
-HOST-SUFFIX,cpro2.baidu.com, REJECT
-HOST-SUFFIX,cpu-admin.baidu.com, REJECT
-# > 百度贴吧屏蔽域名dns查询
-IP-CIDR,180.76.76.200/32,REJECT
-# > 百度贴吧屏蔽ws(副作用:消息通知功能失效,需手动进入查看),强制帖子接口走http
-#HOST,im.tieba.baidu.com,REJECT
-## /*  
-HOST-SUFFIX,10086.cn.baidu.cdn.yiwk.com, REJECT
-HOST-SUFFIX,360baidus.com, REJECT
-HOST-SUFFIX,app.ibaiducdn.com, REJECT
-HOST-SUFFIX,baidu.cybcyw.com, REJECT
-HOST-SUFFIX,baidu.dsp.tansuotv.com, REJECT
-HOST-SUFFIX,baidu.greenxf.cn, REJECT
-HOST-SUFFIX,baidu.jz5u.net, REJECT
-HOST-SUFFIX,baiduace.com, REJECT
-HOST-SUFFIX,baidujs.cnys.com, REJECT
-HOST-SUFFIX,baidulao.com, REJECT
-HOST-SUFFIX,baidut.github.io, REJECT
-HOST-SUFFIX,baidu-union-js.xiachufang.com, REJECT
-HOST-SUFFIX,baidu-union-pos.xiachufang.com, REJECT
-HOST-SUFFIX,baiduzhidahao.cc, REJECT
-HOST-SUFFIX,cpro.baidu.cn, REJECT
-HOST-SUFFIX,crs.baidu.com, REJECT
-HOST-SUFFIX,datax.baidu.com, REJECT
-HOST-SUFFIX,dl.client.baidu.com, REJECT
-HOST-SUFFIX,dl.ops.baidu.com, REJECT
-HOST-SUFFIX,dl1sw.baidu.com, REJECT
-HOST-SUFFIX,dl2.bav.baidu.com, REJECT
-HOST-SUFFIX,dlsw.baidu.com, REJECT
-HOST-SUFFIX,dlsw.br.baidu.com, REJECT
-HOST-SUFFIX,dl-vip.bav.baidu.com, REJECT
-HOST-SUFFIX,dl-vip.pcfaster.baidu.co.th, REJECT
-HOST-SUFFIX,download.bav.baidu.com, REJECT
-HOST-SUFFIX,download.sd.baidu.com, REJECT
-HOST-SUFFIX,drmcmm.baidu.com, REJECT
-HOST-SUFFIX,duiwai.baidu.com, REJECT
-HOST-SUFFIX,dxp.baidu.com, REJECT
-HOST-SUFFIX,dzl.baidu.com, REJECT
-HOST-SUFFIX,e.baidu.com, REJECT
-HOST-SUFFIX,eclick.baidu.com, REJECT
-HOST-SUFFIX,eiv.baidu.com, REJECT
-HOST-SUFFIX,em.baidu.com, REJECT
-HOST-SUFFIX,entry.baidu.com, REJECT
-HOST-SUFFIX,ers.baidu.com, REJECT
-HOST-SUFFIX,fclick.baidu.com, REJECT
-HOST-SUFFIX,feed.baidu.com, REJECT
-HOST-SUFFIX,fexclick.baidu.com, REJECT
-HOST-SUFFIX,g.baidu.com, REJECT
-HOST-SUFFIX,gimg.baidu.com, REJECT
-HOST-SUFFIX,guanjia.baidu.com, REJECT
-HOST-SUFFIX,hc.baidu.com, REJECT
-HOST-SUFFIX,hdj.baidu.com, REJECT
-HOST-SUFFIX,hpd.baidu.com, REJECT
-HOST-SUFFIX,idm-su.baidu.com, REJECT
-HOST-SUFFIX,iebar.baidu.com, REJECT
-HOST-SUFFIX,ikcode.baidu.com, REJECT
-HOST-SUFFIX,iwanad.baidu.com, REJECT
-HOST-SUFFIX,j.br.baidu.com, REJECT
-HOST-SUFFIX,jb.mbaidu.top, REJECT
-HOST-SUFFIX,js.mbaidu.top, REJECT
-HOST-SUFFIX,kstj.baidu.com, REJECT
-HOST-SUFFIX,m.baidu.com.yiqisee.cn, REJECT
-HOST-SUFFIX,m.baidu.com.zhiduo.org, REJECT
-HOST-SUFFIX,m1.baidu.com, REJECT
-HOST-SUFFIX,ma.baidu.com, REJECT
-HOST-SUFFIX,mpro.baidu.com, REJECT
-HOST-SUFFIX,msite.baidu.com, REJECT
-HOST-SUFFIX,mssp.baidu.com, REJECT
-HOST-SUFFIX,mtj.baidu.com, REJECT
-HOST-SUFFIX,neirong.baidu.com, REJECT
-HOST-SUFFIX,nlog.baidu.com, REJECT
-HOST-SUFFIX,nsclickvideo.baidu.com, REJECT
-HOST-SUFFIX,openrcv.baidu.com, REJECT
-HOST-SUFFIX,paimgcdn.baidu.com, REJECT
-HOST-SUFFIX,pc.videoclick.baidu.com, REJECT
-HOST-SUFFIX,push.zhanzhang.baidu.com, REJECT
-HOST-SUFFIX,qianclick.baidu.com, REJECT
-HOST-SUFFIX,release.baidu.com, REJECT
-HOST-SUFFIX,river.zhidao.baidu.com, REJECT
-HOST-SUFFIX,rj.baidu.com, REJECT
-HOST-SUFFIX,rplog.baidu.com, REJECT
-HOST-SUFFIX,s.baidu.com, REJECT
-HOST-SUFFIX,sclick.baidu.com, REJECT
-HOST-SUFFIX,sestat.baidu.com, REJECT
-HOST-SUFFIX,shadu.baidu.com, REJECT
-HOST-SUFFIX,sobar.baidu.com, REJECT
-HOST-SUFFIX,sobartop.baidu.com, REJECT
-HOST-SUFFIX,spcode.baidu.com, REJECT
-HOST-SUFFIX,tk.baidu.com, REJECT
-HOST-SUFFIX,tkweb.baidu.com, REJECT
-HOST-SUFFIX,toolbar.baidu.com, REJECT
-HOST-SUFFIX,tuijian.baidu.com, REJECT
-HOST-SUFFIX,tuisong.baidu.com, REJECT
-HOST-SUFFIX,ucstat.baidu.com, REJECT
-HOST-SUFFIX,ulic.baidu.com, REJECT
-HOST-SUFFIX,ulog.imap.baidu.com, REJECT
-HOST-SUFFIX,union.baidu.com, REJECT
-HOST-SUFFIX,union.baidustatic.guannin.com, REJECT
-HOST-SUFFIX,unionimage.baidu.com, REJECT
-HOST-SUFFIX,utility.baidu.com, REJECT
-HOST-SUFFIX,utk.baidu.com, REJECT
-HOST-SUFFIX,videopush.baidu.com, REJECT
-HOST-SUFFIX,w.gdown.baidu.com, REJECT
-HOST-SUFFIX,w.x.baidu.com, REJECT
-HOST-SUFFIX,wangmeng.baidu.com, REJECT
-HOST-SUFFIX,weishi.baidu.com, REJECT
-HOST-SUFFIX,wisepush.video.baidu.com, REJECT
-HOST-SUFFIX,wm.baidu.com, REJECT
-HOST-SUFFIX,yingxiao.baidu.com, REJECT
-HOST-SUFFIX,znsv.baidu.com, REJECT
-HOST-SUFFIX,baidustatic.com, REJECT
-HOST-SUFFIX,afd.baidu.com, REJECT
-HOST-SUFFIX,duclick.baidu.com, REJECT
-HOST-SUFFIX,hm.baidu.com, REJECT
-HOST-SUFFIX,hmma.baidu.com, REJECT
+HOST-SUFFIX, pos.baidu.com, REJECT
+# 百度地图
+HOST, afd.baidu.com, REJECT
+HOST, afdconf.baidu.com, REJECT
+HOST, httpdns.baidubce.com, REJECT
+HOST, lc.map.baidu.com, REJECT
+# 百度贴吧
+IP-CIDR, 180.76.76.200/32, REJECT
 
 # > C
 
@@ -228,20 +91,8 @@ HOST, p6-pack.byteimg.com, REJECT
 
 # > 高德
 HOST, amap-aos-info-nogw.amap.com, REJECT
-#HOST, amdc.m.taobao.com, REJECT
 HOST, awaken.amap.com, REJECT
 HOST, free-aos-cdn-image.amap.com, REJECT
-#HOST-SUFFIX,adiu.amap.com,REJECT
-#HOST,aboard.apilocate.amap.com,REJECT
-#HOST,apiinit.amap.com,REJECT
-#HOST,icloud-amap.com,REJECT
-#HOST-SUFFIX,dualstack-logs.amap.com,REJECT
-#HOST-SUFFIX,logs.amap.com,REJECT
-#HOST-SUFFIX,optimus-ads.amap.com,REJECT
-#HOST-SUFFIX,page.amap.com,REJECT
-#HOST,optimus-ads.amap.com.w.alikunlun.com, REJECT
-#HOST-SUFFIX, shouji.sougou.com, REJECT
-#HOST-SUFFIX, u51.me, REJECT
 # > 谷歌
 HOST-SUFFIX,google-analytics.com, REJECT
 HOST,safebrowsing.googleapis.com, REJECT

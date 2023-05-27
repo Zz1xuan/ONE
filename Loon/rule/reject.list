@@ -4,6 +4,7 @@ DOMAIN,httpdns.n.netease.com
 DOMAIN,iadmat.nosdn.127.net 
 DOMAIN,iadmusicmat.music.126.net 
 DOMAIN,iadmusicmatvideo.music.126.net 
+DOMAIN-SUFFIX,163jiasu.com
 
 # ChatGPT
 DOMAIN, o33249.ingest.sentry.io
@@ -311,7 +312,7 @@ DOMAIN,n.3g.163.com
 DOMAIN,nex.163.com 
 DOMAIN,yt-adp.nosdn.127.net 
 DOMAIN,yt-adp.ws.126.net 
-DOMAIN,interface*.music.163.com.163jiasu.com
+
 # > X
 # > 向日葵
 DOMAIN-keyword, upload-cdn.orayimg.com 
@@ -342,11 +343,7 @@ DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,adbehavior.ximalaya.com 
 DOMAIN,adsebs.ximalaya.com 
 DOMAIN,adwbs.ximalaya.com 
-# >小红书
-DOMAIN,ads-img-qc.xhscdn.com 
-DOMAIN,ads-video-al.xhscdn.com 
-DOMAIN,ads-video-qc.xhscdn.com 
-DOMAIN,t-ads.xiaohongshu.com 
+
 # Y
 # > 云闪付
 DOMAIN, ads.95516.com
@@ -403,10 +400,7 @@ DOMAIN,punion.tjjt360.com
 DOMAIN,staticsns.cdn.bcebos.com
 # > 芒果
 DOMAIN,mobile.da.mgtv.com
-#iqiyi
 
-# > 百度贴吧屏蔽域名dns查询
-IP-CIDR,180.76.76.200/32,no-resolve
 # > ChinaMobile
 IP-CIDR,120.240.95.37/32,no-resolve 
 # > Dr.Peng

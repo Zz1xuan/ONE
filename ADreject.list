@@ -4,11 +4,11 @@ HOST,httpdns.n.netease.com, REJECT
 HOST,iadmat.nosdn.127.net, REJECT
 HOST,iadmusicmat.music.126.net, REJECT
 HOST,iadmusicmatvideo.music.126.net, REJECT
-HOST-SUFFIX,163jiasu.com, REJECT
+HOST-SUFFIX,163jiasu.com,REJECT
 # ChatGPT
 HOST, o33249.ingest.sentry.io, REJECT
 #彩云天气
-host, ad.cyapi.cn, reject
+HOST, ad.cyapi.cn, REJECT
 # 微博 开屏广告
 HOST, adstrategy.biz.weibo.com, REJECT
 ;HOST, boot.biz.weibo.com, REJECT
@@ -32,11 +32,11 @@ IP-CIDR,101.227.97.240/32, REJECT
 IP-CIDR,101.227.200.11/32, REJECT
 IP-CIDR,101.227.200.28/32, REJECT
 IP-CIDR,124.192.153.42/32, REJECT
-host, cr-status.iqiyi.com, REJECT
-host-suffix, cupid.iqiyi.com, REJECT
-host, f74f7f7765f8a2f6.ngaa.net.cn, REJECT
-host, ef-dongfeng.tanx.com, REJECT
-host, iqiyim.adtrack.enlightent.cn, REJECT
+HOST, cr-status.iqiyi.com, REJECT
+HOST-suffix, cupid.iqiyi.com, REJECT
+HOST, f74f7f7765f8a2f6.ngaa.net.cn, REJECT
+HOST, ef-dongfeng.tanx.com, REJECT
+HOST, iqiyim.adtrack.enlightent.cn, REJECT
 HOST,dig.bdurl.net, REJECT
 HOST,ads3-normal-lq.zijieapi.com, REJECT
 HOST,ads5-normal-lq.zijieapi.com, REJECT
@@ -46,7 +46,7 @@ HOST,ads5-normal-lq.zijieapi.com, REJECT
 
 # > 哔哩哔哩
 HOST-SUFFIX,cm.bilibili.com, REJECT
-host-keyword, api.sobot.com, REJECT
+HOST-keyword, api.sobot.com, REJECT
 HOST-SUFFIX,cm.ad.bilibili.com, REJECT
 HOST-SUFFIX,cm.adcommon.bilibili.com, REJECT
 HOST-SUFFIX,cm.game.bilibili.com, REJECT
@@ -56,172 +56,172 @@ HOST-SUFFIX,cm.track.biligame.bilibili.com, REJECT
 # 哔哩哔哩 自动换区支持
 #IP-CIDR, 203.107.1.1/32, REJECT
 # > 百词斩
-HOST,advertise.baicizhan.com, reject
-HOST,advertise.baicizhan.org, reject
+HOST,advertise.baicizhan.com, REJECT
+HOST,advertise.baicizhan.org, REJECT
 # > 百度
-HOST-SUFFIX,als.baidu.com, reject
-HOST-SUFFIX,duapps.com, reject
-HOST-SUFFIX,cpro.baidu.com, reject
-HOST-SUFFIX,pos.baidu.com, reject
-HOST-SUFFIX,mobads.baidu.com, reject
-HOST-SUFFIX,mobads-logs.baidu.com, reject
-HOST-SUFFIX,nadvideo2.baidu.com, reject
-HOST-SUFFIX,nsclick.baidu.com, reject
-HOST-SUFFIX,bce.baidu.com, reject
-HOST-SUFFIX,bar.baidu.com, reject
-HOST-SUFFIX,baiduyubaidu.com, reject
-HOST-SUFFIX,baidutv.baidu.com, reject
-HOST-SUFFIX,baichuan.baidu.com, reject
-HOST-SUFFIX,appc.baidu.com, reject
-HOST-SUFFIX,anquan.baidu.com, reject
-HOST-SUFFIX,adscdn.baidu.com, reject
-HOST-SUFFIX,adm.baidu.com, reject
-HOST-SUFFIX,ad.player.baidu.com, reject
-HOST-SUFFIX,a.baidu.com, reject
-HOST-SUFFIX,antivirus.baidu.com, reject
-HOST-SUFFIX,baifen.music.baidu.com, reject
-HOST-SUFFIX,banlv.baidu.com, reject
-HOST-SUFFIX,cm.baidu.com, reject
-HOST-SUFFIX,cpro.zhidao.baidu.com, reject
-HOST-SUFFIX,cleaner.baidu.com, reject
-HOST-SUFFIX,cjhq.baidu.com, reject
-HOST-SUFFIX,cb.baidu.com, reject
-HOST-SUFFIX,c.baidu.com, reject
-HOST-SUFFIX,btlaunch.baidu.com, reject
-HOST-SUFFIX,bdplus.baidu.com, reject
-HOST-SUFFIX,cbjs.baidu.com, reject
-HOST-SUFFIX,cpro2.baidu.com, reject
-HOST-SUFFIX,cpu-admin.baidu.com, reject
+HOST-SUFFIX,als.baidu.com, REJECT
+HOST-SUFFIX,duapps.com, REJECT
+HOST-SUFFIX,cpro.baidu.com, REJECT
+HOST-SUFFIX,pos.baidu.com, REJECT
+HOST-SUFFIX,mobads.baidu.com, REJECT
+HOST-SUFFIX,mobads-logs.baidu.com, REJECT
+HOST-SUFFIX,nadvideo2.baidu.com, REJECT
+HOST-SUFFIX,nsclick.baidu.com, REJECT
+HOST-SUFFIX,bce.baidu.com, REJECT
+HOST-SUFFIX,bar.baidu.com, REJECT
+HOST-SUFFIX,baiduyubaidu.com, REJECT
+HOST-SUFFIX,baidutv.baidu.com, REJECT
+HOST-SUFFIX,baichuan.baidu.com, REJECT
+HOST-SUFFIX,appc.baidu.com, REJECT
+HOST-SUFFIX,anquan.baidu.com, REJECT
+HOST-SUFFIX,adscdn.baidu.com, REJECT
+HOST-SUFFIX,adm.baidu.com, REJECT
+HOST-SUFFIX,ad.player.baidu.com, REJECT
+HOST-SUFFIX,a.baidu.com, REJECT
+HOST-SUFFIX,antivirus.baidu.com, REJECT
+HOST-SUFFIX,baifen.music.baidu.com, REJECT
+HOST-SUFFIX,banlv.baidu.com, REJECT
+HOST-SUFFIX,cm.baidu.com, REJECT
+HOST-SUFFIX,cpro.zhidao.baidu.com, REJECT
+HOST-SUFFIX,cleaner.baidu.com, REJECT
+HOST-SUFFIX,cjhq.baidu.com, REJECT
+HOST-SUFFIX,cb.baidu.com, REJECT
+HOST-SUFFIX,c.baidu.com, REJECT
+HOST-SUFFIX,btlaunch.baidu.com, REJECT
+HOST-SUFFIX,bdplus.baidu.com, REJECT
+HOST-SUFFIX,cbjs.baidu.com, REJECT
+HOST-SUFFIX,cpro2.baidu.com, REJECT
+HOST-SUFFIX,cpu-admin.baidu.com, REJECT
 # > 百度贴吧屏蔽域名dns查询
 IP-CIDR,180.76.76.200/32,REJECT
 # > 百度贴吧屏蔽ws(副作用:消息通知功能失效,需手动进入查看),强制帖子接口走http
 #HOST,im.tieba.baidu.com,REJECT
 ## /*  
-HOST-SUFFIX,10086.cn.baidu.cdn.yiwk.com, reject
-HOST-SUFFIX,360baidus.com, reject
-HOST-SUFFIX,app.ibaiducdn.com, reject
-HOST-SUFFIX,baidu.cybcyw.com, reject
-HOST-SUFFIX,baidu.dsp.tansuotv.com, reject
-HOST-SUFFIX,baidu.greenxf.cn, reject
-HOST-SUFFIX,baidu.jz5u.net, reject
-HOST-SUFFIX,baiduace.com, reject
-HOST-SUFFIX,baidujs.cnys.com, reject
-HOST-SUFFIX,baidulao.com, reject
-HOST-SUFFIX,baidut.github.io, reject
-HOST-SUFFIX,baidu-union-js.xiachufang.com, reject
-HOST-SUFFIX,baidu-union-pos.xiachufang.com, reject
-HOST-SUFFIX,baiduzhidahao.cc, reject
-HOST-SUFFIX,cpro.baidu.cn, reject
-HOST-SUFFIX,crs.baidu.com, reject
-HOST-SUFFIX,datax.baidu.com, reject
-HOST-SUFFIX,dl.client.baidu.com, reject
-HOST-SUFFIX,dl.ops.baidu.com, reject
-HOST-SUFFIX,dl1sw.baidu.com, reject
-HOST-SUFFIX,dl2.bav.baidu.com, reject
-HOST-SUFFIX,dlsw.baidu.com, reject
-HOST-SUFFIX,dlsw.br.baidu.com, reject
-HOST-SUFFIX,dl-vip.bav.baidu.com, reject
-HOST-SUFFIX,dl-vip.pcfaster.baidu.co.th, reject
-HOST-SUFFIX,download.bav.baidu.com, reject
-HOST-SUFFIX,download.sd.baidu.com, reject
-HOST-SUFFIX,drmcmm.baidu.com, reject
-HOST-SUFFIX,duiwai.baidu.com, reject
-HOST-SUFFIX,dxp.baidu.com, reject
-HOST-SUFFIX,dzl.baidu.com, reject
-HOST-SUFFIX,e.baidu.com, reject
-HOST-SUFFIX,eclick.baidu.com, reject
-HOST-SUFFIX,eiv.baidu.com, reject
-HOST-SUFFIX,em.baidu.com, reject
-HOST-SUFFIX,entry.baidu.com, reject
-HOST-SUFFIX,ers.baidu.com, reject
-HOST-SUFFIX,fclick.baidu.com, reject
-HOST-SUFFIX,feed.baidu.com, reject
-HOST-SUFFIX,fexclick.baidu.com, reject
-HOST-SUFFIX,g.baidu.com, reject
-HOST-SUFFIX,gimg.baidu.com, reject
-HOST-SUFFIX,guanjia.baidu.com, reject
-HOST-SUFFIX,hc.baidu.com, reject
-HOST-SUFFIX,hdj.baidu.com, reject
-HOST-SUFFIX,hpd.baidu.com, reject
-HOST-SUFFIX,idm-su.baidu.com, reject
-HOST-SUFFIX,iebar.baidu.com, reject
-HOST-SUFFIX,ikcode.baidu.com, reject
-HOST-SUFFIX,iwanad.baidu.com, reject
-HOST-SUFFIX,j.br.baidu.com, reject
-HOST-SUFFIX,jb.mbaidu.top, reject
-HOST-SUFFIX,js.mbaidu.top, reject
-HOST-SUFFIX,kstj.baidu.com, reject
-HOST-SUFFIX,m.baidu.com.yiqisee.cn, reject
-HOST-SUFFIX,m.baidu.com.zhiduo.org, reject
-HOST-SUFFIX,m1.baidu.com, reject
-HOST-SUFFIX,ma.baidu.com, reject
-HOST-SUFFIX,mpro.baidu.com, reject
-HOST-SUFFIX,msite.baidu.com, reject
-HOST-SUFFIX,mssp.baidu.com, reject
-HOST-SUFFIX,mtj.baidu.com, reject
-HOST-SUFFIX,neirong.baidu.com, reject
-HOST-SUFFIX,nlog.baidu.com, reject
-HOST-SUFFIX,nsclickvideo.baidu.com, reject
-HOST-SUFFIX,openrcv.baidu.com, reject
-HOST-SUFFIX,paimgcdn.baidu.com, reject
-HOST-SUFFIX,pc.videoclick.baidu.com, reject
-HOST-SUFFIX,push.zhanzhang.baidu.com, reject
-HOST-SUFFIX,qianclick.baidu.com, reject
-HOST-SUFFIX,release.baidu.com, reject
-HOST-SUFFIX,river.zhidao.baidu.com, reject
-HOST-SUFFIX,rj.baidu.com, reject
-HOST-SUFFIX,rplog.baidu.com, reject
-HOST-SUFFIX,s.baidu.com, reject
-HOST-SUFFIX,sclick.baidu.com, reject
-HOST-SUFFIX,sestat.baidu.com, reject
-HOST-SUFFIX,shadu.baidu.com, reject
-HOST-SUFFIX,sobar.baidu.com, reject
-HOST-SUFFIX,sobartop.baidu.com, reject
-HOST-SUFFIX,spcode.baidu.com, reject
-HOST-SUFFIX,tk.baidu.com, reject
-HOST-SUFFIX,tkweb.baidu.com, reject
-HOST-SUFFIX,toolbar.baidu.com, reject
-HOST-SUFFIX,tuijian.baidu.com, reject
-HOST-SUFFIX,tuisong.baidu.com, reject
-HOST-SUFFIX,ucstat.baidu.com, reject
-HOST-SUFFIX,ulic.baidu.com, reject
-HOST-SUFFIX,ulog.imap.baidu.com, reject
-HOST-SUFFIX,union.baidu.com, reject
-HOST-SUFFIX,union.baidustatic.guannin.com, reject
-HOST-SUFFIX,unionimage.baidu.com, reject
-HOST-SUFFIX,utility.baidu.com, reject
-HOST-SUFFIX,utk.baidu.com, reject
-HOST-SUFFIX,videopush.baidu.com, reject
-HOST-SUFFIX,w.gdown.baidu.com, reject
-HOST-SUFFIX,w.x.baidu.com, reject
-HOST-SUFFIX,wangmeng.baidu.com, reject
-HOST-SUFFIX,weishi.baidu.com, reject
-HOST-SUFFIX,wisepush.video.baidu.com, reject
-HOST-SUFFIX,wm.baidu.com, reject
-HOST-SUFFIX,yingxiao.baidu.com, reject
-HOST-SUFFIX,znsv.baidu.com, reject
-HOST-SUFFIX,baidustatic.com, reject
-HOST-SUFFIX,afd.baidu.com, reject
-HOST-SUFFIX,duclick.baidu.com, reject
-HOST-SUFFIX,hm.baidu.com, reject
-HOST-SUFFIX,hmma.baidu.com, reject
+HOST-SUFFIX,10086.cn.baidu.cdn.yiwk.com, REJECT
+HOST-SUFFIX,360baidus.com, REJECT
+HOST-SUFFIX,app.ibaiducdn.com, REJECT
+HOST-SUFFIX,baidu.cybcyw.com, REJECT
+HOST-SUFFIX,baidu.dsp.tansuotv.com, REJECT
+HOST-SUFFIX,baidu.greenxf.cn, REJECT
+HOST-SUFFIX,baidu.jz5u.net, REJECT
+HOST-SUFFIX,baiduace.com, REJECT
+HOST-SUFFIX,baidujs.cnys.com, REJECT
+HOST-SUFFIX,baidulao.com, REJECT
+HOST-SUFFIX,baidut.github.io, REJECT
+HOST-SUFFIX,baidu-union-js.xiachufang.com, REJECT
+HOST-SUFFIX,baidu-union-pos.xiachufang.com, REJECT
+HOST-SUFFIX,baiduzhidahao.cc, REJECT
+HOST-SUFFIX,cpro.baidu.cn, REJECT
+HOST-SUFFIX,crs.baidu.com, REJECT
+HOST-SUFFIX,datax.baidu.com, REJECT
+HOST-SUFFIX,dl.client.baidu.com, REJECT
+HOST-SUFFIX,dl.ops.baidu.com, REJECT
+HOST-SUFFIX,dl1sw.baidu.com, REJECT
+HOST-SUFFIX,dl2.bav.baidu.com, REJECT
+HOST-SUFFIX,dlsw.baidu.com, REJECT
+HOST-SUFFIX,dlsw.br.baidu.com, REJECT
+HOST-SUFFIX,dl-vip.bav.baidu.com, REJECT
+HOST-SUFFIX,dl-vip.pcfaster.baidu.co.th, REJECT
+HOST-SUFFIX,download.bav.baidu.com, REJECT
+HOST-SUFFIX,download.sd.baidu.com, REJECT
+HOST-SUFFIX,drmcmm.baidu.com, REJECT
+HOST-SUFFIX,duiwai.baidu.com, REJECT
+HOST-SUFFIX,dxp.baidu.com, REJECT
+HOST-SUFFIX,dzl.baidu.com, REJECT
+HOST-SUFFIX,e.baidu.com, REJECT
+HOST-SUFFIX,eclick.baidu.com, REJECT
+HOST-SUFFIX,eiv.baidu.com, REJECT
+HOST-SUFFIX,em.baidu.com, REJECT
+HOST-SUFFIX,entry.baidu.com, REJECT
+HOST-SUFFIX,ers.baidu.com, REJECT
+HOST-SUFFIX,fclick.baidu.com, REJECT
+HOST-SUFFIX,feed.baidu.com, REJECT
+HOST-SUFFIX,fexclick.baidu.com, REJECT
+HOST-SUFFIX,g.baidu.com, REJECT
+HOST-SUFFIX,gimg.baidu.com, REJECT
+HOST-SUFFIX,guanjia.baidu.com, REJECT
+HOST-SUFFIX,hc.baidu.com, REJECT
+HOST-SUFFIX,hdj.baidu.com, REJECT
+HOST-SUFFIX,hpd.baidu.com, REJECT
+HOST-SUFFIX,idm-su.baidu.com, REJECT
+HOST-SUFFIX,iebar.baidu.com, REJECT
+HOST-SUFFIX,ikcode.baidu.com, REJECT
+HOST-SUFFIX,iwanad.baidu.com, REJECT
+HOST-SUFFIX,j.br.baidu.com, REJECT
+HOST-SUFFIX,jb.mbaidu.top, REJECT
+HOST-SUFFIX,js.mbaidu.top, REJECT
+HOST-SUFFIX,kstj.baidu.com, REJECT
+HOST-SUFFIX,m.baidu.com.yiqisee.cn, REJECT
+HOST-SUFFIX,m.baidu.com.zhiduo.org, REJECT
+HOST-SUFFIX,m1.baidu.com, REJECT
+HOST-SUFFIX,ma.baidu.com, REJECT
+HOST-SUFFIX,mpro.baidu.com, REJECT
+HOST-SUFFIX,msite.baidu.com, REJECT
+HOST-SUFFIX,mssp.baidu.com, REJECT
+HOST-SUFFIX,mtj.baidu.com, REJECT
+HOST-SUFFIX,neirong.baidu.com, REJECT
+HOST-SUFFIX,nlog.baidu.com, REJECT
+HOST-SUFFIX,nsclickvideo.baidu.com, REJECT
+HOST-SUFFIX,openrcv.baidu.com, REJECT
+HOST-SUFFIX,paimgcdn.baidu.com, REJECT
+HOST-SUFFIX,pc.videoclick.baidu.com, REJECT
+HOST-SUFFIX,push.zhanzhang.baidu.com, REJECT
+HOST-SUFFIX,qianclick.baidu.com, REJECT
+HOST-SUFFIX,release.baidu.com, REJECT
+HOST-SUFFIX,river.zhidao.baidu.com, REJECT
+HOST-SUFFIX,rj.baidu.com, REJECT
+HOST-SUFFIX,rplog.baidu.com, REJECT
+HOST-SUFFIX,s.baidu.com, REJECT
+HOST-SUFFIX,sclick.baidu.com, REJECT
+HOST-SUFFIX,sestat.baidu.com, REJECT
+HOST-SUFFIX,shadu.baidu.com, REJECT
+HOST-SUFFIX,sobar.baidu.com, REJECT
+HOST-SUFFIX,sobartop.baidu.com, REJECT
+HOST-SUFFIX,spcode.baidu.com, REJECT
+HOST-SUFFIX,tk.baidu.com, REJECT
+HOST-SUFFIX,tkweb.baidu.com, REJECT
+HOST-SUFFIX,toolbar.baidu.com, REJECT
+HOST-SUFFIX,tuijian.baidu.com, REJECT
+HOST-SUFFIX,tuisong.baidu.com, REJECT
+HOST-SUFFIX,ucstat.baidu.com, REJECT
+HOST-SUFFIX,ulic.baidu.com, REJECT
+HOST-SUFFIX,ulog.imap.baidu.com, REJECT
+HOST-SUFFIX,union.baidu.com, REJECT
+HOST-SUFFIX,union.baidustatic.guannin.com, REJECT
+HOST-SUFFIX,unionimage.baidu.com, REJECT
+HOST-SUFFIX,utility.baidu.com, REJECT
+HOST-SUFFIX,utk.baidu.com, REJECT
+HOST-SUFFIX,videopush.baidu.com, REJECT
+HOST-SUFFIX,w.gdown.baidu.com, REJECT
+HOST-SUFFIX,w.x.baidu.com, REJECT
+HOST-SUFFIX,wangmeng.baidu.com, REJECT
+HOST-SUFFIX,weishi.baidu.com, REJECT
+HOST-SUFFIX,wisepush.video.baidu.com, REJECT
+HOST-SUFFIX,wm.baidu.com, REJECT
+HOST-SUFFIX,yingxiao.baidu.com, REJECT
+HOST-SUFFIX,znsv.baidu.com, REJECT
+HOST-SUFFIX,baidustatic.com, REJECT
+HOST-SUFFIX,afd.baidu.com, REJECT
+HOST-SUFFIX,duclick.baidu.com, REJECT
+HOST-SUFFIX,hm.baidu.com, REJECT
+HOST-SUFFIX,hmma.baidu.com, REJECT
 
 # > C
 
 # > 车来了（包括小程序）
-host-suffix, atrace.chelaile.net.cn, reject
-host, logs.chelaile.net.cn, reject
-host, ad.chelaile.net.cn, reject
+HOST-suffix, atrace.chelaile.net.cn, REJECT
+HOST, logs.chelaile.net.cn, REJECT
+HOST, ad.chelaile.net.cn, REJECT
 # > 创维
-HOST-SUFFIX,hoisin.coocaa.com, reject
-HOST-SUFFIX,hoisin.coocaatv.com, reject
-HOST,data-hoisin.coocaa.com, reject
+HOST-SUFFIX,hoisin.coocaa.com, REJECT
+HOST-SUFFIX,hoisin.coocaatv.com, REJECT
+HOST,data-hoisin.coocaa.com, REJECT
 
 # > D
 
 # > 懂车帝
-host, p3-pack.byteimg.com, reject
-host, p6-pack.byteimg.com, reject
+HOST, p3-pack.byteimg.com, REJECT
+HOST, p6-pack.byteimg.com, REJECT
 # > E
 # > F
 # > G
@@ -239,27 +239,27 @@ HOST, free-aos-cdn-image.amap.com, REJECT
 #HOST-SUFFIX,logs.amap.com,REJECT
 #HOST-SUFFIX,optimus-ads.amap.com,REJECT
 #HOST-SUFFIX,page.amap.com,REJECT
-#HOST,optimus-ads.amap.com.w.alikunlun.com, reject
-#HOST-SUFFIX, shouji.sougou.com, reject
-#HOST-SUFFIX, u51.me, reject
+#HOST,optimus-ads.amap.com.w.alikunlun.com, REJECT
+#HOST-SUFFIX, shouji.sougou.com, REJECT
+#HOST-SUFFIX, u51.me, REJECT
 # > 谷歌
-HOST-SUFFIX,google-analytics.com, reject
-HOST,safebrowsing.googleapis.com, reject
-HOST-SUFFIX,doubleclick.net, reject
-HOST-SUFFIX,googleadservices.com, reject
-HOST-SUFFIX,googleadsserving.cn, reject
-HOST-SUFFIX,googlesyndication.com, reject
-HOST-SUFFIX,googletagservices.com, reject
-HOST-SUFFIX,googletagmanager.com, reject
-HOST-SUFFIX,pagead.google.com, reject
-HOST-SUFFIX,pagead.l.google.com, reject
-HOST-SUFFIX,pagead-tpc.l.google.com, reject
-HOST-SUFFIX,mobileads.google.com, reject
-HOST-SUFFIX,googlecommerce.com, reject
-HOST-SUFFIX,blaaaa12.googlecode.com, reject
-HOST-SUFFIX,badad.googleplex.com, reject
-HOST-SUFFIX,afd.l.google.com, reject
-HOST,ads.youtube.com, reject
+HOST-SUFFIX,google-analytics.com, REJECT
+HOST,safebrowsing.googleapis.com, REJECT
+HOST-SUFFIX,doubleclick.net, REJECT
+HOST-SUFFIX,googleadservices.com, REJECT
+HOST-SUFFIX,googleadsserving.cn, REJECT
+HOST-SUFFIX,googlesyndication.com, REJECT
+HOST-SUFFIX,googletagservices.com, REJECT
+HOST-SUFFIX,googletagmanager.com, REJECT
+HOST-SUFFIX,pagead.google.com, REJECT
+HOST-SUFFIX,pagead.l.google.com, REJECT
+HOST-SUFFIX,pagead-tpc.l.google.com, REJECT
+HOST-SUFFIX,mobileads.google.com, REJECT
+HOST-SUFFIX,googlecommerce.com, REJECT
+HOST-SUFFIX,blaaaa12.googlecode.com, REJECT
+HOST-SUFFIX,badad.googleplex.com, REJECT
+HOST-SUFFIX,afd.l.google.com, REJECT
+HOST,ads.youtube.com, REJECT
 
 # > H
 
@@ -272,525 +272,526 @@ HOST, googleads.g.doubleclick.net, REJECT
 HOST, pubads.g.doubleclick.net, REJECT
 HOST, pagead2.googlesyndication.com, REJECT
 # > 虎扑
-HOST,adx.hupu.com, reject
-HOST,adx-api.hupu.com, reject
-HOST-SUFFIX,goblin.hupu.com, reject
+HOST,adx.hupu.com, REJECT
+HOST,adx-api.hupu.com, REJECT
+HOST-SUFFIX,goblin.hupu.com, REJECT
 
 # > I
 # > J
 # > 今日头条
-HOST-SUFFIX, ad.toutiao.com, reject
-HOST-SUFFIX, clk.gentags.net, reject
-HOST-SUFFIX, dm.toutiao.com, reject
-HOST-SUFFIX, dm.pstatp.com, reject
-HOST-SUFFIX, bytedance.com, reject
-HOST-SUFFIX, uop.umeng.com, reject
-HOST-SUFFIX, policy.jd.com, reject
-HOST-SUFFIX, kepler.jd.com, reject
-HOST-SUFFIX, bdsp.x.jd.com, reject
-HOST-SUFFIX, keplerapi.jd.com, reject
-HOST-SUFFIX, m.suning.com, reject
-HOST-SUFFIX, adshare.toutiao.com, reject
-HOST-SUFFIX, tunion-api.m.taobao.com, reject
-HOST-SUFFIX, mapi.m.jd.com, reject
-HOST-SUFFIX, s1.pstatp.com, reject
-HOST-SUFFIX, s2.pstatp.com, reject
-HOST-SUFFIX, s3.pstatp.com, reject
-HOST-SUFFIX, a3.pstatp.com, reject
-HOST-SUFFIX, a3.bytecdn.cn, reject
-HOST-SUFFIX, ichannel.snssdk.com, reject
+HOST-SUFFIX, ad.toutiao.com, REJECT
+HOST-SUFFIX, clk.gentags.net, REJECT
+HOST-SUFFIX, dm.toutiao.com, REJECT
+HOST-SUFFIX, dm.pstatp.com, REJECT
+HOST-SUFFIX, bytedance.com, REJECT
+HOST-SUFFIX, uop.umeng.com, REJECT
+HOST-SUFFIX, policy.jd.com, REJECT
+HOST-SUFFIX, kepler.jd.com, REJECT
+HOST-SUFFIX, bdsp.x.jd.com, REJECT
+HOST-SUFFIX, keplerapi.jd.com, REJECT
+HOST-SUFFIX, m.suning.com, REJECT
+HOST-SUFFIX, adshare.toutiao.com, REJECT
+HOST-SUFFIX, tunion-api.m.taobao.com, REJECT
+HOST-SUFFIX, mapi.m.jd.com, REJECT
+HOST-SUFFIX, s1.pstatp.com, REJECT
+HOST-SUFFIX, s2.pstatp.com, REJECT
+HOST-SUFFIX, s3.pstatp.com, REJECT
+HOST-SUFFIX, a3.pstatp.com, REJECT
+HOST-SUFFIX, a3.bytecdn.cn, REJECT
+HOST-SUFFIX, ichannel.snssdk.com, REJECT
 
 # > K
 
 # > 快手
-# HOST-SUFFIX,yximgs.com, reject
-HOST-SUFFIX,e.kuaishou.com, reject
-#HOST,js-ad.a.yximgs.com, reject
-HOST-SUFFIX,cm.downloader.commercial.kuaishou.com, reject
-HOST-SUFFIX,cm.ad.gifshow.com, reject
-HOST-SUFFIX,cm.kwad.com, reject
+# HOST-SUFFIX,yximgs.com, REJECT
+HOST-SUFFIX,e.kuaishou.com, REJECT
+#HOST,js-ad.a.yximgs.com, REJECT
+HOST-SUFFIX,cm.downloader.commercial.kuaishou.com, REJECT
+HOST-SUFFIX,cm.ad.gifshow.com, REJECT
+HOST-SUFFIX,cm.kwad.com, REJECT
 
 # > 酷狗音乐
-host-SUFFIX, searchrecommend.kugou.com, reject
-host-SUFFIX, nbcollectretry.kugou.com, reject
-host-SUFFIX, rtmretry.kugou.com, reject
-host-SUFFIX, rt-m.kugou.com, reject
-host-SUFFIX, nbcollect.kugou.com, reject
-host-SUFFIX, c1img.ali.kugou.com, reject
-host-SUFFIX, kgstaticdlbssdlbig.tx.kugou.com, reject
-host-SUFFIX, adsfilebssdlbig.ali.kugou.com, reject
-host-SUFFIX, splashimgbssdl.yun.kugou.com, reject
+HOST-SUFFIX, searchrecommend.kugou.com, REJECT
+HOST-SUFFIX, nbcollectretry.kugou.com, REJECT
+HOST-SUFFIX, rtmretry.kugou.com, REJECT
+HOST-SUFFIX, rt-m.kugou.com, REJECT
+HOST-SUFFIX, nbcollect.kugou.com, REJECT
+HOST-SUFFIX, c1img.ali.kugou.com, REJECT
+HOST-SUFFIX, kgstaticdlbssdlbig.tx.kugou.com, REJECT
+HOST-SUFFIX, adsfilebssdlbig.ali.kugou.com, REJECT
+HOST-SUFFIX, splashimgbssdl.yun.kugou.com, REJECT
 HOST-SUFFIX, adservice.kugou.com,REJECT
 HOST-SUFFIX, kgipadstat.kugou.com,REJECT
 HOST-SUFFIX, kgipadstatbak.kugou.com,REJECT
 HOST-SUFFIX, logwebs.kugou.com,REJECT
 HOST-SUFFIX, tracker.kugou.com,REJECT
 HOST-SUFFIX, trackercdnbj.kugou.com,REJECT
-host-SUFFIX, rich.kuwo.cn, reject
-host-SUFFIX, mobilead.kuwo.cn, reject
-HOST-SUFFIX,oth.eve.mdt.qq.com, reject
-HOST-SUFFIX,pgdt.gtimg.cn, reject
-HOST,pgdt.gtimg.com, reject
-HOST,adsmind.gdtimg.com, reject
-HOST-SUFFIX,channel.fanxing.kugou.com, reject
-HOST-SUFFIX,d.kugou.com, reject
-HOST-SUFFIX,downmobile.kugou.com, reject
-HOST-SUFFIX,gad.kugou.com, reject
-HOST-SUFFIX,game.kugou.com, reject
-HOST-SUFFIX,gamebox.kugou.com, reject
-HOST-SUFFIX,gcapi.sy.kugou.com, reject
-HOST-SUFFIX,gg.kugou.com, reject
-HOST-SUFFIX,install.kugou.com, reject
-HOST-SUFFIX,install2.kugou.com, reject
-HOST-SUFFIX,minidcsc.kugou.com, reject
-HOST-SUFFIX,mo.kugou.com, reject
-HOST-SUFFIX,msg.mobile.kugou.com, reject
-HOST-SUFFIX,mvads.kugou.com, reject
-HOST-SUFFIX,p.kugou.com, reject
-HOST-SUFFIX,push.mobile.kugou.com, reject
-HOST-SUFFIX,rtmonitor.kugou.com, reject
-HOST-SUFFIX,sdn.kugou.com, reject
-HOST-SUFFIX,song.fanxing.kugou.com, reject
-HOST-SUFFIX,update.mobile.kugou.com, reject
-HOST-SUFFIX,youxi.kugou.com, reject
-HOST-SUFFIX,adserviceretry.kugou.com, reject
-HOST-SUFFIX,ads.service.kugou.com, reject
-HOST-SUFFIX,adsfile.bssdlbig.kugou.com, reject
-HOST-SUFFIX,log.stat.kugou.com, reject
-HOST-SUFFIX,log.web.kugou.com, reject
-HOST-SUFFIX,kgmobilestat.kugou.com, reject
-HOST-SUFFIX,kgmobilestatbak.kugou.com, reject
-HOST-SUFFIX,mobilelog.kugou.com, reject
+HOST-SUFFIX, rich.kuwo.cn, REJECT
+HOST-SUFFIX, mobilead.kuwo.cn, REJECT
+HOST-SUFFIX,oth.eve.mdt.qq.com, REJECT
+HOST-SUFFIX,pgdt.gtimg.cn, REJECT
+HOST,pgdt.gtimg.com, REJECT
+HOST,adsmind.gdtimg.com, REJECT
+HOST-SUFFIX,channel.fanxing.kugou.com, REJECT
+HOST-SUFFIX,d.kugou.com, REJECT
+HOST-SUFFIX,downmobile.kugou.com, REJECT
+HOST-SUFFIX,gad.kugou.com, REJECT
+HOST-SUFFIX,game.kugou.com, REJECT
+HOST-SUFFIX,gamebox.kugou.com, REJECT
+HOST-SUFFIX,gcapi.sy.kugou.com, REJECT
+HOST-SUFFIX,gg.kugou.com, REJECT
+HOST-SUFFIX,install.kugou.com, REJECT
+HOST-SUFFIX,install2.kugou.com, REJECT
+HOST-SUFFIX,minidcsc.kugou.com, REJECT
+HOST-SUFFIX,mo.kugou.com, REJECT
+HOST-SUFFIX,msg.mobile.kugou.com, REJECT
+HOST-SUFFIX,mvads.kugou.com, REJECT
+HOST-SUFFIX,p.kugou.com, REJECT
+HOST-SUFFIX,push.mobile.kugou.com, REJECT
+HOST-SUFFIX,rtmonitor.kugou.com, REJECT
+HOST-SUFFIX,sdn.kugou.com, REJECT
+HOST-SUFFIX,song.fanxing.kugou.com, REJECT
+HOST-SUFFIX,update.mobile.kugou.com, REJECT
+HOST-SUFFIX,youxi.kugou.com, REJECT
+HOST-SUFFIX,adserviceretry.kugou.com, REJECT
+HOST-SUFFIX,ads.service.kugou.com, REJECT
+HOST-SUFFIX,adsfile.bssdlbig.kugou.com, REJECT
+HOST-SUFFIX,log.stat.kugou.com, REJECT
+HOST-SUFFIX,log.web.kugou.com, REJECT
+HOST-SUFFIX,kgmobilestat.kugou.com, REJECT
+HOST-SUFFIX,kgmobilestatbak.kugou.com, REJECT
+HOST-SUFFIX,mobilelog.kugou.com, REJECT
 # > 酷我音乐
-HOST-SUFFIX,c.kuwo.cn, reject
-HOST-SUFFIX,deliver.kuwo.cn, reject
-HOST-SUFFIX,game.kuwo.cn, reject
-HOST-SUFFIX,kuwoyy.com, reject
-HOST-SUFFIX,kwmsg.kuwo.cn, reject
-HOST-SUFFIX,msclick2.kuwo.cn, reject
-HOST-SUFFIX,msphoneclick.kuwo.cn, reject
-HOST-SUFFIX,updatepage.kuwo.cn, reject
-HOST-SUFFIX,wa.kuwo.cn, reject
-HOST-SUFFIX,webstat.kuwo.cn, reject
+HOST-SUFFIX,c.kuwo.cn, REJECT
+HOST-SUFFIX,deliver.kuwo.cn, REJECT
+HOST-SUFFIX,game.kuwo.cn, REJECT
+HOST-SUFFIX,kuwoyy.com, REJECT
+HOST-SUFFIX,kwmsg.kuwo.cn, REJECT
+HOST-SUFFIX,msclick2.kuwo.cn, REJECT
+HOST-SUFFIX,msphoneclick.kuwo.cn, REJECT
+HOST-SUFFIX,updatepage.kuwo.cn, REJECT
+HOST-SUFFIX,wa.kuwo.cn, REJECT
+HOST-SUFFIX,webstat.kuwo.cn, REJECT
 # L
 # > 两步路
-HOST-SUFFIX,admobile.top, reject
+HOST-SUFFIX,admobile.top, REJECT
 # > 蓝奏云
 HOST-SUFFIX, statics.woozooo.com, REJECT
 # M
 
 # > 美团
-HOST, flowplus.meituan.net, reject
-HOST-SUFFIX, analytics.meituan.net, reject
-HOST-SUFFIX, meituan.yoga, reject
-HOST-SUFFIX, meituangov.cn, reject
-HOST-SUFFIX, report.meituan.com, reject
-HOST-SUFFIX, wmlog.meituan.com, reject
+HOST, flowplus.meituan.net, REJECT
+HOST-SUFFIX, analytics.meituan.net, REJECT
+HOST-SUFFIX, meituan.yoga, REJECT
+HOST-SUFFIX, meituangov.cn, REJECT
+HOST-SUFFIX, report.meituan.com, REJECT
+HOST-SUFFIX, wmlog.meituan.com, REJECT
 # > 墨迹天气
-host-SUFFIX, fds.api.moji.com, reject
-host-SUFFIX, me.api.moji.com, reject
-host-SUFFIX, android.bugly.qq.com, reject
-host-SUFFIX, av1.xdrig.com, reject
-host-SUFFIX, adash.man.aliyuncs.com, reject
-host-SUFFIX, v1.log.moji.com, reject
-host-SUFFIX, ad.api.moji.com, reject
-HOST,adlaunch.moji.com, reject
-HOST,ads.mojicdn.com, reject
+HOST-SUFFIX, fds.api.moji.com, REJECT
+HOST-SUFFIX, me.api.moji.com, REJECT
+HOST-SUFFIX, android.bugly.qq.com, REJECT
+HOST-SUFFIX, av1.xdrig.com, REJECT
+HOST-SUFFIX, adash.man.aliyuncs.com, REJECT
+HOST-SUFFIX, v1.log.moji.com, REJECT
+HOST-SUFFIX, ad.api.moji.com, REJECT
+HOST,adlaunch.moji.com, REJECT
+HOST,ads.mojicdn.com, REJECT
 # > 咪咕视频
-HOST-SUFFIX,ad.cmvideo.cn, reject
-HOST,ggc.cmvideo.cn, reject
-HOST,ggic03.miguvideo.com, reject
-HOST,ggmk.miguvideo.com, reject
-HOST,ggv.cmvideo.cn, reject
-HOST,ggx.cmvideo.cn, reject
-HOST,ggx03.miguvideo.com, reject
+HOST-SUFFIX,ad.cmvideo.cn, REJECT
+HOST,ggc.cmvideo.cn, REJECT
+HOST,ggic03.miguvideo.com, REJECT
+HOST,ggmk.miguvideo.com, REJECT
+HOST,ggv.cmvideo.cn, REJECT
+HOST,ggx.cmvideo.cn, REJECT
+HOST,ggx03.miguvideo.com, REJECT
 
 # > N
 # > NicoNico
-host, ads.nicovideo.jp, reject
+HOST, ads.nicovideo.jp, REJECT
 # > O
 # > OPPO
-HOST-SUFFIX,ads.oppomobile.com, reject
-HOST,adsfs.oppomobile.com, reject
+HOST-SUFFIX,ads.oppomobile.com, REJECT
+HOST,adsfs.oppomobile.com, REJECT
 
 # > P
 
 # > PPTV
-HOST,ads.aplus.pptv.com, reject
-HOST,ads.aplusapi.pptv.com, reject
-HOST,asimgs.pplive.cn, reject
-HOST,de.as.pptv.com, reject
+HOST,ads.aplus.pptv.com, REJECT
+HOST,ads.aplusapi.pptv.com, REJECT
+HOST,asimgs.pplive.cn, REJECT
+HOST,de.as.pptv.com, REJECT
 # > Photoable
-HOST,regist.fotoable.com, reject
-HOST,cdn.adapi.fotoable.com, reject
+HOST,regist.fotoable.com, REJECT
+HOST,cdn.adapi.fotoable.com, REJECT
 # > PConline
-HOST,ad-analysis.pconline.com.cn, reject
-HOST,iad0ssl.pcauto.com.cn, reject
-HOST,iad0ssl.pconline.com.cn, reject
-HOST,imgad0.pcauto.com.cn, reject
-HOST,imgad0.pconline.com.cn, reject
-HOST,ivy.pchouse.com.cn, reject
+HOST,ad-analysis.pconline.com.cn, REJECT
+HOST,iad0ssl.pcauto.com.cn, REJECT
+HOST,iad0ssl.pconline.com.cn, REJECT
+HOST,imgad0.pcauto.com.cn, REJECT
+HOST,imgad0.pconline.com.cn, REJECT
+HOST,ivy.pchouse.com.cn, REJECT
 
 # > Q
 
 # QQ音乐广告
-HOST,tmeadcomm.y.qq.com, reject
-HOST,ad.tencentmusic.com, reject
-HOST,adstats.tencentmusic.com, reject
-HOST,tmead.y.qq.com, reject
-HOST-SUFFIX,rqd.qq.com, reject
-HOST-SUFFIX,wup.imtt.qq.com, reject
-HOST-SUFFIX,e.qq.com, reject
-HOST-SUFFIX,beacon.qq.com, reject
+HOST,tmeadcomm.y.qq.com, REJECT
+HOST,ad.tencentmusic.com, REJECT
+HOST,adstats.tencentmusic.com, REJECT
+HOST,tmead.y.qq.com, REJECT
+HOST-SUFFIX,rqd.qq.com, REJECT
+HOST-SUFFIX,wup.imtt.qq.com, REJECT
+HOST-SUFFIX,e.qq.com, REJECT
+HOST-SUFFIX,beacon.qq.com, REJECT
 
 # > R
 # > S
 
 # > 搜狗
 
-HOST-SUFFIX,epro.sogou.com, reject
-HOST-SUFFIX,golden1.sogou.com, reject
-HOST-SUFFIX,inte.sogou.com, reject
-HOST-SUFFIX,inte.sogoucdn.com, reject
-HOST-SUFFIX,lu.sogoucdn.com, reject
-HOST-SUFFIX,theta.sogoucdn.com, reject
-HOST-SUFFIX,uranus.sogou.com, reject
-HOST-SUFFIX,123.sogou.com, reject
-HOST-SUFFIX,a1click.cpc.sogou.com, reject
-HOST-SUFFIX,adsence.sogou.com, reject
-HOST-SUFFIX,adstream.123.sogoucdn.com, reject
-HOST-SUFFIX,amfi.gou.sogou.com, reject
-HOST-SUFFIX,athena.wan.sogou.com, reject
-HOST-SUFFIX,bazinga.mse.sogou.com, reject
-HOST-SUFFIX,brand.sogou.com, reject
-HOST-SUFFIX,bsiet.husky.sogou.com, reject
+HOST-SUFFIX,epro.sogou.com, REJECT
+HOST-SUFFIX,golden1.sogou.com, REJECT
+HOST-SUFFIX,inte.sogou.com, REJECT
+HOST-SUFFIX,inte.sogoucdn.com, REJECT
+HOST-SUFFIX,lu.sogoucdn.com, REJECT
+HOST-SUFFIX,theta.sogoucdn.com, REJECT
+HOST-SUFFIX,uranus.sogou.com, REJECT
+HOST-SUFFIX,123.sogou.com, REJECT
+HOST-SUFFIX,a1click.cpc.sogou.com, REJECT
+HOST-SUFFIX,adsence.sogou.com, REJECT
+HOST-SUFFIX,adstream.123.sogoucdn.com, REJECT
+HOST-SUFFIX,amfi.gou.sogou.com, REJECT
+HOST-SUFFIX,athena.wan.sogou.com, REJECT
+HOST-SUFFIX,bazinga.mse.sogou.com, REJECT
+HOST-SUFFIX,brand.sogou.com, REJECT
+HOST-SUFFIX,bsiet.husky.sogou.com, REJECT
 # > 搜狐
-HOST-SUFFIX,ad.sohu.com, reject
-HOST-SUFFIX,ads.sohu.com, reject
-HOST-SUFFIX,aty.sohu.com, reject
-HOST-SUFFIX,hui.sohu.com, reject
+HOST-SUFFIX,ad.sohu.com, REJECT
+HOST-SUFFIX,ads.sohu.com, REJECT
+HOST-SUFFIX,aty.sohu.com, REJECT
+HOST-SUFFIX,hui.sohu.com, REJECT
 # > Snapchat
-HOST,ads.snapchat.com, reject
-HOST,adsapi.snapchat.com, reject
+HOST,ads.snapchat.com, REJECT
+HOST,adsapi.snapchat.com, REJECT
 
 # > T
 
 
 # > 淘宝
-HOST-SUFFIX,h-adashx.ut.taobao.com, reject
-HOST-SUFFIX,apoll.m.taobao.com, reject
+HOST-SUFFIX,h-adashx.ut.taobao.com, REJECT
+HOST-SUFFIX,apoll.m.taobao.com, REJECT
 
 # > TalkingData
-HOST-SUFFIX,cpatrk.net, reject
+HOST-SUFFIX,cpatrk.net, REJECT
 # > 腾讯视频
-host-suffix, tetrack.qq.com, reject
-host-suffix, tpns.tencent.com, reject
-host-suffix, api.poll.video.qq.com, reject
-host-suffix, static-res.qq.com, reject
-host, h.trace.qq.com, reject
+HOST-suffix, tetrack.qq.com, REJECT
+HOST-suffix, tpns.tencent.com, REJECT
+HOST-suffix, api.poll.video.qq.com, REJECT
+HOST-suffix, static-res.qq.com, REJECT
+HOST, h.trace.qq.com, REJECT
 # >  腾讯
-HOST-SUFFIX,news.ssp.qq.com, reject
-HOST-SUFFIX,activeqq.3g.qq.com, reject
-HOST-SUFFIX,ad.qq.com, reject
-HOST-SUFFIX,adping.qq.com, reject
-HOST-SUFFIX,adpm.app.qq.com, reject
-HOST-SUFFIX,adrdir.qq.com, reject
-HOST-SUFFIX,adsclick.qq.com, reject
-HOST-SUFFIX,adsense.html5.qq.com, reject
-HOST-SUFFIX,adsfile.qq.com, reject
-HOST-SUFFIX,adsgroup.qq.com, reject
-HOST-SUFFIX,adshmct.qq.com, reject
-HOST-SUFFIX,adshmmsg.qq.com, reject
-HOST-SUFFIX,adslvfile.qq.com, reject
-HOST-SUFFIX,adslvseed.qq.com, reject
-HOST-SUFFIX,adsolution.imtt.qq.com, reject
-HOST-SUFFIX,adsqqclick.qq.com, reject
-HOST-SUFFIX,adstextview.qq.com, reject
-HOST-SUFFIX,adsview.qq.com, reject
-HOST-SUFFIX,adsview2.qq.com, reject
-HOST-SUFFIX,adv.app.qq.com, reject
-HOST-SUFFIX,adver.qq.com, reject
-HOST-SUFFIX,analy.qq.com, reject
-HOST-SUFFIX,c.gj.qq.com, reject
-HOST-SUFFIX,d3g.qq.com, reject
-HOST-SUFFIX,download.sj.qq.com, reject
-HOST-SUFFIX,dp3.qq.com, reject
-HOST-SUFFIX,game.html5.qq.com, reject
-HOST-SUFFIX,ggmmqq.com, reject
-HOST-SUFFIX,j.wit.qq.com, reject
-HOST-SUFFIX,jqmt.qq.com, reject
-HOST-SUFFIX,jsqmt.qq.com, reject
-HOST-SUFFIX,livep.l.ott.video.qq.com, reject
-HOST-SUFFIX,lives.l.ott.video.qq.com, reject
-HOST-SUFFIX,masdk.3g.qq.com, reject
-HOST-SUFFIX,mfm.video.qq.com, reject
-HOST-SUFFIX,mini2015.qq.com, reject
-HOST-SUFFIX,monitor.uu.qq.com, reject
-HOST-SUFFIX,mqqad.cs0309.html5.qq.com, reject
-HOST-SUFFIX,mqqad.html5.qq.com, reject
-HOST-SUFFIX,mqqadr.reader.qq.com, reject
-HOST-SUFFIX,news.mpush.qq.com, reject
-HOST-SUFFIX,news-l.play.ott.video.qq.com, reject
-HOST-SUFFIX,novelsns.html5.qq.com, reject
-HOST-SUFFIX,oth.update.mdt.qq.com, reject
-HOST-SUFFIX,pcbrowser.dd.qq.com, reject
-HOST-SUFFIX,pmir.3g.qq.com, reject
-HOST-SUFFIX,pvstat.html5.qq.com, reject
-HOST-SUFFIX,qqshow2-item.qq.com, reject
-HOST-SUFFIX,scdown.qq.com, reject
-HOST-SUFFIX,setting.snswin.qq.com, reject
-HOST-SUFFIX,sngmta.qq.com, reject
-HOST-SUFFIX,t.sj.qq.com, reject
-HOST-SUFFIX,ta.qq.com, reject
-HOST-SUFFIX,tcss.qq.com, reject
-HOST-SUFFIX,tpush.html5.qq.com, reject
-HOST-SUFFIX,updatecenter.qq.com, reject
-HOST-SUFFIX,video.ureport.push.qq.com, reject
-HOST-SUFFIX,vlive.qqvideo.tc.qq.com, reject
-HOST-SUFFIX,wap.mpush.qq.com, reject
-HOST-SUFFIX,ws.sj.qq.com, reject
-HOST-SUFFIX,wxsnsdy.tc.qq.com, reject
-HOST-SUFFIX,wxsnsdy.video.qq.com, reject
-HOST-SUFFIX,adsmind.tc.qq.com, reject
-HOST-SUFFIX,btrace.qq.com, reject
-HOST-SUFFIX,mtrace.qq.com, reject
-HOST-SUFFIX,pingma.qq.com, reject
-HOST-SUFFIX,pingtcss.qq.com, reject
-HOST-SUFFIX,tajs.qq.com, reject
-HOST-SUFFIX,wxsnsdy.wxs.qq.com, reject
-HOST-SUFFIX,wxsnsdythumb.wxs.qq.com, reject
-HOST-SUFFIX,fusion.qq.com, reject
-HOST-SUFFIX,ios.bugly.qq.com, reject
-HOST,safebrowsing.urlsec.qq.com, reject
-HOST-SUFFIX,oth.str.mdt.qq.com, reject
-HOST-SUFFIX,l.qq.com, reject
-HOST,adsmind.apdcdn.tc.qq.com, reject
-HOST,adsmind.ugdtimg.com, reject
-HOST,livep.l.t002.ottcn.com, reject
-HOST,pgdt.ugdtimg.com, reject
-HOST,splashqqlive.gtimg.com, reject
-HOST,vv.video.qq.com, reject
-HOST,wa.gtimg.com, reject
+HOST-SUFFIX,news.ssp.qq.com, REJECT
+HOST-SUFFIX,activeqq.3g.qq.com, REJECT
+HOST-SUFFIX,ad.qq.com, REJECT
+HOST-SUFFIX,adping.qq.com, REJECT
+HOST-SUFFIX,adpm.app.qq.com, REJECT
+HOST-SUFFIX,adrdir.qq.com, REJECT
+HOST-SUFFIX,adsclick.qq.com, REJECT
+HOST-SUFFIX,adsense.html5.qq.com, REJECT
+HOST-SUFFIX,adsfile.qq.com, REJECT
+HOST-SUFFIX,adsgroup.qq.com, REJECT
+HOST-SUFFIX,adshmct.qq.com, REJECT
+HOST-SUFFIX,adshmmsg.qq.com, REJECT
+HOST-SUFFIX,adslvfile.qq.com, REJECT
+HOST-SUFFIX,adslvseed.qq.com, REJECT
+HOST-SUFFIX,adsolution.imtt.qq.com, REJECT
+HOST-SUFFIX,adsqqclick.qq.com, REJECT
+HOST-SUFFIX,adstextview.qq.com, REJECT
+HOST-SUFFIX,adsview.qq.com, REJECT
+HOST-SUFFIX,adsview2.qq.com, REJECT
+HOST-SUFFIX,adv.app.qq.com, REJECT
+HOST-SUFFIX,adver.qq.com, REJECT
+HOST-SUFFIX,analy.qq.com, REJECT
+HOST-SUFFIX,c.gj.qq.com, REJECT
+HOST-SUFFIX,d3g.qq.com, REJECT
+HOST-SUFFIX,download.sj.qq.com, REJECT
+HOST-SUFFIX,dp3.qq.com, REJECT
+HOST-SUFFIX,game.html5.qq.com, REJECT
+HOST-SUFFIX,ggmmqq.com, REJECT
+HOST-SUFFIX,j.wit.qq.com, REJECT
+HOST-SUFFIX,jqmt.qq.com, REJECT
+HOST-SUFFIX,jsqmt.qq.com, REJECT
+HOST-SUFFIX,livep.l.ott.video.qq.com, REJECT
+HOST-SUFFIX,lives.l.ott.video.qq.com, REJECT
+HOST-SUFFIX,masdk.3g.qq.com, REJECT
+HOST-SUFFIX,mfm.video.qq.com, REJECT
+HOST-SUFFIX,mini2015.qq.com, REJECT
+HOST-SUFFIX,monitor.uu.qq.com, REJECT
+HOST-SUFFIX,mqqad.cs0309.html5.qq.com, REJECT
+HOST-SUFFIX,mqqad.html5.qq.com, REJECT
+HOST-SUFFIX,mqqadr.reader.qq.com, REJECT
+HOST-SUFFIX,news.mpush.qq.com, REJECT
+HOST-SUFFIX,news-l.play.ott.video.qq.com, REJECT
+HOST-SUFFIX,novelsns.html5.qq.com, REJECT
+HOST-SUFFIX,oth.update.mdt.qq.com, REJECT
+HOST-SUFFIX,pcbrowser.dd.qq.com, REJECT
+HOST-SUFFIX,pmir.3g.qq.com, REJECT
+HOST-SUFFIX,pvstat.html5.qq.com, REJECT
+HOST-SUFFIX,qqshow2-item.qq.com, REJECT
+HOST-SUFFIX,scdown.qq.com, REJECT
+HOST-SUFFIX,setting.snswin.qq.com, REJECT
+HOST-SUFFIX,sngmta.qq.com, REJECT
+HOST-SUFFIX,t.sj.qq.com, REJECT
+HOST-SUFFIX,ta.qq.com, REJECT
+HOST-SUFFIX,tcss.qq.com, REJECT
+HOST-SUFFIX,tpush.html5.qq.com, REJECT
+HOST-SUFFIX,updatecenter.qq.com, REJECT
+HOST-SUFFIX,video.ureport.push.qq.com, REJECT
+HOST-SUFFIX,vlive.qqvideo.tc.qq.com, REJECT
+HOST-SUFFIX,wap.mpush.qq.com, REJECT
+HOST-SUFFIX,ws.sj.qq.com, REJECT
+HOST-SUFFIX,wxsnsdy.tc.qq.com, REJECT
+HOST-SUFFIX,wxsnsdy.video.qq.com, REJECT
+HOST-SUFFIX,adsmind.tc.qq.com, REJECT
+HOST-SUFFIX,btrace.qq.com, REJECT
+HOST-SUFFIX,mtrace.qq.com, REJECT
+HOST-SUFFIX,pingma.qq.com, REJECT
+HOST-SUFFIX,pingtcss.qq.com, REJECT
+HOST-SUFFIX,tajs.qq.com, REJECT
+HOST-SUFFIX,wxsnsdy.wxs.qq.com, REJECT
+HOST-SUFFIX,wxsnsdythumb.wxs.qq.com, REJECT
+HOST-SUFFIX,fusion.qq.com, REJECT
+HOST-SUFFIX,ios.bugly.qq.com, REJECT
+HOST,safebrowsing.urlsec.qq.com, REJECT
+HOST-SUFFIX,oth.str.mdt.qq.com, REJECT
+HOST-SUFFIX,l.qq.com, REJECT
+HOST,adsmind.apdcdn.tc.qq.com, REJECT
+HOST,adsmind.ugdtimg.com, REJECT
+HOST,livep.l.t002.ottcn.com, REJECT
+HOST,pgdt.ugdtimg.com, REJECT
+HOST,splashqqlive.gtimg.com, REJECT
+HOST,vv.video.qq.com, REJECT
+HOST,wa.gtimg.com, REJECT
 
-HOST,g.koowo.com, reject
+HOST,g.koowo.com, REJECT
 # > The Paper
-HOST,admonitor.thepaper.cn, reject
-HOST,adpai.thepaper.cn, reject
-HOST,imgadpai.thepaper.cn, reject
+HOST,admonitor.thepaper.cn, REJECT
+HOST,adpai.thepaper.cn, REJECT
+HOST,imgadpai.thepaper.cn, REJECT
 
 # > U
 # > V
 
 # > VariFlight
-HOST,adv-adlog.variflight.com, reject
-HOST,adv-ads.variflight.com, reject
-HOST,app-ad.variflight.com, reject
+HOST,adv-adlog.variflight.com, REJECT
+HOST,adv-ads.variflight.com, REJECT
+HOST,app-ad.variflight.com, REJECT
 # > vivo
-HOST,adlog.vivo.com.cn, reject
-HOST,adreq.vivo.com.cn, reject
-HOST,ads-marketing-vivofs.vivo.com.cn, reject
-HOST,adsdk.vivo.com.cn, reject
-HOST,adsstatic.vivo.com.cn, reject
-HOST,adxlog.vivo.com.cn, reject
-HOST,vcardsdkservice.vivo.com.cn, reject
-HOST-KEYWORD,stsdk.vivo.com.cn, reject
-HOST-KEYWORD,stsdk.vivoglobal.com, reject
+HOST,adlog.vivo.com.cn, REJECT
+HOST,adreq.vivo.com.cn, REJECT
+HOST,ads-marketing-vivofs.vivo.com.cn, REJECT
+HOST,adsdk.vivo.com.cn, REJECT
+HOST,adsstatic.vivo.com.cn, REJECT
+HOST,adxlog.vivo.com.cn, REJECT
+HOST,vcardsdkservice.vivo.com.cn, REJECT
+HOST-KEYWORD,stsdk.vivo.com.cn, REJECT
+HOST-KEYWORD,stsdk.vivoglobal.com, REJECT
 
 # > W
 
 # > 微软
-HOST-SUFFIX,ads.msn.com, reject
-HOST-SUFFIX,ads1.msn.com, reject
-HOST-SUFFIX,ads2.msn.com, reject
-HOST-SUFFIX,bingads.microsoft.com, reject
-HOST-SUFFIX,rads.msn.com, reject
-HOST,mobileads.msn.com, reject
+HOST-SUFFIX,ads.msn.com, REJECT
+HOST-SUFFIX,ads1.msn.com, REJECT
+HOST-SUFFIX,ads2.msn.com, REJECT
+HOST-SUFFIX,bingads.microsoft.com, REJECT
+HOST-SUFFIX,rads.msn.com, REJECT
+HOST,mobileads.msn.com, REJECT
 
 # > 网易
-HOST-SUFFIX,dsp.youdao.com, reject
-HOST-SUFFIX,union.youdao.com, reject
-HOST,ad.bn.netease.com, reject
-HOST,ad.yixin.im, reject
-HOST,admusicpic.music.126.net, reject
-HOST,g1.163.com, reject
-HOST,gorgon.youdao.com, reject
-HOST,iad.g.163.com, reject
-HOST,impservice.dictapp.youdao.com, reject
-HOST,impservice.youdao.com, reject
-HOST,n.3g.163.com, reject
-HOST,nex.163.com, reject
-HOST,yt-adp.nosdn.127.net, reject
-HOST,yt-adp.ws.126.net, reject
+HOST-SUFFIX,dsp.youdao.com, REJECT
+HOST-SUFFIX,union.youdao.com, REJECT
+HOST,ad.bn.netease.com, REJECT
+HOST,ad.yixin.im, REJECT
+HOST,admusicpic.music.126.net, REJECT
+HOST,g1.163.com, REJECT
+HOST,gorgon.youdao.com, REJECT
+HOST,iad.g.163.com, REJECT
+HOST,impservice.dictapp.youdao.com, REJECT
+HOST,impservice.youdao.com, REJECT
+HOST,n.3g.163.com, REJECT
+HOST,nex.163.com, REJECT
+HOST,yt-adp.nosdn.127.net, REJECT
+HOST,yt-adp.ws.126.net, REJECT
 
 # > X
 # > 闲鱼
-HOST,aid.m.taobao.com,reject
+HOST,aid.m.taobao.com,REJECT
 # > 向日葵
-host-keyword, upload-cdn.orayimg.com, reject
-host, ddns.oray.com, reject
-host, sl-tk.oray.com, reject
-host, client-api.oray.com, reject
-host, push.oray.com, reject
-HOST-SUFFIX,offline-adv.oray.com, reject
-host-keyword, upload-cdn.orayimg.com-upload-activity, reject
+HOST-keyword, upload-cdn.orayimg.com, REJECT
+HOST, ddns.oray.com, REJECT
+HOST, sl-tk.oray.com, REJECT
+HOST, client-api.oray.com, REJECT
+HOST, push.oray.com, REJECT
+HOST-SUFFIX,offline-adv.oray.com, REJECT
+HOST-keyword, upload-cdn.orayimg.com-upload-activity, REJECT
 # > 小米
-HOST,data.mistat.xiaomi.com, reject
-HOST,tracking.intl.miui.com, reject
+HOST,data.mistat.xiaomi.com, REJECT
+HOST,tracking.intl.miui.com, REJECT
 # > 新浪
-HOST-SUFFIX,beacon.sina.com.cn, reject
-HOST,u1.img.mobile.sina.cn, reject
-HOST,sax.sina.com.cn, reject
-HOST,saxs.sina.com.cn, reject
-HOST,saxn.sina.com.cn, reject
+HOST-SUFFIX,beacon.sina.com.cn, REJECT
+HOST,u1.img.mobile.sina.cn, REJECT
+HOST,sax.sina.com.cn, REJECT
+HOST,saxs.sina.com.cn, REJECT
+HOST,saxn.sina.com.cn, REJECT
 # > 迅雷
-HOST,adsp.xunlei.com, reject
-HOST,etl.xlmc.sandai.net, reject
+HOST,adsp.xunlei.com, REJECT
+HOST,etl.xlmc.sandai.net, REJECT
 # > 喜马拉雅
-HOST,ad.ximalaya.com, reject
-HOST,adbs.ximalaya.com, reject
-HOST,adse.ximalaya.com, reject
-HOST,adse.wsa.ximalaya.com, reject
-HOST,adbehavior.wsa.ximalaya.com, reject
-HOST,adbehavior.ximalaya.com, reject
-HOST,adsebs.ximalaya.com, reject
-HOST,adwbs.ximalaya.com, reject
+HOST,ad.ximalaya.com, REJECT
+HOST,adbs.ximalaya.com, REJECT
+HOST,adse.ximalaya.com, REJECT
+HOST,adse.wsa.ximalaya.com, REJECT
+HOST,adbehavior.wsa.ximalaya.com, REJECT
+HOST,adbehavior.ximalaya.com, REJECT
+HOST,adsebs.ximalaya.com, REJECT
+HOST,adwbs.ximalaya.com, REJECT
 # >小红书
-HOST,ads-img-qc.xhscdn.com, reject
-HOST,ads-video-al.xhscdn.com, reject
-HOST,ads-video-qc.xhscdn.com, reject
-HOST,t-ads.xiaohongshu.com, reject
+HOST,ads-img-qc.xhscdn.com, REJECT
+HOST,ads-video-al.xhscdn.com, REJECT
+HOST,ads-video-qc.xhscdn.com, REJECT
+HOST,t-ads.xiaohongshu.com, REJECT
 
 # Y
 
 # > 云闪付
-host-keyword, switch.cup.com.cn, reject
-host-keyword, sdk.open.talk.getui.net, reject
-host-keyword, sdk-conf.getui.com, reject
-host-keyword, cm-10-138.getui.com, reject
-host-keyword, ads.95516.com, reject
+HOST-keyword, switch.cup.com.cn, REJECT
+HOST-keyword, sdk.open.talk.getui.net, REJECT
+HOST-keyword, sdk-conf.getui.com, REJECT
+HOST-keyword, cm-10-138.getui.com, REJECT
+HOST-keyword, ads.95516.com, REJECT
 # > 优酷
-HOST-SUFFIX,atm.youku.com, reject
-HOST,ad.mobile.youku.com, reject
-HOST,iyes.youku.com, reject
-HOST,pl.cp31.ott.cibntv.net, reject
+HOST-SUFFIX,atm.youku.com, REJECT
+HOST,ad.mobile.youku.com, REJECT
+HOST,iyes.youku.com, REJECT
+HOST,pl.cp31.ott.cibntv.net, REJECT
 # > 央视
-HOST-SUFFIX,a.cctv.com, reject
-HOST-SUFFIX,ad.cctv.com, reject
-HOST-SUFFIX,ad.cntv.cn, reject
-HOST-SUFFIX,adguanggao.eee114.com, reject
-HOST-SUFFIX,afp.qiyi.com, reject
-HOST-SUFFIX,cctv.adsunion.com, reject
-HOST-SUFFIX,d.cntv.cn, reject
-HOST-SUFFIX,de.pandora.xiaomi.com, reject
-HOST-SUFFIX,mishop.pandora.xiaomi.com, reject
-HOST-SUFFIX,cws-cctv.conviva.com, reject
-HOST,galaxy.bjcathay.com, reject
-HOST,mdrecv.app.cntvwb.cn, reject
-HOST,sdapprecv.app.cntvwb.cn, reject
-HOST,vdapprecv.app.cntvwb.cn, reject
-HOST-SUFFIX,mdrecv.app.cntvwb.cn, reject
-HOST-SUFFIX,sdapprecv.app.cntvwb.cn, reject
-HOST-SUFFIX,vdapprecv.app.cntvwb.cn, reject
+HOST-SUFFIX,a.cctv.com, REJECT
+HOST-SUFFIX,ad.cctv.com, REJECT
+HOST-SUFFIX,ad.cntv.cn, REJECT
+HOST-SUFFIX,adguanggao.eee114.com, REJECT
+HOST-SUFFIX,afp.qiyi.com, REJECT
+HOST-SUFFIX,cctv.adsunion.com, REJECT
+HOST-SUFFIX,d.cntv.cn, REJECT
+HOST-SUFFIX,de.pandora.xiaomi.com, REJECT
+HOST-SUFFIX,mishop.pandora.xiaomi.com, REJECT
+HOST-SUFFIX,cws-cctv.conviva.com, REJECT
+HOST,galaxy.bjcathay.com, REJECT
+HOST,mdrecv.app.cntvwb.cn, REJECT
+HOST,sdapprecv.app.cntvwb.cn, REJECT
+HOST,vdapprecv.app.cntvwb.cn, REJECT
+HOST-SUFFIX,mdrecv.app.cntvwb.cn, REJECT
+HOST-SUFFIX,sdapprecv.app.cntvwb.cn, REJECT
+HOST-SUFFIX,vdapprecv.app.cntvwb.cn, REJECT
 # > 雅虎
-HOST-SUFFIX,adserver.yahoo.com, reject
-HOST-SUFFIX,adspecs.yahoo.com, reject
-HOST-SUFFIX,advertising.yahoo.com, reject
-HOST-SUFFIX,gemini.yahoo.com, reject
-HOST,admarketing.yahoo.net, reject
-HOST,ads.auctions.yahoo.com, reject
-HOST,ads.finance.yahoo.com, reject
-HOST,ads.yahoo.com, reject
-HOST,ads.yahoo.de, reject
+HOST-SUFFIX,adserver.yahoo.com, REJECT
+HOST-SUFFIX,adspecs.yahoo.com, REJECT
+HOST-SUFFIX,advertising.yahoo.com, REJECT
+HOST-SUFFIX,gemini.yahoo.com, REJECT
+HOST,admarketing.yahoo.net, REJECT
+HOST,ads.auctions.yahoo.com, REJECT
+HOST,ads.finance.yahoo.com, REJECT
+HOST,ads.yahoo.com, REJECT
+HOST,ads.yahoo.de, REJECT
 
 # Z
 
 # >中信银行
-HOST-SUFFIX,sis.jpush.io, reject
-HOST-SUFFIX,s.jpush.cn, reject
-HOST-SUFFIX,jpush.cn, reject
-HOST-SUFFIX,im64.jpush.cn, reject
-HOST-SUFFIX,im.jpush.cn, reject
-HOST-SUFFIX,jpush.html5.qq.com, reject
+HOST-SUFFIX,sis.jpush.io, REJECT
+HOST-SUFFIX,s.jpush.cn, REJECT
+HOST-SUFFIX,jpush.cn, REJECT
+HOST-SUFFIX,im64.jpush.cn, REJECT
+HOST-SUFFIX,im.jpush.cn, REJECT
+HOST-SUFFIX,jpush.html5.qq.com, REJECT
 # > 字节跳动
-HOST-SUFFIX,pangolin-sdk-toutiao.com, reject
-HOST-SUFFIX,pangolin-sdk-toutiao-b.com, reject
-HOST-SUFFIX,api-access.pangolin-sdk-toutiao-b.com, reject
-HOST,dsp.toutiao.com, reject
-host-suffix,pangolin.snssdk.com, reject
+HOST-SUFFIX,pangolin-sdk-toutiao.com, REJECT
+HOST-SUFFIX,pangolin-sdk-toutiao-b.com, REJECT
+HOST-SUFFIX,api-access.pangolin-sdk-toutiao-b.com, REJECT
+HOST,dsp.toutiao.com, REJECT
+HOST-suffix,pangolin.snssdk.com, REJECT
 # > 中国电信
-HOST,ad.21cn.com, reject
-HOST,ad.k.21cn.com, reject
-HOST,admarket.21cn.com, reject
-HOST,adshows.21cn.com, reject
+HOST,ad.21cn.com, REJECT
+HOST,ad.k.21cn.com, REJECT
+HOST,admarket.21cn.com, REJECT
+HOST,adshows.21cn.com, REJECT
 # > 中华万年历广告
-host-keyword, lkme.cc, reject
-host-keyword, api.freed.so, reject
-host-keyword, log-dmp.suishenyun.cn, reject
-host-keyword, client-dmp.suishenyun.cn, reject
-host-keyword, pc.suishenyun.net, reject
-host-keyword, v0-client-lz.rili.cn, reject
+HOST-keyword, lkme.cc, REJECT
+HOST-keyword, api.freed.so, REJECT
+HOST-keyword, log-dmp.suishenyun.cn, REJECT
+HOST-keyword, client-dmp.suishenyun.cn, REJECT
+HOST-keyword, pc.suishenyun.net, REJECT
+HOST-keyword, v0-client-lz.rili.cn, REJECT
 # > 知乎
-USER-AGENT,AVOS*, reject
-HOST,appcloud2.in.zhihu.com, reject
-HOST,mqtt.zhihu.com, reject
-HOST,sugar.zhihu.com, reject
-HOST,118.89.204.198, reject
-IP-CIDR,118.89.204.198/32, reject
+USER-AGENT,AVOS*, REJECT
+HOST,appcloud2.in.zhihu.com, REJECT
+HOST,mqtt.zhihu.com, REJECT
+HOST,sugar.zhihu.com, REJECT
+HOST,118.89.204.198, REJECT
+IP-CIDR,118.89.204.198/32, REJECT
 IP6-CIDR,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT
 
 
 # > ChinaMobile
-IP-CIDR,120.240.95.37/32, reject
+IP-CIDR,120.240.95.37/32, REJECT
 # > Dr.Peng
-# IP-CIDR,10.72.25.0/24, reject
-IP-CIDR,211.161.101.110/32, reject
+# IP-CIDR,10.72.25.0/24, REJECT
+IP-CIDR,211.161.101.110/32, REJECT
 # Malware
 # > Huawei AspiegelBot
-IP-CIDR,114.119.160.0/21, reject
-HOST-SUFFIX,kuaizip.com, reject
+IP-CIDR,114.119.160.0/21, REJECT
+HOST-SUFFIX,kuaizip.com, REJECT
 # > MacKeeper
-# https://www.lizhi.io/blog/40002904, reject
-HOST-SUFFIX,zryydi.com, reject
+# https://www.lizhi.io/blog/40002904, REJECT
+HOST-SUFFIX,zryydi.com, REJECT
 # > Adobe Flash China Special Edition
-# https://www.zhihu.com/question/281163698/answer/441388130, reject
-HOST,geo2.adobe.com, reject
+# https://www.zhihu.com/question/281163698/answer/441388130, REJECT
+HOST,geo2.adobe.com, REJECT
 
 # >58
-HOST,track.58.com, reject
-HOST,tracklog.58.com, reject
+HOST,track.58.com, REJECT
+HOST,tracklog.58.com, REJECT
 
 # > 易校园
-HOST-SUFFIX,p1.adkwai.com, reject
-HOST-SUFFIX,rayjump.com, reject
-HOST,bgg.baidu.com,reject
-HOST,tk.anythinktech.com,reject
-HOST,static.yximgs.com,reject
-HOST,qzs.gdtimg.com,reject
-HOST,adx-cn.anythinktech.com,reject
-HOST,api.anythinktech.com,reject
-HOST-SUFFIX,rayjump.com,reject
-# > HOST,h.trace,qq.com,reject
+HOST-SUFFIX,p1.adkwai.com, REJECT
+HOST-SUFFIX,rayjump.com, REJECT
+HOST,bgg.baidu.com,REJECT
+HOST,tk.anythinktech.com,REJECT
+HOST,static.yximgs.com,REJECT
+HOST,qzs.gdtimg.com,REJECT
+HOST,adx-cn.anythinktech.com,REJECT
+HOST,api.anythinktech.com,REJECT
+HOST-SUFFIX,rayjump.com,REJECT
+# > HOST,h.trace,qq.com,REJECT
 HOST,y.tcp.push.mob.com,direct
 
 
 # > 屏蔽苹果系统更新
-# host, ns.itunes.apple.com, reject
-# host, appldnld.apple.com, reject
-# host, mesu.apple.com, reject
-# host, xp.apple.com, reject
-# host, gdmf.apple.com, reject
-# HOST-SUFFIX,iadsdk.apple.com, reject
-# HOST-SUFFIX,ads.internal.unity3d.com, reject
-# HOST-SUFFIX,ads.prd.ie.internal.unity3d.com, reject
-# HOST-SUFFIX,unityads.unity3d.com, reject
+# HOST, ns.itunes.apple.com, REJECT
+# HOST, appldnld.apple.com, REJECT
+# HOST, mesu.apple.com, REJECT
+# HOST, xp.apple.com, REJECT
+# HOST, gdmf.apple.com, REJECT
+# HOST-SUFFIX,iadsdk.apple.com, REJECT
+# HOST-SUFFIX,ads.internal.unity3d.com, REJECT
+# HOST-SUFFIX,ads.prd.ie.internal.unity3d.com, REJECT
+# HOST-SUFFIX,unityads.unity3d.com, REJECT
 
 #金融
-HOST,punion.tjjt360.com,reject
+HOST,punion.tjjt360.com,REJECT
 
 #有道
-HOST,staticsns.cdn.bcebos.com,reject
+HOST,staticsns.cdn.bcebos.com,REJECT
 
 
 
 # > 芒果TV
-HOST,mobile.da.mgtv.com,reject
+HOST,mobile.da.mgtv.com,REJECT
+

@@ -1,3 +1,9 @@
+# 网易云
+HOST-SUFFIX,gdt.qq.com, REJECT
+HOST,httpdns.n.netease.com, REJECT
+HOST,iadmat.nosdn.127.net, reject
+HOST,iadmusicmat.music.126.net, reject
+HOST,iadmusicmatvideo.music.126.net, reject
 # ChatGPT
 HOST, o33249.ingest.sentry.io, REJECT
 #彩云天气
@@ -271,19 +277,6 @@ HOST-SUFFIX,goblin.hupu.com, reject
 
 # > I
 # > J
-
-# > 交管12123
-#host, static.122.gov.cn, reject
-#ip-cidr, 203.107.1.1/24, reject
-#HOST-SUFFIX, v3.fstats.xyz, reject
-#HOST-SUFFIX, wss.haoyundmn.com, reject 
-#HOST-SUFFIX, new.xiongzhangad.com, reject  
-#HOST-SUFFIX, alexametrics.com, reject 
-#HOST-KEYWORD, in-page-push, reject
-# >驾校一点通
-#HOST,richmanapi.jxedt.com, reject
-#HOST,richmanmain.jxedt.com, reject
-#HOST,richmanrules.jxedt.com, reject
 # > 今日头条
 HOST-SUFFIX, ad.toutiao.com, reject
 HOST-SUFFIX, clk.gentags.net, reject
@@ -451,7 +444,6 @@ HOST,adstats.tencentmusic.com, reject
 HOST,tmead.y.qq.com, reject
 HOST-SUFFIX,rqd.qq.com, reject
 HOST-SUFFIX,wup.imtt.qq.com, reject
-HOST-SUFFIX,gdt.qq.com, reject
 HOST-SUFFIX,e.qq.com, reject
 HOST-SUFFIX,beacon.qq.com, reject
 
@@ -627,9 +619,6 @@ HOST,admusicpic.music.126.net, reject
 HOST,g1.163.com, reject
 HOST,gorgon.youdao.com, reject
 HOST,iad.g.163.com, reject
-HOST,iadmat.nosdn.127.net, reject
-HOST,iadmusicmat.music.126.net, reject
-HOST,iadmusicmatvideo.music.126.net, reject
 HOST,impservice.dictapp.youdao.com, reject
 HOST,impservice.youdao.com, reject
 HOST,n.3g.163.com, reject

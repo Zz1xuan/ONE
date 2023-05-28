@@ -37,8 +37,6 @@
 # > D
 # > 大众点评 img.meituan.net,
 ^https:\/\/img\.meituan\.net\/dpmobile\/([a-fA-F0-9]+)\.jpg\.webp - reject
-# > 大麦  acs.m.taobao.com,
-^http?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.home\.welcome - reject-dict
 # > 大师兄影视 sdk.alibaba.com,
 ^https?:\/\/sdk\.alibaba\.com\.ailbaba\.me\/.*?\/v\d\/(version|top_notice\?|advert\?position=[^2]+) - reject
 # > 豆瓣 api.douban.com,
@@ -146,7 +144,9 @@ http-request ^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList script-path=https://r
 http-response ^https?:\/\/.*\.hdslb\.com\/bfs\/subtitle\/.+\.json script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/bilibili_cc.js, requires-body=true, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/bilibili.png, tag=繁体转简体
 # ～ BiliBili_哔哩哔哩_应用开屏广告预加载@yjqiang   app.bilibili.com,
 http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/bilibili_json.js, requires-body=true, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/bilibili.png, tag=b站开屏
-# > 飞客茶馆
+# > 大麦  acs.m.taobao.com,
+http-response ^http?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.home\.welcome script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body=true, timeout=10, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/damai.png, tag=大麦开屏, argument="data":"\{.+\},"->"data":{},""
+# > 飞客茶馆   47.100.65.202,
 http-response ^https?:\/\/47\.100\.65\.202\/api\/mobile\/index\.php\?version=\d&mobile=yes&module=basicdata&type=forumlist script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Loon/replace-body.js, requires-body=true, timeout=10, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/feike.png, tag=去广告, argument="adv->ddgksf2013"
 http-response ^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1 script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/fly.js, requires-body=true, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/feike.png, tag=fly
 # > 京喜   api.m.jd.com,

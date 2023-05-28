@@ -5,8 +5,6 @@
 #!icon= https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/TikTok.png
 
 
-# author=Semporia
-
 [Rule]
 DOMAIN-SUFFIX,byteoversea.com,PROXY
 DOMAIN-SUFFIX,ibytedtos.com,PROXY

@@ -38,7 +38,7 @@
 # > 大众点评 img.meituan.net,
 ^https:\/\/img\.meituan\.net\/dpmobile\/([a-fA-F0-9]+)\.jpg\.webp - reject
 # > 大麦  acs.m.taobao.com,
-^http?:\/\/acs\.m\.taobao\.com\/gw\/mtop.damai.wireless.home.welcome - reject-dict
+^http?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.home\.welcome - reject-dict
 # > 大师兄影视 sdk.alibaba.com,
 ^https?:\/\/sdk\.alibaba\.com\.ailbaba\.me\/.*?\/v\d\/(version|top_notice\?|advert\?position=[^2]+) - reject
 # > 豆瓣 api.douban.com,

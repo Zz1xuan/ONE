@@ -20,13 +20,12 @@ DOMAIN-SUFFIX,tiktokv.com,PROXY
 DOMAIN-KEYWORD,-tiktokcdn-com,PROXY
 USER-AGENT,tiktok*,PROXY
 
-[URL Rewrite]
-(?<=_region=)CN(?=&) KR 307
+[Rewrite]
 (?<=&mcc_mnc=)4 2 307
-^(https?:\/\/(tnc|dm)[\w-]+\.\w+\.com\/.+)(\?)(.+) $1$4 302
 (?<=\d\/\?\w{7}_\w{4}=)1[6-9]..(?=.?.?&) 18.4 307
-
+(?<=_region=)CN(?=&) KR 307
+^(https?:\/\/(tnc|dm)[\w-]+\.\w+\.com\/.+)(\?)(.+) $1$4 302
 
 [MITM]
-hostname = *.tiktokv.com,*.byteoversea.com,*.tik-tokapi.com
+hostname = *.byteoversea.com,*.tik-tokapi.com,*.tiktokv.com
 

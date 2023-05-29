@@ -36,7 +36,7 @@
 ^https?:\/\/atrace.chelaile.net.cn\/(adpub|exhibit\?&adv_image) - reject
 # > D
 # > 大麦
-https:\/\/img\.alicdn\.com\/imgextra\/i\d\/([a-zA-Z0-9_-]+)!!\d+-\d+-tps-\d+-\d+\.jpg - reject
+^https:\/\/img\.alicdn\.com\/imgextra\/i\d\/([a-zA-Z0-9_-]+)!!\d+-\d+-tps-\d+-\d+\.jpg - reject
 # > 大众点评 img.meituan.net,
 ^https:\/\/img\.meituan\.net\/dpmobile\/([a-fA-F0-9]+)\.jpg\.webp - reject
 # > 大师兄影视 sdk.alibaba.com,

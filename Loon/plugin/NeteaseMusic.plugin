@@ -5,23 +5,14 @@
 #!homepage = 
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/NeteaseCloudMusic.png
 
-[General]
-force-http-engine-hosts = 59.111.*:0
-# skip-proxy = 240.0.0.0/4
-# skip-proxy = 240.0.0.0/4, 59.111.179.213/32, 59.111.179.214/32, 59.111.160.195/32, 59.111.160.197/32
 
 [Rule]
-DOMAIN,iadmat.nosdn.127.net,REJECT
-DOMAIN,admusicpic.music.126.net,REJECT-IMG
-DOMAIN,iadmusicmat.music.126.net,REJECT-IMG
-DOMAIN,iadmusicmatvideo.music.126.net,REJECT-IMG
-# httpdns
-#DOMAIN,httpdns.n.netease.com,REJECT-DROP
-#IP-CIDR,115.236.121.195/32,REJECT-DROP,no-resolve
-#IP-CIDR,115.236.121.51/32,REJECT-DROP,no-resolve
-#IP-CIDR,59.111.239.61/32,REJECT,no-resolve
-#IP-CIDR,59.111.239.62/32,REJECT,no-resolve
-URL-REGEX, ^http:\/\/iadmusicmatvideo\.music\.126\.net, REJECT-VIDEO
+DOMAIN, gdt.qq.com, REJECT
+DOMAIN, httpdns.n.netease.com, REJECT
+DOMAIN, iadmat.nosdn.127.net, REJECT
+DOMAIN, iadmusicmat.music.126.net, REJECT
+DOMAIN, iadmusicmatvideo.music.126.net, REJECT
+DOMAIN-SUFFIX, 163jiasu.com, REJECT
 
 [Rewrite]
 # 开屏广告、开屏歌曲热评、搜索页下方横幅广告
@@ -45,5 +36,4 @@ URL-REGEX, ^http:\/\/iadmusicmatvideo\.music\.126\.net, REJECT-VIDEO
 ^https?:\/\/interface3\.music\.163\.com\/eapi\/v1\/content\/exposure\/comment\/banner\/get\? - reject-dict
 
 [MITM]
-hostname = interface*.music.163.com:0, httpdns.n.netease.com, 112.13.*, 59.111.*
-
+hostname = interface*.music.163.com, 112.13.*, 59.111.*

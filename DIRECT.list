@@ -1,14 +1,24 @@
 # direct
-
+# xsus
 DOMAIN,home.xsus.me,DIRECT
+
 DOMAIN,cook.yunyoujun.cn,DIRECT
 DOMAIN,busuanzi.ibruce.info,DIRECT
 DOMAIN,unpkg.com,DIRECT
 DOMAIN-SUFFIX,qianling.pw,DIRECT
+# remove
 DOMAIN,www.remove.bg,DIRECT
-DOMAIN-KEYWORD,ciyy,DIRECT
+# jinchengwu
 DOMAIN,www.777117.xyz
+# prpr
 DOMAIN-KEYWORD,prpr
+# deepl
 DOMAIN-SUFFIX,deepl.com
+# fishport
 DOMAIN-KEYWORD,fishport
+# ciyuan
+DOMAIN-KEYWORD,ciyy,DIRECT
 DOMAIN-SUFFIX,dearyou.one
+# nga
+DOMAIN,bugenzhao.com
+DOMAIN-SUFFIX,ngacn.cc

@@ -62,22 +62,22 @@ HOST, pagead2.googlesyndication.com, REJECT
 # > I
 # > J
 # > 今日头条
-HOST-SUFFIX,bytedance.com
-HOST-SUFFIX,id6.me
-HOST-SUFFIX,im-x.jd.com
-HOST-SUFFIX,miaozhen.com
-HOST,log3-normal-hl.toutiaoapi.com
+HOST-SUFFIX,bytedance.com, REJECT
+HOST-SUFFIX,id6.me, REJECT
+HOST-SUFFIX,im-x.jd.com, REJECT
+HOST-SUFFIX,miaozhen.com, REJECT
+HOST,log3-normal-hl.toutiaoapi.com, REJECT
 
 # > K
 # > 酷安
-HOST-SUFFIX,bugly.qq.com
-HOST-SUFFIX,umeng.com
-HOST-SUFFIX,shuzilm.com
-HOST-SUFFIX,umengcloud.com
-HOST,dm.toutiao.com
-HOST-SUFFIX,pglstatp-toutiao.com
-HOST-SUFFIX,pangolin-sdk-toutiao.com
-HOST-SUFFIX,ctobsnssdk.com
+HOST-SUFFIX,bugly.qq.com, REJECT
+HOST-SUFFIX,umeng.com, REJECT
+HOST-SUFFIX,shuzilm.com, REJECT
+HOST-SUFFIX,umengcloud.com, REJECT
+HOST,dm.toutiao.com, REJECT
+HOST-SUFFIX,pglstatp-toutiao.com, REJECT
+HOST-SUFFIX,pangolin-sdk-toutiao.com, REJECT
+HOST-SUFFIX,ctobsnssdk.com, REJECT
 # > 快手
 # HOST-SUFFIX,yximgs.com, REJECT
 HOST-SUFFIX,e.kuaishou.com, REJECT
@@ -100,8 +100,6 @@ HOST-SUFFIX,admobile.top, REJECT
 # > 蓝奏云
 HOST-SUFFIX, statics.woozooo.com, REJECT
 # M
-
-
 # > N
 # > NicoNico
 HOST, ads.nicovideo.jp, REJECT
@@ -110,11 +108,8 @@ HOST, ads.nicovideo.jp, REJECT
 HOST,acdn.adnxs.com,REJECT
 HOST,mediation.adnxs.com,REJECT
 HOST,sin3-ib.adnxs.com,REJECT
-
 # > P
-
 # > Q
-
 # QQ音乐广告
 HOST,tmeadcomm.y.qq.com, REJECT
 HOST,ad.tencentmusic.com, REJECT
@@ -124,10 +119,8 @@ HOST-SUFFIX,rqd.qq.com, REJECT
 HOST-SUFFIX,wup.imtt.qq.com, REJECT
 HOST-SUFFIX,e.qq.com, REJECT
 HOST-SUFFIX,beacon.qq.com, REJECT
-
 # > R
 # > S
-
 # > 搜狗
 HOST-SUFFIX,epro.sogou.com, REJECT
 HOST-SUFFIX,golden1.sogou.com, REJECT

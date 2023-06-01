@@ -70,7 +70,7 @@ HOST,log3-normal-hl.toutiaoapi.com, REJECT
 
 # > K
 # > 酷安
-HOST-SUFFIX,bugly.qq.com, REJECT
+HOST-SUFFIX,ios.bugly.qq.com, REJECT
 HOST-SUFFIX,umeng.com, REJECT
 HOST-SUFFIX,shuzilm.com, REJECT
 HOST-SUFFIX,umengcloud.com, REJECT
@@ -78,6 +78,8 @@ HOST,dm.toutiao.com, REJECT
 HOST-SUFFIX,pglstatp-toutiao.com, REJECT
 HOST-SUFFIX,pangolin-sdk-toutiao.com, REJECT
 HOST-SUFFIX,ctobsnssdk.com, REJECT
+HOST-SUFFIX,kepler.jd.com, REJECT
+HOST-SUFFIX,bytedance.com, REJECT
 # > 快手
 # HOST-SUFFIX,yximgs.com, REJECT
 HOST-SUFFIX,e.kuaishou.com, REJECT

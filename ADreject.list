@@ -437,11 +437,8 @@ HOST-SUFFIX,im64.jpush.cn, REJECT
 HOST-SUFFIX,im.jpush.cn, REJECT
 HOST-SUFFIX,jpush.html5.qq.com, REJECT
 # > 字节跳动
-HOST-SUFFIX,pangolin-sdk-toutiao.com, REJECT
-HOST-SUFFIX,pangolin-sdk-toutiao-b.com, REJECT
-HOST-SUFFIX,api-access.pangolin-sdk-toutiao-b.com, REJECT
-HOST,dsp.toutiao.com, REJECT
-HOST-suffix,pangolin.snssdk.com, REJECT
+HOST, ad.zijieapi.com, REJECT
+HOST-KEYWORD, -ad-sign.byteimg.com, REJECT
 # > 中国电信
 HOST,ad.21cn.com, REJECT
 HOST,ad.k.21cn.com, REJECT

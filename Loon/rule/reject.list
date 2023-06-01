@@ -77,99 +77,16 @@ DOMAIN, tpns.qq.com
 DOMAIN-SUFFIX,h-adashx.ut.taobao.com 
 DOMAIN-SUFFIX,apoll.m.taobao.com 
 # > 腾讯视频
-DOMAIN-suffix, tetrack.qq.com 
-DOMAIN-suffix, tpns.tencent.com 
-DOMAIN-suffix, api.poll.video.qq.com 
-DOMAIN-suffix, static-res.qq.com 
 DOMAIN, h.trace.qq.com 
-# >  腾讯
-DOMAIN-SUFFIX,news.ssp.qq.com 
-DOMAIN-SUFFIX,activeqq.3g.qq.com 
-DOMAIN-SUFFIX,ad.qq.com 
-DOMAIN-SUFFIX,adping.qq.com 
-DOMAIN-SUFFIX,adpm.app.qq.com 
-DOMAIN-SUFFIX,adrdir.qq.com 
-DOMAIN-SUFFIX,adsclick.qq.com 
-DOMAIN-SUFFIX,adsense.html5.qq.com 
-DOMAIN-SUFFIX,adsfile.qq.com 
-DOMAIN-SUFFIX,adsgroup.qq.com 
-DOMAIN-SUFFIX,adshmct.qq.com 
-DOMAIN-SUFFIX,adshmmsg.qq.com 
-DOMAIN-SUFFIX,adslvfile.qq.com 
-DOMAIN-SUFFIX,adslvseed.qq.com 
-DOMAIN-SUFFIX,adsolution.imtt.qq.com 
-DOMAIN-SUFFIX,adsqqclick.qq.com 
-DOMAIN-SUFFIX,adstextview.qq.com 
-DOMAIN-SUFFIX,adsview.qq.com 
-DOMAIN-SUFFIX,adsview2.qq.com 
-DOMAIN-SUFFIX,adv.app.qq.com 
-DOMAIN-SUFFIX,adver.qq.com 
-DOMAIN-SUFFIX,analy.qq.com 
-DOMAIN-SUFFIX,c.gj.qq.com 
-DOMAIN-SUFFIX,d3g.qq.com 
-DOMAIN-SUFFIX,download.sj.qq.com 
-DOMAIN-SUFFIX,dp3.qq.com 
-DOMAIN-SUFFIX,game.html5.qq.com 
-DOMAIN-SUFFIX,ggmmqq.com 
-DOMAIN-SUFFIX,j.wit.qq.com 
-DOMAIN-SUFFIX,jqmt.qq.com 
-DOMAIN-SUFFIX,jsqmt.qq.com 
-DOMAIN-SUFFIX,livep.l.ott.video.qq.com 
-DOMAIN-SUFFIX,lives.l.ott.video.qq.com 
-DOMAIN-SUFFIX,masdk.3g.qq.com 
-DOMAIN-SUFFIX,mfm.video.qq.com 
-DOMAIN-SUFFIX,mini2015.qq.com 
-DOMAIN-SUFFIX,monitor.uu.qq.com 
-DOMAIN-SUFFIX,mqqad.cs0309.html5.qq.com 
-DOMAIN-SUFFIX,mqqad.html5.qq.com 
-DOMAIN-SUFFIX,mqqadr.reader.qq.com 
-DOMAIN-SUFFIX,news.mpush.qq.com 
-DOMAIN-SUFFIX,news-l.play.ott.video.qq.com 
-DOMAIN-SUFFIX,novelsns.html5.qq.com 
-DOMAIN-SUFFIX,oth.update.mdt.qq.com 
-DOMAIN-SUFFIX,pcbrowser.dd.qq.com 
-DOMAIN-SUFFIX,pmir.3g.qq.com 
-DOMAIN-SUFFIX,pvstat.html5.qq.com 
-DOMAIN-SUFFIX,qqshow2-item.qq.com 
-DOMAIN-SUFFIX,scdown.qq.com 
-DOMAIN-SUFFIX,setting.snswin.qq.com 
-DOMAIN-SUFFIX,sngmta.qq.com 
-DOMAIN-SUFFIX,t.sj.qq.com 
-DOMAIN-SUFFIX,ta.qq.com 
-DOMAIN-SUFFIX,tcss.qq.com 
-DOMAIN-SUFFIX,tpush.html5.qq.com 
-DOMAIN-SUFFIX,updatecenter.qq.com 
-DOMAIN-SUFFIX,video.ureport.push.qq.com 
-DOMAIN-SUFFIX,vlive.qqvideo.tc.qq.com 
-DOMAIN-SUFFIX,wap.mpush.qq.com 
-DOMAIN-SUFFIX,ws.sj.qq.com 
-DOMAIN-SUFFIX,wxsnsdy.tc.qq.com 
-DOMAIN-SUFFIX,wxsnsdy.video.qq.com 
-DOMAIN-SUFFIX,adsmind.tc.qq.com 
-DOMAIN-SUFFIX,btrace.qq.com 
-DOMAIN-SUFFIX,mtrace.qq.com 
-DOMAIN-SUFFIX,pingma.qq.com 
-DOMAIN-SUFFIX,pingtcss.qq.com 
-DOMAIN-SUFFIX,tajs.qq.com 
-DOMAIN-SUFFIX,wxsnsdy.wxs.qq.com 
-DOMAIN-SUFFIX,wxsnsdythumb.wxs.qq.com 
-DOMAIN-SUFFIX,fusion.qq.com 
-DOMAIN-SUFFIX,ios.bugly.qq.com 
-DOMAIN,safebrowsing.urlsec.qq.com 
-DOMAIN-SUFFIX,oth.str.mdt.qq.com 
-DOMAIN-SUFFIX,l.qq.com 
-DOMAIN,adsmind.apdcdn.tc.qq.com 
-DOMAIN,adsmind.ugdtimg.com 
-DOMAIN,livep.l.t002.ottcn.com 
-DOMAIN,pgdt.ugdtimg.com 
-DOMAIN,splashqqlive.gtimg.com 
-DOMAIN,vv.video.qq.com 
-DOMAIN,wa.gtimg.com 
-DOMAIN,g.koowo.com 
-# > The Paper
-DOMAIN,admonitor.thepaper.cn 
-DOMAIN,adpai.thepaper.cn 
-DOMAIN,imgadpai.thepaper.cn 
+DOMAIN-SUFFIX,dp3.qq.com
+DOMAIN-SUFFIX,rqd.qq.com
+DOMAIN-SUFFIX,mtrace.qq.com
+DOMAIN-SUFFIX,l.qq.com
+DOMAIN-SUFFIX,oth.update.mdt.qq.com
+DOMAIN-SUFFIX, tpns.tencent.com
+DOMAIN-SUFFIX,beacon.qq.com
+DOMAIN,vv.video.qq.com
+
 # > U
 # > V
 # > W
@@ -181,20 +98,14 @@ DOMAIN-SUFFIX,bingads.microsoft.com
 DOMAIN-SUFFIX,rads.msn.com 
 DOMAIN,mobileads.msn.com 
 # > 网易
-DOMAIN-SUFFIX,dsp.youdao.com 
-DOMAIN-SUFFIX,union.youdao.com 
-DOMAIN,ad.bn.netease.com 
-DOMAIN,ad.yixin.im 
-DOMAIN,admusicpic.music.126.net 
-DOMAIN,g1.163.com 
-DOMAIN,gorgon.youdao.com 
-DOMAIN,iad.g.163.com 
-DOMAIN,impservice.dictapp.youdao.com 
-DOMAIN,impservice.youdao.com 	
-DOMAIN,n.3g.163.com 
-DOMAIN,nex.163.com 
-DOMAIN,yt-adp.nosdn.127.net 
-DOMAIN,yt-adp.ws.126.net 
+DOMAIN,g1.163.com
+DOMAIN-SUFFIX,e.qq.com
+DOMAIN,qzs.gdtimg.com
+DOMAIN,adx-cn.anythinktech.com
+DOMAIN,nex.163.com
+DOMAIN-SUFFIX,gdt.qq.com
+DOMAIN,gorgon.youdao.com
+DOMAIN,tk.anythinktech.com
 
 # > X
 # > 小米
@@ -244,10 +155,10 @@ DOMAIN,tracklog.58.com
 DOMAIN-SUFFIX,p1.adkwai.com 
 DOMAIN-SUFFIX,rayjump.com 
 DOMAIN,bgg.baidu.com
-DOMAIN,tk.anythinktech.com
+# DOMAIN,tk.anythinktech.com
 DOMAIN,static.yximgs.com
-DOMAIN,qzs.gdtimg.com
-DOMAIN,adx-cn.anythinktech.com
+#DOMAIN,qzs.gdtimg.com
+#DOMAIN,adx-cn.anythinktech.com
 DOMAIN,api.anythinktech.com
 DOMAIN-SUFFIX,rayjump.com
 # > DOMAIN,h.trace,qq.com

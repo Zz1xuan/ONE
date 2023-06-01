@@ -116,9 +116,6 @@ DOMAIN,u1.img.mobile.sina.cn
 DOMAIN,sax.sina.com.cn 
 DOMAIN,saxs.sina.com.cn 
 DOMAIN,saxn.sina.com.cn 
-# > 迅雷
-DOMAIN,adsp.xunlei.com 
-DOMAIN,etl.xlmc.sandai.net 
 # > 喜马拉雅
 DOMAIN,ad.ximalaya.com 
 DOMAIN,adbs.ximalaya.com 
@@ -128,7 +125,10 @@ DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,adbehavior.ximalaya.com 
 DOMAIN,adsebs.ximalaya.com 
 DOMAIN,adwbs.ximalaya.com 
-
+# 迅雷 解除版权限制
+;DOMAIN, hub5btmain.v6.shub.sandai.net
+;DOMAIN, hub5emu.v6.shub.sandai.net
+;DOMAIN, hub5idx.v6.shub.sandai.net
 # Y
 # > 云闪付 开屏
 DOMAIN, ads.95516.com
@@ -138,22 +138,19 @@ DOMAIN, sdk-conf.getui.com
 DOMAIN, switch.cup.com.cn
 DOMAIN, tysdk.95516.com
 # > 优酷
-DOMAIN-SUFFIX,atm.youku.com 
-DOMAIN,ad.mobile.youku.com 
-DOMAIN,iyes.youku.com 
-DOMAIN,pl.cp31.ott.cibntv.net 
-
- 
+DOMAIN-SUFFIX,atm.youku.com
+DOMAIN,ad.mobile.youku.com
+DOMAIN,iyes.youku.com
+DOMAIN,pl.cp31.ott.cibntv.net
 # > 字节跳动
 DOMAIN, ad.zijieapi.com
 DOMAIN-KEYWORD, -ad-sign.byteimg.com
-
 # >58
-DOMAIN,track.58.com 
-DOMAIN,tracklog.58.com 
+DOMAIN,track.58.com
+DOMAIN,tracklog.58.com
 # > 易校园
-DOMAIN-SUFFIX,p1.adkwai.com 
-DOMAIN-SUFFIX,rayjump.com 
+DOMAIN-SUFFIX,p1.adkwai.com
+DOMAIN-SUFFIX,rayjump.com
 DOMAIN,bgg.baidu.com
 # DOMAIN,tk.anythinktech.com
 DOMAIN,static.yximgs.com
@@ -161,8 +158,6 @@ DOMAIN,static.yximgs.com
 #DOMAIN,adx-cn.anythinktech.com
 DOMAIN,api.anythinktech.com
 DOMAIN-SUFFIX,rayjump.com
-# > DOMAIN,h.trace,qq.com
-DOMAIN,y.tcp.push.mob.com	
 #金融
 DOMAIN,punion.tjjt360.com
 #有道

@@ -1,10 +1,3 @@
-# 网易云
-DOMAIN-SUFFIX,gdt.qq.com 
-DOMAIN,httpdns.n.netease.com
-DOMAIN,iadmat.nosdn.127.net 
-DOMAIN,iadmusicmat.music.126.net 
-DOMAIN,iadmusicmatvideo.music.126.net 
-DOMAIN-SUFFIX,163jiasu.com
 
 # ChatGPT
 DOMAIN, o33249.ingest.sentry.io
@@ -21,12 +14,6 @@ DOMAIN,mediation.adnxs.com
 DOMAIN,sin3-ib.adnxs.com
 # > B
 # > 哔哩哔哩
-DOMAIN-SUFFIX,cm.bilibili.com 
-DOMAIN-keyword, api.sobot.com 
-DOMAIN-SUFFIX,cm.ad.bilibili.com 
-DOMAIN-SUFFIX,cm.adcommon.bilibili.com 
-DOMAIN-SUFFIX,cm.game.bilibili.com 
-DOMAIN-SUFFIX,cm.track.biligame.bilibili.com 
 DOMAIN, mall.bilibili.com
 DOMAIN, passport.bilibili.com
 # > 百词斩
@@ -44,14 +31,7 @@ DOMAIN, lc.map.baidu.com
 DOMAIN-suffix, atrace.chelaile.net.cn 
 DOMAIN, logs.chelaile.net.cn 
 DOMAIN, ad.chelaile.net.cn 
-# > 创维
-DOMAIN-SUFFIX,hoisin.coocaa.com 
-DOMAIN-SUFFIX,hoisin.coocaatv.com 
-DOMAIN,data-hoisin.coocaa.com 
 # > D
-# > 懂车帝
-DOMAIN, p3-pack.byteimg.com 
-DOMAIN, p6-pack.byteimg.com 
 # > E
 # > F
 # > G
@@ -63,7 +43,6 @@ DOMAIN, free-aos-cdn-image.amap.com
 # > HDO
 DOMAIN-SUFFIX, applovin.com,REJECT
 DOMAIN-SUFFIX, applvn.com,REJECT
-#DOMAIN-SUFFIX, doubleclick.net,REJECT
 DOMAIN, googleads.g.doubleclick-cn.net 
 DOMAIN, googleads.g.doubleclick.net 
 DOMAIN, pubads.g.doubleclick.net 
@@ -74,33 +53,7 @@ DOMAIN,adx-api.hupu.com
 DOMAIN-SUFFIX,goblin.hupu.com 
 # > I
 # > J
-# > 今日头条
-DOMAIN-SUFFIX, ad.toutiao.com 
-DOMAIN-SUFFIX, clk.gentags.net 
-DOMAIN-SUFFIX, dm.toutiao.com 
-DOMAIN-SUFFIX, dm.pstatp.com 
-DOMAIN-SUFFIX, bytedance.com 
-DOMAIN-SUFFIX, uop.umeng.com 
-DOMAIN-SUFFIX, policy.jd.com 
-DOMAIN-SUFFIX, kepler.jd.com 
-DOMAIN-SUFFIX, bdsp.x.jd.com 
-DOMAIN-SUFFIX, keplerapi.jd.com 
-DOMAIN-SUFFIX, m.suning.com 
-DOMAIN-SUFFIX, adshare.toutiao.com 
-DOMAIN-SUFFIX, tunion-api.m.taobao.com 
-DOMAIN-SUFFIX, mapi.m.jd.com 
-DOMAIN-SUFFIX, s1.pstatp.com 
-DOMAIN-SUFFIX, s2.pstatp.com 
-DOMAIN-SUFFIX, s3.pstatp.com 
-DOMAIN-SUFFIX, a3.pstatp.com 
-DOMAIN-SUFFIX, a3.bytecdn.cn 
-DOMAIN-SUFFIX, ichannel.snssdk.com 
 # > K
-# > 快手
-DOMAIN-SUFFIX,e.kuaishou.com 
-DOMAIN-SUFFIX,cm.downloader.commercial.kuaishou.com 
-DOMAIN-SUFFIX,cm.ad.gifshow.com 
-DOMAIN-SUFFIX,cm.kwad.com 
 # > 酷我音乐
 DOMAIN, ad.tencentmusic.com
 DOMAIN, g.koowo.com
@@ -120,21 +73,6 @@ DOMAIN, ads.nicovideo.jp
 # > O
 # > OPPO
 # > P
-# > PPTV
-DOMAIN,ads.aplus.pptv.com 
-DOMAIN,ads.aplusapi.pptv.com 
-DOMAIN,asimgs.pplive.cn 
-DOMAIN,de.as.pptv.com 
-# > Photoable
-DOMAIN,regist.fotoable.com 
-DOMAIN,cdn.adapi.fotoable.com 
-# > PConline
-DOMAIN,ad-analysis.pconline.com.cn 
-DOMAIN,iad0ssl.pcauto.com.cn 
-DOMAIN,iad0ssl.pconline.com.cn 
-DOMAIN,imgad0.pcauto.com.cn 
-DOMAIN,imgad0.pconline.com.cn 
-DOMAIN,ivy.pchouse.com.cn 
 # > Q
 # QQ音乐广告
 DOMAIN,tmeadcomm.y.qq.com 
@@ -147,32 +85,13 @@ DOMAIN-SUFFIX,e.qq.com
 DOMAIN-SUFFIX,beacon.qq.com 
 # > R
 # > S
-# > 搜狗
-DOMAIN-SUFFIX,epro.sogou.com 
-DOMAIN-SUFFIX,golden1.sogou.com 
-DOMAIN-SUFFIX,inte.sogou.com 
-DOMAIN-SUFFIX,inte.sogoucdn.com 
-DOMAIN-SUFFIX,lu.sogoucdn.com 
-DOMAIN-SUFFIX,theta.sogoucdn.com 
-DOMAIN-SUFFIX,uranus.sogou.com 
-DOMAIN-SUFFIX,123.sogou.com 
-DOMAIN-SUFFIX,a1click.cpc.sogou.com 
-DOMAIN-SUFFIX,adsence.sogou.com 
-DOMAIN-SUFFIX,adstream.123.sogoucdn.com 
-DOMAIN-SUFFIX,amfi.gou.sogou.com 
-DOMAIN-SUFFIX,athena.wan.sogou.com 
-DOMAIN-SUFFIX,bazinga.mse.sogou.com 
-DOMAIN-SUFFIX,brand.sogou.com 
-DOMAIN-SUFFIX,bsiet.husky.sogou.com 
-# > 搜狐
-DOMAIN-SUFFIX,ad.sohu.com 
-DOMAIN-SUFFIX,ads.sohu.com 
-DOMAIN-SUFFIX,aty.sohu.com 
-DOMAIN-SUFFIX,hui.sohu.com 
+
 # > Snapchat
 DOMAIN,ads.snapchat.com 
 DOMAIN,adsapi.snapchat.com 
 # > T
+# 腾讯 无法使用的推送服务
+HOST, tpns.qq.com, REJECT
 # > 淘宝
 DOMAIN-SUFFIX,h-adashx.ut.taobao.com 
 DOMAIN-SUFFIX,apoll.m.taobao.com 
@@ -339,20 +258,7 @@ DOMAIN,pl.cp31.ott.cibntv.net
 # > 字节跳动
 DOMAIN, ad.zijieapi.com
 DOMAIN-KEYWORD, -ad-sign.byteimg.com
-# > 中国电信
-DOMAIN,ad.21cn.com 
-DOMAIN,ad.k.21cn.com 
-DOMAIN,admarket.21cn.com 
-DOMAIN,adshows.21cn.com 
 
-# Malware
-# > Huawei AspiegelBot
-IP-CIDR,114.119.160.0/21,no-resolve 
-DOMAIN-SUFFIX,kuaizip.com 
-# > MacKeeper
-DOMAIN-SUFFIX,zryydi.com 
-# > Adobe Flash China Special Edition
-DOMAIN,geo2.adobe.com
 # >58
 DOMAIN,track.58.com 
 DOMAIN,tracklog.58.com 
@@ -375,8 +281,3 @@ DOMAIN,staticsns.cdn.bcebos.com
 # > 芒果
 DOMAIN,mobile.da.mgtv.com
 
-# > ChinaMobile
-IP-CIDR,120.240.95.37/32,no-resolve 
-# > Dr.Peng
-# IP-CIDR,10.72.25.0/24,no-resolve
-IP-CIDR,211.161.101.110/32,no-resolve

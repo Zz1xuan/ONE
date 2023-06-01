@@ -69,7 +69,15 @@ HOST-SUFFIX,miaozhen.com
 HOST,log3-normal-hl.toutiaoapi.com
 
 # > K
-
+# > 酷安
+HOST-SUFFIX,bugly.qq.com
+HOST-SUFFIX,umeng.com
+HOST-SUFFIX,shuzilm.com
+HOST-SUFFIX,umengcloud.com
+HOST,dm.toutiao.com
+HOST-SUFFIX,pglstatp-toutiao.com
+HOST-SUFFIX,pangolin-sdk-toutiao.com
+HOST-SUFFIX,ctobsnssdk.com
 # > 快手
 # HOST-SUFFIX,yximgs.com, REJECT
 HOST-SUFFIX,e.kuaishou.com, REJECT

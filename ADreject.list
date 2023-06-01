@@ -77,7 +77,7 @@ HOST-SUFFIX,umengcloud.com, REJECT
 HOST,dm.toutiao.com, REJECT
 HOST-SUFFIX,pglstatp-toutiao.com, REJECT
 HOST-SUFFIX,pangolin-sdk-toutiao.com, REJECT
-HOST-SUFFIX,pangolin-sdk-toutiao.com-b, REJECT
+HOST-SUFFIX,pangolin-sdk-toutiao-b.com, REJECT
 HOST-SUFFIX,ctobsnssdk.com, REJECT
 HOST-SUFFIX,kepler.jd.com, REJECT
 HOST-SUFFIX,bytedance.com, REJECT

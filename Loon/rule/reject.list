@@ -49,12 +49,6 @@ DOMAIN, pubads.g.doubleclick.net
 DOMAIN, pagead2.googlesyndication.com 
 # > I
 # > J
-# > 今日头条
-DOMAIN-SUFFIX,bytedance.com
-DOMAIN-SUFFIX,id6.me
-DOMAIN-SUFFIX,im-x.jd.com
-DOMAIN-SUFFIX,miaozhen.com
-DOMAIN,log3-normal-hl.toutiaoapi.com
 # > K
 # > L
 # > 两步路
@@ -150,7 +144,7 @@ DOMAIN,iyes.youku.com
 DOMAIN,pl.cp31.ott.cibntv.net
 # > 字节跳动
 DOMAIN, ad.zijieapi.com
-DOMAIN-KEYWORD, -ad-sign.byteimg.com
+DOMAIN-SUFFIX, ad-sign.byteimg.com
 # >58
 DOMAIN,track.58.com
 DOMAIN,tracklog.58.com

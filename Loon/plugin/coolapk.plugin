@@ -7,7 +7,7 @@
 
 [Rewrite]
 ^https?:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch - reject-dict
-^https?://api-access\.pangolin-sdk-toutiao\.com/api/ad/union/sdk - reject
+^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk - reject
 
 [Script]
 http-response ^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/indexV8|page\/dataList) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/coolapk.js, requires-body = true, tag = 移除开屏广告 

@@ -51,15 +51,16 @@ DOMAIN, pagead2.googlesyndication.com
 # > J
 # > K
 # > 酷安
-DOMAIN-SUFFIX,bugly.qq.com
+DOMAIN-SUFFIX,ios.bugly.qq.com
+DOMAIN-SUFFIX,kepler.jd.com
 DOMAIN-SUFFIX,umeng.com
 DOMAIN-SUFFIX,shuzilm.com
 DOMAIN-SUFFIX,umengcloud.com
-DOMAIN,dm.toutiao.com
+DOMAIN-SUFFIX,dm.toutiao.com
 DOMAIN-SUFFIX,pglstatp-toutiao.com
 DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
 DOMAIN-SUFFIX,ctobsnssdk.com
-
+DOMAIN-SUFFIX,bytedance.com
 # > L
 # > 两步路
 DOMAIN-SUFFIX,admobile.top 
@@ -93,7 +94,7 @@ DOMAIN-SUFFIX,rqd.qq.com
 DOMAIN-SUFFIX,mtrace.qq.com
 DOMAIN-SUFFIX,l.qq.com
 DOMAIN-SUFFIX,oth.update.mdt.qq.com
-DOMAIN-SUFFIX, tpns.tencent.com
+DOMAIN-SUFFIX,tpns.tencent.com
 DOMAIN-SUFFIX,beacon.qq.com
 DOMAIN,vv.video.qq.com
 

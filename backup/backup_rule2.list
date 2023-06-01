@@ -1,0 +1,382 @@
+# 网易云
+DOMAIN-SUFFIX,gdt.qq.com 
+DOMAIN,httpdns.n.netease.com
+DOMAIN,iadmat.nosdn.127.net 
+DOMAIN,iadmusicmat.music.126.net 
+DOMAIN,iadmusicmatvideo.music.126.net 
+DOMAIN-SUFFIX,163jiasu.com
+
+# ChatGPT
+DOMAIN, o33249.ingest.sentry.io
+
+# > 彩云天气
+DOMAIN, ad.cyapi.cn
+
+# > 闲鱼
+DOMAIN,aid.m.taobao.com
+
+# > Outlook
+DOMAIN,acdn.adnxs.com
+DOMAIN,mediation.adnxs.com
+DOMAIN,sin3-ib.adnxs.com
+# > B
+# > 哔哩哔哩
+DOMAIN-SUFFIX,cm.bilibili.com 
+DOMAIN-keyword, api.sobot.com 
+DOMAIN-SUFFIX,cm.ad.bilibili.com 
+DOMAIN-SUFFIX,cm.adcommon.bilibili.com 
+DOMAIN-SUFFIX,cm.game.bilibili.com 
+DOMAIN-SUFFIX,cm.track.biligame.bilibili.com 
+DOMAIN, mall.bilibili.com
+DOMAIN, passport.bilibili.com
+# > 百词斩
+DOMAIN,advertise.baicizhan.com 
+DOMAIN,advertise.baicizhan.org 
+# 百度
+DOMAIN-SUFFIX, pos.baidu.com
+# 百度地图
+DOMAIN, afd.baidu.com
+DOMAIN, afdconf.baidu.com
+DOMAIN, httpdns.baidubce.com
+DOMAIN, lc.map.baidu.com
+# > C
+# > 车来了（包括小程序）
+DOMAIN-suffix, atrace.chelaile.net.cn 
+DOMAIN, logs.chelaile.net.cn 
+DOMAIN, ad.chelaile.net.cn 
+# > 创维
+DOMAIN-SUFFIX,hoisin.coocaa.com 
+DOMAIN-SUFFIX,hoisin.coocaatv.com 
+DOMAIN,data-hoisin.coocaa.com 
+# > D
+# > 懂车帝
+DOMAIN, p3-pack.byteimg.com 
+DOMAIN, p6-pack.byteimg.com 
+# > E
+# > F
+# > G
+# > 高德
+DOMAIN, amap-aos-info-nogw.amap.com 
+DOMAIN, awaken.amap.com 
+DOMAIN, free-aos-cdn-image.amap.com 
+# > H
+# > HDO
+DOMAIN-SUFFIX, applovin.com,REJECT
+DOMAIN-SUFFIX, applvn.com,REJECT
+#DOMAIN-SUFFIX, doubleclick.net,REJECT
+DOMAIN, googleads.g.doubleclick-cn.net 
+DOMAIN, googleads.g.doubleclick.net 
+DOMAIN, pubads.g.doubleclick.net 
+DOMAIN, pagead2.googlesyndication.com 
+# > 虎扑
+DOMAIN,adx.hupu.com 
+DOMAIN,adx-api.hupu.com 
+DOMAIN-SUFFIX,goblin.hupu.com 
+# > I
+# > J
+# > 今日头条
+DOMAIN-SUFFIX, ad.toutiao.com 
+DOMAIN-SUFFIX, clk.gentags.net 
+DOMAIN-SUFFIX, dm.toutiao.com 
+DOMAIN-SUFFIX, dm.pstatp.com 
+DOMAIN-SUFFIX, bytedance.com 
+DOMAIN-SUFFIX, uop.umeng.com 
+DOMAIN-SUFFIX, policy.jd.com 
+DOMAIN-SUFFIX, kepler.jd.com 
+DOMAIN-SUFFIX, bdsp.x.jd.com 
+DOMAIN-SUFFIX, keplerapi.jd.com 
+DOMAIN-SUFFIX, m.suning.com 
+DOMAIN-SUFFIX, adshare.toutiao.com 
+DOMAIN-SUFFIX, tunion-api.m.taobao.com 
+DOMAIN-SUFFIX, mapi.m.jd.com 
+DOMAIN-SUFFIX, s1.pstatp.com 
+DOMAIN-SUFFIX, s2.pstatp.com 
+DOMAIN-SUFFIX, s3.pstatp.com 
+DOMAIN-SUFFIX, a3.pstatp.com 
+DOMAIN-SUFFIX, a3.bytecdn.cn 
+DOMAIN-SUFFIX, ichannel.snssdk.com 
+# > K
+# > 快手
+DOMAIN-SUFFIX,e.kuaishou.com 
+DOMAIN-SUFFIX,cm.downloader.commercial.kuaishou.com 
+DOMAIN-SUFFIX,cm.ad.gifshow.com 
+DOMAIN-SUFFIX,cm.kwad.com 
+# > 酷我音乐
+DOMAIN, ad.tencentmusic.com
+DOMAIN, g.koowo.com
+DOMAIN, mobilead.kuwo.cn
+DOMAIN, rich.kuwo.cn
+DOMAIN, tmead.y.qq.com
+DOMAIN, tmeadcomm.y.qq.com
+# L
+# > 两步路
+DOMAIN-SUFFIX,admobile.top 
+# > 蓝奏云
+DOMAIN-SUFFIX, statics.woozooo.com 
+# M
+# > N
+# > NicoNico
+DOMAIN, ads.nicovideo.jp 
+# > O
+# > OPPO
+# > P
+# > PPTV
+DOMAIN,ads.aplus.pptv.com 
+DOMAIN,ads.aplusapi.pptv.com 
+DOMAIN,asimgs.pplive.cn 
+DOMAIN,de.as.pptv.com 
+# > Photoable
+DOMAIN,regist.fotoable.com 
+DOMAIN,cdn.adapi.fotoable.com 
+# > PConline
+DOMAIN,ad-analysis.pconline.com.cn 
+DOMAIN,iad0ssl.pcauto.com.cn 
+DOMAIN,iad0ssl.pconline.com.cn 
+DOMAIN,imgad0.pcauto.com.cn 
+DOMAIN,imgad0.pconline.com.cn 
+DOMAIN,ivy.pchouse.com.cn 
+# > Q
+# QQ音乐广告
+DOMAIN,tmeadcomm.y.qq.com 
+DOMAIN,ad.tencentmusic.com 
+DOMAIN,adstats.tencentmusic.com 
+DOMAIN,tmead.y.qq.com 
+DOMAIN-SUFFIX,rqd.qq.com 
+DOMAIN-SUFFIX,wup.imtt.qq.com 
+DOMAIN-SUFFIX,e.qq.com 
+DOMAIN-SUFFIX,beacon.qq.com 
+# > R
+# > S
+# > 搜狗
+DOMAIN-SUFFIX,epro.sogou.com 
+DOMAIN-SUFFIX,golden1.sogou.com 
+DOMAIN-SUFFIX,inte.sogou.com 
+DOMAIN-SUFFIX,inte.sogoucdn.com 
+DOMAIN-SUFFIX,lu.sogoucdn.com 
+DOMAIN-SUFFIX,theta.sogoucdn.com 
+DOMAIN-SUFFIX,uranus.sogou.com 
+DOMAIN-SUFFIX,123.sogou.com 
+DOMAIN-SUFFIX,a1click.cpc.sogou.com 
+DOMAIN-SUFFIX,adsence.sogou.com 
+DOMAIN-SUFFIX,adstream.123.sogoucdn.com 
+DOMAIN-SUFFIX,amfi.gou.sogou.com 
+DOMAIN-SUFFIX,athena.wan.sogou.com 
+DOMAIN-SUFFIX,bazinga.mse.sogou.com 
+DOMAIN-SUFFIX,brand.sogou.com 
+DOMAIN-SUFFIX,bsiet.husky.sogou.com 
+# > 搜狐
+DOMAIN-SUFFIX,ad.sohu.com 
+DOMAIN-SUFFIX,ads.sohu.com 
+DOMAIN-SUFFIX,aty.sohu.com 
+DOMAIN-SUFFIX,hui.sohu.com 
+# > Snapchat
+DOMAIN,ads.snapchat.com 
+DOMAIN,adsapi.snapchat.com 
+# > T
+# > 淘宝
+DOMAIN-SUFFIX,h-adashx.ut.taobao.com 
+DOMAIN-SUFFIX,apoll.m.taobao.com 
+# > TalkingData
+DOMAIN-SUFFIX,cpatrk.net 
+# > 腾讯视频
+DOMAIN-suffix, tetrack.qq.com 
+DOMAIN-suffix, tpns.tencent.com 
+DOMAIN-suffix, api.poll.video.qq.com 
+DOMAIN-suffix, static-res.qq.com 
+DOMAIN, h.trace.qq.com 
+# >  腾讯
+DOMAIN-SUFFIX,news.ssp.qq.com 
+DOMAIN-SUFFIX,activeqq.3g.qq.com 
+DOMAIN-SUFFIX,ad.qq.com 
+DOMAIN-SUFFIX,adping.qq.com 
+DOMAIN-SUFFIX,adpm.app.qq.com 
+DOMAIN-SUFFIX,adrdir.qq.com 
+DOMAIN-SUFFIX,adsclick.qq.com 
+DOMAIN-SUFFIX,adsense.html5.qq.com 
+DOMAIN-SUFFIX,adsfile.qq.com 
+DOMAIN-SUFFIX,adsgroup.qq.com 
+DOMAIN-SUFFIX,adshmct.qq.com 
+DOMAIN-SUFFIX,adshmmsg.qq.com 
+DOMAIN-SUFFIX,adslvfile.qq.com 
+DOMAIN-SUFFIX,adslvseed.qq.com 
+DOMAIN-SUFFIX,adsolution.imtt.qq.com 
+DOMAIN-SUFFIX,adsqqclick.qq.com 
+DOMAIN-SUFFIX,adstextview.qq.com 
+DOMAIN-SUFFIX,adsview.qq.com 
+DOMAIN-SUFFIX,adsview2.qq.com 
+DOMAIN-SUFFIX,adv.app.qq.com 
+DOMAIN-SUFFIX,adver.qq.com 
+DOMAIN-SUFFIX,analy.qq.com 
+DOMAIN-SUFFIX,c.gj.qq.com 
+DOMAIN-SUFFIX,d3g.qq.com 
+DOMAIN-SUFFIX,download.sj.qq.com 
+DOMAIN-SUFFIX,dp3.qq.com 
+DOMAIN-SUFFIX,game.html5.qq.com 
+DOMAIN-SUFFIX,ggmmqq.com 
+DOMAIN-SUFFIX,j.wit.qq.com 
+DOMAIN-SUFFIX,jqmt.qq.com 
+DOMAIN-SUFFIX,jsqmt.qq.com 
+DOMAIN-SUFFIX,livep.l.ott.video.qq.com 
+DOMAIN-SUFFIX,lives.l.ott.video.qq.com 
+DOMAIN-SUFFIX,masdk.3g.qq.com 
+DOMAIN-SUFFIX,mfm.video.qq.com 
+DOMAIN-SUFFIX,mini2015.qq.com 
+DOMAIN-SUFFIX,monitor.uu.qq.com 
+DOMAIN-SUFFIX,mqqad.cs0309.html5.qq.com 
+DOMAIN-SUFFIX,mqqad.html5.qq.com 
+DOMAIN-SUFFIX,mqqadr.reader.qq.com 
+DOMAIN-SUFFIX,news.mpush.qq.com 
+DOMAIN-SUFFIX,news-l.play.ott.video.qq.com 
+DOMAIN-SUFFIX,novelsns.html5.qq.com 
+DOMAIN-SUFFIX,oth.update.mdt.qq.com 
+DOMAIN-SUFFIX,pcbrowser.dd.qq.com 
+DOMAIN-SUFFIX,pmir.3g.qq.com 
+DOMAIN-SUFFIX,pvstat.html5.qq.com 
+DOMAIN-SUFFIX,qqshow2-item.qq.com 
+DOMAIN-SUFFIX,scdown.qq.com 
+DOMAIN-SUFFIX,setting.snswin.qq.com 
+DOMAIN-SUFFIX,sngmta.qq.com 
+DOMAIN-SUFFIX,t.sj.qq.com 
+DOMAIN-SUFFIX,ta.qq.com 
+DOMAIN-SUFFIX,tcss.qq.com 
+DOMAIN-SUFFIX,tpush.html5.qq.com 
+DOMAIN-SUFFIX,updatecenter.qq.com 
+DOMAIN-SUFFIX,video.ureport.push.qq.com 
+DOMAIN-SUFFIX,vlive.qqvideo.tc.qq.com 
+DOMAIN-SUFFIX,wap.mpush.qq.com 
+DOMAIN-SUFFIX,ws.sj.qq.com 
+DOMAIN-SUFFIX,wxsnsdy.tc.qq.com 
+DOMAIN-SUFFIX,wxsnsdy.video.qq.com 
+DOMAIN-SUFFIX,adsmind.tc.qq.com 
+DOMAIN-SUFFIX,btrace.qq.com 
+DOMAIN-SUFFIX,mtrace.qq.com 
+DOMAIN-SUFFIX,pingma.qq.com 
+DOMAIN-SUFFIX,pingtcss.qq.com 
+DOMAIN-SUFFIX,tajs.qq.com 
+DOMAIN-SUFFIX,wxsnsdy.wxs.qq.com 
+DOMAIN-SUFFIX,wxsnsdythumb.wxs.qq.com 
+DOMAIN-SUFFIX,fusion.qq.com 
+DOMAIN-SUFFIX,ios.bugly.qq.com 
+DOMAIN,safebrowsing.urlsec.qq.com 
+DOMAIN-SUFFIX,oth.str.mdt.qq.com 
+DOMAIN-SUFFIX,l.qq.com 
+DOMAIN,adsmind.apdcdn.tc.qq.com 
+DOMAIN,adsmind.ugdtimg.com 
+DOMAIN,livep.l.t002.ottcn.com 
+DOMAIN,pgdt.ugdtimg.com 
+DOMAIN,splashqqlive.gtimg.com 
+DOMAIN,vv.video.qq.com 
+DOMAIN,wa.gtimg.com 
+DOMAIN,g.koowo.com 
+# > The Paper
+DOMAIN,admonitor.thepaper.cn 
+DOMAIN,adpai.thepaper.cn 
+DOMAIN,imgadpai.thepaper.cn 
+# > U
+# > V
+# > W
+# > 微软
+DOMAIN-SUFFIX,ads.msn.com 
+DOMAIN-SUFFIX,ads1.msn.com 
+DOMAIN-SUFFIX,ads2.msn.com 
+DOMAIN-SUFFIX,bingads.microsoft.com 
+DOMAIN-SUFFIX,rads.msn.com 
+DOMAIN,mobileads.msn.com 
+# > 网易
+DOMAIN-SUFFIX,dsp.youdao.com 
+DOMAIN-SUFFIX,union.youdao.com 
+DOMAIN,ad.bn.netease.com 
+DOMAIN,ad.yixin.im 
+DOMAIN,admusicpic.music.126.net 
+DOMAIN,g1.163.com 
+DOMAIN,gorgon.youdao.com 
+DOMAIN,iad.g.163.com 
+DOMAIN,impservice.dictapp.youdao.com 
+DOMAIN,impservice.youdao.com 	
+DOMAIN,n.3g.163.com 
+DOMAIN,nex.163.com 
+DOMAIN,yt-adp.nosdn.127.net 
+DOMAIN,yt-adp.ws.126.net 
+
+# > X
+# > 小米
+DOMAIN,data.mistat.xiaomi.com 
+DOMAIN,tracking.intl.miui.com 
+# > 新浪
+DOMAIN-SUFFIX,beacon.sina.com.cn 
+DOMAIN,u1.img.mobile.sina.cn 
+DOMAIN,sax.sina.com.cn 
+DOMAIN,saxs.sina.com.cn 
+DOMAIN,saxn.sina.com.cn 
+# > 迅雷
+DOMAIN,adsp.xunlei.com 
+DOMAIN,etl.xlmc.sandai.net 
+# > 喜马拉雅
+DOMAIN,ad.ximalaya.com 
+DOMAIN,adbs.ximalaya.com 
+DOMAIN,adse.ximalaya.com 
+DOMAIN,adse.wsa.ximalaya.com 
+DOMAIN,adbehavior.wsa.ximalaya.com 
+DOMAIN,adbehavior.ximalaya.com 
+DOMAIN,adsebs.ximalaya.com 
+DOMAIN,adwbs.ximalaya.com 
+
+# Y
+# > 云闪付
+DOMAIN, ads.95516.com
+DOMAIN, cm-10-138.getui.com
+DOMAIN, sdk.open.talk.getui.net
+DOMAIN, sdk-conf.getui.com
+DOMAIN, switch.cup.com.cn
+DOMAIN, tysdk.95516.com
+# > 优酷
+DOMAIN-SUFFIX,atm.youku.com 
+DOMAIN,ad.mobile.youku.com 
+DOMAIN,iyes.youku.com 
+DOMAIN,pl.cp31.ott.cibntv.net 
+
+ 
+# > 字节跳动
+DOMAIN, ad.zijieapi.com
+DOMAIN-KEYWORD, -ad-sign.byteimg.com
+# > 中国电信
+DOMAIN,ad.21cn.com 
+DOMAIN,ad.k.21cn.com 
+DOMAIN,admarket.21cn.com 
+DOMAIN,adshows.21cn.com 
+
+# Malware
+# > Huawei AspiegelBot
+IP-CIDR,114.119.160.0/21,no-resolve 
+DOMAIN-SUFFIX,kuaizip.com 
+# > MacKeeper
+DOMAIN-SUFFIX,zryydi.com 
+# > Adobe Flash China Special Edition
+DOMAIN,geo2.adobe.com
+# >58
+DOMAIN,track.58.com 
+DOMAIN,tracklog.58.com 
+# > 易校园
+DOMAIN-SUFFIX,p1.adkwai.com 
+DOMAIN-SUFFIX,rayjump.com 
+DOMAIN,bgg.baidu.com
+DOMAIN,tk.anythinktech.com
+DOMAIN,static.yximgs.com
+DOMAIN,qzs.gdtimg.com
+DOMAIN,adx-cn.anythinktech.com
+DOMAIN,api.anythinktech.com
+DOMAIN-SUFFIX,rayjump.com
+# > DOMAIN,h.trace,qq.com
+DOMAIN,y.tcp.push.mob.com	
+#金融
+DOMAIN,punion.tjjt360.com
+#有道
+DOMAIN,staticsns.cdn.bcebos.com
+# > 芒果
+DOMAIN,mobile.da.mgtv.com
+
+# > ChinaMobile
+IP-CIDR,120.240.95.37/32,no-resolve 
+# > Dr.Peng
+# IP-CIDR,10.72.25.0/24,no-resolve
+IP-CIDR,211.161.101.110/32,no-resolve

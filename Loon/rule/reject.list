@@ -47,20 +47,9 @@ DOMAIN, googleads.g.doubleclick-cn.net
 DOMAIN, googleads.g.doubleclick.net 
 DOMAIN, pubads.g.doubleclick.net 
 DOMAIN, pagead2.googlesyndication.com 
-# > 虎扑
-DOMAIN,adx.hupu.com 
-DOMAIN,adx-api.hupu.com 
-DOMAIN-SUFFIX,goblin.hupu.com 
 # > I
 # > J
 # > K
-# > 酷我音乐
-DOMAIN, ad.tencentmusic.com
-DOMAIN, g.koowo.com
-DOMAIN, mobilead.kuwo.cn
-DOMAIN, rich.kuwo.cn
-DOMAIN, tmead.y.qq.com
-DOMAIN, tmeadcomm.y.qq.com
 # L
 # > 两步路
 DOMAIN-SUFFIX,admobile.top 
@@ -74,29 +63,19 @@ DOMAIN, ads.nicovideo.jp
 # > OPPO
 # > P
 # > Q
-# QQ音乐广告
-DOMAIN,tmeadcomm.y.qq.com 
-DOMAIN,ad.tencentmusic.com 
-DOMAIN,adstats.tencentmusic.com 
-DOMAIN,tmead.y.qq.com 
-DOMAIN-SUFFIX,rqd.qq.com 
-DOMAIN-SUFFIX,wup.imtt.qq.com 
-DOMAIN-SUFFIX,e.qq.com 
-DOMAIN-SUFFIX,beacon.qq.com 
 # > R
 # > S
-
+# 什么值得买
+DOMAIN, api.zuihuimai.com
 # > Snapchat
 DOMAIN,ads.snapchat.com 
 DOMAIN,adsapi.snapchat.com 
 # > T
 # 腾讯 无法使用的推送服务
-HOST, tpns.qq.com, REJECT
+DOMAIN, tpns.qq.com
 # > 淘宝
 DOMAIN-SUFFIX,h-adashx.ut.taobao.com 
 DOMAIN-SUFFIX,apoll.m.taobao.com 
-# > TalkingData
-DOMAIN-SUFFIX,cpatrk.net 
 # > 腾讯视频
 DOMAIN-suffix, tetrack.qq.com 
 DOMAIN-suffix, tpns.tencent.com 
@@ -219,8 +198,7 @@ DOMAIN,yt-adp.ws.126.net
 
 # > X
 # > 小米
-DOMAIN,data.mistat.xiaomi.com 
-DOMAIN,tracking.intl.miui.com 
+DOMAIN, sdkconfig.ad.xiaomi.com
 # > 新浪
 DOMAIN-SUFFIX,beacon.sina.com.cn 
 DOMAIN,u1.img.mobile.sina.cn 
@@ -241,7 +219,7 @@ DOMAIN,adsebs.ximalaya.com
 DOMAIN,adwbs.ximalaya.com 
 
 # Y
-# > 云闪付
+# > 云闪付 开屏
 DOMAIN, ads.95516.com
 DOMAIN, cm-10-138.getui.com
 DOMAIN, sdk.open.talk.getui.net

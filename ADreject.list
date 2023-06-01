@@ -62,26 +62,11 @@ HOST, pagead2.googlesyndication.com, REJECT
 # > I
 # > J
 # > 今日头条
-HOST-SUFFIX, ad.toutiao.com, REJECT
-HOST-SUFFIX, clk.gentags.net, REJECT
-HOST-SUFFIX, dm.toutiao.com, REJECT
-HOST-SUFFIX, dm.pstatp.com, REJECT
-HOST-SUFFIX, bytedance.com, REJECT
-HOST-SUFFIX, uop.umeng.com, REJECT
-HOST-SUFFIX, policy.jd.com, REJECT
-HOST-SUFFIX, kepler.jd.com, REJECT
-HOST-SUFFIX, bdsp.x.jd.com, REJECT
-HOST-SUFFIX, keplerapi.jd.com, REJECT
-HOST-SUFFIX, m.suning.com, REJECT
-HOST-SUFFIX, adshare.toutiao.com, REJECT
-HOST-SUFFIX, tunion-api.m.taobao.com, REJECT
-HOST-SUFFIX, mapi.m.jd.com, REJECT
-HOST-SUFFIX, s1.pstatp.com, REJECT
-HOST-SUFFIX, s2.pstatp.com, REJECT
-HOST-SUFFIX, s3.pstatp.com, REJECT
-HOST-SUFFIX, a3.pstatp.com, REJECT
-HOST-SUFFIX, a3.bytecdn.cn, REJECT
-HOST-SUFFIX, ichannel.snssdk.com, REJECT
+HOST-SUFFIX,bytedance.com
+HOST-SUFFIX,id6.me
+HOST-SUFFIX,im-x.jd.com
+HOST-SUFFIX,miaozhen.com
+HOST,log3-normal-hl.toutiaoapi.com
 
 # > K
 

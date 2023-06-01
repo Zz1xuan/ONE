@@ -144,7 +144,7 @@ DOMAIN,iyes.youku.com
 DOMAIN,pl.cp31.ott.cibntv.net
 # > 字节跳动
 DOMAIN, ad.zijieapi.com
-DOMAIN-SUFFIX, ad-sign.byteimg.com
+DOMAIN-KEYWORD, -ad-sign.byteimg.com
 # >58
 DOMAIN,track.58.com
 DOMAIN,tracklog.58.com

@@ -314,14 +314,6 @@ DOMAIN,yt-adp.nosdn.127.net
 DOMAIN,yt-adp.ws.126.net 
 
 # > X
-# > 向日葵
-DOMAIN-keyword, upload-cdn.orayimg.com 
-DOMAIN, ddns.oray.com 
-DOMAIN, sl-tk.oray.com 
-DOMAIN, client-api.oray.com 
-DOMAIN, push.oray.com 
-DOMAIN-SUFFIX,offline-adv.oray.com 
-DOMAIN-keyword, upload-cdn.orayimg.com-upload-activity 
 # > 小米
 DOMAIN,data.mistat.xiaomi.com 
 DOMAIN,tracking.intl.miui.com 
@@ -360,11 +352,8 @@ DOMAIN,pl.cp31.ott.cibntv.net
 
  
 # > 字节跳动
-DOMAIN-SUFFIX,pangolin-sdk-toutiao.com 
-DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com 
-DOMAIN-SUFFIX,api-access.pangolin-sdk-toutiao-b.com 
-DOMAIN,dsp.toutiao.com 
-DOMAIN-suffix,pangolin.snssdk.com 
+DOMAIN, ad.zijieapi.com
+DOMAIN-KEYWORD, -ad-sign.byteimg.com
 # > 中国电信
 DOMAIN,ad.21cn.com 
 DOMAIN,ad.k.21cn.com 

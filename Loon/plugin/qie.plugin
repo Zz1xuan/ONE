@@ -4,7 +4,7 @@
 
 [Rule]
 DOMAIN,ilce.alicdn.com,REJECT-DROP
-
+DOMAIN,acs4miniapp-inner.m.taobao.com,REJECT
 [Rewrite]
 ^https:\/\/userapi\.qiekj\.com\/slot\/get\?goodsId=(\d+)&shopId=(\d+)&slotKey=(ad_attention|ad_machine_pop_2)&token=([^&]+) reject-200
 ^https:\/\/userapi\.qiekj\.com\/slot\/get\?goodsId=(\d+)&shopId=(\d+)&slotKey=(ad_home_daily_discount_new_(1|2)|ad_home_(suspension|seckill|popup)_new) reject-200

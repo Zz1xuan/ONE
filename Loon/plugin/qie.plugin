@@ -8,7 +8,7 @@ DOMAIN,ilce.alicdn.com,REJECT-DROP
 [Rewrite]
 ^https:\/\/userapi\.qiekj\.com\/slot\/get\?goodsId=(\d+)&shopId=(\d+)&slotKey=(ad_attention|ad_machine_pop_2)&token=([^&]+) - reject-200
 ^https:\/\/userapi\.qiekj\.com\/slot\/get\?goodsId=(\d+)&shopId=(\d+)&slotKey=(ad_home_daily_discount_new_(1|2)|ad_home_(suspension|seckill|popup)_new) - reject-200
-#^https:\/\/acs4miniapp-inner\.m\.taobao\.com\/gw\/mtop\.alimama\.abyss\.unionpage\.get\/1\.0\?type=originaljson&rnd=[A-F0-9]{32}&data - reject-200
+^https:\/\/acs4miniapp-inner\.m\.taobao\.com\/gw\/mtop\.alimama\.abyss\.unionpage\.get\/1\.0\?type=originaljson&rnd=[A-F0-9]{32}&data - reject-200
 
 [Mitm]
 hostname = userapi.qiekj.com, acs4miniapp-inner.m.taobao.com

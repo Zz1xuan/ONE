@@ -12,6 +12,7 @@ DOMAIN,www.remove.bg,DIRECT
 DOMAIN,www.777117.xyz
 # prpr
 DOMAIN,api.prprcloud.life
+DOMAIN-KEYWORD,prpr
 # deepl
 DOMAIN-SUFFIX,deepl.com
 # fishport

@@ -10,7 +10,7 @@
 # ✅ Spotify  spclient.wg.spotify.com, 
 #http-response ^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/Spotify.png, tag=spotifyProto
 # ✅ WPS(国区) *account.wps.cn, *account.wps.com
-http-response ^https?:\/\/[a-z-]*account\.wps\.c(n|om)(:\d+|)\/api\/users requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/wps.png, tag=WPS
+#http-response ^https?:\/\/[a-z-]*account\.wps\.c(n|om)(:\d+|)\/api\/users requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/wps.png, tag=WPS
 # ✅ VSCO|1Blocker         api.revenuecat.com,
 #http-request ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/vsco.png, tag=vsco
 #http-response ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/vsco.png, tag=vsco

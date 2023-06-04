@@ -88,7 +88,7 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 # > 京东金融   ms.jr.jd.com,
 ^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/(getLoadingPicture|adInfo) - reject
 # > 京喜特价
-^https:\/\/img11\.360buyimg\.com\/dl\/jfs\/t1\/90505 - reject
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=lite_advertising - reject
 # > K
 # > 快手  open.e.kuaishou.com, 
 ^https:\/\/open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ - reject

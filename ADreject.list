@@ -1,3 +1,5 @@
+#wps
+HOST,cloudservice22.kingsoft-office-service.com, REJECT
 # 网易云
 HOST-SUFFIX,gdt.qq.com, REJECT
 HOST,httpdns.n.netease.com, REJECT

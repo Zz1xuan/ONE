@@ -1,13 +1,13 @@
 # direct
 # xsus
-DOMAIN,home.xsus.me,DIRECT
+DOMAIN,home.xsus.me
 
-DOMAIN,cook.yunyoujun.cn,DIRECT
-DOMAIN,busuanzi.ibruce.info,DIRECT
-DOMAIN,unpkg.com,DIRECT
-DOMAIN-SUFFIX,qianling.pw,DIRECT
+DOMAIN,cook.yunyoujun.cn
+DOMAIN,busuanzi.ibruce.info
+DOMAIN,unpkg.com
+DOMAIN-SUFFIX,qianling.pw
 # remove
-DOMAIN,www.remove.bg,DIRECT
+DOMAIN,www.remove.bg
 # jinchengwu
 DOMAIN,www.777117.xyz
 # prpr

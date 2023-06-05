@@ -1,0 +1,22 @@
+payload:
+  - DOMAIN,cdn3.iconfinder.com
+  - DOMAIN,keywos.cf
+  - DOMAIN,meow.tg
+  - DOMAIN,static.bangumi.moe
+  - DOMAIN,ocsp.digicert.com
+  - DOMAIN,tmioe.com
+  - DOMAIN,api.ipify.org
+  - DOMAIN,go.xxxvjmp.com
+  - DOMAIN,img.strpst.com
+  - DOMAIN,go.xlivrdr.com
+  - DOMAIN,m.mox.moe
+  - DOMAIN,kox.moe
+  - DOMAIN,subs.usero.cn
+  - DOMAIN-SUFFIX,stripcdn.com
+  - DOMAIN-SUFFIX,owenyoung.com
+  - DOMAIN-SUFFIX,beehiiv.com
+  - DOMAIN-SUFFIX,nanoport.xyz
+  - DOMAIN-SUFFIX,cloudinary.com
+    - DOMAIN-SUFFIX,doppiocdn.org
+  - DOMAIN-KEYWORD,trello
+  - DOMAIN-KEYWORD,mojie

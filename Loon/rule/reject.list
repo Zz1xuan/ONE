@@ -63,6 +63,7 @@ DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
 DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com
 DOMAIN-SUFFIX,ctobsnssdk.com
 DOMAIN-SUFFIX,bytedance.com
+DOMAIN,guid.tpns.tencent.com
 # > L
 # > 两步路
 DOMAIN-SUFFIX,admobile.top 
@@ -177,3 +178,4 @@ DOMAIN,punion.tjjt360.com
 DOMAIN,staticsns.cdn.bcebos.com
 # > 芒果
 DOMAIN,mobile.da.mgtv.com
+

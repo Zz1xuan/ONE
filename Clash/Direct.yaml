@@ -3,10 +3,10 @@ payload:
   - DOMAIN,www.remove.bg
   - DOMAIN,www.777117.xyz
   - DOMAIN,api.prprcloud.life
-  - DOMAIN-KEYWORD,prpr
-  - DOMAIN-SUFFIX,deepl.com
-  - DOMAIN-KEYWORD,fishport
-  - DOMAIN-SUFFIX,dearyou.one
+  - DOMAIN,anti-ad.net
   - DOMAIN,bugenzhao.com
   - DOMAIN-SUFFIX,ngacn.cc
-  - DOMAIN,anti-ad.net
+  - DOMAIN-SUFFIX,deepl.com
+  - DOMAIN-SUFFIX,dearyou.one
+  - DOMAIN-KEYWORD,prpr
+  - DOMAIN-KEYWORD,fishport

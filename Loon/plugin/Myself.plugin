@@ -12,7 +12,7 @@
 # ✅ WPS(国区) *account.wps.cn, *account.wps.com
 #http-response ^https?:\/\/[a-z-]*account\.wps\.c(n|om)(:\d+|)\/api\/users requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/wps.png, tag=WPS
 #vas.wps.cn, account.wps.cn
-http-response ^https:\/\/(vas|account)\.wps\.cn\/(query\/api\/v\d\/list_purchase_info|api\/users\/\d+\/overview) requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/wps.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/wps.png, tag=WPS
+http-response ^https:\/\/(vas|account)\.wps\.cn\/(query\/api\/v\d\/list_purchase_info|api\/users\/\d+\/overview) requires-body=1,timeout=10,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/wps.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/wps.png, tag=WPS
 # ✅ VSCO|1Blocker         api.revenuecat.com,
 #http-request ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/vsco.png, tag=vsco
 #http-response ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/vsco.png, tag=vsco

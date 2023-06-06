@@ -1,4 +1,15 @@
-#https://raw.githubusercontent.com/510004015/Quantumult_X/Remote/Premium/WPSOffice.js
+/*
+
+[rewrite_local]
+
+^https:\/\/(vas|account)\.wps\.cn\/(query\/api\/v\d\/list_purchase_info|api\/users\/\d+\/overview) url script-response-body https://raw.githubusercontent.com/510004015/Quantumult_X/Remote/Premium/WPSOffice.js
+
+[mitm] 
+
+hostname = vas.wps.cn, account.wps.cn
+
+*/
+
 var url = $request.url;
 var modified = JSON.parse($response.body);
 const URL1 = 'overview';

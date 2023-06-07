@@ -23,7 +23,7 @@ http-response ^https?:\/\/biz\.(caiyunapp|cyapi)\.(com|cn)\/v\d\/user requires-b
 # ✅ 百度云  pan.baidu.com,
 http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/bdwangpan.png, tag=百度网盘
 # ✅ 有道词典   dict.youdao.com,
-http-response ^https:\/\/dict\.youdao\.com\/vip\/user\/status requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/wyydcd.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/youdao.png, tag=有道词典
+http-response ^https:\/\/dict\.youdao\.com\/vip\/user\/status requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/youdao.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/youdao.png, tag=有道词典
 # ✅ 搜图神器  wallpaper.soutushenqi.com,
 http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/.+\/account\/token requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/soutu.js, img-url=https://raw.githubusercontent.com/OocMe/ONE/main/icon/soutu.png, tag=搜图神器
 # ✅ AccuWeather  app-subscription-proxy.accuweather.com,

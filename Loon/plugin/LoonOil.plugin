@@ -1,0 +1,12 @@
+#!name=实时油价信息
+#!desc=定制监控每日油价
+#!author = 
+#!openUrl = 
+#!homepage = 
+#!icon = https://raw.githubusercontent.com/Keywos/rule/main/tv/app/144px/yj.png
+#!input = 地区
+
+
+[Script]
+
+cron "0 18 * * *" script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/task/LoonOil.js, tag=每日油价

@@ -18,7 +18,7 @@ let obj = JSON.parse($response.body);
           "icon" : "https://img.vanemu.com/assets/event004.png",
           "type" : "member",
           "name" : "SVIP",
-          "desc" : ""
+          "desc" : "2099-99-99"
         },
         "user_id" : "",
         "group_name" : "",

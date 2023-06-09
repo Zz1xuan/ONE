@@ -6,18 +6,7 @@
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/cool.png
 
 [Rule]
-DOMAIN-SUFFIX,ios.bugly.qq.com,REJECT-DROP
-DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com,REJECT-DROP
-DOMAIN-SUFFIX,kepler.jd.com,REJECT
-DOMAIN-SUFFIX,umeng.com,REJECT
-DOMAIN-SUFFIX,shuzilm.com,REJECT
-DOMAIN-SUFFIX,umengcloud.com,REJECT
-DOMAIN-SUFFIX,dm.toutiao.com,REJECT
-DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
-DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
-DOMAIN-SUFFIX,ctobsnssdk.com,REJECT
-DOMAIN-SUFFIX,bytedance.com,REJECT
-DOMAIN,guid.tpns.tencent.com,REJECT
+
 
 [Rewrite]
 ^https?:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch - reject-dict

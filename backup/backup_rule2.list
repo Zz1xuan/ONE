@@ -1,3 +1,6 @@
+# 知到
+host, app-advertise.zhihuishu.com, reject
+
 # 网易云
 DOMAIN-SUFFIX,gdt.qq.com 
 DOMAIN,httpdns.n.netease.com

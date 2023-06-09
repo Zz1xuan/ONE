@@ -63,7 +63,7 @@ DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
 DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com
 DOMAIN-SUFFIX,ctobsnssdk.com
 DOMAIN-SUFFIX,bytedance.com
-DOMAIN,guid.tpns.tencent.com
+DOMAIN-SUFFIX,tpns.tencent.com
 # > L
 # > 两步路
 DOMAIN-SUFFIX,admobile.top 

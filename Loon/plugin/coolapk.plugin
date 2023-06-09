@@ -5,8 +5,6 @@
 #!homepage = 
 #!icon = https://raw.githubusercontent.com/OocMe/ONE/main/icon/cool.png
 
-[Rule]
-
 
 [Rewrite]
 ^https?:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch - reject-dict

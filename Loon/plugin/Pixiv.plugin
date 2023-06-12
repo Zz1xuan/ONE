@@ -1,0 +1,12 @@
+#!name=Pixiv
+#!desc=去除最下方广告
+#!icon=https://raw.githubusercontent.com/OocMe/ONE/main/icon/Pixiv.png
+
+
+[MITM]
+hostname = oauth.secure.pixiv.net
+
+[Script]
+http-response ^https?:\/\/oauth\.secure\.pixiv\.net\/(auth\/token) requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/pixiv.js, tag=Pixiv
+# ～ Pixiv去除广告（2022-12-03）@ddgksf2013
+

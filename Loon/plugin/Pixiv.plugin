@@ -7,6 +7,6 @@
 hostname = oauth.secure.pixiv.net
 
 [Script]
-http-response ^https?:\/\/oauth\.secure\.pixiv\.net\/(auth\/token) requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/pixiv.js, tag=Pixiv
+http-response ^https?:\/\/oauth\.secure\.pixiv\.net\/auth\/token requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/pixiv.js, tag=Pixiv
 # ～ Pixiv去除广告（2022-12-03）@ddgksf2013
 

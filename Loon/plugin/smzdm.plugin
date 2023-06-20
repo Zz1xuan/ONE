@@ -6,7 +6,7 @@
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/smzdm.png
 
 [Rule]
-#DOMAIN, api.zuihuimai.com, REJECT
+DOMAIN, api.zuihuimai.com, REJECT
 
 [Rewrite]
 # 什么值得买_好价详情页去广告

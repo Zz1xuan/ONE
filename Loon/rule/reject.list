@@ -3,7 +3,7 @@ DOMAIN, cloudservice22.kingsoft-office-service.com
 # ChatGPT
 DOMAIN, o33249.ingest.sentry.io
 # 数字联盟
-HOST-SUFFIX, shuzilm.cn, REJECT
+DOMAIN-SUFFIX, shuzilm.cn
 # > 彩云天气
 DOMAIN, ad.cyapi.cn
 

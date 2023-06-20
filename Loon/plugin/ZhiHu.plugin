@@ -1,6 +1,6 @@
 #!name=哲也
 #!desc=人在蒙古，刚下航母
-#!icon=https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/Zhihu.png
+#!icon=https://raw.githubusercontent.com/OocMe/ONE/main/icon/zhihu.png
 
 [Rule]
 # 拦截开屏广告

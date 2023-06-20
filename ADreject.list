@@ -9,6 +9,7 @@ HOST,iadmusicmatvideo.music.126.net, REJECT
 HOST-SUFFIX,163jiasu.com,REJECT
 # 数字联盟
 HOST-SUFFIX, shuzilm.cn, REJECT
+HOST, api.zuihuimai.com, REJECT
 # ChatGPT
 HOST, o33249.ingest.sentry.io, REJECT
 

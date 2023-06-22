@@ -1,6 +1,6 @@
 #!name= 企鹅共享
 #!desc= 支付宝小程序广告
-#!icon= https://raw.githubusercontent.com/OocMe/ONE/main/icon/qie.png
+#!icon= https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/qie.png
 
 [Rule]
 DOMAIN,ilce.alicdn.com,REJECT-DROP

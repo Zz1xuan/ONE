@@ -3,7 +3,7 @@
 #!open= 
 #!author = 
 #!homepage = 
-#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/smzdm.png
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/smzdm.png
 
 [Rule]
 DOMAIN, api.zuihuimai.com, REJECT

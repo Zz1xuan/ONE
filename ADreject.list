@@ -196,7 +196,7 @@ HOST,tk.anythinktech.com, REJECT
 # > X
 # > 闲鱼
 HOST,aid.m.taobao.com,REJECT
-
+#HOST,iyes.youku.com, REJECT
 # > 小米
 HOST, sdkconfig.ad.xiaomi.com, REJECT
 # > 新浪

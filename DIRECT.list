@@ -26,3 +26,5 @@ DOMAIN,bugenzhao.com
 DOMAIN-SUFFIX,ngacn.cc
 # anti-ad
 DOMAIN,anti-ad.net
+# 小红书
+DOMAIN-SUFFIX,xhscdn.com

@@ -3,7 +3,7 @@
 #!openUrl = 
 #!author = 
 #!homepage = 
-#!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/master/App_icon/80px/IThome.png
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/IThome.png
 
 [Rewrite]
 ^https?:\/\/api\.zuihuimai\.com\/static\/.*\/hongbao - reject

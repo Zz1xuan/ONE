@@ -30,6 +30,6 @@ DOMAIN-SUFFIX,xhscdn.com
 # soul
 DOMAIN,com.soulapp.cn
 # ip
-DOMAIN,ip.sb
-DOMAIN,ip-api.com
-DOMIAN,ip.skk.moe
+DOMAIN-SUFFIX,ip.sb
+DOMAIN-SUFFIX,ip-api.com
+DOMAIN-SUFFIX,ip.skk.moe

@@ -29,3 +29,7 @@ DOMAIN,anti-ad.net
 DOMAIN-SUFFIX,xhscdn.com
 # soul
 DOMAIN,com.soulapp.cn
+# ip
+DOMAIN,ip.sb
+DOMAIN,ip-api.com
+DOMIAN,ip.skk.moe

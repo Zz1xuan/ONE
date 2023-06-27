@@ -1,7 +1,16 @@
 # proxy
-DOMAIN,cdn3.iconfinder.com
+#key
 DOMAIN,keywos.cf
+#次元
 DOMAIN,c.ciyy.cc
+#两个网站
+DOMAIN,m.mox.moe
+DOMAIN,kox.moe
+#ACA
+DOMAIN,www.122777.xyz
+
+DOMAIN,cdn3.iconfinder.com
+
 DOMAIN,meow.tg
 DOMAIN,static.bangumi.moe
 DOMAIN,tmioe.com
@@ -10,8 +19,7 @@ DOMAIN,ocsp.digicert.com
 DOMAIN,go.xxxvjmp.com
 DOMAIN,img.strpst.com
 DOMAIN,go.xlivrdr.com
-DOMAIN,m.mox.moe
-DOMAIN,kox.moe
+
 DOMAIN,api.ipstack.com
 DOMAIN,api.ipregistry.co
 DOMAIN,ipwho.is
@@ -20,11 +28,13 @@ DOMAIN-SUFFIX,stripcdn.com
 DOMAIN-SUFFIX,owenyoung.com
 DOMAIN-SUFFIX,beehiiv.com
 DOMAIN-SUFFIX,cloudinary.com
+#nano
 DOMAIN-SUFFIX,nanoport.xyz
 DOMAIN-SUFFIX,doppiocdn.org
 DOMAIN-SUFFIX,ip-api.com
 DOMAIN-SUFFIX,fastly-analytics.com
 DOMAIN-KEYWORD,trello
+#魔戒
 DOMAIN-KEYWORD,mojie
 
 IP-CIDR,5.28.195.37/32,no-resolve

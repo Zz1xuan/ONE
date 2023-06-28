@@ -12,7 +12,7 @@
 # ✅ WPS(国区) *account.wps.cn, *account.wps.com
 #http-response ^https?:\/\/[a-z-]*account\.wps\.c(n|om)(:\d+|)\/api\/users requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Wps.js, tag=WPS
 #vas.wps.cn, account.wps.cn
-http-response ^https:\/\/(vas|account)\.wps\.cn\/(query\/api\/v\d\/list_purchase_info|api\/users\/\d+\/overview) requires-body=1,timeout=10,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/wps.js, tag=WPS
+http-response ^https?:\/\/(vas|account|drive)\.wps\.cn\/(query\/api\/.+\/list_purchase_info|api\/(v\d\/spaces|users\/.+\/overview)) requires-body=1,timeout=10,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/WPS.js, tag=WPS
 # ✅ VSCO|1Blocker         api.revenuecat.com,
 #http-request ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, tag=vsco
 #http-response ^https?:\/\/api\.revenuecat\.com\/v\d\/subscribers\/ requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/vsco.js, tag=vsco
@@ -32,6 +32,6 @@ http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/.+\/account\/token req
 http-response ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/emby.js, tag=EMBY
 
 [MITM]
-hostname = vas.wps.cn, account.wps.cn, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, mb3admin.com,
+hostname = *.wps.cn, appwk.baidu.com, biz.cyapi.cn, biz.caiyunapp.com, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, mb3admin.com
 
 

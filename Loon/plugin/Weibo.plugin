@@ -49,6 +49,9 @@ http-response ^https:\/\/(bootpreload|bootrealtime)\.uve\.weibo\.com\/v\d\/ad\/(
 http-response ^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php$ script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
 http-response ^https:\/\/wbapp\.uve\.weibo\.com\/wbapplua\/wbpullad\.lua\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
 # 去除信息流广告和各种推广模块
+# 评论区上方
+http-response ^https:\/\/api\.weibo\.cn\/2\/statuses\/(extend|show)\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 评论区上方广告
+
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(searchall|page\?|messageflow) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(unread_)?friends(/|_)timeline script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/groups/timeline script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告

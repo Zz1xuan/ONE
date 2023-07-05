@@ -26,6 +26,9 @@ http-request ^https:\/\/sytgate\.jslife\.com\.cn\/core-gateway\/order\/carno\/pa
 http-request ^https:\/\/i.meituan.com\/evolve\/signin\/signpost\/ script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/meituan/meituan.cookie.js, requires-body=true, tag=美团cookie
 # > 登录 https://rewards.bing.com 获取 Cookie
 http-request ^https:\/\/rewards\.bing\.com script-path=https://raw.githubusercontent.com/mw418/Loon/main/script/bingPoint.js
+
+http-request ^https\:\/\/cn\.bing\.com\/search\?q=pc&.* script-path=https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/bingSearch.cookie.js
+http-request ^https\:\/\/cn\.bing\.com\/search\?q=testt&.* script-path=https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/bingSearch.cookie.js
 # > 点击我的
 http-request ^https:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Bilibili-DailyBonus/Manga.js, tag=哔哩哔哩漫画
 # > b站
@@ -35,6 +38,6 @@ http-request ^https?:\/\/m.bilibili.com/$ script-path=https://raw.githubusercont
 http-request ^https?:\/\/user-api\.smzdm\.com\/checkin$ script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_daily.js,tag=什么值得买_获取Cookie
 
 [MITM]
-hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.aliyundrive.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com
+hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.aliyundrive.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com
 
 

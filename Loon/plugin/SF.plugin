@@ -9,10 +9,12 @@
 [Rewrite]
 ^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/(appVersion\/detectionUpgrade|ad\/queryAdImages) - reject-dict
 ^https?:\/\/shopic\.sf-express\.com\/crm\/mobile\/common\/flashscreen - reject
+# 小程序
+^https?:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query - reject-200
 
 [Script]
 http-response ^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/ad\/queryInfoFlow script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/shunfeng_json.js, requires-body = true, tag = 顺丰广告
 
 [MITM]
-hostname = ccsp-egmas.sf-express.com, shopic.sf-express.com
+hostname = ccsp-egmas.sf-express.com, shopic.sf-express.com, ucmp.sf-express.com
 

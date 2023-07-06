@@ -59,7 +59,7 @@ http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(container_timelin
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/profile/(me|container_timeline) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/video/(community_tab|remind_info|tiny_stream_video_list) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
 
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/search/(finder|container_timeline) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/search/(finder|container_timeline) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 发现页_发现
 
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(checkin/show|\!/live/media_homelist|comments/build_comments|container/get_item) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
 http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/cardlist script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 移除开屏广告

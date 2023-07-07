@@ -92,15 +92,20 @@ DOMAIN, tpns.qq.com
 DOMAIN-SUFFIX,h-adashx.ut.taobao.com 
 DOMAIN-SUFFIX,apoll.m.taobao.com 
 # > 腾讯视频
-DOMAIN, h.trace.qq.com 
-DOMAIN-SUFFIX,dp3.qq.com
-DOMAIN-SUFFIX,rqd.qq.com
-DOMAIN-SUFFIX,mtrace.qq.com
-DOMAIN-SUFFIX,l.qq.com
-DOMAIN-SUFFIX,oth.update.mdt.qq.com
-DOMAIN-SUFFIX,tpns.tencent.com
+DOMAIN-SUFFIX,pgdt.gtimg.cn
 DOMAIN-SUFFIX,beacon.qq.com
-DOMAIN,vv.video.qq.com
+DOMAIN-SUFFIX,mdt.qq.com
+DOMAIN-SUFFIX,tpns.tencent.com
+DOMAIN-SUFFIX,aedns.weixin.qq.com
+DOMAIN-SUFFIX,l.qq.com
+DOMAIN-SUFFIX,mtrace.qq.com
+DOMAIN-SUFFIX,dp3.qq.com
+DOMAIN-SUFFIX,rdelivery.qq.com
+DOMAIN-SUFFIX,trace.qq.com
+DOMAIN-SUFFIX,rqd.qq.com
+
+DOMAIN-SUFFIX,vv.video.qq.com
+
 
 # > U
 # > V

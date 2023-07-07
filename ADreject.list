@@ -160,14 +160,19 @@ HOST,adsapi.snapchat.com, REJECT
 HOST-SUFFIX,h-adashx.ut.taobao.com, REJECT
 HOST-SUFFIX,apoll.m.taobao.com, REJECT
 # > 腾讯视频
-HOST, h.trace.qq.com, REJECT
-HOST-SUFFIX,dp3.qq.com, REJECT
-HOST-SUFFIX,rqd.qq.com, REJECT
-HOST-SUFFIX,mtrace.qq.com, REJECT
-HOST-SUFFIX,l.qq.com, REJECT
-HOST-SUFFIX,oth.update.mdt.qq.com, REJECT
-HOST-SUFFIX, tpns.tencent.com, REJECT
+HOST-SUFFIX,pgdt.gtimg.cn, REJECT
+
 HOST-SUFFIX,beacon.qq.com, REJECT
+HOST-SUFFIX,mdt.qq.com, REJECT
+HOST-SUFFIX,tpns.tencent.com, REJECT
+HOST-SUFFIX,aedns.weixin.qq.com, REJECT
+HOST-SUFFIX,l.qq.com, REJECT
+HOST-SUFFIX,mtrace.qq.com, REJECT
+HOST-SUFFIX,dp3.qq.com, REJECT
+HOST,rdelivery.qq.com, REJECT
+HOST-SUFFIX,trace.qq.com, REJECT
+HOST-SUFFIX,rqd.qq.com, REJECT
+
 HOST,vv.video.qq.com, REJECT
 
 # > U
@@ -277,3 +282,4 @@ HOST,staticsns.cdn.bcebos.com,REJECT
 
 # > 芒果TV
 HOST,mobile.da.mgtv.com,REJECT
+

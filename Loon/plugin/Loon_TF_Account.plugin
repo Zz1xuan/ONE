@@ -1,6 +1,11 @@
 [General]
 skip-proxy = iosapps.itunes.apple.com
 
+[Rule]
+DOMAIN,beta.apple.com,PROXY
+DOMAIN,testflight.apple.com,PROXY
+DOMAIN-KEYWORD,testflight,PROXY
+
 [Script]
 http-request ^https:\/\/testflight\.apple\.com\/v\d\/(app|account|invite)s\/ requires-body=1,script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Loon/Script/TestFlightAccount.js,tag=TestFlight账户管理
 

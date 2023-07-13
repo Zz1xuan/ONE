@@ -1,11 +1,11 @@
 #!name=微信阅读精简
 #!desc=去除微信阅读扰人提示(beta)
-#!icon=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/Doraemon/Doraemon-1016.png
-# 测试环境： 1.关闭微信阅读通知；2.禁止微信阅读获取微信好友权限
-# 功能：1.去除底部小红点提示；2.去除阅读页面小圈子提示；3.去除阅读页面评论、分享等数字
+#!icon=https://github.com/Toperlock/Quantumult/raw/main/icon/Doraemon/Doraemon-1060.png
 
 [Script]
-http-response https:\/\/i\.weread\.qq\.com\/(book\/(reading[sS]tat|chapterReview)|user\/profile|groups\/readerEntrance|review\/list|mobileSync),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/WeRead/weread.js,tag=微信读书
+
+http-response https:\/\/i\.weread\.qq\.com\/(book\/(reading[sS]tat|chapterReview)|user\/profile|groups\/readerEntrance|review\/list|mobileSync) script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/WeRead/weread.js, requires-body=true, tag=WeRead_5
 
 [MITM]
+
 hostname = i.weread.qq.com

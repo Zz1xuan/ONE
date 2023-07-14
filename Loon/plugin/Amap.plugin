@@ -25,7 +25,7 @@
 
 [Script]
 http-response ^http:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/self_use.js
-#http-response ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页卡片
+http-response ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页卡片
 http-response ^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 开屏
 http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 我的页面卡片
 http-response ^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull(3|_mp)\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true

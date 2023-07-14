@@ -8,7 +8,7 @@ if (obj.data) {
     // 高德地图-首页卡片
     if (obj.data.cardList) {
       obj.data.cardList = obj.data.cardList.filter(
-        (item) => item.dataKey === "LoginCard"
+        (item) => item.dataKey === "LoginCard" || item.dataKey === "FrequentLocation"
       );
     }
     if (obj.data.mapBizList) {

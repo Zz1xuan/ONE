@@ -1,6 +1,6 @@
 #!name=Emby
 #!desc=Emby解锁
-#!icon=https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/emby.png
+#!icon=https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/emby.png
 
 #author=Tartarus2014
 
@@ -8,4 +8,4 @@
 hostname = mb3admin.com
 
 [Script]
-http-response ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/emby.js, tag=EMBY
+http-response ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/emby.js, tag=EMBY

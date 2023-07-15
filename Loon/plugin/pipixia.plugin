@@ -2,7 +2,7 @@
 #!desc= 去广告+水印
 #!author= 
 #!homepage= 
-#!icon= https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/pipi.png
+#!icon= https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/pipi.png
 
 [rewrite]
 
@@ -12,7 +12,7 @@ app_name=super&([\S]*)aid=\d+ 307 app_name=super_pro&$1aid=1412
 [script]
 
 # ======= 去水印 ======= #
-http-response ^https?:\/\/.*\.pipix\.com\/bds\/(feed\/stream|comment\/cell_reply|cell\/cell_comment|cell\/detail|ward\/list|user\/favorite|user\/cell_coment|user\/cell_userfeed|user\/publish_list) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/pipixia.js,requires-body = true, tag = 皮皮虾去水印
+http-response ^https?:\/\/.*\.pipix\.com\/bds\/(feed\/stream|comment\/cell_reply|cell\/cell_comment|cell\/detail|ward\/list|user\/favorite|user\/cell_coment|user\/cell_userfeed|user\/publish_list) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/pipixia.js,requires-body = true, tag = 皮皮虾去水印
 
 
 [mitm] 

@@ -4,7 +4,7 @@
 
 [rewrite_local]
 
-^https://newdrugs.dxy.cn url script-response-body https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/yyaozhushou.js
+^https://newdrugs.dxy.cn url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/yyaozhushou.js
 
 [mitm] 
 

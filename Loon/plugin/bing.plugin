@@ -3,11 +3,11 @@
 #!openUrl = 
 #!author = LiuYaChen 
 #!homepage = 
-#!icon = https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/Bing.png
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Bing.png
 
 
 [Script]
-http-request ^https:\/\/www\.bing\.com\/(search|new) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Loon/Script/bing.js, requires-body = false, tag = BingAI
+http-request ^https:\/\/www\.bing\.com\/(search|new) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Loon/Script/bing.js, requires-body = false, tag = BingAI
 
 [MITM]
 hostname = www.bing.com

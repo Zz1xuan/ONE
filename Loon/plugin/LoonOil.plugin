@@ -9,4 +9,4 @@
 
 [Script]
 
-cron "0 18 * * *" script-path=https://raw.githubusercontent.com/OocMe/ONE/main/Script/task/LoonOil.js, tag=每日油价
+cron "0 18 * * *" script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/task/LoonOil.js, tag=每日油价

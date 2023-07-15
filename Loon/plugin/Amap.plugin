@@ -3,7 +3,7 @@
 #!open= 
 #!author = 
 #!homepage = 
-#!icon = https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/Amap.png
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Amap.png
 
 # author = RuCu6 kokoryh ddgksf2013
 [Rule]
@@ -24,14 +24,14 @@
 ^https:\/\/m5-zb\.amap\.com\/ws\/boss\/order_web\/friendly_information\? reject-dict
 
 [Script]
-http-response ^http:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/self_use.js
-http-response ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页卡片
-http-response ^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 开屏
-http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 我的页面卡片
-http-response ^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull(3|_mp)\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true
-http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 附近
-http-response ^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 打车卡片
-http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页右上角动图
+http-response ^http:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/self_use.js
+http-response ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页卡片
+http-response ^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 开屏
+http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 我的页面卡片
+http-response ^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull(3|_mp)\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true
+http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 附近
+http-response ^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 打车卡片
+http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页右上角动图
 
 
 [MITM]

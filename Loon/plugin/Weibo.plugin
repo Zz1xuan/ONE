@@ -3,7 +3,7 @@
 #!openUrl = 
 #!author = 
 #!homepage = 
-#!icon = https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/weibo.png
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/weibo.png
 
 #author = RuCu6 zmqcherish Cuttlefish
 
@@ -45,26 +45,26 @@ DOMAIN, sdkmonitor.biz.weibo.com, REJECT
 
 [Script]
 # 去除开屏广告
-http-response ^https:\/\/(bootpreload|bootrealtime)\.uve\.weibo\.com\/v\d\/ad\/(preload$|rea(ltime)?) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
-http-response ^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php$ script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
-http-response ^https:\/\/wbapp\.uve\.weibo\.com\/wbapplua\/wbpullad\.lua\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
+http-response ^https:\/\/(bootpreload|bootrealtime)\.uve\.weibo\.com\/v\d\/ad\/(preload$|rea(ltime)?) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
+http-response ^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php$ script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
+http-response ^https:\/\/wbapp\.uve\.weibo\.com\/wbapplua\/wbpullad\.lua\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/wb.js, requires-body = true, tag = 移除开屏广告
 # 去除信息流广告和各种推广模块
 # 评论区上方
-http-response ^https:\/\/api\.weibo\.cn\/2\/statuses\/(extend|show)\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 评论区上方广告
+http-response ^https:\/\/api\.weibo\.cn\/2\/statuses\/(extend|show)\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 评论区上方广告
 
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(searchall|page\?|messageflow) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(unread_)?friends(/|_)timeline script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/groups/timeline script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(container_timeline|unread_hot_timeline|extend|video_mixtimeline|unread_topic_timeline) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/profile/(me|container_timeline) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/video/(community_tab|remind_info|tiny_stream_video_list) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(searchall|page\?|messageflow) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(unread_)?friends(/|_)timeline script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/groups/timeline script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/statuses/(container_timeline|unread_hot_timeline|extend|video_mixtimeline|unread_topic_timeline) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/profile/(me|container_timeline) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/video/(community_tab|remind_info|tiny_stream_video_list) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
 
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/search/(finder|container_timeline) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/wb.js, requires-body = true, tag = 发现页_发现
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/search/(finder|container_timeline) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/wb.js, requires-body = true, tag = 发现页_发现
 
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(checkin/show|\!/live/media_homelist|comments/build_comments|container/get_item) script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/cardlist script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 移除开屏广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/(checkin/show|\!/live/media_homelist|comments/build_comments|container/get_item) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 信息流广告
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/cardlist script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 移除开屏广告
 # > 微博_屏蔽发现页面搜索框热词@ddgksf2013
-http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/\w{5}\/cardlist script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 搜索框热词
+http-response ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/\w{5}\/cardlist script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/weibo1.js, requires-body = true, tag = 搜索框热词
 
 [MITM]
 hostname = api.weibo.*, *.api.weibo.*, mapi.weibo.*, *.uve.weibo.com, new.vip.weibo.cn, boot.biz.weibo.com

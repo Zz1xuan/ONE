@@ -2,7 +2,7 @@
 #!desc = 顺丰广告
 #!openUrl = 
 #!homepage = 
-#!icon = https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/shunfeng.png
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/shunfeng.png
 
 #author = ddgksf2013
 
@@ -13,7 +13,7 @@
 ^https?:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query - reject
 
 [Script]
-http-response ^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/ad\/queryInfoFlow script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/shunfeng_json.js, requires-body = true, tag = 顺丰广告
+http-response ^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/ad\/queryInfoFlow script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/shunfeng_json.js, requires-body = true, tag = 顺丰广告
 
 [MITM]
 hostname = ccsp-egmas.sf-express.com, shopic.sf-express.com, ucmp.sf-express.com

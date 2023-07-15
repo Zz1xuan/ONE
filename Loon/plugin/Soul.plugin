@@ -1,6 +1,6 @@
 #!name = soul去开屏
 #!desc = 开屏和内部信息流
-#!icon = https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/soul.png
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/soul.png
 
 [Rule]
 IP-CIDR, 47.110.187.87/32, REJECT, no-resolve

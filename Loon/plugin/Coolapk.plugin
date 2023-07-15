@@ -3,14 +3,14 @@
 #!openUrl = 
 #!author = 
 #!homepage = 
-#!icon = https://ghproxy.com/https://raw.githubusercontent.com/OocMe/ONE/main/icon/cool.png
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/cool.png
 
 
 [Rewrite]
 ^https?:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch - reject-dict
 
 [Script]
-http-response ^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/(dataList|indexV8)|page\/dataList)\? script-path = https://raw.githubusercontent.com/OocMe/ONE/main/Script/AD/coolapk.js, requires-body = true, tag = 移除广告 
+http-response ^https?:\/\/api\.coolapk\.com\/v6\/(feed\/(replyList|detail)|main\/(dataList|indexV8)|page\/dataList)\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/coolapk.js, requires-body = true, tag = 移除广告 
 
 [MITM]
 hostname = api.coolapk.com

@@ -1,9 +1,0 @@
-#!name=dd
-#!desc=reddit
-#!system=ios
-
-[Script]
-Reddit = type=http-response,pattern=^https?:\/\/gql\.reddit\.com,requires-body=1,max-size=0,timeout=30,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/reddit.js
-
-[MITM]
-hostname = %APPEND%, gql.reddit.com

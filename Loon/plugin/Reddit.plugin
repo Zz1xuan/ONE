@@ -1,3 +1,11 @@
-^https?:\/\/gql\.reddit\.com url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/reddit.js
+#!name= Reddit
+#!desc= Reddit过滤推广,关subreddit的NSFW提示
+#!icon=https://github.com/Toperlock/Quantumult/raw/main/icon/Doraemon/Doraemon-1006.png
 
-hostname=gql.reddit.com
+[Script]
+
+http-response ^https?:\/\/gql\.reddit\.com script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/reddit.js, requires-body=true, tag=Reddit
+
+[MITM]
+
+hostname = gql.reddit.com

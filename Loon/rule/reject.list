@@ -24,7 +24,8 @@ DOMAIN,advertise.baicizhan.org
 # 百度
 DOMAIN-SUFFIX, pos.baidu.com
 # > 百度网盘
-DOMAIN-SUFFIX, mobads.baidu.com
+DOMAIN, mobads.baidu.com
+DOMAIN, mobads-logs.baidu.com
 # 百度地图
 DOMAIN, afd.baidu.com
 DOMAIN, afdconf.baidu.com

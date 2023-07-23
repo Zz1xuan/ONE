@@ -32,8 +32,9 @@ HOST, passport.bilibili.com, REJECT
 # > 百词斩
 HOST,advertise.baicizhan.com, REJECT
 HOST,advertise.baicizhan.org, REJECT
-# > 百度
+# > 百度网盘
 HOST, mobads.baidu.com, REJECT
+HOST, mobads-logs.baidu.com, REJECT
 # > 百度
 HOST-SUFFIX, pos.baidu.com, REJECT
 # 百度地图

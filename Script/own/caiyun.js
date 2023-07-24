@@ -1,3 +1,5 @@
+//^https?:\/\/biz\.cyapi\.cn\/v\d\/user url script-response-body https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/caiyun.js
+
 if (!$response.body) $done({});
 let obj = JSON.parse($response.body);
 

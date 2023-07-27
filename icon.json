@@ -1,10 +1,22 @@
 {
   "name": "常规图标",
-  "description": "收集一些常用的图标，尺寸为144px",
+  "description": "收集一些常用的图标,尺寸为144px",
   "icons": [
+    {
+      "name": "Applet",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Applet.png"
+    },
+    {
+      "name": "aliyunpan",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/aliyunpan.png"
+    },
     {
       "name": "bing",
       "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bing.png"
+    },
+    {
+      "name": "Bing_common",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Bing_common.png"
     },
     {
       "name": "Spotify",
@@ -13,14 +25,6 @@
     {
       "name": "Spotify1",
       "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Spotify1.png"
-    },
-    {
-      "name": "Applet",
-      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Applet.png"
-    },
-    {
-      "name": "aliyunpan",
-      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/aliyunpan.png"
     },
     {
       "name": "citybox",
@@ -85,6 +89,126 @@
     {
       "name": "weifen",
       "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/weifen.png"
+    },
+    {
+      "name": "12306",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/12306.png"
+    },
+    {
+      "name": "ACA",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/ACA.png"
+    },
+    {
+      "name": "Amap",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Amap.png"
+    },
+    {
+      "name": "bdwangpan",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bdwangpan.png"
+    },
+    {
+      "name": "bdwenku",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bdwenku.png"
+    },
+    {
+      "name": "bilibili",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bilibili.png"
+    },
+    {
+      "name": "Cainiao",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Cainiao.png"
+    },
+    {
+      "name": "caiyun",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/caiyun.png"
+    },
+    {
+      "name": "damai",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/damai.png"
+    },
+    {
+      "name": "douban",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/douban.png"
+    },
+    {
+      "name": "emby",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/emby.png"
+    },
+    {
+      "name": "feike",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/feike.png"
+    },
+    {
+      "name": "iqiyi",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/iqiyi.png"
+    },
+    {
+      "name": "IThome",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/IThome.png"
+    },
+    {
+      "name": "jhsh",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/jhsh.png"
+    },
+    {
+      "name": "jingxi",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/jingxi.png"
+    },
+    {
+      "name": "kfx",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/kfx.png"
+    },
+    {
+      "name": "luckincoffee",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/luckincoffee.png"
+    },
+    {
+      "name": "mihome",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/mihome.png"
+    },
+    {
+      "name": "NeteaseCloudMusic",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/NeteaseCloudMusic.png"
+    },
+    {
+      "name": "pipi",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/pipi.png"
+    },
+    {
+      "name": "Pixiv",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Pixiv.png"
+    },
+    {
+      "name": "qie",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/qie.png"
+    },
+    {
+      "name": "smzdm",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/smzdm.png"
+    },
+    {
+      "name": "soutu",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/soutu.png"
+    },
+    {
+      "name": "vsco",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/vsco.png"
+    },
+    {
+      "name": "wps",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/wps.png"
+    },
+    {
+      "name": "youdao",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/youdao.png"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/YouTube.png"
+    },
+    {
+      "name": "zhihu",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/zhihu.png"
     }
   ]
 }

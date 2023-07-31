@@ -3,6 +3,26 @@
   "description": "收集一些常用的图标,尺寸为144px",
   "icons": [
     {
+      "name": "car1",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/car1.png"
+    },
+    {
+      "name": "car2",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/car2.png"
+    },
+    {
+      "name": "car3",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/car3.png"
+    },
+    {
+      "name": "car4",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/car4.png"
+    },
+    {
+      "name": "car5",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/car5.png"
+    },
+    {
       "name": "Applet",
       "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/Applet.png"
     },

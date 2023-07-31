@@ -44,6 +44,8 @@ DOMAIN, ad.chelaile.net.cn
 DOMAIN, amap-aos-info-nogw.amap.com 
 DOMAIN, awaken.amap.com 
 DOMAIN, free-aos-cdn-image.amap.com 
+# 工商银行 开屏广告
+DOMAIN, pageviewp.icbc.com.cn
 # > H
 # > HDO
 DOMAIN-SUFFIX, applovin.com,REJECT
@@ -73,7 +75,13 @@ DOMAIN-SUFFIX,tpns.tencent.com
 DOMAIN-SUFFIX,admobile.top 
 # > 蓝奏云
 DOMAIN-SUFFIX, statics.woozooo.com 
-# M
+# > M
+# > 美团
+DOMAIN, al-log.d.meituan.net
+DOMAIN, babel-statistics-android.d.meituan.net
+DOMAIN, maplocatesdksnapshot.d.meituan.net
+DOMAIN, metrics-picture.d.meituan.net
+DOMAIN, route-stats.d.meituan.net
 # > N
 # > NicoNico
 DOMAIN, ads.nicovideo.jp 

@@ -57,6 +57,8 @@ HOST, ad.chelaile.net.cn, REJECT
 HOST, amap-aos-info-nogw.amap.com, REJECT
 HOST, awaken.amap.com, REJECT
 HOST, free-aos-cdn-image.amap.com, REJECT
+# 工商银行 开屏广告
+HOST, pageviewp.icbc.com.cn, REJECT
 # > H
 # > HDO
 HOST-SUFFIX, applovin.com,REJECT
@@ -110,7 +112,13 @@ HOST, tmeadcomm.y.qq.com, REJECT
 HOST-SUFFIX,admobile.top, REJECT
 # > 蓝奏云
 HOST-SUFFIX, statics.woozooo.com, REJECT
-# M
+# > M
+# > 美团
+HOST, al-log.d.meituan.net, REJECT
+HOST, babel-statistics-android.d.meituan.net, REJECT
+HOST, maplocatesdksnapshot.d.meituan.net, REJECT
+HOST, metrics-picture.d.meituan.net, REJECT
+HOST, route-stats.d.meituan.net, REJECT
 # > N
 # > NicoNico
 HOST, ads.nicovideo.jp, REJECT

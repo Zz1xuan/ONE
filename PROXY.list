@@ -36,4 +36,8 @@ DOMAIN-KEYWORD,trello
 #魔戒
 DOMAIN-KEYWORD,mojie
 
+
+
+#不知道是啥
 IP-CIDR,5.28.195.37/32,no-resolve
+IP-CIDR,5.28.194.45/32,no-resolve

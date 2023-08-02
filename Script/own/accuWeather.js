@@ -1,3 +1,6 @@
+//http-response ^https:\/\/app-subscription-proxy\.accuweather\.com\/subscriptions\/v1\/apple\/validate requires-body=1,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/accuweather.js, tag=AccuWeather
+//^https:\/\/app-subscription-proxy\.accuweather\.com\/subscriptions\/v1\/apple\/validate url script-response-body https://raw.githubusercontent.com/OocMe/ONE/main/Script/own/accuWeather.js
+
 let obj = JSON.parse($response.body);
 
 obj = {

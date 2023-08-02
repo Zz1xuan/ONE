@@ -4,12 +4,14 @@
 #!homepage= 
 #!icon= https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/aliyunpan.png
 
-# author= keywos
+[Rewrite]
+^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders url reject-dict
+
 [script]
 
-http-response ^https:\/\/api\.aliyundrive\.com\/apps\/v1\/users\/home\/widgets script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/ali.js, requires-body=true, tiomeout=10, tag=阿里云盘
+http-response ^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/widgets script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/ali.js, requires-body=true, tiomeout=10, tag=阿里云盘
 
 [mitm]
 
-hostname = api.aliyundrive.com
+hostname = api.alipan.com
 

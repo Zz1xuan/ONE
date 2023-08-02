@@ -28,10 +28,9 @@ http-response ^https:\/\/dict\.youdao\.com\/vip\/user\/status requires-body=1,sc
 http-response ^http:\/\/wallpaper\.soutushenqi\.com\/api\/.+\/account\/token requires-body=1,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/soutu.js, tag=搜图神器
 # ✅ Emby   mb3admin.com,
 http-response ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/emby.js, tag=EMBY
-# ✅ 薄荷健康  api.boohee.com
-http-response ^https?:\/\/api\.boohee\.com\/app-interface\/.+\/user\/user_info script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/bohejiankang.js, requires-body=1, timeout=60, tag=薄荷健康
+
 
 [MITM]
-hostname = *.wps.cn, appwk.baidu.com, biz.cyapi.cn, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, mb3admin.com, api.boohee.com
+hostname = *.wps.cn, appwk.baidu.com, biz.cyapi.cn, pan.baidu.com, dict.youdao.com, wallpaper.soutushenqi.com, mb3admin.com
 
 

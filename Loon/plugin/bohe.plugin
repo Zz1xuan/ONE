@@ -5,8 +5,8 @@
 #!icon= https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bohe.png
 
 [Rewrite]
-^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/discover_chosen reject-dict
-^https:\/\/api\.boohee\.com\/app-interface\/v1\/record\/record_tool_pop_ad reject
+^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/discover_chosen - reject-dict
+^https:\/\/api\.boohee\.com\/app-interface\/v1\/record\/record_tool_pop_ad - reject
 
 [Script]
 http-response ^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/record_index script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/bohe.js, requires-body=true, timeout=10, tag=主页下方广告

@@ -9,7 +9,7 @@
 
 [script]
 
-http-response ^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/widgets script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/ali.js, requires-body=true, tiomeout=10, tag=阿里云盘
+http-response ^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets) script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/ali.js, requires-body=true, tiomeout=10, tag=阿里云盘
 
 [mitm]
 

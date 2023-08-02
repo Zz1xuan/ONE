@@ -12,7 +12,7 @@ if (url.includes("/v2/users/home/news")) {
   }
 } else if (url.includes("/v2/users/home/widgets")) {
   const item = [
-    //"banners", // 顶部奖励
+    "banners", // 顶部奖励
     //"coreFeatures", // 横版图标
     "mainBackup", // 手机备份
     "minorBackup", // 备份设备列表

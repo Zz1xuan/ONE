@@ -5,12 +5,13 @@
 #!icon= https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bohe.png
 
 [Rewrite]
+^https:\/\/bohe\.sfo-tx-shanghai-01\.saas\.sensorsdata\.cn\/api\/v2\/sfo\/user_popup_configs - reject-dict
 ^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/discover_chosen - reject-dict
-^https:\/\/api\.boohee\.com\/app-interface\/v1\/record\/record_tool_pop_ad - reject-dict
+^https:\/\/api\.boohee\.com\/app-interface\/v1\/record\/record_tool(_pop)?_ad - reject-dict
 
 [Script]
 http-response ^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/record_index script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/bohe.js, requires-body=true, timeout=10, tag=主页下方广告
 http-response ^https?:\/\/api\.boohee\.com\/app-interface\/.+\/user\/user_info script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/bohejiankang.js, requires-body=1, timeout=60, tag=会员解锁
 
 [Mitm]
-hostname=api.boohee.com
+hostname = api.boohee.com, bohe.sfo-tx-shanghai-01.saas.sensorsdata.cn

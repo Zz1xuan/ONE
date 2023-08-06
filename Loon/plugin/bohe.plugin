@@ -5,6 +5,7 @@
 #!icon= https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bohe.png
 
 [Rewrite]
+#弹窗
 ^https:\/\/bohe\.sfo-tx-shanghai-01\.saas\.sensorsdata\.cn\/api\/v2\/sfo\/user_popup_configs - reject-dict
 ^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/discover_chosen - reject-dict
 ^https:\/\/api\.boohee\.com\/app-interface\/v1\/record\/record_tool(_pop)?_ad - reject-dict

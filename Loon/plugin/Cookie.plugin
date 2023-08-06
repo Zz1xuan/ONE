@@ -71,7 +71,10 @@ http-request ^https:\/\/fscrm\.kraftheinz\.net\.cn\/crm\/public\/index\.php\/api
 # > hifini签到
 http-request https:\/\/www.hifini.com\/my.htm script-path=https://raw.githubusercontent.com/lowking/Scripts/master/hifini/hifiniSign.js, timeout=60, tag=hifini
 
+# > 特仑苏官方 微信小程序 
+http-request ^https:\/\/mall\.telunsu\.net\/wxapi\/rest\/getUser\?openid=.+ script-path=https://raw.githubusercontent.com/Sliverkiss/helloworld/master/Study/tls.js, timeout=10, tag=特仑苏官方商城获取token
+
 [MITM]
-hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.aliyundrive.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, iacc.rec.qq.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com
+hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.aliyundrive.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, iacc.rec.qq.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net
 
 

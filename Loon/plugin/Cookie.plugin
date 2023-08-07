@@ -55,9 +55,6 @@ http-request ^https?:\/\/user-api\.smzdm\.com\/checkin$ script-path=https://raw.
 # > 百度贴吧
 http-request https?:\/\/(c\.tieba\.baidu\.com|180\.97\.\d+\.\d+)\/c\/s\/login script-path=https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js, tag=百度贴吧
 
-# > 腾讯视频
-http-request ^https?:\/\/iacc\.rec\.qq\.com script-path=https://raw.githubusercontent.com/ClydeTime/Quantumult/main/Script/Task/videoqq.js, tag=腾讯视频Cookie
-
 # > 途虎
 http-request ^https:\/\/api\.tuhu\.cn\/User\/GetInternalCenterInfo script-path=https://raw.githubusercontent.com/Crazy-Z7/Task/main/Vxtuhu.js, timeout=60, tag=途虎小程序
 http-request ^https:\/\/api\.tuhu\.cn\/User\/ValidLogin script-path=https://raw.githubusercontent.com/Crazy-Z7/Task/main/apptuhu.js, timeout=60, tag=途虎app
@@ -78,6 +75,6 @@ http-request https:\/\/www.hifini.com\/my.htm script-path=https://raw.githubuser
 http-request ^https:\/\/mall\.telunsu\.net\/wxapi\/rest\/getUser\?openid=.+ script-path=https://raw.githubusercontent.com/Sliverkiss/helloworld/master/Study/tls.js, timeout=10, tag=特仑苏官方商城获取token
 
 [MITM]
-hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.aliyundrive.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, iacc.rec.qq.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net, m5.amap.com
+hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.aliyundrive.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net, m5.amap.com
 
 

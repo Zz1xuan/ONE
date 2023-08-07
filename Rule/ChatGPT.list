@@ -33,3 +33,11 @@ DOMAIN-SUFFIX,gpt3sandbox.com
 DOMAIN-KEYWORD,openai
 DOMAIN-KEYWORD,openaiapi
 DOMAIN-KEYWORD,openaipublic
+
+
+#Claude
+DOMAIN,cdn.usefathom.com
+DOMAIN-SUFFIX,hsforms.com
+DOMAIN-SUFFIX,hsforms.net
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,claude.ai

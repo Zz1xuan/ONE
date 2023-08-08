@@ -21,7 +21,7 @@ http-request ^https:\/\/ccsp-egmas.sf-express.com\/cx-app-member\/member\/app\/u
 # > 阿里云盘  进入app
 #http-request ^https:\/\/auth\.aliyundrive\.com\/v2\/account\/token script-path=https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/js/Mine/aDriveCheckIn/aDriveCheckIn.js, requires-body=true, timeout=10, enabled=true, tag=阿里网盘token获取
 
-http-request ^https:\/\/auth\.aliyundrive\.com\/v2\/account\/token script-path=https:\/\/auth.aliyundrive.com\/v2\/account\/token,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js, requires-body=true, timeout=10, enabled=true, tag=阿里网盘token获取
+http-request ^https:\/\/auth\.alipan\.com\/v2\/account\/token script-path=https:\/\/auth.aliyundrive.com\/v2\/account\/token,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js, requires-body=true, timeout=10, enabled=true, tag=阿里网盘token获取
 
 # > 威锋  账号密码登录
 http-request ^https?:\/\/api.wfdata.club\/v1\/auth\/signin script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/feng/feng.cookie.js, requires-body=true, tag=威锋cookie
@@ -80,7 +80,10 @@ http-request ^https:\/\/api\.yqslmall\.com\/mall-member\/member\/info script-pat
 # > 金典SATINE  微信小程序 
 http-request ^https:\/\/jdshop\.yili\.com\/api\/user\/score script-path=https://raw.githubusercontent.com/Sliverkiss/helloworld/master/Study/jdsatine.js, timeout=10, tag=金典SATINE获取token
 
+# > 伊利   微信小程序 
+http-request https:\/\/club\.yili\.com\/MALLIFChe\/MCSWSIAPI\.asmx\/Call script-path=https://raw.githubusercontent.com/id77/QuantumultX/master/task/yiLi.cookie.js, requires-body=true, tag=伊利
+
 [MITM]
-hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.aliyundrive.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net, m5.amap.com, api.yqslmall.com, jdshop.yili.com
+hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.alipan.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net, m5.amap.com, api.yqslmall.com, jdshop.yili.com， club.yili.com
 
 

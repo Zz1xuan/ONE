@@ -19,7 +19,7 @@ http-response ^https?:\/\/(vas|account|drive)\.wps\.cn\/(query\/api\/.+\/list_pu
 # ～ 百度文库☆解锁VIP文档阅读权限（2022-10-17）@ddgksf2013
 http-response ^https:\/\/appwk\.baidu\.com\/naapi\/user\/getinfo requires-body=1,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/baidulibrary.js, tag=百度文库
 # ✅ 彩云天气  biz.cyapi.cn, biz.caiyunapp.com,
-http-response ^https:\/\/biz\.cyapi\.cn\/v\d\/(user\?app_name=weather|visitors|login_by_code)$ requires-body=1,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/Caiyun_tk.js, tag=彩云天气
+http-response ^https:\/\/biz\.cyapi\.cn\/v\d\/(user\?app_name=weather|visitors|login_by_code)$ requires-body=1,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/caiyun.js, tag=彩云天气
 # ✅ 百度云  pan.baidu.com,
 http-response https:\/\/pan\.baidu\.com\/rest\/\d\.\d\/membership\/user requires-body=1,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/BaiduCloud.js, tag=百度网盘
 # ✅ 有道词典   dict.youdao.com,

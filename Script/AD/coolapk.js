@@ -43,24 +43,9 @@ if (url.includes("/feed/detail")) {
   }
 } else if (url.includes("/main/init")) {
   if (obj.data?.length > 0) {
-    obj.data = obj.data.filter((item) => {
-      if ([944, 945].includes(item?.entityId)) {
-        return false;
-      }
-      if (item?.description?.includes("AdSlot") && item?.extraDataArr) {
-        item["Ad.CHANGE_AFTER_SHOW"] = "0";
-        item["Ad.DOWNLOAD_POPUP"] = "0";
-        item["Ad.PRELOAD"] = "0";
-        item["Ad.PRELOAD_AFTER_USE"] = "0";
-        item["Ad.SPLASH_DOWNLOAD_POPUP"] = "0";
-        item["Ad.SPLASH_RETRY_PERIOD"] = "172800";
-        item["SplashAd.Expires"] = 172800;
-        item["SplashAd.Type"] = "";
-        item["SplashAd.onResume"] = "0";
-        item["SplashAd.resumeType"] = "";
-      }
-      return true;
-    });
+    obj.data = obj.data.filter(
+      (item) => ![944, 945, 6390].includes(item?.entityId)
+    );
   }
 } else if (url.includes("/page/dataList")) {
   if (obj.data?.length > 0) {

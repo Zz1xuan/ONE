@@ -44,10 +44,14 @@ if (url.includes("/feed/detail")) {
 } else if (url.includes("/main/init")) {
   if (obj.data?.length > 0) {
     obj.data = obj.data.filter(
-      (item) => ![944, 945, 6390].includes(item?.entityId)
+      (item) => {
+        const entityIdExcluded = [944, 945, 6390].includes(item?.entityId);
+        const cardIdExcluded = [944, 945, 6390].includes(item?.cardId);
+        return !(entityIdExcluded || cardIdExcluded);
+      }
     );
   }
-} else if (url.includes("/page/dataList")) {
+}else if (url.includes("/page/dataList")) {
   if (obj.data?.length > 0) {
     obj.data = obj.data.filter((item) => !(item.title === "酷安热搜"));
   }

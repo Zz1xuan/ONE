@@ -44,11 +44,7 @@ if (url.includes("/feed/detail")) {
 } else if (url.includes("/main/init")) {
   if (obj.data?.length > 0) {
     obj.data = obj.data.filter(
-      (item) => {
-        const entityIdExcluded = [944, 945, 6390].includes(item?.entityId);
-        const cardIdExcluded = [944, 945, 6390].includes(item?.cardId);
-        return !(entityIdExcluded || cardIdExcluded);
-      }
+      (item) => ![944, 945, 6390].includes(item?.entityId)
     );
   }
 }else if (url.includes("/page/dataList")) {

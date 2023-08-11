@@ -86,7 +86,10 @@ http-request https:\/\/club\.yili\.com\/MALLIFChe\/MCSWSIAPI\.asmx\/Call script-
 # > ithome
 http-response ^https:\/\/my\.ruanmei\.com\/api\/usersign\/getsigninfo? script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/ithome/ithome.cookie.js, requires-body=true, tag=IThome
 
+# > v2ex
+http-request ^https:\/\/www\.v2ex\.com\/mission\/daily  script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/v2ex/quanx/v2ex.cookie.js, requires-body=true, tag=v2ex
+
 [MITM]
-hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.alipan.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net, m5.amap.com, api.yqslmall.com, jdshop.yili.com， club.yili.com, my.ruanmei.com
+hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.alipan.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net, m5.amap.com, api.yqslmall.com, jdshop.yili.com， club.yili.com, my.ruanmei.com, *.v2ex.com
 
 

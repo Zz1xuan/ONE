@@ -1,5 +1,5 @@
 #!name = soul去开屏
-#!desc = FUCK THE AD APP
+#!desc = FUCKING AD APP
 #!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/soul.png
 
 [Rule]
@@ -17,5 +17,4 @@ DOMAIN, ssp.soulapp.cn, REJECT-DROP
 #^https:\/\/ssp\.soulapp\.cn\/api - reject
 
 [MITM]
-hostname = ssp.soulapp.cn
-
+#hostname = ssp.soulapp.cn

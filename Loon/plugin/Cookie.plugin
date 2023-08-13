@@ -92,7 +92,10 @@ http-request ^https:\/\/www\.v2ex\.com\/mission\/daily  script-path=https://raw.
 # > 米其林
 http-request ^https?:\/\/ulp\.michelin\.com\.cn\/op\/.+ script-path=https://raw.githubusercontent.com/Sliverkiss/helloworld/main/Study/michelin.cookie.js, timeout=10, tag=米其林俱乐部token
 
+# > 奥康会员中心
+http-request ^https:\/\/wxa-tp\.ezrpro\.com\/myvip\/Vip\/Bonus\/GetMyBonusLogs.+ script-path=https://raw.githubusercontent.com/Sliverkiss/helloworld/master/Study/ak.js, timeout=10, tag=奥康获取token
+
 [MITM]
-hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.alipan.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net, m5.amap.com, api.yqslmall.com, jdshop.yili.com， club.yili.com, my.ruanmei.com, *.v2ex.com, ulp.michelin.com.cn 
+hostname = api.icitybox.cn, ccsp-egmas.sf-express.com, auth.alipan.com, api.wfdata.club, api.weibo.cn, sytgate.jslife.com.cn, i.meituan.com, rewards.bing.com, cn.bing.com, passport.iqiyi.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, m.bilibili.com, app.bilibili.com, user-api.smzdm.com, c.tieba.baidu.com, api.tuhu.cn, yunbusiness.ccb.com, fscrm.kraftheinz.net.cn, *.hifini.com, mall.telunsu.net, m5.amap.com, api.yqslmall.com, jdshop.yili.com， club.yili.com, my.ruanmei.com, *.v2ex.com, ulp.michelin.com.cn, wxa-tp.ezrpro.com
 
 

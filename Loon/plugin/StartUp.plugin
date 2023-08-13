@@ -90,6 +90,8 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 ^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=lite_advertising - reject
 # > K
 # > L
+# > 联想  api.club.lenovo.cn
+^https:\/\/api\.club\.lenovo\.cn\/common\/(open_ad|page_alert\?s) - reject
 # > M
 # > N
 # > O
@@ -147,4 +149,4 @@ http-response ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab? 
 
 
 [MITM]
-hostname = pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, api.caiyunapp.com, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, yunbusiness.ccb.com, api.m.jd.com, *.360buyimg.com, ms.jr.jd.com, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, api.xiachufang.com, shop-api.retail.mi.com, t1.market.xiaomi.com, home.mi.com, *.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com, *cupid.iqiyi.com, api.jr.mi.com
+hostname = pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, api.caiyunapp.com, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, yunbusiness.ccb.com, api.m.jd.com, *.360buyimg.com, ms.jr.jd.com, api.club.lenovo.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, api.xiachufang.com, shop-api.retail.mi.com, t1.market.xiaomi.com, home.mi.com, *.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com, *cupid.iqiyi.com, api.jr.mi.com

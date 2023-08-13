@@ -76,8 +76,6 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 # > 飞猪    acs.m.taobao.com,
 # 需要配合分流  HOST,amdc.m.taobao.com,reject
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.allresource\/ - reject-dict
-# > 飞客茶馆@ddgksf2013       47.100.65.202,
-^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=advis - reject
 # > G
 # > H
 # > 航旅纵横  discardrp.umetrip.com, startup.umetrip.com,
@@ -86,40 +84,27 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 # > J
 # > 建行生活  yunbusiness.ccb.com,
 ^https?:\/\/yunbusiness\.ccb\.com\/clp_service\/txCtrl\?txcode=A3341A00(6|9) - reject
-# > 京东  api.m.jd.com,bdsp-x.jd.com, dsp-x.jd.com, *.360buyimg.com, union.click.jd.com, ms.jr.jd.com,
+# > 京东  api.m.jd.com, *.360buyimg.com, 第一条请求 第二条图片链接
 ^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(start|queryMaterialAdverts) - reject
 ^https:\/\/m\.360buyimg\.com\/mobilecms\/s1125x2436_jfs\/ - reject
-^https:\/\/(bdsp-x|dsp-x)\.jd\.com\/adx - reject
-^https:\/\/ms\.jr\.jd\.com\/gw\/generic\/(aladdin|base)\/(new)?na\/m\/(getLoadingPicture|adInfo) - reject
 # > 京东金融   ms.jr.jd.com,
 ^https?:\/\/ms\.jr\.jd\.com\/gw\/generic\/aladdin\/(new)?na\/m\/(getLoadingPicture|adInfo) - reject
 # > 京喜特价
 ^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=lite_advertising - reject
 # > K
-# > 快手  open.e.kuaishou.com, 
-^https:\/\/open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ - reject
 # > L
 # > M
-# > 每日优鲜   j-image.missfresh.cn,
-^https:\/\/j-image\.missfresh\.cn\/img_(.+)\.gif$ - reject
-^https:\/\/j-image\.missfresh\.cn\/img_(.+)\.(jpg|jpeg|gif|png)\?iopcmd=convert&dst=webp&q=85$ - reject
 # > N
 # > O
 # > P
 # > 拼多多   api.pinduoduo.com, api.yangkeduo.com,
 ^https?:\/\/api\.(pinduoduo|yangkeduo)\.com\/api\/cappuccino\/splash - reject-dict
 # > Q
-# > 去哪儿  homefront.qunar.com, client.qunar.com,
-https://homefront.qunar.com/front/splash/ad - reject
-^https?:\/\/client\.qunar\.com\/pitcher-proxy\?qrt=p_splashAd - reject
 # > R
 # > 瑞辛咖啡
 ^https:\/\/capi\.lkcoffee\.com\/resource\/m\/sys\/app\/adposNew - reject
 ^https:\/\/(ec|c)api\.lkcoffee\.com\/resource\/m\/eorder\/product\/popAppTagProductList - reject
 # > S
-# > spotify pro@app2smile   spclient.wg.spotify.com,
-#^https?://spclient.wg.spotify.com/(ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+promoted_offer) - reject-img
-#^https?:\/\/api\d?\.musical\.ly\/api\/ad\/ - reject-img
 # > T
 # > U
 # > V
@@ -132,21 +117,18 @@ https://homefront.qunar.com/front/splash/ad - reject
 # > X
 # > 携程    m.ctrip.com, 
 ^https:\/\/m\.ctrip\.com\/restapi\/.+json\/tripAds - reject
-# > 闲鱼  gw.alicdn.com,
-^https:\/\/gw.alicdn.com\/mt\/ - reject
-^https:\/\/gw.alicdn.com\/(tfs|tps)\/.+\d{3,4}-\d{4} - reject
 # > 下厨房   api.xiachufang.com,
 ^https?:\/\/api\.xiachufang\.com\/v\d\/(homepage1810|ad)\/ - reject-dict
 # > 小米   shop-api.retail.mi.com
 ^https:\/\/shop-api\.retail\.mi\.com\/mtop\/navi\/skywheel\/(shop\/resource|mishop\/splash) - reject-dict
 # > 小米金融（天星金融）  t1.market.xiaomi.com,
-^http:\/\/t1\.market\.xiaomi\.com\/thumbnail\/webp\/w1170q100\/ - reject
-^http:\/\/t1\.market\.xiaomi\.com\/thumbnail\/webp\/w646\/Finance - reject
+^http:\/\/t1\.market\.xiaomi\.com\/thumbnail\/webp\/(w1170q100|w646\/Finance) - reject
 ^https:\/\/api\.jr\.mi\.com\/jr\/api\/popUpWindow\?_capabilities=.*&app=com\.xiaomi\.jr - reject
-# > 小米米家 home.mi.com,
+# > 米家 home.mi.com,
 ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(carousel\/)?banner(s?)\? - reject
-# > 萤石云  i.ys7.com,
+# > 萤石云  *.ys7.com,
 ^https?:\/\/i\.ys7\.com\/api\/(ads|user)\/(v2|tabList) - reject
+^https:\/\/api\.ys7\.com\/v3\/config\/service\/entrance\/bannerInfo\?clientInfo - reject-dict
 # > 中国移动  client.app.coc.10086.cn,
 ^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/(init\/startInit|explorePage\/getAdverList) - reject
 # > 浙里办  portal.zjzwfw.gov.cn,
@@ -155,7 +137,7 @@ https://homefront.qunar.com/front/splash/ad - reject
 ^https:\/\/mlol\.qt\.qq\.com\/go\/recommend - reject-dict
 [Script]
 
-# > 12306 ad.12306.cn,
+# > 12306 @kokoryh ad.12306.cn,
 http-request ^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/12306.js, requires-body=true, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/12306.png, tag=12306
 # > 爱奇艺
 http-response ^https?:\/\/.*cupid\.iqiyi\.com\/mixer\? script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/iqiyi_open.js, requires-body=true, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/iqiyi.png, tag=爱奇艺
@@ -163,19 +145,9 @@ http-response ^https?:\/\/.*cupid\.iqiyi\.com\/mixer\? script-path=https://raw.g
 http-response ^https?:\/\/.*\.hdslb\.com\/bfs\/subtitle\/.+\.json script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/bilibili_cc.js, requires-body=true, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bilibili.png, tag=繁体转简体
 # ～ BiliBili_哔哩哔哩_应用开屏广告预加载@yjqiang   app.bilibili.com,
 http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/bilibili_json.js, requires-body=true, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/bilibili.png, tag=b站开屏
-# > 飞客茶馆   47.100.65.202,
-http-response ^https?:\/\/47\.100\.65\.202\/api\/mobile\/index\.php\?version=\d&mobile=yes&module=basicdata&type=forumlist script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Loon/replace-body.js, requires-body=true, timeout=10, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/feike.png, tag=去广告, argument="adv->ddgksf2013"
-http-response ^https?:\/\/47\.100\.65\.202\/source\/plugin\/mobile\/mobile\.php\?module=threadpost&.+?&page=1 script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/fly.js, requires-body=true, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/feike.png, tag=fly
-# > 京喜   api.m.jd.com,
-#http-response ^https?:\/\/api\.m\.jd\.com\/api\?functionId=delivery_show script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/jingxi.js, requires-body=true, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/jingxi.png, tag=京喜
 # > 米家
 http-response ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/mihome.js, requires-body=true, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/mihome.png, tag=米家
-# > spotify
-#http-response ^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path = https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, tag=spotify-proto
-# > 瑞辛咖啡
-http-response ^https:\/\/m\.lkcoffee\.com\/ecapi\/resource\/m\/member\/exchange\/page script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Loon/replace-body.js, requires-body=true, timeout=10, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/luckincoffee.png, tag=瑞辛咖啡开屏, argument="\{.+\}->{"status":"SUCCESS"}"
-http-response ^https:\/\/m\.lkcoffee\.com\/capi\/resource\/m\/growUp\/main script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Loon/replace-body.js, requires-body=true, timeout=10, img-url=https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/luckincoffee.png, tag=瑞辛咖啡开屏, argument="popTitle":".+?"->"popTitle":""
 
 
 [MITM]
-hostname = pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, api.caiyunapp.com, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, 47.100.65.202, yunbusiness.ccb.com, api.m.jd.com,bdsp-x.jd.com, dsp-x.jd.com, *.360buyimg.com, ms.jr.jd.com, open.e.kuaishou.com, j-image.missfresh.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, homefront.qunar.com, client.qunar.com, spclient.wg.spotify.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, api.xiachufang.com, shop-api.retail.mi.com, t1.market.xiaomi.com, home.mi.com, i.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, 124.71.225.147, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com, *cupid.iqiyi.com, api.jr.mi.com
+hostname = pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, api.caiyunapp.com, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, yunbusiness.ccb.com, api.m.jd.com, *.360buyimg.com, ms.jr.jd.com, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, api.xiachufang.com, shop-api.retail.mi.com, t1.market.xiaomi.com, home.mi.com, *.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com, *cupid.iqiyi.com, api.jr.mi.com

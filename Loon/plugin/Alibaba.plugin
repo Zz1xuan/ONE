@@ -1,0 +1,74 @@
+# author = RuCu6 kokoryh ddgksf2013
+
+#!name = 阿里系开屏
+#!desc = 包含高德，飞猪，菜鸟，大麦，阿里巴巴
+#!openUrl = 
+#!author = 
+#!homepage = 
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/smile.png
+
+
+[Rewrite]
+# > 高德地图(配合admc.m.taobao.com)
+^https:\/\/m5\.amap\.com\/ws\/asa\/ads_attribution reject-dict
+^https:\/\/m5\.amap\.com\/ws\/shield\/scene\/recommend reject-dict
+# 搜索框热词
+^https:\/\/m5\.amap\.com\/ws\/shield\/search\/new_hotword\? reject-dict
+# 路线规划推广
+^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/card-service-route-plan\? reject-dict
+# 首页顶部消息横幅
+^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page-assets\? reject-dict
+# 首页天气
+^https:\/\/m5\.amap\.com\/ws\/valueadded\/weather\/v2\? reject-dict
+# 打车弹窗
+^https:\/\/m5-zb\.amap\.com\/ws\/boss\/order_web\/friendly_information\? reject-dict
+
+# > 菜鸟裹裹(配合admc.m.taobao.com)
+# > 菜鸟裹裹_通用广告请求@ddgksf2013
+^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.(show|mshow)\.cn\/ reject-200
+# > 菜鸟裹裹_支付宝小程序_通用广告请求@ddgksf2013
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.show reject-200
+# > 菜鸟裹裹_支付宝小程序_匿名选择@ddgksf2013
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.consultmerge reject-200
+# > 菜鸟裹裹_支付宝小程序_底部商品推广@ddgksf2013
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.adx\.flyad\.getad reject-200
+
+# > 飞猪(配合admc.m.taobao.com)    acs.m.taobao.com,
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(allresource|predict) reject-dict
+
+# > 大麦 (配合admc.m.taobao.com)
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\(.wireless\.home\.welcome|.mec\.popup\.get) reject
+
+# > 阿里巴巴(配合admc.m.taobao.com)
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv - reject
+
+[Script]
+# > 统一使用
+http-response ^http:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/self_use.js
+
+# > 高德地图
+
+http-response ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/main-page(-location)?\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页卡片
+http-response ^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 开屏
+http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 我的页面卡片
+http-response ^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull(3|_mp)\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true
+http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 附近
+http-response ^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource\? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 打车卡片
+http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页右上角动图
+
+# > 菜鸟裹裹
+
+# > 菜鸟裹裹_首页中部的惊喜福利推广@ddgksf2013
+http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 首页中部的惊喜福利推广
+# > 菜鸟裹裹_搜索框下方今日好物推荐@ddgksf2013
+http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.adkeyword script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 搜索框下方今日好物推荐
+# > 菜鸟裹裹_首页底部商品推广@ddgksf2013
+http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.index\.cn script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 首页底部商品推广
+# > 菜鸟裹裹_支付宝小程序_中部的寄件推广[导致的空白占位后续处理]@ddgksf2013
+http-response ^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 支付宝小程序_中部的寄件推广
+
+
+
+
+[MITM]
+hostname = m5.amap.com, sns.amap.com, m5-zb.amap.com, acs.m.taobao.com, cn-acs.m.cainiao.com, guide-acs.m.taobao.com

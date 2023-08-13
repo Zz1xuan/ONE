@@ -49,9 +49,6 @@
 ^https?:\/\/(cdn.)?api.chelaile.net.cn|124.71.153.172\/(goocity\/)?adpub\/ - reject
 ^https?:\/\/atrace.chelaile.net.cn\/(adpub|exhibit\?&adv_image) - reject
 # > D
-# > 大麦  acs.m.taobao.com
-^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.home\.welcome - reject
-^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.mec\.popup\.get - reject
 # > 大众点评 img.meituan.net,
 ^https:\/\/img\.meituan\.net\/dpmobile\/([a-fA-F0-9]+)\.jpg\.webp - reject
 # > 大师兄影视 sdk.alibaba.com,

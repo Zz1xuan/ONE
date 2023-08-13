@@ -37,7 +37,7 @@
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(allresource|predict) reject-dict
 
 # > 大麦 (配合admc.m.taobao.com)
-^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\(.wireless\.home\.welcome|.mec\.popup\.get) reject
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.(wireless\.home\.welcome|mec\.popup\.get) reject
 
 # > 阿里巴巴(配合admc.m.taobao.com)
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv - reject

@@ -1,0 +1,23 @@
+#!name = 携程小程序
+#!desc = 携程广告
+#!openUrl = 
+#!author = 
+#!homepage = 
+#!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/ctrip.png
+
+[Rewrite]
+# > 携程旅行小程序_热门活动@ddgksf2013  m.ctrip.com, 
+^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/queryWeChatHotEvent - reject-200
+# > 携程旅行小程序_广告请求@ddgksf2013
+^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/tripAds\.json - reject-200
+# > 携程旅行小程序_热搜词@ddgksf2013
+^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/json\/gethotsearchrespbysmallprogram - reject-200
+# > 携程旅行小程序_航班页信息流@ddgksf2013
+^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/flightHomeSecondService - reject-200
+
+[Script]
+# > 携程旅行小程序_信息流@ddgksf2013
+http-response ^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/getWaterflowInfo script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/ctripAD.js, requires-body = true, tag = 携程小程序广告
+
+[MITM]
+hostname = m.ctrip.com

@@ -9,8 +9,6 @@
 
 [Rewrite]
 # > A
-# > 安居客   pic*.ajkimg.com,
-^https?:\/\/pic6\.ajkimg\.com\/news\/\w*.\w*\/format\/jpg\/thumbnail\/1125x2436 - reject-dict
 # > 阿里巴巴(配合admc.m.taobao.com) acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv - reject
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimama\.etao\.config\.query\/.+?etao_advertise - reject
@@ -63,12 +61,6 @@ https?://res\.xiaojukeji\.com\/resapi\/activity\/mget - reject
 https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNotices) - reject
 ^https?:\/\/img-ys011\.didistatic\.com\/static\/ad_oss\/\w*.jpg - reject
 # > E
-# > 饿了么  elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com,
-^https:\/\/elemecdn.com\/.+\/sitemap - reject
-^https:\/\/fuss10.elemecdn.com\/.+\/w\/640\/h\/\d{3,4} - reject
-^https:\/\/fuss10.elemecdn.com\/.+\/w\/750\/h\/\d{3,4} - reject
-^https:\/\/fuss10.elemecdn.com\/.+\.mp4 - reject
-^https:\/\/www1.elecfans.com\/www\/delivery - reject
 # > F
 # > 飞猪    acs.m.taobao.com,
 # 需要配合分流  HOST,amdc.m.taobao.com,reject
@@ -114,8 +106,6 @@ https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNot
 ^https?:\/\/appconf\.mail\.163\.com\/mmad\/get\.do - reject
 ^https?:\/\/client\.mail\.163.com\/apptrack\/confinfo\/(searchMultiAds.do|showAds.do) - reject
 # > X
-# > 携程    m.ctrip.com, 
-^https:\/\/m\.ctrip\.com\/restapi\/.+json\/tripAds - reject
 # > 下厨房   api.xiachufang.com,
 ^https?:\/\/api\.xiachufang\.com\/v\d\/(homepage1810|ad)\/ - reject-dict
 # > 小米   shop-api.retail.mi.com
@@ -149,4 +139,4 @@ http-response ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab? 
 
 
 [MITM]
-hostname = pic*.ajkimg.com, acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, api.caiyunapp.com, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, elemecdn.com, fuss10.elemecdn.com, www1.elecfans.com, yunbusiness.ccb.com, api.m.jd.com, *.360buyimg.com, ms.jr.jd.com, api.club.lenovo.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, m.ctrip.com, api.xiachufang.com, shop-api.retail.mi.com, t1.market.xiaomi.com, home.mi.com, *.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com, *cupid.iqiyi.com, api.jr.mi.com
+hostname = acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, api.caiyunapp.com, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, res.xiaojukeji.com, img-ys011.didistatic.com, yunbusiness.ccb.com, api.m.jd.com, *.360buyimg.com, ms.jr.jd.com, api.club.lenovo.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, api.xiachufang.com, shop-api.retail.mi.com, t1.market.xiaomi.com, home.mi.com, *.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com, *cupid.iqiyi.com, api.jr.mi.com

@@ -1,4 +1,4 @@
-
+//取自墨鱼
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"];
 if (
     -1 !== ua.indexOf("AMap") ||

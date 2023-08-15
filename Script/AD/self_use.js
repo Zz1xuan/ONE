@@ -1,3 +1,4 @@
+//取自kokoryh
 const url = $request.url;
 const header = $request.headers;
 let ua = header["User-Agent"] || header["user-agent"];

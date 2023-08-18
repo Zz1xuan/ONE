@@ -60,7 +60,7 @@ http-request ^https:\/\/api\.tuhu\.cn\/User\/GetInternalCenterInfo script-path=h
 http-request ^https:\/\/api\.tuhu\.cn\/User\/ValidLogin script-path=https://raw.githubusercontent.com/Crazy-Z7/Task/main/apptuhu.js, timeout=60, tag=途虎app
 
 # > 高德签到
-http-request ^https:\/\/m5(-zb)?\.amap\.com\/ws\/yuece\/(act|openapi)\/(activity\/current\/)?query script-path=https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js, tag=高德签到
+http-request ^https:\/\/(m5(|-zb)|dache)\.amap\.com\/(ws\/yuece\/(act|openapi\/activity\/current)\/query|common\/(alipaymini|wxmini)\?_ENCRYPT=) script-path=https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js, tag=高德签到
 
 # > 建行生活
 http-request ^https:\/\/yunbusiness\.ccb\.com\/clp_coupon\/txCtrl\?txcode\=A3341A040 script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/jhsh_checkIn.js, requires-body=true, timeout=60, tag=建行生活Cookie

@@ -21,7 +21,7 @@ DOMAIN,appcloud2.in.zhihu.com,REJECT
 ^https?:\/\/103\.41\.167\.237 - reject-dict
 ^https?:\/\/2402:4e00:1200:ed00:0:9089:6dac:96b6 - reject-dict
 # 搜索框关键词
-^https:\/\/api\.zhihu\.com\/search\/preset_words\?? reject-dict
+^https:\/\/api\.zhihu\.com\/search\/preset_words reject-dict
 # 屏蔽下发的配置，如皮肤等
 ^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config - reject-dict
 # 屏蔽我的页面开通会员的卡片

@@ -14,4 +14,5 @@ if (body) {
   }
 }
 
-$done({ 'body': '{}' });
+$done({ 'body': body });
+

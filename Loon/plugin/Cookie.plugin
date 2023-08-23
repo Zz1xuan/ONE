@@ -56,8 +56,7 @@ http-request ^https?:\/\/user-api\.smzdm\.com\/checkin$ script-path=https://raw.
 http-request https?:\/\/(c\.tieba\.baidu\.com|180\.97\.\d+\.\d+)\/c\/s\/login script-path=https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js, tag=百度贴吧
 
 # > 途虎
-http-request ^https:\/\/api\.tuhu\.cn\/User\/GetInternalCenterInfo script-path=https://raw.githubusercontent.com/Crazy-Z7/Task/main/Vxtuhu.js, timeout=60, tag=途虎小程序
-http-request ^https:\/\/api\.tuhu\.cn\/User\/ValidLogin script-path=https://raw.githubusercontent.com/Crazy-Z7/Task/main/apptuhu.js, timeout=60, tag=途虎app
+http-request ^https:\/\/api\.tuhu\.cn\/User\/GetInternalCenterInfo script-path=https://raw.githubusercontent.com/Crazy-Z7/Task/main/Tuhyche.js, timeout=60, tag=途虎
 
 # > 高德签到
 http-request ^https:\/\/(m5(|-zb)|dache)\.amap\.com\/(ws\/yuece\/(act|openapi\/activity\/current)\/query|common\/(alipaymini|wxmini)\?_ENCRYPT=) script-path=https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js, tag=高德签到

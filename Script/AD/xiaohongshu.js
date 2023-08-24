@@ -220,16 +220,6 @@ if (body) {
             }
             break;
 
-            case /api\/sns\/v\d\/user\/me\?/.test($request.url):
-                try {
-                    let userData = JSON.parse(body);
-                    userData.zhong_tong_bar_info.conversions = [];
-                    body = JSON.stringify(userData);
-                } catch (userErr) {
-                    console.log("user/me: " + userErr);
-                }
-                break;
-
         default:
             $done({});
     }

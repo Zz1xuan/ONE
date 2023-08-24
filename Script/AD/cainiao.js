@@ -8,12 +8,6 @@ if (/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/.test(url)) {
             d.type !== "big_banner_area_v870" && d.type !== "new_big_banner_area"
         );
     }
-} else if(/mtop\.cainiao\.nbpresentation\.homepage\.merge\.get\.cn/.test(url)) {
-    if (obj.data?.result?.dataList?.length > 0) {
-        obj.data.result.dataList = obj.data.result.dataList.filter(d => 
-            d.materialContentMapper?.advRecGmtModifiedTime !== "1680745292000"
-        );
-    }
 } else if (/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow/.test(url)) {
     if (obj.data["1308"]) delete obj.data["1308"];
     if (obj.data["1275"]) delete obj.data["1275"];

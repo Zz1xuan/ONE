@@ -2,10 +2,11 @@
 var obj = JSON.parse($response.body);
 var url = $request.url;
 
-if (/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/.test(url)) {
+if (/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/.test(url) ||
+    /mtop\.cainiao\.nbpresentation\.homepage\.merge\.get\.cn/.test(url)) {
     if (obj.data?.result?.dataList?.length > 0) {
         obj.data.result.dataList = obj.data.result.dataList.filter(d => 
-            d.type !== "big_banner_area_v870" && d.type !== "new_big_banner_area"
+            d.type !== "big_banner_area_v870" && d.type !== "new_big_banner_area" && d.type !== "icons_scroll_enable_v860"
         );
     }
 } else if (/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow/.test(url)) {

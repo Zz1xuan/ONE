@@ -25,8 +25,7 @@ if (/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/.test(url)) {
                     i?.materialContentMapper?.advRecGmtModifiedTime) ||
                 ["common_header_banner", "entertainment", "kuaishou_banner"].includes(
                     i?.materialContentMapper?.group_id
-                ) ||
-                ["29338", "29339", "32103", "33927"].includes(i.id)
+                ) 
             )
         );
     }

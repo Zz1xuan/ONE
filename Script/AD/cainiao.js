@@ -5,8 +5,7 @@ var url = $request.url;
 if (/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/.test(url)) {
     if (obj.data?.result?.dataList?.length > 0) {
         obj.data.result.dataList = obj.data.result.dataList.filter(d => 
-            d.number === "0"
-            //d.type !== "big_banner_area_v870" && d.type !== "new_big_banner_area"
+            d.type !== "big_banner_area_v870" && d.type !== "new_big_banner_area"
         );
     }
 } else if (/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow/.test(url)) {

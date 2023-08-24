@@ -25,7 +25,7 @@
 
 # > 菜鸟裹裹(配合admc.m.taobao.com)
 # > 菜鸟裹裹_通用广告请求@ddgksf2013
-^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.(show|mshow)\.cn\/ reject-200
+^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.show\.cn reject-200
 # > 菜鸟裹裹_支付宝小程序_通用广告请求@ddgksf2013
 ^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.show reject-200
 # > 菜鸟裹裹_支付宝小程序_匿名选择@ddgksf2013
@@ -57,7 +57,8 @@ http-response ^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource\? script-
 http-response ^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/amap.js, requires-body = true, tag = 首页右上角动图
 
 # > 菜鸟裹裹
-
+# > 菜鸟裹裹_通用广告请求@ddgksf2013
+^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.show\.cn\/  script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 我的页面
 # > 菜鸟裹裹_首页中部的惊喜福利推广@ddgksf2013
 http-response ^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/cainiao.js, requires-body = true, tag = 首页中部的惊喜福利推广
 # > 菜鸟裹裹_搜索框下方今日好物推荐@ddgksf2013

@@ -55,19 +55,19 @@ http-request ^https?:\/\/user-api\.smzdm\.com\/checkin$ script-path=https://raw.
 # > 百度贴吧
 http-request https?:\/\/(c\.tieba\.baidu\.com|180\.97\.\d+\.\d+)\/c\/s\/login script-path=https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js, tag=百度贴吧
 
-# > 途虎
+# > 途虎 小程序-我的-积分
 http-request ^https:\/\/api\.tuhu\.cn\/User\/GetInternalCenterInfo script-path=https://raw.githubusercontent.com/Crazy-Z7/Task/main/Tuhyche.js, timeout=60, tag=途虎
 
-# > 高德签到
+# > 高德签到 打车-福利中心
 http-request ^https:\/\/(m5(|-zb)|dache)\.amap\.com\/(ws\/yuece\/(act|openapi\/activity\/current)\/query|common\/(alipaymini|wxmini)\?_ENCRYPT=) script-path=https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js, tag=高德签到
 
-# > 建行生活
+# > 建行生活 手动签到一次
 http-request ^https:\/\/yunbusiness\.ccb\.com\/clp_coupon\/txCtrl\?txcode\=A3341A040 script-path=https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/jhsh_checkIn.js, requires-body=true, timeout=60, tag=建行生活Cookie
 
-# > 卡夫享
+# > 卡夫享 
 http-request ^https:\/\/fscrm\.kraftheinz\.net\.cn\/crm\/public\/index\.php\/api\/v1\/getUserInfo script-path=https://raw.githubusercontent.com/Crazy-Z7/Task/main/Kafuxiang.js, requires-body=true, timeout=10, tag=卡夫享
 
-# > hifini签到
+# > hifini签到  打开https://www.hifini.com/my.htm获取cookie
 http-request https:\/\/www.hifini.com\/my.htm script-path=https://raw.githubusercontent.com/lowking/Scripts/master/hifini/hifiniSign.js, timeout=60, tag=hifini
 
 # > 特仑苏官方 微信小程序 

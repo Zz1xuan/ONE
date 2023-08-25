@@ -1,190 +1,192 @@
 #wps
-HOST,cloudservice22.kingsoft-office-service.com, REJECT
+host,cloudservice22.kingsoft-office-service.com, reject
 # 网易云
-HOST-SUFFIX,gdt.qq.com, REJECT
-HOST,httpdns.n.netease.com, REJECT
-HOST,iadmat.nosdn.127.net, REJECT
-HOST,iadmusicmat.music.126.net, REJECT
-HOST,iadmusicmatvideo.music.126.net, REJECT
-HOST-SUFFIX,163jiasu.com,REJECT
+host-suffix,gdt.qq.com, reject
+host,httpdns.n.netease.com, reject
+host,iadmat.nosdn.127.net, reject
+host,iadmusicmat.music.126.net, reject
+host,iadmusicmatvideo.music.126.net, reject
+host-suffix,163jiasu.com,reject
 # 数字联盟
-HOST-SUFFIX, shuzilm.cn, REJECT
+host-suffix, shuzilm.cn, reject
 # 什么值得买
-HOST, api.zuihuimai.com, REJECT
+host, api.zuihuimai.com, reject
 # ChatGPT
-HOST, o33249.ingest.sentry.io, REJECT
+host, o33249.ingest.sentry.io, reject
 
 #彩云天气
-HOST, ad.cyapi.cn, REJECT
+host, ad.cyapi.cn, reject
 
 # 微博 开屏广告
-HOST, adstrategy.biz.weibo.com, REJECT
-HOST, kadmimage.biz.weibo.com, REJECT
-HOST, sdkaction.biz.weibo.com, REJECT
-HOST, sdkclick.biz.weibo.com, REJECT
-HOST, sdkmonitor.biz.weibo.com, REJECT
+host, adstrategy.biz.weibo.com, reject
+host, kadmimage.biz.weibo.com, reject
+host, sdkaction.biz.weibo.com, reject
+host, sdkclick.biz.weibo.com, reject
+host, sdkmonitor.biz.weibo.com, reject
 
 # > A
 # > B
 # > 哔哩哔哩
-HOST, mall.bilibili.com, REJECT
-HOST, passport.bilibili.com, REJECT
+host, mall.bilibili.com, reject
+host, passport.bilibili.com, reject
 # > 百词斩
-HOST,advertise.baicizhan.com, REJECT
-HOST,advertise.baicizhan.org, REJECT
+host,advertise.baicizhan.com, reject
+host,advertise.baicizhan.org, reject
 # > 百度网盘
-HOST, mobads.baidu.com, REJECT
-HOST, mobads-logs.baidu.com, REJECT
+host, mobads.baidu.com, reject
+host, mobads-logs.baidu.com, reject
 # > 百度
-HOST-SUFFIX, pos.baidu.com, REJECT
+host-suffix, pos.baidu.com, reject
 # 百度地图
-HOST, afd.baidu.com, REJECT
-HOST, afdconf.baidu.com, REJECT
-HOST, httpdns.baidubce.com, REJECT
-HOST, lc.map.baidu.com, REJECT
+host, afd.baidu.com, reject
+host, afdconf.baidu.com, reject
+host, httpdns.baidubce.com, reject
+host, lc.map.baidu.com, reject
 # 百度贴吧
-IP-CIDR, 180.76.76.200/32, REJECT
+IP-CIDR, 180.76.76.200/32, reject
 # > C
 # > 车来了（包括小程序）
-HOST-suffix, atrace.chelaile.net.cn, REJECT
-HOST, logs.chelaile.net.cn, REJECT
-HOST, ad.chelaile.net.cn, REJECT
+host-suffix, atrace.chelaile.net.cn, reject
+host, logs.chelaile.net.cn, reject
+host, ad.chelaile.net.cn, reject
 # > D
 # > E
 # > F
 # > G
 # > 高德
-HOST, amap-aos-info-nogw.amap.com, REJECT
-HOST, awaken.amap.com, REJECT
-HOST, free-aos-cdn-image.amap.com, REJECT
+host, amap-aos-info-nogw.amap.com, reject
+host, awaken.amap.com, reject
+host, free-aos-cdn-image.amap.com, reject
 # 工商银行 开屏广告
-HOST, pageviewp.icbc.com.cn, REJECT
+host, pageviewp.icbc.com.cn, reject
 # > H
 # > HDO
-HOST-SUFFIX, applovin.com,REJECT
-HOST-SUFFIX, applvn.com,REJECT
-#HOST-SUFFIX, doubleclick.net,REJECT
-HOST, googleads.g.doubleclick-cn.net, REJECT
-HOST, googleads.g.doubleclick.net, REJECT
-HOST, pubads.g.doubleclick.net, REJECT
-HOST, pagead2.googlesyndication.com, REJECT
+host-suffix, applovin.com,reject
+host-suffix, applvn.com,reject
+#host-suffix, doubleclick.net,reject
+host, googleads.g.doubleclick-cn.net, reject
+host, googleads.g.doubleclick.net, reject
+host, pubads.g.doubleclick.net, reject
+host, pagead2.googlesyndication.com, reject
 
 # > I
 # > J
 # > 今日头条
-HOST-SUFFIX,bytedance.com, REJECT
-HOST-SUFFIX,id6.me, REJECT
-HOST-SUFFIX,im-x.jd.com, REJECT
-HOST-SUFFIX,miaozhen.com, REJECT
-HOST,log3-normal-hl.toutiaoapi.com, REJECT
+host-suffix,bytedance.com, reject
+host-suffix,id6.me, reject
+host-suffix,im-x.jd.com, reject
+host-suffix,miaozhen.com, reject
+host,log3-normal-hl.toutiaoapi.com, reject
 
 # > K
 # > 酷安
-HOST-SUFFIX,ios.bugly.qq.com, REJECT
-HOST-SUFFIX,umeng.com, REJECT
-HOST-SUFFIX,shuzilm.com, REJECT
-HOST-SUFFIX,umengcloud.com, REJECT
-HOST,dm.toutiao.com, REJECT
-HOST-SUFFIX,pglstatp-toutiao.com, REJECT
-HOST-SUFFIX,pangolin-sdk-toutiao.com, REJECT
-HOST-SUFFIX,pangolin-sdk-toutiao-b.com, REJECT
-HOST-SUFFIX,ctobsnssdk.com, REJECT
-HOST-SUFFIX,kepler.jd.com, REJECT
-HOST-SUFFIX,bytedance.com, REJECT
+host-suffix,ios.bugly.qq.com, reject
+host-suffix,umeng.com, reject
+host-suffix,shuzilm.com, reject
+host-suffix,umengcloud.com, reject
+host,dm.toutiao.com, reject
+host-suffix,pglstatp-toutiao.com, reject
+host-suffix,pangolin-sdk-toutiao.com, reject
+host-suffix,pangolin-sdk-toutiao-b.com, reject
+host-suffix,ctobsnssdk.com, reject
+host-suffix,kepler.jd.com, reject
+host-suffix,bytedance.com, reject
 # > 快手
-# HOST-SUFFIX,yximgs.com, REJECT
-HOST-SUFFIX,e.kuaishou.com, REJECT
-#HOST,js-ad.a.yximgs.com, REJECT
-HOST-SUFFIX,cm.downloader.commercial.kuaishou.com, REJECT
-HOST-SUFFIX,cm.ad.gifshow.com, REJECT
-HOST-SUFFIX,cm.kwad.com, REJECT
+# host-suffix,yximgs.com, reject
+host-suffix,e.kuaishou.com, reject
+#host,js-ad.a.yximgs.com, reject
+host-suffix,cm.downloader.commercial.kuaishou.com, reject
+host-suffix,cm.ad.gifshow.com, reject
+host-suffix,cm.kwad.com, reject
 
 # 酷我音乐
-HOST, ad.tencentmusic.com, REJECT
-HOST, g.koowo.com, REJECT
-HOST, mobilead.kuwo.cn, REJECT
-HOST, rich.kuwo.cn, REJECT
-HOST, tmead.y.qq.com, REJECT
-HOST, tmeadcomm.y.qq.com, REJECT
+host, ad.tencentmusic.com, reject
+host, g.koowo.com, reject
+host, mobilead.kuwo.cn, reject
+host, rich.kuwo.cn, reject
+host, tmead.y.qq.com, reject
+host, tmeadcomm.y.qq.com, reject
 
 # L
 # > 两步路
-HOST-SUFFIX,admobile.top, REJECT
+host-suffix,admobile.top, reject
 # > 蓝奏云
-HOST-SUFFIX, statics.woozooo.com, REJECT
+host-suffix, statics.woozooo.com, reject
 # > M
 # > 美团
-HOST, al-log.d.meituan.net, REJECT
-HOST, babel-statistics-android.d.meituan.net, REJECT
-HOST, maplocatesdksnapshot.d.meituan.net, REJECT
-HOST, metrics-picture.d.meituan.net, REJECT
-HOST, route-stats.d.meituan.net, REJECT
+host, al-log.d.meituan.net, reject
+host, babel-statistics-android.d.meituan.net, reject
+host, maplocatesdksnapshot.d.meituan.net, reject
+host, metrics-picture.d.meituan.net, reject
+host, route-stats.d.meituan.net, reject
 # > N
 # > NicoNico
-HOST, ads.nicovideo.jp, REJECT
+host, ads.nicovideo.jp, reject
 # > O
 # > Outlook
-HOST,acdn.adnxs.com,REJECT
-HOST,mediation.adnxs.com,REJECT
-HOST,sin3-ib.adnxs.com,REJECT
+host,acdn.adnxs.com,reject
+host,mediation.adnxs.com,reject
+host,sin3-ib.adnxs.com,reject
 # > P
 # > Q
 # QQ音乐广告
-HOST,tmeadcomm.y.qq.com, REJECT
-HOST,ad.tencentmusic.com, REJECT
-HOST,adstats.tencentmusic.com, REJECT
-HOST,tmead.y.qq.com, REJECT
-HOST-SUFFIX,rqd.qq.com, REJECT
-HOST-SUFFIX,wup.imtt.qq.com, REJECT
-HOST-SUFFIX,e.qq.com, REJECT
-HOST-SUFFIX,beacon.qq.com, REJECT
+host,tmeadcomm.y.qq.com, reject
+host,ad.tencentmusic.com, reject
+host,adstats.tencentmusic.com, reject
+host,tmead.y.qq.com, reject
+host-suffix,rqd.qq.com, reject
+host-suffix,wup.imtt.qq.com, reject
+host-suffix,e.qq.com, reject
+host-suffix,beacon.qq.com, reject
 # > R
 # > S
 # > 搜狗
-HOST-SUFFIX,epro.sogou.com, REJECT
-HOST-SUFFIX,golden1.sogou.com, REJECT
-HOST-SUFFIX,inte.sogou.com, REJECT
-HOST-SUFFIX,inte.sogoucdn.com, REJECT
-HOST-SUFFIX,lu.sogoucdn.com, REJECT
-HOST-SUFFIX,theta.sogoucdn.com, REJECT
-HOST-SUFFIX,uranus.sogou.com, REJECT
-HOST-SUFFIX,123.sogou.com, REJECT
-HOST-SUFFIX,a1click.cpc.sogou.com, REJECT
-HOST-SUFFIX,adsence.sogou.com, REJECT
-HOST-SUFFIX,adstream.123.sogoucdn.com, REJECT
-HOST-SUFFIX,amfi.gou.sogou.com, REJECT
-HOST-SUFFIX,athena.wan.sogou.com, REJECT
-HOST-SUFFIX,bazinga.mse.sogou.com, REJECT
-HOST-SUFFIX,brand.sogou.com, REJECT
-HOST-SUFFIX,bsiet.husky.sogou.com, REJECT
+host-suffix,epro.sogou.com, reject
+host-suffix,golden1.sogou.com, reject
+host-suffix,inte.sogou.com, reject
+host-suffix,inte.sogoucdn.com, reject
+host-suffix,lu.sogoucdn.com, reject
+host-suffix,theta.sogoucdn.com, reject
+host-suffix,uranus.sogou.com, reject
+host-suffix,123.sogou.com, reject
+host-suffix,a1click.cpc.sogou.com, reject
+host-suffix,adsence.sogou.com, reject
+host-suffix,adstream.123.sogoucdn.com, reject
+host-suffix,amfi.gou.sogou.com, reject
+host-suffix,athena.wan.sogou.com, reject
+host-suffix,bazinga.mse.sogou.com, reject
+host-suffix,brand.sogou.com, reject
+host-suffix,bsiet.husky.sogou.com, reject
 # > 搜狐
-HOST-SUFFIX,ad.sohu.com, REJECT
-HOST-SUFFIX,ads.sohu.com, REJECT
-HOST-SUFFIX,aty.sohu.com, REJECT
-HOST-SUFFIX,hui.sohu.com, REJECT
+host-suffix,ad.sohu.com, reject
+host-suffix,ads.sohu.com, reject
+host-suffix,aty.sohu.com, reject
+host-suffix,hui.sohu.com, reject
 # > Snapchat
-HOST,ads.snapchat.com, REJECT
-HOST,adsapi.snapchat.com, REJECT
+host,ads.snapchat.com, reject
+host,adsapi.snapchat.com, reject
 
 # > T
 # > 淘宝
-HOST-SUFFIX,h-adashx.ut.taobao.com, REJECT
-HOST-SUFFIX,apoll.m.taobao.com, REJECT
+host-suffix,h-adashx.ut.taobao.com, reject
+host-suffix,apoll.m.taobao.com, reject
 # > 腾讯视频
-HOST-SUFFIX,pgdt.gtimg.cn, REJECT
+host-suffix,pgdt.gtimg.cn, reject
+host, ilce.alicdn.com, reject
+host, adsmind.gdtimg.com, reject
 
-HOST-SUFFIX,beacon.qq.com, REJECT
-HOST-SUFFIX,mdt.qq.com, REJECT
-HOST-SUFFIX,tpns.tencent.com, REJECT
-HOST-SUFFIX,aedns.weixin.qq.com, REJECT
-HOST-SUFFIX,l.qq.com, REJECT
-HOST-SUFFIX,mtrace.qq.com, REJECT
-HOST-SUFFIX,dp3.qq.com, REJECT
-HOST,rdelivery.qq.com, REJECT
-HOST-SUFFIX,trace.qq.com, REJECT
-HOST-SUFFIX,rqd.qq.com, REJECT
+host-suffix,beacon.qq.com, reject
+host-suffix,mdt.qq.com, reject
+host-suffix,tpns.tencent.com, reject
+host-suffix,aedns.weixin.qq.com, reject
+host-suffix,l.qq.com, reject
+host-suffix,mtrace.qq.com, reject
+host-suffix,dp3.qq.com, reject
+host,rdelivery.qq.com, reject
+host-suffix,trace.qq.com, reject
+host-suffix,rqd.qq.com, reject
 
-HOST,vv.video.qq.com, REJECT
+host,vv.video.qq.com, reject
 
 # > U
 # > V
@@ -192,105 +194,105 @@ HOST,vv.video.qq.com, REJECT
 # > W
 
 # > 微软
-HOST-SUFFIX,ads.msn.com, REJECT
-HOST-SUFFIX,ads1.msn.com, REJECT
-HOST-SUFFIX,ads2.msn.com, REJECT
-HOST-SUFFIX,bingads.microsoft.com, REJECT
-HOST-SUFFIX,rads.msn.com, REJECT
-HOST,mobileads.msn.com, REJECT
+host-suffix,ads.msn.com, reject
+host-suffix,ads1.msn.com, reject
+host-suffix,ads2.msn.com, reject
+host-suffix,bingads.microsoft.com, reject
+host-suffix,rads.msn.com, reject
+host,mobileads.msn.com, reject
 
 # > 网易
-HOST,g1.163.com, REJECT
-HOST-SUFFIX,e.qq.com, REJECT
-HOST,qzs.gdtimg.com, REJECT
-HOST,adx-cn.anythinktech.com, REJECT
-HOST,nex.163.com, REJECT
-HOST-SUFFIX,gdt.qq.com, REJECT
-HOST,gorgon.youdao.com, REJECT
-HOST,tk.anythinktech.com, REJECT
+host,g1.163.com, reject
+host-suffix,e.qq.com, reject
+host,qzs.gdtimg.com, reject
+host,adx-cn.anythinktech.com, reject
+host,nex.163.com, reject
+host-suffix,gdt.qq.com, reject
+host,gorgon.youdao.com, reject
+host,tk.anythinktech.com, reject
 
 # > X
 # > 闲鱼
-HOST,aid.m.taobao.com,REJECT
-#HOST,iyes.youku.com, REJECT
+host,aid.m.taobao.com,reject
+#host,iyes.youku.com, reject
 # > 小米
-HOST, sdkconfig.ad.xiaomi.com, REJECT
+host, sdkconfig.ad.xiaomi.com, reject
 # > 新浪
-HOST-SUFFIX,beacon.sina.com.cn, REJECT
-HOST,u1.img.mobile.sina.cn, REJECT
-HOST,sax.sina.com.cn, REJECT
-HOST,saxs.sina.com.cn, REJECT
-HOST,saxn.sina.com.cn, REJECT
+host-suffix,beacon.sina.com.cn, reject
+host,u1.img.mobile.sina.cn, reject
+host,sax.sina.com.cn, reject
+host,saxs.sina.com.cn, reject
+host,saxn.sina.com.cn, reject
 # > 迅雷
-HOST,adsp.xunlei.com, REJECT
-HOST,etl.xlmc.sandai.net, REJECT
+host,adsp.xunlei.com, reject
+host,etl.xlmc.sandai.net, reject
 # > 喜马拉雅
-HOST,ad.ximalaya.com, REJECT
-HOST,adbs.ximalaya.com, REJECT
-HOST,adse.ximalaya.com, REJECT
-HOST,adse.wsa.ximalaya.com, REJECT
-HOST,adbehavior.wsa.ximalaya.com, REJECT
-HOST,adbehavior.ximalaya.com, REJECT
-HOST,adsebs.ximalaya.com, REJECT
-HOST,adwbs.ximalaya.com, REJECT
+host,ad.ximalaya.com, reject
+host,adbs.ximalaya.com, reject
+host,adse.ximalaya.com, reject
+host,adse.wsa.ximalaya.com, reject
+host,adbehavior.wsa.ximalaya.com, reject
+host,adbehavior.ximalaya.com, reject
+host,adsebs.ximalaya.com, reject
+host,adwbs.ximalaya.com, reject
 
 # Y
 
 # > 云闪付
-HOST, ads.95516.com, REJECT
-HOST, cm-10-138.getui.com, REJECT
-HOST, sdk.open.talk.getui.net, REJECT
-HOST, sdk-conf.getui.com, REJECT
-HOST, switch.cup.com.cn, REJECT
-HOST, tysdk.95516.com, REJECT
+host, ads.95516.com, reject
+host, cm-10-138.getui.com, reject
+host, sdk.open.talk.getui.net, reject
+host, sdk-conf.getui.com, reject
+host, switch.cup.com.cn, reject
+host, tysdk.95516.com, reject
 # > 优酷
-HOST-SUFFIX,atm.youku.com, REJECT
-HOST,ad.mobile.youku.com, REJECT
-HOST,iyes.youku.com, REJECT
-HOST,pl.cp31.ott.cibntv.net, REJECT
+host-suffix,atm.youku.com, reject
+host,ad.mobile.youku.com, reject
+host,iyes.youku.com, reject
+host,pl.cp31.ott.cibntv.net, reject
 
 
 # Z
 
 # > 字节跳动
-HOST, ad.zijieapi.com, REJECT
-HOST-KEYWORD, -ad-sign.byteimg.com, REJECT
+host, ad.zijieapi.com, reject
+host-KEYWORD, -ad-sign.byteimg.com, reject
 # > 中国电信
-HOST,ad.21cn.com, REJECT
-HOST,ad.k.21cn.com, REJECT
-HOST,admarket.21cn.com, REJECT
-HOST,adshows.21cn.com, REJECT
+host,ad.21cn.com, reject
+host,ad.k.21cn.com, reject
+host,admarket.21cn.com, reject
+host,adshows.21cn.com, reject
 
 # > 知乎
-HOST, appcloud.zhihu.com, REJECT
-HOST, appcloud2.in.zhihu.com, REJECT
-HOST, crash2.zhihu.com, REJECT
-HOST, mqtt.zhihu.com, REJECT
-HOST, sugar.zhihu.com, REJECT
-IP-CIDR, 118.89.204.198/32, REJECT
-IP-CIDR, 103.41.167.237/32, REJECT
-IP6-CIDR, 2402:4e00:1200:ed00:0:9089:6dac:96b6/128, REJECT
+host, appcloud.zhihu.com, reject
+host, appcloud2.in.zhihu.com, reject
+host, crash2.zhihu.com, reject
+host, mqtt.zhihu.com, reject
+host, sugar.zhihu.com, reject
+IP-CIDR, 118.89.204.198/32, reject
+IP-CIDR, 103.41.167.237/32, reject
+IP6-CIDR, 2402:4e00:1200:ed00:0:9089:6dac:96b6/128, reject
 
 
 # > 易校园
-HOST-SUFFIX,p1.adkwai.com, REJECT
-HOST-SUFFIX,rayjump.com, REJECT
-HOST,bgg.baidu.com,REJECT
-HOST,tk.anythinktech.com,REJECT
-HOST,static.yximgs.com,REJECT
-HOST,qzs.gdtimg.com,REJECT
-HOST,adx-cn.anythinktech.com,REJECT
-HOST,api.anythinktech.com,REJECT
-HOST-SUFFIX,rayjump.com,REJECT
-# > HOST,h.trace,qq.com,REJECT
-HOST,y.tcp.push.mob.com,direct
+host-suffix,p1.adkwai.com, reject
+host-suffix,rayjump.com, reject
+host,bgg.baidu.com,reject
+host,tk.anythinktech.com,reject
+host,static.yximgs.com,reject
+host,qzs.gdtimg.com,reject
+host,adx-cn.anythinktech.com,reject
+host,api.anythinktech.com,reject
+host-suffix,rayjump.com,reject
+# > host,h.trace,qq.com,reject
+host,y.tcp.push.mob.com,direct
 
 #金融
-HOST,punion.tjjt360.com,REJECT
+host,punion.tjjt360.com,reject
 
 #有道
-HOST,staticsns.cdn.bcebos.com,REJECT
+host,staticsns.cdn.bcebos.com,reject
 
 # > 芒果TV
-HOST,mobile.da.mgtv.com,REJECT
+host,mobile.da.mgtv.com,reject
 

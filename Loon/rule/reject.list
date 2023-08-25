@@ -104,6 +104,9 @@ DOMAIN-SUFFIX,h-adashx.ut.taobao.com
 DOMAIN-SUFFIX,apoll.m.taobao.com 
 # > 腾讯视频
 DOMAIN-SUFFIX,pgdt.gtimg.cn
+DOMAIN, ilce.alicdn.com
+DOMAIN, adsmind.gdtimg.com
+
 DOMAIN-SUFFIX,beacon.qq.com
 DOMAIN-SUFFIX,mdt.qq.com
 DOMAIN-SUFFIX,tpns.tencent.com

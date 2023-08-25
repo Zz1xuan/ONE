@@ -1,5 +1,4 @@
 /* let body = $response.body;
-
 if (body) {
   try {
     const data = JSON.parse(body);
@@ -13,9 +12,8 @@ if (body) {
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }
-} */
-
-$done({ 'body': body });
+}
+$done({ 'body': body }); */
 
 var obj = JSON.parse($response.body);
 var url = $request.url;

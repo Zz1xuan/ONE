@@ -127,15 +127,17 @@
 # > 12306 @kokoryh ad.12306.cn,
 http-request ^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/12306.js, requires-body=true, tag=12306
 # > 爱奇艺
-http-response ^https?:\/\/.*cupid\.iqiyi\.com\/mixer\? script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/iqiyi_open.js, requires-body=true, tag=爱奇艺
+http-response ^https?:\/\/t7z.cupid\.iqiyi\.com\/mixer\? script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/television.js, requires-body=true, tag=爱奇艺
 # > 哔哩哔哩_繁体CC字幕转中文简体 *.hdslb.com,
 http-response ^https?:\/\/.*\.hdslb\.com\/bfs\/subtitle\/.+\.json script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/bilibili_cc.js, requires-body=true, tag=繁体转简体
 # ～ BiliBili_哔哩哔哩_应用开屏广告预加载@yjqiang   app.bilibili.com,
 http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/bilibili_json.js, requires-body=true, tag=b站开屏
 # > 米家
 http-response ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/myTab? script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/mihome.js, requires-body=true, tag=米家
+# > 优酷 un-acs.youku.com
+http-response ^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/television.js, requires-body=true, tag=优酷
 # > 萤石云
 http-response ^https:\/\/api\.ys7\.com\/v3\/config\/valueAddedInfo script-path = https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/AD/yingshiyun.js, requires-body=true, tag=萤石云
 
 [MITM]
-hostname = acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, api.caiyunapp.com, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, img-ys011.didistatic.com, yunbusiness.ccb.com, api.m.jd.com, *.360buyimg.com, ms.jr.jd.com, api.club.lenovo.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, api.xiachufang.com, shop-api.retail.mi.com, t1.market.xiaomi.com, home.mi.com, api.ys7.com, i.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com, *cupid.iqiyi.com, api.jr.mi.com
+hostname = acs.m.taobao.com, app.bilibili.com, manga.bilibili.com, *.bdstatic.com, bp-api.bestv.com.cn, appwk.baidu.com, pan.baidu.com, wrapper.cyapi.cn, api.caiyunapp.com, ccmsupport-sz.tenpay.com, *.chelaile.net.cn, cdn.api.chelaileapp.cn, img.meituan.net, sdk.alibaba.com, api.douban.com, app.dewu.com, img-ys011.didistatic.com, yunbusiness.ccb.com, api.m.jd.com, *.360buyimg.com, ms.jr.jd.com, api.club.lenovo.cn, www.meituan.com, img.meituan.net,  api.pinduoduo.com, api.yangkeduo.com, heic.alicdn.com, gw.alicdn.com, api.wfdata.club, client.mail.163.com, appconf.mail.163.com, api.xiachufang.com, shop-api.retail.mi.com, t1.market.xiaomi.com, home.mi.com, api.ys7.com, i.ys7.com, client.app.coc.10086.cn, portal.zjzwfw.gov.cn, mlol.qt.qq.com, ad.12306.cn, *.hdslb.com, app.bilibili.com, *capi.lkcoffee.com, m.lkcoffee.com, discardrp.umetrip.com, startup.umetrip.com, t7z.cupid.iqiyi.com, api.jr.mi.com, un-acs.youku.com

@@ -16,6 +16,24 @@ if (body) {
         console.log(`Error parsing JSON:` + error);
       }
       break;
+    case /^https:\/\/api\.iqiyi\.com\/3f4\/cards\.iqiyi\.com\/views_home\/3\.0\/qy_home/.test(url):
+      try {
+        let obj = JSON.parse(body);
+        if (obj.cards) {
+          const firstCardsIndex = body.indexOf('"cards"');
+          const afterFirstCards = body.slice(firstCardsIndex);
+          const closingBraceIndex = afterFirstCards.indexOf('}');
+          const cardsLength = firstCardsIndex + closingBraceIndex + 1;
+          body = body.slice(0, firstCardsIndex) + body.slice(cardsLength);
+        }
+        if (obj.strategy_com_id) {
+          const valuesToRemove = ["focus", "change_normalnew", "qy_home_vip_opr_banner", "R:306115012"];
+          obj.strategy_com_id = obj.strategy_com_id.filter(item => !valuesToRemove.includes(item));
+        }
+      } catch (error) {
+        console.log(`Error parsing JSON:` + error);
+      }
+      break;
     case /^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get/.test(url):
       try {
         let obj = JSON.parse(body);

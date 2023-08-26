@@ -20,11 +20,12 @@ if (body) {
       try {
         let obj = JSON.parse(body);
         if (obj.cards) {
-          const firstCardsIndex = body.indexOf('"cards"');
-          const afterFirstCards = body.slice(firstCardsIndex);
-          const closingBraceIndex = afterFirstCards.indexOf('}');
-          const cardsLength = firstCardsIndex + closingBraceIndex + 1;
-          body = body.slice(0, firstCardsIndex) + body.slice(cardsLength);
+          delete obj.cards;
+          //const firstCardsIndex = body.indexOf('"cards"');
+          //const afterFirstCards = body.slice(firstCardsIndex);
+          //const closingBraceIndex = afterFirstCards.indexOf('}');
+          //const cardsLength = firstCardsIndex + closingBraceIndex + 1;
+          //body = body.slice(0, firstCardsIndex) + body.slice(cardsLength);
         }
         if (obj.strategy_com_id) {
           const valuesToRemove = ["focus", "change_normalnew", "qy_home_vip_opr_banner", "R:306115012"];

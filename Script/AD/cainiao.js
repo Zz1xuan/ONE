@@ -16,12 +16,12 @@ if (/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/.test(url)) {
                 // 顶部图标
                 if (i.bizData.items) {
                     const item = [
-                        "gjjf", // 裹酱积分
+                        //"gjjf", // 裹酱积分
                         //"618cjhb", // 超级红包
                         "bgxq", // 包裹星球
                         "cngreen", // 绿色家园
                         //"cncy", // 填字赚现金
-                        "cngy", // 免费领水果
+                        //"cngy", // 免费领水果
                         //"jkymd", // 集卡赢免单
                         //"ljjq", // 领寄件券
                         //"ttlhb", // 天天领红包
@@ -42,10 +42,6 @@ if (/mtop\.cainiao\.nbpresentation\.protocol\.homepage\.get\.cn/.test(url)) {
             }
             return i;
         }).filter(Boolean); // 去除为 null 的项
-        // 过滤特定类型
-        obj.data.result.dataList = obj.data.result.dataList.filter(d => 
-            d.type !== "big_banner_area_v870" && d.type !== "new_big_banner_area"
-        );
     }
 } else if (/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow/.test(url)) {
     if (obj.data["1308"]) delete obj.data["1308"];

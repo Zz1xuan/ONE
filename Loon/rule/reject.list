@@ -48,8 +48,8 @@ DOMAIN, free-aos-cdn-image.amap.com
 DOMAIN, pageviewp.icbc.com.cn
 # > H
 # > HDO
-DOMAIN-SUFFIX, applovin.com,REJECT
-DOMAIN-SUFFIX, applvn.com,REJECT
+DOMAIN-SUFFIX, applovin.com 
+DOMAIN-SUFFIX, applvn.com 
 DOMAIN, googleads.g.doubleclick-cn.net 
 DOMAIN, googleads.g.doubleclick.net 
 DOMAIN, pubads.g.doubleclick.net 
@@ -103,27 +103,29 @@ DOMAIN, tpns.qq.com
 DOMAIN-SUFFIX,h-adashx.ut.taobao.com 
 DOMAIN-SUFFIX,apoll.m.taobao.com 
 # > 腾讯视频
-host,ilce.alicdn.com,reject
-host,adsmind.gdtimg.com,reject
-host,pgdt.gtimg.cn,reject
-host,rdelivery.qq.com,reject
-host-suffix,rqd.qq.com,reject
-host-suffix,trace.qq.com,reject
-host,dp3.qq.com,reject
-host,mtrace.qq.com,reject
-host,vv.video.qq.com,reject
-host,aedns.weixin.qq.com,reject
-host-suffix,mdt.qq.com,reject
-host-suffix,tpns.tencent.com,reject
-host-suffix,beacon.qq.com,reject
-host,id6.me,reject
-host-suffix,l.qq.com,reject
-host-suffix,gdt.qq.com,reject
-host,wup.imtt.qq.com,reject
+DOMAIN,info4.video.qq.com 
+DOMAIN,info6.video.qq.com 
+DOMAIN,ilce.alicdn.com 
+DOMAIN,adsmind.gdtimg.com 
+DOMAIN,pgdt.gtimg.cn 
+DOMAIN,rdelivery.qq.com 
+DOMAIN-SUFFIX,rqd.qq.com 
+DOMAIN-SUFFIX,trace.qq.com 
+DOMAIN,dp3.qq.com 
+DOMAIN,mtrace.qq.com 
+DOMAIN,vv.video.qq.com 
+DOMAIN,aedns.weixin.qq.com 
+DOMAIN-SUFFIX,mdt.qq.com 
+DOMAIN-SUFFIX,tpns.tencent.com 
+DOMAIN-SUFFIX,beacon.qq.com 
+DOMAIN,id6.me 
+DOMAIN-SUFFIX,l.qq.com 
+DOMAIN-SUFFIX,gdt.qq.com 
+DOMAIN,wup.imtt.qq.com 
 #不知道具体什么，可能腾讯视频？？
-host-suffix,beacon.qq.com, reject
-host-suffix,tpns.tencent.com, reject
-host-suffix,l.qq.com, reject
+DOMAIN-SUFFIX,beacon.qq.com 
+DOMAIN-SUFFIX,tpns.tencent.com 
+DOMAIN-SUFFIX,l.qq.com 
 
 # > U
 # > V
@@ -202,6 +204,8 @@ DOMAIN,punion.tjjt360.com
 DOMAIN,staticsns.cdn.bcebos.com
 # > 芒果
 DOMAIN,mobile.da.mgtv.com
+DOMAIN,video.da.mgtv.com
+DOMAIN,pcvideoaliyun.titan.mgtv.com
 
 # > 运营劫持
 DOMAIN,geo2.adobe.com

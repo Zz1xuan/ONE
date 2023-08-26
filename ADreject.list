@@ -171,6 +171,8 @@ host,adsapi.snapchat.com, reject
 host-suffix,h-adashx.ut.taobao.com, reject
 host-suffix,apoll.m.taobao.com, reject
 # > 腾讯视频
+host,info4.video.qq.com,reject
+host,info6.video.qq.com,reject
 host,ilce.alicdn.com,reject
 host,adsmind.gdtimg.com,reject
 host,pgdt.gtimg.cn,reject
@@ -299,5 +301,8 @@ host,punion.tjjt360.com,reject
 host,staticsns.cdn.bcebos.com,reject
 
 # > 芒果TV
+# > 开屏 
 host,mobile.da.mgtv.com,reject
-
+#不知道是啥
+host,video.da.mgtv.com,reject
+host,pcvideoaliyun.titan.mgtv.com,reject

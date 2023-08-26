@@ -1,43 +1,50 @@
-// from rucu6
-
-if (!$response.body) $done({});
+// from 匿名人士
+// fuck 南山必胜客，不敢放上来，怕连累作者 
 const url = $request.url;
 let body = $response.body;
 
 if (body) {
   switch (true) {
-    // 爱奇艺-播放广告
     case /^http:\/\/t7z\.cupid\.iqiyi\.com\/mixer\?/.test(url):
       try {
         let obj = JSON.parse(body);
-        const item = ["adSlots"];
-        for (let i of item) {
-          if (obj?.[i]) {
-            delete obj[i];
-          }
+        if (obj?.adSlots) {
+          delete obj.adSlots;
         }
         body = JSON.stringify(obj);
       } catch (error) {
-        console.log(`爱奇艺-播放广告, 出现异常: ` + error);
+        console.log(`Error parsing JSON:` + error);
       }
       break;
-     // 优酷-播放广告
-     case /^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get/.test(url):
-        try {
-          let obj = JSON.parse(body);
+    case /^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get/.test(url):
+      try {
+        let obj = JSON.parse(body);
+        if (obj.data?.data) {
           const item = ["ad", "ykad", "watermark"];
           for (let i of item) {
             if (obj.data.data?.[i]) {
               delete obj.data.data[i];
             }
           }
-          body = JSON.stringify(obj);
-        } catch (error) {
-          console.log(`优酷-播放广告, 出现异常: ` + error);
         }
-        break;
+        body = JSON.stringify(obj);
+      } catch (error) {
+        console.log(`Error parsing JSON:` + error);
+      }
+      break;
+    case /^http:\/\/dc\.bz\.mgtv\.com\/dynamic\/v1\/channel\/index\/.+/.test(url):
+      try {
+        let obj = JSON.parse(body);
+        if (obj.data) {
+          delete obj.data.items;
+        }
+        body = JSON.stringify(obj);
+      } catch (error) {
+        console.log(`Error parsing JSON:` + error);
+      }
+      break;
     default:
       break;
   }
-  $done({ body });
 }
+$done({ body });

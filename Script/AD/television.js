@@ -16,25 +16,34 @@ if (body) {
         console.log(`Error parsing JSON:` + error);
       }
       break;
-    case /^https:\/\/api\.iqiyi\.com\/3f4\/cards\.iqiyi\.com\/views_home\/3\.0\/qy_home/.test(url):
-      try {
-        let obj = JSON.parse(body);
-        if (obj.cards) {
-          delete obj.cards;
-          //const firstCardsIndex = body.indexOf('"cards"');
-          //const afterFirstCards = body.slice(firstCardsIndex);
-          //const closingBraceIndex = afterFirstCards.indexOf('}');
-          //const cardsLength = firstCardsIndex + closingBraceIndex + 1;
-          //body = body.slice(0, firstCardsIndex) + body.slice(cardsLength);
+      case /^https:\/\/api\.iqiyi\.com\/3f4\/cards\.iqiyi\.com\/views_home\/3\.0\/qy_home/.test(url):
+        try {
+          const obj = JSON.parse(body);
+          const removeAdItems = (data) => {
+            if (Array.isArray(data)) {
+              data.forEach((item, index) => {
+                if (item?.id?.includes("ad")) {
+                  data.splice(index, 1);
+                } else if (typeof item === 'object') {
+                  removeAdItems(item);
+                }
+              });
+            } else if (typeof data === 'object') {
+              for (const key in data) {
+                if (data[key]?.id?.includes("ad")) {
+                  delete data[key];
+                } else if (typeof data[key] === 'object') {
+                  removeAdItems(data[key]);
+                }
+              }
+            }
+          };
+          removeAdItems(obj);
+          body = JSON.stringify(obj);
+        } catch (error) {
+          console.log(`Error parsing JSON:` + error);
         }
-        if (obj.strategy_com_id) {
-          const valuesToRemove = ["focus", "change_normalnew", "qy_home_vip_opr_banner", "R:306115012"];
-          obj.strategy_com_id = obj.strategy_com_id.filter(item => !valuesToRemove.includes(item));
-        }
-      } catch (error) {
-        console.log(`Error parsing JSON:` + error);
-      }
-      break;
+        break;
     case /^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get/.test(url):
       try {
         let obj = JSON.parse(body);

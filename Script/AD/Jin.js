@@ -56,7 +56,7 @@ if (body) {
           }
         }
         break;
-      case /cards\.iqiyi\.com\/views_home\/3\.0\/qy_home/.test(url):
+      case /^https:\/\/cards\.iqiyi\.com\/views_home\/3\.0\/qy_home/.test(url):
         obj = JSON.parse(body);
         if (obj?.cards?.length > 0) {
           obj.cards = obj.cards.filter(
@@ -70,7 +70,7 @@ if (body) {
           );
         }
         break;
-      case /cards\.iqiyi\.com\/waterfall\/3\.0\/feed/.test(url):
+      case /^https:\/\/cards\.iqiyi\.com\/waterfall\/3\.0\/feed/.test(url):
         obj = JSON.parse(body);
         if (obj?.cards?.length > 0) {
           let card = obj.cards[0];

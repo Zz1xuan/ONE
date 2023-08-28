@@ -41,6 +41,33 @@ if (body) {
         }
       }
       break;
+    case /^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get/.test(url):
+      try {
+        let obj = JSON.parse(body);
+        if (obj.data?.data) {
+          const item = ["ad", "ykad", "watermark"];
+          for (let i of item) {
+            if (obj.data.data?.[i]) {
+              delete obj.data.data[i];
+            }
+          }
+        }
+        body = JSON.stringify(obj);
+      } catch (error) {
+        console.log(`解析 JSON 时出错：` + error);
+      }
+      break;
+    case /^http:\/\/dc\.bz\.mgtv\.com\/dynamic\/v1\/channel\/index\/.+/.test(url):
+      try {
+        let obj = JSON.parse(body);
+        if (obj.data) {
+          delete obj.data.items;
+        }
+        body = JSON.stringify(obj);
+      } catch (error) {
+        console.log(`解析 JSON 时出错：` + error);
+      }
+      break;
     default:
       break;
   }

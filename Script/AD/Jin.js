@@ -18,12 +18,11 @@ if (body) {
     case /api\.ys7\.com\/v3\/config\/valueAddedInfo/.test(url):
       try {
         const data = JSON.parse(body);
-        // 删除"showAllBtn"和"valueAddedInfoList"字段
         delete data.showAllBtn;
         delete data.valueAddedInfoList;
         body = JSON.stringify(data);
       } catch (error) {
-        console.error("Error parsing JSON:", error);
+        console.error("Error:", error);
       }
       break;
     // 薄荷健康
@@ -31,17 +30,16 @@ if (body) {
       if (body) {
         try {
           const data = JSON.parse(body);
-          // 删除"data"对象中的"articles"属性
           if (data.data) {
             delete data.data.articles;
           }
           body = JSON.stringify(data);
         } catch (error) {
-          console.error("Error parsing JSON:", error);
+          console.error("Error:", error);
         }
       }
       break;
-    case /^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get/.test(url):
+    case /^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get/.test(url): //cnVjdQ==
       try {
         let obj = JSON.parse(body);
         if (obj.data?.data) {
@@ -54,10 +52,10 @@ if (body) {
         }
         body = JSON.stringify(obj);
       } catch (error) {
-        console.log(`解析 JSON 时出错：` + error);
+        console.log(`Error:` + error);
       }
       break;
-    case /^http:\/\/dc\.bz\.mgtv\.com\/dynamic\/v1\/channel\/index\/.+/.test(url):
+    case /^http:\/\/dc\.bz\.mgtv\.com\/dynamic\/v1\/channel\/index\/.+/.test(url): //em9v
       try {
         let obj = JSON.parse(body);
         if (obj.data) {
@@ -65,7 +63,7 @@ if (body) {
         }
         body = JSON.stringify(obj);
       } catch (error) {
-        console.log(`解析 JSON 时出错：` + error);
+        console.log(`Error:` + error);
       }
       break;
     default:

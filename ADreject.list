@@ -25,8 +25,6 @@ host, sdkclick.biz.weibo.com, reject
 host, sdkmonitor.biz.weibo.com, reject
 
 # > A
-# 爱奇艺
-HOST, api.iqiyi.com, REJECT
 # > B
 # > 哔哩哔哩
 host, mall.bilibili.com, reject

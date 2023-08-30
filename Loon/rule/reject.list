@@ -83,8 +83,6 @@ DOMAIN, maplocatesdksnapshot.d.meituan.net
 DOMAIN, metrics-picture.d.meituan.net
 DOMAIN, route-stats.d.meituan.net
 # > N
-# > NicoNico
-DOMAIN, ads.nicovideo.jp 
 # > O
 # > OPPO
 # > P
@@ -93,9 +91,6 @@ DOMAIN, ads.nicovideo.jp
 # > S
 # 什么值得买
 DOMAIN, api.zuihuimai.com
-# > Snapchat
-DOMAIN,ads.snapchat.com 
-DOMAIN,adsapi.snapchat.com 
 # > T
 # 腾讯 无法使用的推送服务
 DOMAIN, tpns.qq.com
@@ -182,22 +177,21 @@ DOMAIN-SUFFIX,atm.youku.com
 DOMAIN,ad.mobile.youku.com
 DOMAIN,iyes.youku.com
 DOMAIN,pl.cp31.ott.cibntv.net
+DOMAIN,adsmind.ugdtimg.com
+DOMAIN,amdc.m.youku.com
+DOMAIN,httpdns.alicdn.com
+DOMAIN,huichuan-mc.sm.cn
+DOMAIN,huichuan.sm.cn
+DOMAIN,vali-ugc.cp31.ott.cibntv.net
+DOMAIN,valipl.cp31.ott.cibntv.net
+DOMAIN,yk-ssp.ad.youku.com
+DOMAIN,ykad-data.youku.com
 # > 字节跳动
 DOMAIN, ad.zijieapi.com
 DOMAIN-KEYWORD, -ad-sign.byteimg.com
 # >58
 DOMAIN,track.58.com
 DOMAIN,tracklog.58.com
-# > 易校园
-DOMAIN-SUFFIX,p1.adkwai.com
-DOMAIN-SUFFIX,rayjump.com
-DOMAIN,bgg.baidu.com
-# DOMAIN,tk.anythinktech.com
-DOMAIN,static.yximgs.com
-#DOMAIN,qzs.gdtimg.com
-#DOMAIN,adx-cn.anythinktech.com
-DOMAIN,api.anythinktech.com
-DOMAIN-SUFFIX,rayjump.com
 #金融
 DOMAIN,punion.tjjt360.com
 #有道

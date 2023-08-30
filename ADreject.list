@@ -140,31 +140,6 @@ host-suffix,e.qq.com, reject
 host-suffix,beacon.qq.com, reject
 # > R
 # > S
-# > 搜狗
-host-suffix,epro.sogou.com, reject
-host-suffix,golden1.sogou.com, reject
-host-suffix,inte.sogou.com, reject
-host-suffix,inte.sogoucdn.com, reject
-host-suffix,lu.sogoucdn.com, reject
-host-suffix,theta.sogoucdn.com, reject
-host-suffix,uranus.sogou.com, reject
-host-suffix,123.sogou.com, reject
-host-suffix,a1click.cpc.sogou.com, reject
-host-suffix,adsence.sogou.com, reject
-host-suffix,adstream.123.sogoucdn.com, reject
-host-suffix,amfi.gou.sogou.com, reject
-host-suffix,athena.wan.sogou.com, reject
-host-suffix,bazinga.mse.sogou.com, reject
-host-suffix,brand.sogou.com, reject
-host-suffix,bsiet.husky.sogou.com, reject
-# > 搜狐
-host-suffix,ad.sohu.com, reject
-host-suffix,ads.sohu.com, reject
-host-suffix,aty.sohu.com, reject
-host-suffix,hui.sohu.com, reject
-# > Snapchat
-host,ads.snapchat.com, reject
-host,adsapi.snapchat.com, reject
 
 # > T
 # > 淘宝
@@ -258,7 +233,15 @@ host,ad.mobile.youku.com, reject
 host,iyes.youku.com, reject
 host,pl.cp31.ott.cibntv.net, reject
 
-
+host, adsmind.ugdtimg.com, reject
+host, amdc.m.youku.com, reject
+host, httpdns.alicdn.com, reject
+host, huichuan-mc.sm.cn, reject
+host, huichuan.sm.cn, reject
+host, vali-ugc.cp31.ott.cibntv.net, reject
+host, valipl.cp31.ott.cibntv.net, reject
+host, yk-ssp.ad.youku.com, reject
+host, ykad-data.youku.com, reject
 # Z
 
 # > 字节跳动
@@ -279,20 +262,6 @@ host, sugar.zhihu.com, reject
 IP-CIDR, 118.89.204.198/32, reject
 IP-CIDR, 103.41.167.237/32, reject
 IP6-CIDR, 2402:4e00:1200:ed00:0:9089:6dac:96b6/128, reject
-
-
-# > 易校园
-host-suffix,p1.adkwai.com, reject
-host-suffix,rayjump.com, reject
-host,bgg.baidu.com,reject
-host,tk.anythinktech.com,reject
-host,static.yximgs.com,reject
-host,qzs.gdtimg.com,reject
-host,adx-cn.anythinktech.com,reject
-host,api.anythinktech.com,reject
-host-suffix,rayjump.com,reject
-# > host,h.trace,qq.com,reject
-host,y.tcp.push.mob.com,direct
 
 #金融
 host,punion.tjjt360.com,reject

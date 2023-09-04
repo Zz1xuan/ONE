@@ -62,6 +62,14 @@ DOMAIN, p6-pack.byteimg.com
 DOMAIN, amap-aos-info-nogw.amap.com 
 DOMAIN, awaken.amap.com 
 DOMAIN, free-aos-cdn-image.amap.com 
+# 广告联盟
+host,is.snssdk.com,reject
+host,mi.gdt.qq.com,reject
+host,open.e.kuaishou.com,reject
+host-suffix,pangolin-sdk-toutiao-b.com,reject
+host-suffix,pangolin-sdk-toutiao.com,reject
+host-suffix,pangolin-sdk-toutiao1.com,reject
+host-suffix,pangolin.snssdk.com,reject
 # > H
 # > HDO
 DOMAIN-SUFFIX, applovin.com,REJECT
@@ -333,10 +341,20 @@ DOMAIN, sdk-conf.getui.com
 DOMAIN, switch.cup.com.cn
 DOMAIN, tysdk.95516.com
 # > 优酷
-DOMAIN-SUFFIX,atm.youku.com 
-DOMAIN,ad.mobile.youku.com 
-DOMAIN,iyes.youku.com 
-DOMAIN,pl.cp31.ott.cibntv.net 
+host-suffix,atm.youku.com, reject
+host,ad.mobile.youku.com, reject
+host,iyes.youku.com, reject
+host,pl.cp31.ott.cibntv.net, reject
+
+host, adsmind.ugdtimg.com, reject
+host, amdc.m.youku.com, reject
+host, httpdns.alicdn.com, reject
+host, huichuan-mc.sm.cn, reject
+host, huichuan.sm.cn, reject
+host, vali-ugc.cp31.ott.cibntv.net, reject
+host, valipl.cp31.ott.cibntv.net, reject
+host, yk-ssp.ad.youku.com, reject
+host, ykad-data.youku.com, reject
 
  
 # > 字节跳动

@@ -46,6 +46,14 @@ DOMAIN, awaken.amap.com
 DOMAIN, free-aos-cdn-image.amap.com 
 # 工商银行 开屏广告
 DOMAIN, pageviewp.icbc.com.cn
+# 广告联盟
+DOMAIN, is.snssdk.com
+DOMAIN, mi.gdt.qq.com
+DOMAIN, open.e.kuaishou.com
+DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
+DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com
+DOMAIN-SUFFIX,pangolin.snssdk.com
 # > H
 # > HDO
 DOMAIN-SUFFIX, applovin.com 
@@ -65,8 +73,6 @@ DOMAIN-SUFFIX,shuzilm.com
 DOMAIN-SUFFIX,umengcloud.com
 DOMAIN-SUFFIX,dm.toutiao.com
 DOMAIN-SUFFIX,pglstatp-toutiao.com
-DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
-DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com
 DOMAIN-SUFFIX,ctobsnssdk.com
 DOMAIN-SUFFIX,bytedance.com
 DOMAIN-SUFFIX,tpns.tencent.com
@@ -175,15 +181,17 @@ DOMAIN, tysdk.95516.com
 # > 优酷
 DOMAIN-SUFFIX,atm.youku.com
 DOMAIN,ad.mobile.youku.com
-DOMAIN,iyes.youku.com
 DOMAIN,pl.cp31.ott.cibntv.net
 DOMAIN,adsmind.ugdtimg.com
 DOMAIN,amdc.m.youku.com
-DOMAIN,httpdns.alicdn.com
+DOMAIN,apiv4-iyes.youku.com
 DOMAIN,huichuan-mc.sm.cn
 DOMAIN,huichuan.sm.cn
+DOMAIN,iyes.youku.com
+DOMAIN,m-vali.cp31.ott.cibntv.net
+DOMAIN,mc.atm.youku.com
+DOMAIN,vali-g1.cp31.ott.cibntv.net
 DOMAIN,vali-ugc.cp31.ott.cibntv.net
-DOMAIN,valipl.cp31.ott.cibntv.net
 DOMAIN,yk-ssp.ad.youku.com
 DOMAIN,ykad-data.youku.com
 # > 字节跳动
@@ -197,9 +205,21 @@ DOMAIN,punion.tjjt360.com
 #有道
 DOMAIN,staticsns.cdn.bcebos.com
 # > 芒果
+# > 开屏 
 DOMAIN,mobile.da.mgtv.com
+#不知道是啥
 DOMAIN,video.da.mgtv.com
 DOMAIN,pcvideoaliyun.titan.mgtv.com
+DOMAIN,dflow.bz.mgtv.com
+DOMAIN,encounter.bz.mgtv.com
+DOMAIN,floor.bz.mgtv.com
+DOMAIN,img.da.mgtv.com
+DOMAIN,layer.bz.mgtv.com
+DOMAIN,mob.bz.mgtv.com
+DOMAIN,rc-topic-api.bz.mgtv.com
+DOMAIN,v2.da.mgtv.com
+DOMAIN,vip.bz.mgtv.com
+DOMAIN,ys.da.mgtv.com
 
 # > 运营劫持
 DOMAIN,geo2.adobe.com

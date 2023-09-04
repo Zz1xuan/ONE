@@ -88,7 +88,9 @@ host,log3-normal-hl.toutiaoapi.com,reject
 # > K
 # > 酷安
 host-suffix,ios.bugly.qq.com,reject
+host-suffix,umeng.com,reject
 host-suffix,shuzilm.com,reject
+host-suffix,umengcloud.com,reject
 host,dm.toutiao.com,reject
 host-suffix,pglstatp-toutiao.com,reject
 host-suffix,ctobsnssdk.com,reject

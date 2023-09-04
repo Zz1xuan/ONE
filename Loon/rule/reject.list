@@ -67,7 +67,9 @@ DOMAIN, pagead2.googlesyndication.com
 # > 酷安
 DOMAIN-SUFFIX,ios.bugly.qq.com
 DOMAIN-SUFFIX,kepler.jd.com
+DOMAIN-SUFFIX,umeng.com
 DOMAIN-SUFFIX,shuzilm.com
+DOMAIN-SUFFIX,umengcloud.com
 DOMAIN-SUFFIX,dm.toutiao.com
 DOMAIN-SUFFIX,pglstatp-toutiao.com
 DOMAIN-SUFFIX,ctobsnssdk.com

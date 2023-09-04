@@ -126,8 +126,9 @@ host,sin3-ib.adnxs.com,reject
 # > Q
 # QQ音乐广告
 host,tmead.y.qq.com,reject
-host,tmeadcomm.y.qq.com,reject
 host,ad.tencentmusic.com,reject
+
+host,tmeadcomm.y.qq.com,reject
 host,adstats.tencentmusic.com,reject
 host-suffix,rqd.qq.com,reject
 host-suffix,wup.imtt.qq.com,reject

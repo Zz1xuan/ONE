@@ -94,8 +94,8 @@ DOMAIN,route-stats.d.meituan.net
 # > Q
 # QQ音乐广告
 DOMAIN,tmead.y.qq.com
-DOMAIN,tmeadcomm.y.qq.com
 DOMAIN,ad.tencentmusic.com
+DOMAIN,tmeadcomm.y.qq.com
 DOMAIN,adstats.tencentmusic.com
 DOMAIN-SUFFIX,rqd.qq.com
 DOMAIN-SUFFIX,wup.imtt.qq.com

@@ -1,11 +1,11 @@
 # WPS
-DOMAIN, cloudservice22.kingsoft-office-service.com
+DOMAIN,cloudservice22.kingsoft-office-service.com
 # ChatGPT
-DOMAIN, o33249.ingest.sentry.io
+DOMAIN,o33249.ingest.sentry.io
 # 数字联盟
-DOMAIN-SUFFIX, shuzilm.cn
+DOMAIN-SUFFIX,shuzilm.cn
 # > 彩云天气
-DOMAIN, ad.cyapi.cn
+DOMAIN,ad.cyapi.cn
 
 # > 闲鱼
 DOMAIN,aid.m.taobao.com
@@ -16,51 +16,51 @@ DOMAIN,mediation.adnxs.com
 DOMAIN,sin3-ib.adnxs.com
 # > B
 # > 哔哩哔哩
-DOMAIN, mall.bilibili.com
+DOMAIN,mall.bilibili.com
 # > 百词斩
 DOMAIN,advertise.baicizhan.com 
 DOMAIN,advertise.baicizhan.org 
 # 百度
-DOMAIN-SUFFIX, pos.baidu.com
+DOMAIN-SUFFIX,pos.baidu.com
 # > 百度网盘
-DOMAIN, mobads.baidu.com
-DOMAIN, mobads-logs.baidu.com
+DOMAIN,mobads.baidu.com
+DOMAIN,mobads-logs.baidu.com
 # 百度地图
-DOMAIN, afd.baidu.com
-DOMAIN, afdconf.baidu.com
-DOMAIN, httpdns.baidubce.com
-DOMAIN, lc.map.baidu.com
+DOMAIN,afd.baidu.com
+DOMAIN,afdconf.baidu.com
+DOMAIN,httpdns.baidubce.com
+DOMAIN,lc.map.baidu.com
 # > C
 # > 车来了（包括小程序）
-DOMAIN-suffix, atrace.chelaile.net.cn 
-DOMAIN, logs.chelaile.net.cn 
-DOMAIN, ad.chelaile.net.cn 
+DOMAIN-SUFFIX,atrace.chelaile.net.cn 
+DOMAIN,logs.chelaile.net.cn 
+DOMAIN,ad.chelaile.net.cn 
 # > D
 # > E
 # > F
 # > G
 # > 高德
-DOMAIN, amap-aos-info-nogw.amap.com 
-DOMAIN, awaken.amap.com 
-DOMAIN, free-aos-cdn-image.amap.com 
+DOMAIN,amap-aos-info-nogw.amap.com 
+DOMAIN,awaken.amap.com 
+DOMAIN,free-aos-cdn-image.amap.com 
 # 工商银行 开屏广告
-DOMAIN, pageviewp.icbc.com.cn
+DOMAIN,pageviewp.icbc.com.cn
 # 广告联盟
-DOMAIN, is.snssdk.com
-DOMAIN, mi.gdt.qq.com
-DOMAIN, open.e.kuaishou.com
+DOMAIN,is.snssdk.com
+DOMAIN,mi.gdt.qq.com
+DOMAIN,open.e.kuaishou.com
 DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com
 DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
 DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com
 DOMAIN-SUFFIX,pangolin.snssdk.com
 # > H
 # > HDO
-DOMAIN-SUFFIX, applovin.com 
-DOMAIN-SUFFIX, applvn.com 
-DOMAIN, googleads.g.doubleclick-cn.net 
-DOMAIN, googleads.g.doubleclick.net 
-DOMAIN, pubads.g.doubleclick.net 
-DOMAIN, pagead2.googlesyndication.com 
+DOMAIN-SUFFIX,applovin.com 
+DOMAIN-SUFFIX,applvn.com 
+DOMAIN,googleads.g.doubleclick-cn.net 
+DOMAIN,googleads.g.doubleclick.net 
+DOMAIN,pubads.g.doubleclick.net 
+DOMAIN,pagead2.googlesyndication.com 
 # > I
 # > J
 # > K
@@ -79,26 +79,35 @@ DOMAIN-SUFFIX,tpns.tencent.com
 # > 两步路
 DOMAIN-SUFFIX,admobile.top 
 # > 蓝奏云
-DOMAIN-SUFFIX, statics.woozooo.com 
+DOMAIN-SUFFIX,statics.woozooo.com 
 # > M
 # > 美团
-DOMAIN, al-log.d.meituan.net
-DOMAIN, babel-statistics-android.d.meituan.net
-DOMAIN, maplocatesdksnapshot.d.meituan.net
-DOMAIN, metrics-picture.d.meituan.net
-DOMAIN, route-stats.d.meituan.net
+DOMAIN,al-log.d.meituan.net
+DOMAIN,babel-statistics-android.d.meituan.net
+DOMAIN,maplocatesdksnapshot.d.meituan.net
+DOMAIN,metrics-picture.d.meituan.net
+DOMAIN,route-stats.d.meituan.net
 # > N
 # > O
 # > OPPO
 # > P
 # > Q
+# QQ音乐广告
+DOMAIN,tmead.y.qq.com
+DOMAIN,tmeadcomm.y.qq.com
+DOMAIN,ad.tencentmusic.com
+DOMAIN,adstats.tencentmusic.com
+DOMAIN-SUFFIX,rqd.qq.com
+DOMAIN-SUFFIX,wup.imtt.qq.com
+DOMAIN-SUFFIX,e.qq.com
+DOMAIN-SUFFIX,beacon.qq.com
 # > R
 # > S
 # 什么值得买
-DOMAIN, api.zuihuimai.com
+DOMAIN,api.zuihuimai.com
 # > T
 # 腾讯 无法使用的推送服务
-DOMAIN, tpns.qq.com
+DOMAIN,tpns.qq.com
 # > 淘宝
 DOMAIN-SUFFIX,h-adashx.ut.taobao.com 
 DOMAIN-SUFFIX,apoll.m.taobao.com 
@@ -149,7 +158,7 @@ DOMAIN,tk.anythinktech.com
 
 # > X
 # > 小米
-DOMAIN, sdkconfig.ad.xiaomi.com
+DOMAIN,sdkconfig.ad.xiaomi.com
 # > 新浪
 DOMAIN-SUFFIX,beacon.sina.com.cn 
 DOMAIN,u1.img.mobile.sina.cn 
@@ -166,17 +175,17 @@ DOMAIN,adbehavior.ximalaya.com
 DOMAIN,adsebs.ximalaya.com 
 DOMAIN,adwbs.ximalaya.com 
 # 迅雷 解除版权限制
-;DOMAIN, hub5btmain.v6.shub.sandai.net
-;DOMAIN, hub5emu.v6.shub.sandai.net
-;DOMAIN, hub5idx.v6.shub.sandai.net
+;DOMAIN,hub5btmain.v6.shub.sandai.net
+;DOMAIN,hub5emu.v6.shub.sandai.net
+;DOMAIN,hub5idx.v6.shub.sandai.net
 # Y
 # > 云闪付 开屏
-DOMAIN, ads.95516.com
-DOMAIN, cm-10-138.getui.com
-DOMAIN, sdk.open.talk.getui.net
-DOMAIN, sdk-conf.getui.com
-DOMAIN, switch.cup.com.cn
-DOMAIN, tysdk.95516.com
+DOMAIN,ads.95516.com
+DOMAIN,cm-10-138.getui.com
+DOMAIN,sdk.open.talk.getui.net
+DOMAIN,sdk-conf.getui.com
+DOMAIN,switch.cup.com.cn
+DOMAIN,tysdk.95516.com
 # > 优酷
 DOMAIN-SUFFIX,atm.youku.com
 DOMAIN,ad.mobile.youku.com
@@ -194,7 +203,7 @@ DOMAIN,vali-ugc.cp31.ott.cibntv.net
 DOMAIN,yk-ssp.ad.youku.com
 DOMAIN,ykad-data.youku.com
 # > 字节跳动
-DOMAIN, ad.zijieapi.com
+DOMAIN,ad.zijieapi.com
 DOMAIN-KEYWORD, -ad-sign.byteimg.com
 # >58
 DOMAIN,track.58.com

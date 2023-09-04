@@ -96,15 +96,11 @@ host-suffix,pglstatp-toutiao.com,reject
 host-suffix,ctobsnssdk.com,reject
 host-suffix,kepler.jd.com,reject
 host-suffix,bytedance.com,reject
-
-
 # 酷我音乐
 host,ad.tencentmusic.com,reject
 host,g.koowo.com,reject
 host,mobilead.kuwo.cn,reject
 host,rich.kuwo.cn,reject
-host,tmead.y.qq.com,reject
-host,tmeadcomm.y.qq.com,reject
 
 # L
 # > 两步路
@@ -129,10 +125,10 @@ host,sin3-ib.adnxs.com,reject
 # > P
 # > Q
 # QQ音乐广告
+host,tmead.y.qq.com,reject
 host,tmeadcomm.y.qq.com,reject
 host,ad.tencentmusic.com,reject
 host,adstats.tencentmusic.com,reject
-host,tmead.y.qq.com,reject
 host-suffix,rqd.qq.com,reject
 host-suffix,wup.imtt.qq.com,reject
 host-suffix,e.qq.com,reject

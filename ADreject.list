@@ -28,7 +28,6 @@ host,sdkmonitor.biz.weibo.com,reject
 # > B
 # > 哔哩哔哩
 host,mall.bilibili.com,reject
-host,passport.bilibili.com,reject
 # > 百词斩
 host,advertise.baicizhan.com,reject
 host,advertise.baicizhan.org,reject

@@ -1,17 +1,31 @@
 //Reddit 过滤推广, 关 subreddit 的 NSFW 提示
 
-const body = JSON.parse($response.body)
-let modified
-if (body.data) {
-  modified = true
-  if (body.data.subredditInfoByName && body.data.subredditInfoByName.elements && body.data.subredditInfoByName.elements.edges) {
-    body.data.subredditInfoByName.elements.edges = body.data.subredditInfoByName.elements.edges.filter(i => i && i.node && (i.node.__typename !== "AdPost"))
-  } else if (body.data.home && body.data.home.elements && body.data.home.elements.edges) {
-    body.data.home.elements.edges = body.data.home.elements.edges.filter(i => i && i.node && (i.node.__typename !== "AdPost"))
-  } else if(body.data.subredditsInfoByNames){
-    body.data.subredditsInfoByNames = body.data.subredditsInfoByNames.map(i => ({...i, isNsfw: false}))
-  } else {
-    modified = false
+let modified;
+let body;
+try {
+  body = JSON.parse($response.body.replace(/\"isNsfw\"/gi, '"_isNsfw"'));
+  if (body?.data?.subredditInfoByName?.elements?.edges) {
+    body.data.subredditInfoByName.elements.edges =
+      body.data.subredditInfoByName.elements.edges.filter(
+        i => i?.node?.__typename !== 'AdPost'
+      );
+    modified = true;
+  } else if (body?.data?.home?.elements?.edges) {
+    body.data.home.elements.edges = body.data.home.elements.edges.filter(
+      i => i?.node?.__typename !== 'AdPost'
+    );
+    modified = true;
+  } else if (body?.data?.homeV3?.elements?.edges) {
+    body.data.homeV3.elements.edges = body.data.homeV3.elements.edges.filter(
+      i => !i?.node?.cells?.some(j => j?.__typename === 'AdMetadataCell')
+    );
+    modified = true;
+  } else if ($response.body.includes('"isNsfw"')) {
+    modified = true;
   }
+} catch (e) {
+  console.log(e)
+} finally {
+  $done(modified ? { body: JSON.stringify(body) } : {});
 }
-$done(modified ? { body: JSON.stringify(body) } : {})
+

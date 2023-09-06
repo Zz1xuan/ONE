@@ -48,7 +48,6 @@ async function getBingWallpaper() {
                 .split('<br>')
                 .filter(Boolean);
             contentArr.pop();
-            const thumb = contentArr[0].match(/data-original='(.*?)'/)[1];
             const summary = contentArr.slice(1, 3).join('\n');
             const mainCon = contentArr.slice(3).map(item => item.split('<')[0]).join('\n');
             const getCloseRemark = async () => {

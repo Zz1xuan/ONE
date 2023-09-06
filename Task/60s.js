@@ -14,7 +14,7 @@
 const $ = new Env('每天60s读懂世界');
 
 // 获取Bing壁纸图片的函数
-async function getBingWallpaper() {
+/* async function getBingWallpaper() {
     try {
         const response = await $.http.get("https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-CN");
         const data = JSON.parse(response.body);
@@ -24,10 +24,10 @@ async function getBingWallpaper() {
         $.logErr("获取Bing壁纸图片失败：" + error);
         return ""; // 返回空字符串表示获取失败
     }
-}
+} */
 
 !(async () => {
-    const bingWallpaper = await getBingWallpaper();
+    //const bingWallpaper = await getBingWallpaper();
     await $.http.get({
         url: 'https://www.zhihu.com/api/v4/columns/c_1261258401923026944/items',
     })
@@ -60,7 +60,8 @@ async function getBingWallpaper() {
             };
             const { zh, en } = await getCloseRemark();
             const _content = mainCon + `\n【微语】\t${en}\t${zh}`;
-            $.msg(summary, '', _content, { "media-url": bingWallpaper })
+            //$.msg(summary, '', _content, { "media-url": bingWallpaper })
+            $.msg(summary, '', _content)
         })
         .catch(err => $.logErr(err || '网络请求失败'))
 })().finally(() => $.done())

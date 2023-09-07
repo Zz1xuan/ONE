@@ -749,6 +749,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       );
     }
   } else if (url.includes("/aj/appicon/list")) {
+    //图标
     if (obj?.data?.list?.length > 0) {
       for (let item of obj.data.list) {
         if (item?.cardType) {

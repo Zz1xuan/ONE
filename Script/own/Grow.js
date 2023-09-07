@@ -1,4 +1,4 @@
 const VIP = $response.body
-  .replace(/"vip":\w+/g, '"vip":true')
-  .replace(/"vipLevel":\w+/g, '"vipLevel":1')
+  .replace(/"current_offering_id":\w+/g, '"current_offering_id":$rc_lifetime')
+  //.replace(/"vipLevel":\w+/g, '"vipLevel":1')
 $done({ body: VIP });

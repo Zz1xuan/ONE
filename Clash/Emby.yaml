@@ -7,7 +7,7 @@ payload:
   - DOMAIN-SUFFIX,emby.ytoo.li
   - DOMAIN-SUFFIX,embyserver.ga
   - DOMAIN-SUFFIX,emby.prprcloud.com
-  - DOMAIN-SUFFIX,emby.prprcloud.cn.com
+  - DOMAIN-SUFFIX,emby.prpr.cn.com
   - DOMAIN-SUFFIX,emby.nyancat.net
   - DOMAIN-SUFFIX,emby.plusmedia.site
   - DOMAIN-SUFFIX,emby-cf.plusmedia.site

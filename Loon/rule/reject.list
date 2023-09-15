@@ -122,7 +122,7 @@ DOMAIN-SUFFIX,rqd.qq.com
 DOMAIN-SUFFIX,trace.qq.com 
 DOMAIN,dp3.qq.com 
 DOMAIN,mtrace.qq.com 
-DOMAIN,vv.video.qq.com 
+#DOMAIN,vv.video.qq.com 
 DOMAIN,aedns.weixin.qq.com 
 DOMAIN-SUFFIX,mdt.qq.com 
 DOMAIN-SUFFIX,tpns.tencent.com 

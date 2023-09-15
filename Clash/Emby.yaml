@@ -110,6 +110,7 @@ payload:
   - DOMAIN-SUFFIX,happyav.eu.org
   - DOMAIN-SUFFIX,emby.misakaf.org
   - DOMAIN-SUFFIX,emby2.misakaf.org
+  - DOMAIN-SUFFIX,push-kr.misakaf.org
   - DOMAIN-SUFFIX,123456.al
   - DOMAIN-SUFFIX,emby.pro
   - DOMAIN-SUFFIX,xiaoyi.one

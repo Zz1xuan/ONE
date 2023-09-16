@@ -112,6 +112,8 @@ DOMAIN,tpns.qq.com
 DOMAIN-SUFFIX,h-adashx.ut.taobao.com 
 DOMAIN-SUFFIX,apoll.m.taobao.com 
 # > 腾讯视频
+DOMAIN,ios.video.mpush.qq.com
+DOMAIN,btrace.qq.com
 DOMAIN,info4.video.qq.com 
 DOMAIN,info6.video.qq.com 
 DOMAIN,ilce.alicdn.com 

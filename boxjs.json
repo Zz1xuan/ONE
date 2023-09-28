@@ -52,6 +52,52 @@
         "author": "@Sliverkiss",
         "repo": "",
         "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lsl.js?raw=true"
+      },
+      {
+        "id": "hgds",
+        "name": "哈根达斯签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Sliverkiss/GoodNight/blob/master/Script/hgds.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "hgds_data"
+        ],
+        "settings": [
+          {
+            "id": "hgds_data",
+            "name": "hgds_data",
+            "val": "",
+            "type": "text",
+            "desc": "打开抓包，点击签到，抓https://haagendazs.smarket.com.cn/v1/api/wxapp/daily/signIn请求体的openId、sessionKey和unionId，分别用#连接,如openId#sessionKey#unionId,填写到hgds_data"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Sliverkiss/GoodNight/blob/master/Script/nbb.js?raw=true"
+      },
+      {
+        "id": "nbb",
+        "name": "农粑粑签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Sliverkiss/GoodNight/blob/master/Script/nbb.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "nbb_data"
+        ],
+        "settings": [
+          {
+            "id": "nbb_data",
+            "name": "nbb_data",
+            "val": "",
+            "type": "text",
+            "desc": "登陆后抓包sc.gdzfxc.com域名下的session_id,填写到nbb_data多账号用@分离"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Sliverkiss/GoodNight/blob/master/Script/nbb.js?raw=true"
       }
     ]
   }

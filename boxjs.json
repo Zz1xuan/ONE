@@ -1,0 +1,57 @@
+{
+    "id": "Zz1xuan.app.sub",
+    "name": "Zz1xuan订阅",
+    "author": "",
+    "icon": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/avatar.png",
+    "repo": "https://github.com/Zz1xuan/ONE",
+    "apps": [
+          {
+        "id": "bysh",
+        "name": "白药生活+签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/bysh.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/ynby.png",
+          "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/ynby.png"
+        ],
+        "keys": [
+          "bysh_data"
+        ],
+        "settings": [
+          {
+            "id": "bysh_data",
+            "name": "bysh_data",
+            "val": "",
+            "type": "text",
+            "desc": "捉miniapi-hy.baiyaodajiankang.com域名任意包下的uid和skey，用#连接，如uid#skey,填写到bysh_data中,多帐号用@分隔"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/bysh.js?raw=true"
+      },
+      {
+        "id": "lsl",
+        "name": "冷酸灵签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lsl.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/lsl.png",
+          "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/lsl.png"
+        ],
+        "keys": [
+          "lsl_data"
+        ],
+        "settings": [
+          {
+            "id": "lsl_data",
+            "name": "lsl_data",
+            "val": "",
+            "type": "text",
+            "desc": "抓取scrm.dencare.com.cn域名下接口的token填写到lsl_data，多账号用 @ 分隔"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lsl.js?raw=true"
+      }
+    ]
+  }

@@ -8,9 +8,9 @@
           {
         "id": "bysh",
         "name": "白药生活+签到",
-        "desc_html": [
+        "descs_html": [
           "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/bysh.js?raw=true\">脚本注释</a></h4>",
-          "<h4>捉miniapi-hy.baiyaodajiankang.com域名任意包下的uid和skey，用#连接，如uid#skey,填写到bysh_data中,多帐号用@分隔</h4>"
+          "捉miniapi-hy.baiyaodajiankang.com域名任意包下的uid和skey，用#连接，如uid#skey,填写到bysh_data中,多帐号用@分隔。"
         ],
         "icons": [
           "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/ynby.png",

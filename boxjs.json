@@ -1,7 +1,7 @@
 {
     "id": "Zz1xuan.app.sub",
     "name": "Zz1xuan订阅",
-    "author": "",
+    "author": "@Zz1xuan",
     "icon": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/avatar.png",
     "repo": "https://github.com/Zz1xuan/ONE",
     "apps": [
@@ -129,7 +129,8 @@
         "name": "申工社签到",
         "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/helloworld/master/Study/sgs.js?raw=true\">脚本注释</a></h4>",
         "icons": [
-          ""
+          "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/sgs.png",
+          "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/sgs.png"
         ],
         "keys": [
           "sgs_data"

@@ -35,7 +35,10 @@
       {
         "id": "lsl",
         "name": "冷酸灵签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lsl.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lsl.js?raw=true\">脚本注释</a></h4>",
+          "抓取scrm.dencare.com.cn域名下接口的token填写到lsl_data，多账号用 @ 分隔"
+        ],
         "icons": [
           "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/lsl.png",
           "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/lsl.png"
@@ -59,7 +62,10 @@
       {
         "id": "hgds",
         "name": "哈根达斯签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/GoodNight/blob/master/Script/hgds.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/GoodNight/blob/master/Script/hgds.js?raw=true\">脚本注释</a></h4>",
+          "打开抓包，点击签到，抓https://haagendazs.smarket.com.cn/v1/api/wxapp/daily/signIn请求体的openId、sessionKey和unionId，分别用#连接,如openId#sessionKey#unionId,填写到hgds_data"
+        ],
         "icons": [
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/hgds.png",
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/hgds.png"
@@ -83,7 +89,10 @@
       {
         "id": "nbb",
         "name": "农粑粑签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/GoodNight/blob/master/Script/nbb.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/GoodNight/blob/master/Script/nbb.js?raw=true\">脚本注释</a></h4>",
+          "登陆后抓包sc.gdzfxc.com域名下的session_id,填写到nbb_data多账号用@分离"
+        ],
         "icons": [
           ""
         ],
@@ -106,7 +115,10 @@
       {
         "id": "dxqd",
         "name": "朵茜情调签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dxqd.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dxqd.js?raw=true\">脚本注释</a></h4>",
+          "捉h5.youzan.com域名任意包下的Cookie中的KDTWEAPPSESSIONID=XXXXXXXXXX,填写到dxqd_cookie中,多帐号换行"
+        ],
         "icons": [
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/dxqd.png",
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/dxqd.png"
@@ -130,7 +142,10 @@
       {
         "id": "sgs",
         "name": "申工社签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/helloworld/master/Study/sgs.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/helloworld/master/Study/sgs.js?raw=true\">脚本注释</a></h4>",
+          "登录后抓包 fwdt.shengongshe.org域名的Token，填写到sgs_data,多账号用 @ 分割，自动获取请看仓库"
+        ],
         "icons": [
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/sgs.png",
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/sgs.png"
@@ -154,7 +169,10 @@
       {
         "id": "xwy",
         "name": "希望云社区签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/helloworld/master/Study/xwy.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Sliverkiss/helloworld/master/Study/xwy.js?raw=true\">脚本注释</a></h4>",
+          "登录后抓包 xwyapi.newhope.cn 域名下的Authorization和customerId，用#连接，填写到xwy_data,多账号用 @ 分割，自动获取请看详情"
+        ],
         "icons": [
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/xwy.png",
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/xwy.png"
@@ -178,7 +196,10 @@
       {
         "id": "syns",
         "name": "所有女生会员服务中心签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/syns.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/syns.js?raw=true\">脚本注释</a></h4>",
+          "自动获取请看仓库"
+        ],
         "icons": [
           ""
         ],
@@ -201,7 +222,10 @@
       {
         "id": "dtds",
         "name": "大桶订水签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dtds.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dtds.js?raw=true\">脚本注释</a></h4>",
+          "登录后抓包 https://admin.dtds888.com/api/index/user/SignIn请求体的token，填写到dtds_data,多账号用@分隔"
+        ],
         "icons": [
           ""
         ],
@@ -224,7 +248,10 @@
       {
         "id": "ffit",
         "name": "ffit8签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ffit8.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ffit8.js?raw=true\">脚本注释</a></h4>",
+          "捉h5.youzan.com域名任意包下的Cookie中的KDTWEAPPSESSIONID=XXXXXXXXXX,填写到ffit_data中,多帐号用@分隔"
+        ],
         "icons": [
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/ffit.png",
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/ffit.png"
@@ -248,7 +275,10 @@
       {
         "id": "lnjcy",
         "name": "老娘舅餐饮签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lnjcy.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lnjcy.js?raw=true\">脚本注释</a></h4>",
+          "登录后抓包 webapi.qmai.cn域名下的Qm-User-Token，填写到lnjcy_data,多账号用 @ 分割,自动获取请看仓库"
+        ],
         "icons": [
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/lnj.png",
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/lnj.png"
@@ -272,7 +302,10 @@
       {
         "id": "ysf",
         "name": "云闪付签到",
-        "desc_html": "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ysf.js?raw=true\">脚本注释</a></h4>",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ysf.js?raw=true\">脚本注释</a></h4>",
+          "抓youhui.95516.com域名包下的Authorization,usrId和openId，用#连接，多账号换行"
+        ],
         "icons": [
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/ysf.png",
           "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/ysf.png"

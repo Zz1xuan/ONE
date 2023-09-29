@@ -98,6 +98,121 @@
         "author": "@Sliverkiss",
         "repo": "",
         "script": "https://github.com/Sliverkiss/GoodNight/blob/master/Script/nbb.js?raw=true"
+      },
+      {
+        "id": "dxqd",
+        "name": "朵茜情调签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dxqd.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "dxqd_data"
+        ],
+        "settings": [
+          {
+            "id": "dxqd_data",
+            "name": "dxqd_data",
+            "val": "",
+            "type": "text",
+            "desc": "捉h5.youzan.com域名任意包下的Cookie中的KDTWEAPPSESSIONID=XXXXXXXXXX,填写到dxqd_cookie中,多帐号换行"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dxqd.js?raw=true"
+      },
+      {
+        "id": "sgs",
+        "name": "申工社签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Sliverkiss/helloworld/master/Study/sgs.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "sgs_data"
+        ],
+        "settings": [
+          {
+            "id": "sgs_data",
+            "name": "sgs_data",
+            "val": "",
+            "type": "text",
+            "desc": "登录后抓包 fwdt.shengongshe.org域名的Token，填写到sgs_data,多账号用 @ 分割，自动获取请看详情"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Sliverkiss/helloworld/master/Study/sgs.js?raw=true"
+      },
+      {
+        "id": "xwy",
+        "name": "希望云社区签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Sliverkiss/helloworld/master/Study/xwy.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "xwy_data"
+        ],
+        "settings": [
+          {
+            "id": "xwy_data",
+            "name": "xwy_data",
+            "val": "",
+            "type": "text",
+            "desc": "登录后抓包 xwyapi.newhope.cn 域名下的Authorization和customerId，用#连接，填写到xwy_data,多账号用 @ 分割，自动获取请看详情"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Sliverkiss/helloworld/master/Study/xwy.js?raw=true"
+      },
+      {
+        "id": "syns",
+        "name": "所有女生会员服务中心签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/syns.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "syns_data"
+        ],
+        "settings": [
+          {
+            "id": "syns_data",
+            "name": "syns_data",
+            "val": "",
+            "type": "text",
+            "desc": "^https:\/\/7\.wawo\.cc\/api\/account\/wx\/member\/assets -url script-response-header https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/syns.js?raw=true"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/syns.js?raw=true"
+      },
+      {
+        "id": "dtds",
+        "name": "大桶订水签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dtds.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "dtds_data"
+        ],
+        "settings": [
+          {
+            "id": "dtds_data",
+            "name": "dtds_data",
+            "val": "",
+            "type": "text",
+            "desc": "登录后抓包 https://admin.dtds888.com/api/index/user/SignIn请求体的token，填写到dtds_data,多账号用 @ 分"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dtds.js?raw=true"
       }
     ]
   }

@@ -184,7 +184,7 @@
             "name": "syns_data",
             "val": "",
             "type": "text",
-            "desc": "^https:\/\/7\.wawo\.cc\/api\/account\/wx\/member\/assets -url script-response-header https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/syns.js?raw=true"
+            "desc": "获取链接见仓库"
           }
         ],
         "author": "@Sliverkiss",
@@ -207,12 +207,58 @@
             "name": "dtds_data",
             "val": "",
             "type": "text",
-            "desc": "登录后抓包 https://admin.dtds888.com/api/index/user/SignIn请求体的token，填写到dtds_data,多账号用 @ 分"
+            "desc": "登录后抓包 https://admin.dtds888.com/api/index/user/SignIn请求体的token，填写到dtds_data,多账号用@分隔"
           }
         ],
         "author": "@Sliverkiss",
         "repo": "",
         "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dtds.js?raw=true"
+      },
+      {
+        "id": "ffit",
+        "name": "ffit8签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ffit8.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "ffit_data"
+        ],
+        "settings": [
+          {
+            "id": "ffit_data",
+            "name": "ffit_data",
+            "val": "",
+            "type": "text",
+            "desc": "捉h5.youzan.com域名任意包下的Cookie中的KDTWEAPPSESSIONID=XXXXXXXXXX,填写到ffit_data中,多帐号用@分隔"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ffit8.js?raw=true"
+      },
+      {
+        "id": "lnjcy",
+        "name": "老娘舅餐饮签到",
+        "desc_html": "⚠️使用说明</br>详情【<a href='https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lnjcy.js?raw=true'><font class='red--text'>点我查看</font></a>】",
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "lnjcy_data"
+        ],
+        "settings": [
+          {
+            "id": "lnjcy_data",
+            "name": "lnjcy_data",
+            "val": "",
+            "type": "text",
+            "desc": "登录后抓包 webapi.qmai.cn域名下的Qm-User-Token，填写到lnjcy_data,多账号用 @ 分割 自动获取请看仓库"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lnjcy.js?raw=true"
       }
     ]
   }

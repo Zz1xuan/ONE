@@ -37,7 +37,7 @@
         "name": "冷酸灵签到",
         "descs_html": [
           "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lsl.js?raw=true\">脚本注释</a></h4>",
-          "抓取scrm.dencare.com.cn域名下接口的token填写到lsl_data，多账号用 @ 分隔<span style="color:red;">cookie有效期三天</span>"
+          "抓取scrm.dencare.com.cn域名下接口的token填写到lsl_data，多账号用 @ 分隔"
         ],
         "icons": [
           "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/lsl.png",

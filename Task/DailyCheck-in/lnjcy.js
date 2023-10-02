@@ -22,7 +22,7 @@ Loon:
 
 [Script]
 cron "30 9 * * *" script-path=lnjcy.js, timeout=300, tag=老娘舅餐饮签到
-http-request ^https:\/\/webapi.qmai.cn\/web\/catering\/crm\/points-info script-path=lnjcy.js, timeout=10, tag=老娘舅餐饮获取token
+http-request ^https:\/\/webapi.qmai.cn\/web\/catering\/crm\/points-info script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/DailyCheck-in/lnjcy.js, timeout=10, tag=老娘舅餐饮获取token
 [MITM]
 hostname =webapi.qmai.cn
 

@@ -18,7 +18,7 @@ Loon:
 
 [Script]
 cron "3 3 * * *" script-path=hpyhj.js, timeout=300, tag=HAPI哈啤硬核街
-http-request ^https:\/\/bg-hardcore.ab-inbev.cn\/api\/userCenter\/getUserCenterInfo script-path=hpyhj.js, timeout=10, tag=HAPI哈啤硬核街获取token
+http-request ^https:\/\/bg-hardcore.ab-inbev.cn\/api\/userCenter\/getUserCenterInfo script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/DailyCheck-in/hpyhj.js, timeout=10, tag=HAPI哈啤硬核街获取token
 [MITM]
 hostname =bg-hardcore.ab-inbev.cn
 

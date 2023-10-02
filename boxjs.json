@@ -37,7 +37,7 @@
         "name": "冷酸灵签到",
         "descs_html": [
           "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/lsl.js?raw=true\">脚本注释</a></h4>",
-          "抓取scrm.dencare.com.cn域名下接口的token填写到lsl_data，多账号用 @ 分隔"
+          "抓取scrm.dencare.com.cn域名下接口的token填写到lsl_data，多账号用 @ 分隔<span style="color:red;">cookie有效期三天</span>"
         ],
         "icons": [
           "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/lsl.png",
@@ -325,6 +325,33 @@
         "author": "@Sliverkiss",
         "repo": "",
         "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ysf.js?raw=true"
+      },
+      {
+        "id": "hpyhj",
+        "name": "HAPI哈啤签到",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/hpyhj.js?raw=true\">脚本注释</a></h4>",
+          "登录后抓包 bg-hardcore.ab-inbev.cn域名下的openId、sign、timestamp,分别用#连接，如openId#sign#timestamp，填写到hapi_data,多账号用 @ 分割 自动获取请看仓库"
+        ],
+        "icons": [
+          "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/hnbpj.png",
+          "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/hnbpj.png"
+        ],
+        "keys": [
+          "hapi_data"
+        ],
+        "settings": [
+          {
+            "id": "hapi_data",
+            "name": "hapi_data",
+            "val": "",
+            "type": "textarea",
+            "desc": "登录后抓包 bg-hardcore.ab-inbev.cn域名下的openId、sign、timestamp,分别用#连接，如openId#sign#timestamp，填写到hapi_data,多账号用 @ 分割 自动获取请看仓库"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/hpyhj.js?raw=true"
       }
     ]
   }

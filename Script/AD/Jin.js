@@ -31,7 +31,7 @@ if (body) {
       // 到梦空间
       case /appdmkj\.5idream\.net\/v2\/index\/promotionlist/.test(url):
         obj = JSON.parse(body);
-        delete obj.bannerList;
+        delete obj.data.bannerList;
         break;
       case /^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get/.test(url): //cnVjdQ==
         obj = JSON.parse(body);

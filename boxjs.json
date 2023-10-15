@@ -352,6 +352,40 @@
         "author": "@Sliverkiss",
         "repo": "",
         "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/hpyhj.js?raw=true"
+      },
+      {
+        "id": "zbs",
+        "name": "植白说签到",
+        "descs_html": [
+          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/zbs.js\">脚本注释</a></h4>",
+          "手动签到一次, 抓 https://www.kozbs.com/demo/wx/home/signDay?userId=xxx，url中 userId数值 填入 zbs_userId，请求头中 X-Dts-Token 填入 zbs_token"
+        ],
+        "icons": [
+          "",
+          ""
+        ],
+        "keys": [
+          "zbs_userId",
+          "zbs_token"
+        ],
+        "settings": [
+          {
+            "id": "zbs_userId",
+            "name": "zbs_userId",
+            "val": "",
+            "type": "textarea",
+            "desc": "抓 https://www.kozbs.com/demo/wx/home/signDay?userId=xxx"
+          },{
+            "id": "zbs_token",
+            "name": "zbs_token",
+            "val": "",
+            "type": "textarea",
+            "desc": "抓 https://www.kozbs.com/demo/wx/home/signDay?userId=xxx"
+          }
+        ],
+        "author": "@MCdasheng",
+        "repo": "",
+        "script": "https://raw.githubusercontent.com/MCdasheng/QuantumultX/main/Scripts/myScripts/zbs.js"
       }
     ]
   }

@@ -78,6 +78,8 @@ host,pagead2.googlesyndication.com,reject
 
 # > I
 # > J
+# > 京东
+host,dsp-x.jd.com,reject
 # > 今日头条
 host-suffix,bytedance.com,reject
 host-suffix,id6.me,reject

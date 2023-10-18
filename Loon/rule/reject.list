@@ -63,6 +63,8 @@ DOMAIN,pubads.g.doubleclick.net
 DOMAIN,pagead2.googlesyndication.com 
 # > I
 # > J
+DOMAIN,dsp-x.jd.com
+DOMAIN,xlog.jd.com
 # > K
 # > 酷安
 DOMAIN-SUFFIX,ios.bugly.qq.com

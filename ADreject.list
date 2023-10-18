@@ -1,3 +1,6 @@
+# 运动世界校园
+host,discovery.gxapp.iydsj.com,reject
+host,cmt.comp.360os.com,reject
 #wps
 host,cloudservice22.kingsoft-office-service.com,reject
 # 网易云
@@ -80,6 +83,7 @@ host,pagead2.googlesyndication.com,reject
 # > J
 # > 京东
 host,dsp-x.jd.com,reject
+host,xlog.jd.com,reject
 # > 今日头条
 host-suffix,bytedance.com,reject
 host-suffix,id6.me,reject

@@ -354,6 +354,32 @@
         "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/hpyhj.js?raw=true"
       },
       {
+        "id": "hdl",
+        "name": "海底捞签到",
+        "descs_html": [
+          "登录后抓包 superapp-public.kiwa-tech.com域名下的_haidilao_app_token，填写到hdl_data,多账号用 @ 分割"
+        ],
+        "icons": [
+          "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Hdl.png",
+          "https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/Hdl.png"
+        ],
+        "keys": [
+          "hdl_data"
+        ],
+        "settings": [
+          {
+            "id": "hdl_data",
+            "name": "hdl_data",
+            "val": "",
+            "type": "textarea",
+            "desc": "登录后抓包 superapp-public.kiwa-tech.com域名下的_haidilao_app_token，填写到hdl_data,多账号用 @ 分割"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": ""
+      },
+      {
         "id": "zbs",
         "name": "植白说签到",
         "descs_html": [

@@ -1,7 +1,6 @@
 # direct
 # xsus
 DOMAIN,home.xsus.me
-
 DOMAIN,cook.yunyoujun.cn
 DOMAIN,busuanzi.ibruce.info
 DOMAIN,unpkg.com
@@ -14,11 +13,6 @@ DOMAIN,api.prprcloud.life
 DOMAIN-KEYWORD,prpr
 # deepl
 DOMAIN-SUFFIX,deepl.com
-# fishport
-DOMAIN-KEYWORD,fishport
-DOMAIN,sawako.chipsfuck.fish
-# ciyuan
-DOMAIN-KEYWORD,ciyy
 # nga
 DOMAIN,bugenzhao.com
 DOMAIN-SUFFIX,ngacn.cc

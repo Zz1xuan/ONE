@@ -6,4 +6,4 @@
 ^https:\/\/ssp\.soulapp\.cn\/api\/q - reject
 
 [MITM]
-#hostname = ssp.soulapp.cn, 47.99.42.29, 47.97.215.55, 120.27.235.201
+hostname = ssp.soulapp.cn, 47.99.42.29, 47.97.215.55, 120.27.235.201

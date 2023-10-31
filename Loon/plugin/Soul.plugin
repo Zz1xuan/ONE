@@ -2,19 +2,8 @@
 #!desc = FUCKING AD APP
 #!icon = https://ghproxy.com/https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/soul.png
 
-[Rule]
-IP-CIDR, 47.99.42.29/32, REJECT, no-resolve
-IP-CIDR, 47.97.215.55/32, REJECT, no-resolve
-IP-CIDR, 47.98.54.106/32, REJECT, no-resolve
-IP-CIDR, 120.27.235.201/32, REJECT, no-resolve
-IP-CIDR, 47.110.187.87/32, REJECT, no-resolve
-IP-CIDR, 47.96.15.52/32, REJECT, no-resolve
-IP-CIDR, 116.62.220.39/32, REJECT, no-resolve
-
-DOMAIN, ssp.soulapp.cn, REJECT-DROP
-
 [Rewrite]
-#^https:\/\/ssp\.soulapp\.cn\/api - reject
+^https:\/\/ssp\.soulapp\.cn\/api\/q - reject
 
 [MITM]
-#hostname = ssp.soulapp.cn
+#hostname = ssp.soulapp.cn, 47.99.42.29, 47.97.215.55, 120.27.235.201

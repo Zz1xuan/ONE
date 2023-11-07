@@ -19,14 +19,12 @@ host,o33249.ingest.sentry.io,reject
 
 #彩云天气
 host,ad.cyapi.cn,reject
-
 # 微博 开屏广告
 host,adstrategy.biz.weibo.com,reject
 host,kadmimage.biz.weibo.com,reject
 host,sdkaction.biz.weibo.com,reject
 host,sdkclick.biz.weibo.com,reject
 host,sdkmonitor.biz.weibo.com,reject
-
 # > A
 # > B
 # > 哔哩哔哩
@@ -63,7 +61,6 @@ host,free-aos-cdn-image.amap.com,reject
 host,pageviewp.icbc.com.cn,reject
 # 广告联盟
 host,is.snssdk.com,reject
-host,mi.gdt.qq.com,reject
 host,open.e.kuaishou.com,reject
 host-suffix,pangolin-sdk-toutiao-b.com,reject
 host-suffix,pangolin-sdk-toutiao.com,reject
@@ -73,12 +70,10 @@ host-suffix,pangolin.snssdk.com,reject
 # > HDO
 host-suffix,applovin.com,reject
 host-suffix,applvn.com,reject
-#host-suffix,doubleclick.net,reject
 host,googleads.g.doubleclick-cn.net,reject
 host,googleads.g.doubleclick.net,reject
 host,pubads.g.doubleclick.net,reject
 host,pagead2.googlesyndication.com,reject
-
 # > I
 # > J
 # > 京东
@@ -90,7 +85,6 @@ host-suffix,id6.me,reject
 host-suffix,im-x.jd.com,reject
 host-suffix,miaozhen.com,reject
 host,log3-normal-hl.toutiaoapi.com,reject
-
 # > K
 # > 酷安
 host-suffix,ios.bugly.qq.com,reject
@@ -101,13 +95,11 @@ host,dm.toutiao.com,reject
 host-suffix,pglstatp-toutiao.com,reject
 host-suffix,ctobsnssdk.com,reject
 host-suffix,kepler.jd.com,reject
-host-suffix,bytedance.com,reject
 # 酷我音乐
 host,ad.tencentmusic.com,reject
 host,g.koowo.com,reject
 host,mobilead.kuwo.cn,reject
 host,rich.kuwo.cn,reject
-
 # L
 # > 两步路
 host-suffix,admobile.top,reject
@@ -132,8 +124,6 @@ host,sin3-ib.adnxs.com,reject
 # > Q
 # QQ音乐广告
 host,tmead.y.qq.com,reject
-host,ad.tencentmusic.com,reject
-
 host,tmeadcomm.y.qq.com,reject
 host,adstats.tencentmusic.com,reject
 host-suffix,rqd.qq.com,reject
@@ -142,7 +132,6 @@ host-suffix,e.qq.com,reject
 host-suffix,beacon.qq.com,reject
 # > R
 # > S
-
 # > T
 # > 淘宝
 host-suffix,h-adashx.ut.taobao.com,reject
@@ -156,28 +145,18 @@ host,ilce.alicdn.com,reject
 host,adsmind.gdtimg.com,reject
 host,pgdt.gtimg.cn,reject
 host,rdelivery.qq.com,reject
-host-suffix,rqd.qq.com,reject
 host-suffix,trace.qq.com,reject
 host,dp3.qq.com,reject
 host,mtrace.qq.com,reject
 host,aedns.weixin.qq.com,reject
 host-suffix,mdt.qq.com,reject
 host-suffix,tpns.tencent.com,reject
-host-suffix,beacon.qq.com,reject
 host,id6.me,reject
 host-suffix,l.qq.com,reject
-host-suffix,gdt.qq.com,reject
 host,wup.imtt.qq.com,reject
-#>host,vv.video.qq.com,reject
-#不知道具体什么，可能腾讯视频？？
-host-suffix,tpns.tencent.com,reject
-host-suffix,l.qq.com,reject
-
 # > U
 # > V
-
 # > W
-
 # > 微软
 host-suffix,ads.msn.com,reject
 host-suffix,ads1.msn.com,reject
@@ -185,21 +164,17 @@ host-suffix,ads2.msn.com,reject
 host-suffix,bingads.microsoft.com,reject
 host-suffix,rads.msn.com,reject
 host,mobileads.msn.com,reject
-
 # > 网易
 host,g1.163.com,reject
-host-suffix,e.qq.com,reject
 host,qzs.gdtimg.com,reject
 host,adx-cn.anythinktech.com,reject
 host,nex.163.com,reject
-host-suffix,gdt.qq.com,reject
 host,gorgon.youdao.com,reject
 host,tk.anythinktech.com,reject
-
 # > X
 # > 闲鱼
 host,aid.m.taobao.com,reject
-#host,iyes.youku.com,reject
+host,iyes.youku.com,reject
 # > 小米
 host,sdkconfig.ad.xiaomi.com,reject
 # > 新浪
@@ -220,9 +195,7 @@ host,adbehavior.wsa.ximalaya.com,reject
 host,adbehavior.ximalaya.com,reject
 host,adsebs.ximalaya.com,reject
 host,adwbs.ximalaya.com,reject
-
 # Y
-
 # > 云闪付
 host,ads.95516.com,reject
 host,cm-10-138.getui.com,reject
@@ -234,31 +207,30 @@ host,tysdk.95516.com,reject
 host-suffix,atm.youku.com,reject
 host,ad.mobile.youku.com,reject
 host,pl.cp31.ott.cibntv.net,reject
-
 host,adsmind.ugdtimg.com,reject
 host,amdc.m.youku.com,reject
 host,apiv4-iyes.youku.com,reject
 host,huichuan-mc.sm.cn,reject
 host,huichuan.sm.cn,reject
-host,iyes.youku.com,reject
 host,m-vali.cp31.ott.cibntv.net,reject
 host,mc.atm.youku.com,reject
 host,vali-g1.cp31.ott.cibntv.net,reject
 host,vali-ugc.cp31.ott.cibntv.net,reject
 host,yk-ssp.ad.youku.com,reject
 host,ykad-data.youku.com,reject
-
 # Z
-
-# > 字节跳动
-host,ad.zijieapi.com,reject
-host-KEYWORD, -ad-sign.byteimg.com,reject
+# 字节跳动
+HOST, ad.zijieapi.com, REJECT
+HOST, asiad.byteactivity.com, REJECT
+HOST, asiad.byteactivity12.com, REJECT
+HOST, p3-ad-sign.byteimg.com, REJECT
+HOST, p6-ad-sign.byteimg.com, REJECT
+HOST, p9-ad-sign.byteimg.com, REJECT
 # > 中国电信
 host,ad.21cn.com,reject
 host,ad.k.21cn.com,reject
 host,admarket.21cn.com,reject
 host,adshows.21cn.com,reject
-
 # > 知乎
 host,appcloud.zhihu.com,reject
 host,appcloud2.in.zhihu.com,reject
@@ -268,15 +240,12 @@ host,sugar.zhihu.com,reject
 IP-CIDR, 118.89.204.198/32,reject
 IP-CIDR, 103.41.167.237/32,reject
 IP6-CIDR, 2402:4e00:1200:ed00:0:9089:6dac:96b6/128,reject
-
 #金融
 host,punion.tjjt360.com,reject
-
 #有道
 host,staticsns.cdn.bcebos.com,reject
-
 # > 芒果TV
-# > 开屏 
+# > 开屏
 host,mobile.da.mgtv.com,reject
 #不知道是啥
 host,video.da.mgtv.com,reject

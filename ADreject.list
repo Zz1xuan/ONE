@@ -4,7 +4,7 @@ host,cmt.comp.360os.com,reject
 #wps
 host,cloudservice22.kingsoft-office-service.com,reject
 # 网易云
-host-suffix,gdt.qq.com,reject
+host,gdt.qq.com,reject
 host,httpdns.n.netease.com,reject
 host,iadmat.nosdn.127.net,reject
 host,iadmusicmat.music.126.net,reject
@@ -27,8 +27,6 @@ host,sdkclick.biz.weibo.com,reject
 host,sdkmonitor.biz.weibo.com,reject
 # > A
 # > B
-# > 哔哩哔哩
-host,mall.bilibili.com,reject
 # > 百词斩
 host,advertise.baicizhan.com,reject
 host,advertise.baicizhan.org,reject
@@ -60,12 +58,15 @@ host,free-aos-cdn-image.amap.com,reject
 # 工商银行 开屏广告
 host,pageviewp.icbc.com.cn,reject
 # 广告联盟
-host,is.snssdk.com,reject
-host,open.e.kuaishou.com,reject
-host-suffix,pangolin-sdk-toutiao-b.com,reject
-host-suffix,pangolin-sdk-toutiao.com,reject
-host-suffix,pangolin-sdk-toutiao1.com,reject
-host-suffix,pangolin.snssdk.com,reject
+host, i.snssdk.com, reject
+host, is.snssdk.com, reject
+host, mi.gdt.qq.com, reject
+host, open.e.kuaishou.com, reject
+host-suffix, pangolin-sdk-toutiao-b.com, reject
+host-suffix, pangolin-sdk-toutiao.com, reject
+host-suffix, pangolin-sdk-toutiao1.com, reject
+host-suffix, pangolin.snssdk.com, reject
+host-suffix, pglstatp-toutiao.com, reject
 # > H
 # > HDO
 host-suffix,applovin.com,reject
@@ -220,12 +221,12 @@ host,yk-ssp.ad.youku.com,reject
 host,ykad-data.youku.com,reject
 # Z
 # 字节跳动
-HOST, ad.zijieapi.com, REJECT
-HOST, asiad.byteactivity.com, REJECT
-HOST, asiad.byteactivity12.com, REJECT
-HOST, p3-ad-sign.byteimg.com, REJECT
-HOST, p6-ad-sign.byteimg.com, REJECT
-HOST, p9-ad-sign.byteimg.com, REJECT
+host, ad.zijieapi.com, reject
+host, asiad.byteactivity.com, reject
+host, asiad.byteactivity12.com, reject
+host, p3-ad-sign.byteimg.com, reject
+host, p6-ad-sign.byteimg.com, reject
+host, p9-ad-sign.byteimg.com, reject
 # > 中国电信
 host,ad.21cn.com,reject
 host,ad.k.21cn.com,reject

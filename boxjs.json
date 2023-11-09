@@ -380,6 +380,31 @@
         "script": ""
       },
       {
+        "id": "bosie",
+        "name": "伯喜线上商店签到",
+        "descs_html": [
+          "登录后抓包h5.youzan.com域名下的Extra-data中的sid=xxx，填写到bosie_data,多账号用 @ 分割"
+        ],
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "bosie_data"
+        ],
+        "settings": [
+          {
+            "id": "bosie_data",
+            "name": "bosie_data",
+            "val": "",
+            "type": "textarea",
+            "desc": "登录后抓包h5.youzan.com域名下的Extra-data中的sid=xxx，填写到bosie_data,多账号用 @ 分割"
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": ""
+      },
+      {
         "id": "zbs",
         "name": "植白说签到",
         "descs_html": [

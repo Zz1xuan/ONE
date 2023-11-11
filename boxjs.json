@@ -405,6 +405,31 @@
         "script": ""
       },
       {
+        "id": "youzan",
+        "name": "有赞签到",
+        "descs_html": [
+          "使用Stream等抓包软件，抓取你想要签到的有赞小程序中h5.youzan.com域名任意包下的Extra-data中的sid=XXXXXXXXXX,按照格式要求填写到youzan_data中,多个任务用,隔开"
+        ],
+        "icons": [
+          ""
+        ],
+        "keys": [
+          "youzan_data"
+        ],
+        "settings": [
+          {
+            "id": "youzan_data",
+            "name": "youzan_data",
+            "val": "",
+            "type": "textarea",
+            "desc": ""
+          }
+        ],
+        "author": "@Sliverkiss",
+        "repo": "",
+        "script": ""
+      },
+      {
         "id": "zbs",
         "name": "植白说签到",
         "descs_html": [

@@ -5,33 +5,6 @@
     "icon": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/avatar.png",
     "repo": "https://github.com/Zz1xuan/ONE",
     "apps": [
-          {
-        "id": "bysh",
-        "name": "白药生活+签到",
-        "descs_html": [
-          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/bysh.js?raw=true\">脚本注释</a></h4>",
-          "捉miniapi-hy.baiyaodajiankang.com域名任意包下的uid和skey，用#连接，如uid#skey,填写到bysh_data中,多帐号用@分隔。"
-        ],
-        "icons": [
-          "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/ynby.png",
-          "https://raw.githubusercontent.com/Raphael689/RW/master/iCons/ynby.png"
-        ],
-        "keys": [
-          "bysh_data"
-        ],
-        "settings": [
-          {
-            "id": "bysh_data",
-            "name": "bysh_data",
-            "val": "",
-            "type": "textarea",
-            "desc": "捉miniapi-hy.baiyaodajiankang.com域名任意包下的uid和skey，用#连接，如uid#skey,填写到bysh_data中,多帐号用@分隔"
-          }
-        ],
-        "author": "@Sliverkiss",
-        "repo": "",
-        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/bysh.js?raw=true"
-      },
       {
         "id": "lsl",
         "name": "冷酸灵签到",
@@ -113,33 +86,6 @@
         "script": "https://github.com/Sliverkiss/GoodNight/blob/master/Script/nbb.js?raw=true"
       },
       {
-        "id": "dxqd",
-        "name": "朵茜情调签到",
-        "descs_html": [
-          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dxqd.js?raw=true\">脚本注释</a></h4>",
-          "捉h5.youzan.com域名任意包下的Cookie中的KDTWEAPPSESSIONID=XXXXXXXXXX,填写到dxqd_cookie中,多帐号换行"
-        ],
-        "icons": [
-          "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/dxqd.png",
-          "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/dxqd.png"
-        ],
-        "keys": [
-          "dxqd_cookie"
-        ],
-        "settings": [
-          {
-            "id": "dxqd_cookie",
-            "name": "dxqd_cookie",
-            "val": "",
-            "type": "textarea",
-            "desc": "捉h5.youzan.com域名任意包下的Cookie中的KDTWEAPPSESSIONID=XXXXXXXXXX,填写到dxqd_cookie中,多帐号换行"
-          }
-        ],
-        "author": "@Sliverkiss",
-        "repo": "",
-        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dxqd.js?raw=true"
-      },
-      {
         "id": "sgs",
         "name": "申工社签到",
         "descs_html": [
@@ -218,59 +164,6 @@
         "author": "@Sliverkiss",
         "repo": "",
         "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/syns.js?raw=true"
-      },
-      {
-        "id": "dtds",
-        "name": "大桶订水签到",
-        "descs_html": [
-          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dtds.js?raw=true\">脚本注释</a></h4>",
-          "登录后抓包 https://admin.dtds888.com/api/index/user/SignIn请求体的token，填写到dtds_data,多账号用@分隔"
-        ],
-        "icons": [
-          ""
-        ],
-        "keys": [
-          "dtds_data"
-        ],
-        "settings": [
-          {
-            "id": "dtds_data",
-            "name": "dtds_data",
-            "val": "",
-            "type": "textarea",
-            "desc": "登录后抓包 https://admin.dtds888.com/api/index/user/SignIn请求体的token，填写到dtds_data,多账号用@分隔"
-          }
-        ],
-        "author": "@Sliverkiss",
-        "repo": "",
-        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/dtds.js?raw=true"
-      },
-      {
-        "id": "ffit",
-        "name": "ffit8签到",
-        "descs_html": [
-          "<h4 align=\"center\">获取Cookie以及脚本配置请查看<a href=\"https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ffit8.js?raw=true\">脚本注释</a></h4>",
-          "捉h5.youzan.com域名任意包下的Cookie中的KDTWEAPPSESSIONID=XXXXXXXXXX,填写到ffit_data中,多帐号用@分隔"
-        ],
-        "icons": [
-          "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/ffit.png",
-          "https://raw.githubusercontent.com/Zz1xuan/ONE/main/icon/ffit.png"
-        ],
-        "keys": [
-          "ffit_data"
-        ],
-        "settings": [
-          {
-            "id": "ffit_data",
-            "name": "ffit_data",
-            "val": "",
-            "type": "textarea",
-            "desc": "捉h5.youzan.com域名任意包下的Cookie中的KDTWEAPPSESSIONID=XXXXXXXXXX,填写到ffit_data中,多帐号用@分隔"
-          }
-        ],
-        "author": "@Sliverkiss",
-        "repo": "",
-        "script": "https://github.com/Zz1xuan/ONE/blob/main/Task/DailyCheck-in/ffit8.js?raw=true"
       },
       {
         "id": "lnjcy",
@@ -373,31 +266,6 @@
             "val": "",
             "type": "textarea",
             "desc": "登录后抓包 superapp-public.kiwa-tech.com域名下的_haidilao_app_token，填写到hdl_data,多账号用 @ 分割"
-          }
-        ],
-        "author": "@Sliverkiss",
-        "repo": "",
-        "script": ""
-      },
-      {
-        "id": "bosie",
-        "name": "伯喜线上商店签到",
-        "descs_html": [
-          "登录后抓包h5.youzan.com域名下的Extra-data中的sid=xxx，填写到bosie_data,多账号用 @ 分割"
-        ],
-        "icons": [
-          ""
-        ],
-        "keys": [
-          "bosie_data"
-        ],
-        "settings": [
-          {
-            "id": "bosie_data",
-            "name": "bosie_data",
-            "val": "",
-            "type": "textarea",
-            "desc": "登录后抓包h5.youzan.com域名下的Extra-data中的sid=xxx，填写到bosie_data,多账号用 @ 分割"
           }
         ],
         "author": "@Sliverkiss",

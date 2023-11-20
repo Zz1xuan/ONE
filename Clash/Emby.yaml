@@ -78,8 +78,8 @@ payload:
   - DOMAIN-SUFFIX,dicarerhome.com
   - DOMAIN-SUFFIX,emby77.cf
   - DOMAIN-SUFFIX,embyplus.org
-IP-CIDR,188.172.228.49/32
-IP-CIDR,202.61.255.248/32
+  - IP-CIDR,188.172.228.49/32
+  - IP-CIDR,202.61.255.248/32
   - DOMAIN-SUFFIX,embytv.cf
   - DOMAIN-SUFFIX,zox.show
   - DOMAIN-SUFFIX,acemby.org

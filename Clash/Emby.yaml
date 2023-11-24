@@ -1,6 +1,6 @@
 payload:
-  - DOMAIN-SUFFIX,emby.cjpc.cc
   - DOMAIN-SUFFIX,emby.nexitally.com
+  - DOMAIN-SUFFIX,emby.cjpc.cc
   - DOMAIN-SUFFIX,emby.flowercloud.yt
   - DOMAIN-SUFFIX,emby.maying.club
   - DOMAIN-SUFFIX,emby.mdss.cloud
@@ -78,8 +78,8 @@ payload:
   - DOMAIN-SUFFIX,dicarerhome.com
   - DOMAIN-SUFFIX,emby77.cf
   - DOMAIN-SUFFIX,embyplus.org
-  - IP-CIDR,188.172.228.49/32
-  - IP-CIDR,202.61.255.248/32
+  - IP-CIDR,188.172.228.49/32,no-resolve
+  - IP-CIDR,202.61.255.248/32,no-resolve
   - DOMAIN-SUFFIX,embytv.cf
   - DOMAIN-SUFFIX,zox.show
   - DOMAIN-SUFFIX,acemby.org
@@ -128,3 +128,5 @@ payload:
   - DOMAIN-SUFFIX,ohhhh.org
   - DOMAIN-SUFFIX,xmsl.org
   - DOMAIN-SUFFIX,9521732.xyz
+  - DOMAIN-SUFFIX,emby.aca.best
+  - DOMAIN-SUFFIX,porn.aca.best

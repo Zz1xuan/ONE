@@ -46,13 +46,18 @@ DOMAIN,free-aos-cdn-image.amap.com
 # 工商银行 开屏广告
 DOMAIN,pageviewp.icbc.com.cn
 # 广告联盟
-DOMAIN,is.snssdk.com
-DOMAIN,mi.gdt.qq.com
-DOMAIN,open.e.kuaishou.com
-DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com
-DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
-DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com
-DOMAIN-SUFFIX,pangolin.snssdk.com
+DOMAIN, ad.zijieapi.com
+DOMAIN, i.snssdk.com
+DOMAIN, is.snssdk.com
+DOMAIN, open.e.kuaishou.com
+DOMAIN-SUFFIX, miaozhen.com
+DOMAIN-KEYWORD, -ad-sign.byteimg.com
+DOMAIN-KEYWORD, -tos.pstatp.com
+DOMAIN-KEYWORD, asiad.byteactivity
+DOMAIN-KEYWORD, pangolin-sdk-toutiao
+DOMAIN-KEYWORD, pangolin.snssdk.com
+DOMAIN-KEYWORD, pglstatp-toutiao
+DOMAIN-KEYWORD, video-cn.snssdk.com
 # > H
 # > HDO
 DOMAIN-SUFFIX,applovin.com 
@@ -75,7 +80,6 @@ DOMAIN-SUFFIX,umengcloud.com
 DOMAIN-SUFFIX,dm.toutiao.com
 DOMAIN-SUFFIX,pglstatp-toutiao.com
 DOMAIN-SUFFIX,ctobsnssdk.com
-DOMAIN-SUFFIX,bytedance.com
 DOMAIN-SUFFIX,tpns.tencent.com
 # > L
 # > 两步路
@@ -206,9 +210,6 @@ DOMAIN,vali-g1.cp31.ott.cibntv.net
 DOMAIN,vali-ugc.cp31.ott.cibntv.net
 DOMAIN,yk-ssp.ad.youku.com
 DOMAIN,ykad-data.youku.com
-# > 字节跳动
-DOMAIN,ad.zijieapi.com
-DOMAIN-KEYWORD, -ad-sign.byteimg.com
 # >58
 DOMAIN,track.58.com
 DOMAIN,tracklog.58.com

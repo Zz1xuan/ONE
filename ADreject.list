@@ -58,15 +58,18 @@ host,free-aos-cdn-image.amap.com,reject
 # 工商银行 开屏广告
 host,pageviewp.icbc.com.cn,reject
 # 广告联盟
-host, i.snssdk.com, reject
-host, is.snssdk.com, reject
-host, mi.gdt.qq.com, reject
-host, open.e.kuaishou.com, reject
-host-suffix, pangolin-sdk-toutiao-b.com, reject
-host-suffix, pangolin-sdk-toutiao.com, reject
-host-suffix, pangolin-sdk-toutiao1.com, reject
-host-suffix, pangolin.snssdk.com, reject
-host-suffix, pglstatp-toutiao.com, reject
+HOST, ad.zijieapi.com, REJECT
+HOST, i.snssdk.com, REJECT
+HOST, is.snssdk.com, REJECT
+HOST, open.e.kuaishou.com, REJECT
+HOST-SUFFIX, miaozhen.com, REJECT
+HOST-KEYWORD, -ad-sign.byteimg.com, REJECT
+HOST-KEYWORD, -tos.pstatp.com, REJECT
+HOST-KEYWORD, asiad.byteactivity, REJECT
+HOST-KEYWORD, pangolin-sdk-toutiao, REJECT
+HOST-KEYWORD, pangolin.snssdk.com, REJECT
+HOST-KEYWORD, pglstatp-toutiao, REJECT
+HOST-KEYWORD, video-cn.snssdk.com, REJECT
 # > H
 # > HDO
 host-suffix,applovin.com,reject
@@ -81,7 +84,6 @@ host,pagead2.googlesyndication.com,reject
 host,dsp-x.jd.com,reject
 host,xlog.jd.com,reject
 # > 今日头条
-host-suffix,bytedance.com,reject
 host-suffix,id6.me,reject
 host-suffix,im-x.jd.com,reject
 host-suffix,miaozhen.com,reject
@@ -220,13 +222,6 @@ host,vali-ugc.cp31.ott.cibntv.net,reject
 host,yk-ssp.ad.youku.com,reject
 host,ykad-data.youku.com,reject
 # Z
-# 字节跳动
-host, ad.zijieapi.com, reject
-host, asiad.byteactivity.com, reject
-host, asiad.byteactivity12.com, reject
-host, p3-ad-sign.byteimg.com, reject
-host, p6-ad-sign.byteimg.com, reject
-host, p9-ad-sign.byteimg.com, reject
 # > 中国电信
 host,ad.21cn.com,reject
 host,ad.k.21cn.com,reject

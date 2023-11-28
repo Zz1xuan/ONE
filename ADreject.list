@@ -4,7 +4,6 @@ host,cmt.comp.360os.com,reject
 #wps
 host,cloudservice22.kingsoft-office-service.com,reject
 # 网易云
-host,gdt.qq.com,reject
 host,httpdns.n.netease.com,reject
 host,iadmat.nosdn.127.net,reject
 host,iadmusicmat.music.126.net,reject
@@ -157,6 +156,8 @@ host-suffix,tpns.tencent.com,reject
 host,id6.me,reject
 host-suffix,l.qq.com,reject
 host,wup.imtt.qq.com,reject
+# > 腾讯广告
+host-suffix,gdt.qq.com,reject
 # > U
 # > V
 # > W

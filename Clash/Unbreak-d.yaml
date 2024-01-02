@@ -43,4 +43,4 @@ payload:
   - DOMAIN-SUFFIX,googletraveladservices.com
   - DOMAIN-SUFFIX,notability.com
   - DOMAIN-SUFFIX,peropero.net
-  - DOMAIN,emby.prpr.cn.com
+  - DOMAIN-SUFFIX,emby.prpr.cn.com

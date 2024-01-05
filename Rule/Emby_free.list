@@ -114,6 +114,8 @@ DOMAIN-SUFFIX,happyav.eu.org
 DOMAIN-SUFFIX,emby.misakaf.org
 DOMAIN-SUFFIX,emby2.misakaf.org
 DOMAIN-SUFFIX,push-kr.misakaf.org
+DOMAIN,push-kr.misakaf.org
+IP-CIDR,102.223.180.108/32,no-resolve
 DOMAIN-SUFFIX,123456.al
 DOMAIN-SUFFIX,emby.pro
 DOMAIN-SUFFIX,xiaoyi.one
@@ -123,6 +125,7 @@ DOMAIN-SUFFIX,lucasmedia.top
 DOMAIN-SUFFIX,nvidia.rip
 DOMAIN-SUFFIX,emby77.org
 DOMAIN-SUFFIX,20120714.xyz
+DOMAIN-SUFFIX,edge4k.com
 DOMAIN-SUFFIX,gugumedia.link
 DOMAIN-SUFFIX,dicarerhome.com
 DOMAIN-SUFFIX,starcat.eu.org

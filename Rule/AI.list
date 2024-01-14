@@ -1,4 +1,4 @@
-# > ChatGPT
+# > ChatGPT  from ConnersHua
 DOMAIN-SUFFIX,ai.com
 DOMAIN-SUFFIX,openai.com
 DOMAIN-KEYWORD,openai
@@ -13,9 +13,23 @@ DOMAIN,production-openaicom-storage.azureedge.net
 
 #DOMAIN,o33249.ingest.sentry.io
 
-#Claude
+# > Claude
 DOMAIN,cdn.usefathom.com
 DOMAIN-SUFFIX,hsforms.com
 DOMAIN-SUFFIX,hsforms.net
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
+
+# > Google & Bard
+#DOMAIN,bard.google.com
+
+# > JetBrains AI
+DOMAIN-SUFFIX,grazie.ai
+
+# > Microsoft & Copilot
+DOMAIN,copilot.microsoft.com
+DOMAIN,sydney.bing.com
+DOMAIN,www.bing.com
+
+# > Meta
+DOMAIN,imagine.meta.com

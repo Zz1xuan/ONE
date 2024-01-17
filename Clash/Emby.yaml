@@ -137,3 +137,8 @@ payload:
   - DOMAIN-SUFFIX,9521732.xyz
   - DOMAIN-SUFFIX,emby.aca.best
   - DOMAIN-SUFFIX,porn.aca.best
+  # MisakaF
+  - DOMAIN-SUFFIX,misakaf.org
+  # SYN
+  - DOMAIN-SUFFIX,stream.synn.cc
+  - DOMAIN-SUFFIX,stream.ntrrr.top

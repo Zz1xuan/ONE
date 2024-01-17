@@ -72,18 +72,7 @@ DOMAIN-SUFFIX,emby.lcloud.wiki
 ##### M #####
 
 # MisakaF
-DOMAIN,emby.misakaf.org
-DOMAIN,emby2.misakaf.org
-DOMAIN,cdn.misakaf.org
-DOMAIN,cdn2.misakaf.org
-DOMAIN,push-kr.misakaf.org
-DOMAIN,push-kr.cfprefer3.xyz
-IP-CIDR,5.78.86.228/32,no-resolve
-IP-CIDR,5.78.78.136/32,no-resolve
-IP-CIDR,5.78.103.111/32,no-resolve
-IP-CIDR,5.78.94.83/32,no-resolve
-IP-CIDR,5.78.113.91/32,no-resolve
-IP-CIDR,102.223.180.108/32,no-resolve
+DOMAIN-SUFFIX,misakaf.org
 
 # mjjemby
 DOMAIN-SUFFIX,mjjemby.org

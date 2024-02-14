@@ -172,9 +172,11 @@ host,mobileads.msn.com,reject
 host,g1.163.com,reject
 host,qzs.gdtimg.com,reject
 host,adx-cn.anythinktech.com,reject
+host,adx-bj.anythinktech.com,reject
 host,nex.163.com,reject
 host,gorgon.youdao.com,reject
 host,tk.anythinktech.com,reject
+
 # > X
 # > 闲鱼
 host,aid.m.taobao.com,reject

@@ -193,7 +193,7 @@ DOMAIN,ads.95516.com
 DOMAIN,cm-10-138.getui.com
 DOMAIN,sdk.open.talk.getui.net
 DOMAIN,sdk-conf.getui.com
-DOMAIN,switch.cup.com.cn
+#DOMAIN,switch.cup.com.cn
 DOMAIN,tysdk.95516.com
 # > 优酷
 DOMAIN-SUFFIX,atm.youku.com

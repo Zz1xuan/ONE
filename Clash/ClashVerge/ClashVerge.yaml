@@ -2,10 +2,9 @@
 # TG:https://t.me/QVQ_Channel
 # 以 '#' 或 '//' 开头的配置文件行为注释行
 #
-# 此配置仅适用于Clash Verge/ClashMetaForAndroid,其他ClashMeta客户端未经测试
+# 此配置仅适用于Clash Verg Rev (Version ≥ 1.5.6）,其他ClashMeta客户端未经测试
 #
-# 最后更新时间: 2024-1-6 18:45
-# 全是Repcz的东西，个人使用改适合自己的，不做宣传
+# 最后更新时间: 2024-3-10 20:10
 #
 # ================
 
@@ -132,7 +131,7 @@ dns:
       "DC._msDCS.*.*",
       "GC._msDCS.*.*",
     ]
-  # fake ip 白名单列表'以下地址不会下发fakeip映射用于连接
+    # fake ip 白名单列表'以下地址不会下发fakeip映射用于连接
   nameserver: [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
 
 ###建立锚点
@@ -143,14 +142,14 @@ pg:
     type: select,
     proxies:
       [
-        🚀 手动切换,
-        🇭🇰 香港节点,
-        🇺🇸 美国节点,
-        🇸🇬 狮城节点,
-        🇯🇵 日本节点,
-        🇨🇳 台湾节点,
-        ♻️ 自动选择,
-        ⚠️ 故障转移,
+        手动切换,
+        香港节点,
+        美国节点,
+        狮城节点,
+        日本节点,
+        台湾节点,
+        自动选择,
+        故障转移,
         DIRECT,
       ],
   }
@@ -161,11 +160,7 @@ p:
     type: http,
     interval: 86400,
     health-check:
-      {
-        enable: true,
-        url: http://www.gstatic.com/generate_204,
-        interval: 1800,
-      },
+      { enable: true, url: http://1.1.1.1/generate_204, interval: 1800 },
   }
 
 # 自动选择策略组：选取延迟最低节点
@@ -173,7 +168,7 @@ auto:
   &auto {
     type: url-test,
     lazy: true,
-    url: http://www.gstatic.com/generate_204,
+    url: http://1.1.1.1/generate_204,
     interval: 900,
     use: [Subscribe],
   }
@@ -186,7 +181,7 @@ fallback:
   &fallback {
     type: fallback,
     lazy: true,
-    url: http://www.gstatic.com/generate_204,
+    url: http://1.1.1.1/generate_204,
     interval: 900,
     use: [Subscribe],
   }
@@ -196,7 +191,7 @@ load-balance:
   &load-balance {
     type: load-balance,
     lazy: true,
-    url: http://www.gstatic.com/generate_204,
+    url: http://1.1.1.1/generate_204,
     interval: 900,
     use: [Subscribe],
   }
@@ -228,81 +223,138 @@ proxy-groups:
   #分流分组
 
   - {
-      name: 🚀 手动切换,
+      name: 手动切换,
       type: select,
       use: [Subscribe],
-      proxies:
-        [
-          🇭🇰 香港节点,
-          🇺🇸 美国节点,
-          🇸🇬 狮城节点,
-          🇯🇵 日本节点,
-          🇨🇳 台湾节点,
-          DIRECT,
-        ],
+      proxies: [香港节点, 美国节点, 狮城节点, 日本节点, 台湾节点, DIRECT],
+      icon: https://github.com/clash-verge-rev/clash-verge-rev/raw/main/src/assets/image/logo.png,
     }
-
-  - { name: 🌏 国外网站, <<: *pg }
-
-  - { name: 🍎 苹果服务, <<: *pg }
-
-  - { name: 🖥️ 微软服务, <<: *pg }
-
-  - { name: 🌌 谷歌服务, <<: *pg }
-
-  - { name: 🤖 AI, <<: *pg }
-
-  - { name: 🎮 游戏平台, <<: *pg }
 
   - {
-      name: 📺 哔哩哔哩,
-      type: select,
-      proxies: [DIRECT, 🇭🇰 香港节点, 🇨🇳 台湾节点],
+      name: 国外网站,
+      <<: *pg,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png,
     }
 
-  - { name: 🌏 国内网站, type: select, proxies: [DIRECT, 🚀 手动切换] }
+  - {
+      name: 苹果服务,
+      <<: *pg,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png,
+    }
 
-  - { name: 🛑 广告拦截, type: select, proxies: [REJECT, DIRECT] }
+  - {
+      name: 微软服务,
+      <<: *pg,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png,
+    }
 
-  - { name: 🐟 兜底分流, <<: *pg }
+  - {
+      name: 谷歌服务,
+      <<: *pg,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png,
+    }
+
+  - {
+      name: OpenAI,
+      <<: *pg,
+      icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png,
+    }
+
+  - {
+      name: 游戏平台,
+      <<: *pg,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png,
+    }
+
+  - {
+      name: Spotify,
+      type: select,
+      proxies: [DIRECT, 香港节点],
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png,
+    }
+
+  - {
+      name: Emby,
+      <<: *pg,
+      use: [Subscribe],
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png,
+    }
+
+  - {
+      name: 哔哩哔哩,
+      type: select,
+      proxies: [DIRECT, 香港节点, 台湾节点],
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png,
+    }
+
+  - {
+      name: 国内网站,
+      type: select,
+      proxies: [DIRECT, 手动切换],
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png,
+    }
+
+  - {
+      name: 广告拦截,
+      type: select,
+      proxies: [REJECT, DIRECT],
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png,
+    }
+
+  - {
+      name: 兜底分流,
+      <<: *pg,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color//Final.png,
+    }
 
   #节点地区分组
 
-  - { name: 🚀 手动切换, <<: *select }
-
   - {
-      name: 🇭🇰 香港节点,
+      name: 香港节点,
       <<: *select,
       filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$",
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png,
     }
 
   - {
-      name: 🇺🇸 美国节点,
+      name: 美国节点,
       <<: *select,
       filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$",
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png,
     }
 
   - {
-      name: 🇸🇬 狮城节点,
+      name: 狮城节点,
       <<: *select,
       filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$",
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png,
     }
 
   - {
-      name: 🇯🇵 日本节点,
+      name: 日本节点,
       <<: *select,
       filter: "^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$",
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png,
     }
 
   - {
-      name: 🇨🇳 台湾节点,
+      name: 台湾节点,
       <<: *select,
       filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)",
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png,
     }
 
-  - { name: ♻️ 自动选择, <<: *select }
+  - {
+      name: 自动选择,
+      <<: *auto,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png,
+    }
 
-  - { name: ⚠️ 故障转移, <<: *fallback }
+  - {
+      name: 故障转移,
+      <<: *fallback,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hijacking.png,
+    }
 
 rule-providers:
   # 局域网
@@ -323,16 +375,7 @@ rule-providers:
       url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Download.list,
     }
 
-  #广告拦截
-  AdRule:
-    {
-      <<: *c,
-      format: text,
-      path: ./rule-providers/AdRule.list,
-      url: https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/AdRule.list,
-    }
-
-  # 直连服务
+  # 修正
   Unbreak-d:
     {
       <<: *c,
@@ -341,7 +384,6 @@ rule-providers:
       url: https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/Unbreak-d.list,
     }
 
-  # 代理服务
   Unbreak-p:
     {
       <<: *c,
@@ -350,13 +392,22 @@ rule-providers:
       url: https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/Unbreak-p.list,
     }
 
-    # 苹果服务
+  #广告拦截
+  AD:
+    {
+      <<: *d,
+      format: text,
+      path: ./rule-providers/AD.list,
+      url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Anti-ad.list,
+    }
+
+  # 苹果服务
   Apple:
     {
       <<: *c,
       format: text,
       path: ./rule-providers/Apple.list,
-      url: https://raw.githubusercontent.com/kokoryh/Script/master/Surge/rule/Apple.list,
+      url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Apple.list,
     }
 
   # 微软服务
@@ -383,6 +434,13 @@ rule-providers:
     }
 
   # 谷歌服务
+  YouTube:
+    {
+      <<: *c,
+      format: text,
+      path: ./rule-providers/YouTube.list,
+      url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/YouTube.list,
+    }
   Google:
     {
       <<: *c,
@@ -416,8 +474,17 @@ rule-providers:
       url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Epic.list,
     }
 
+  # Spotify音乐
+  Spotify:
+    {
+      <<: *c,
+      format: text,
+      path: ./rule-providers/Spotify.list,
+      url: https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/Spotify.list,
+    }
+
   # AI平台
-  AI:
+  OpenAI:
     {
       <<: *c,
       format: text,
@@ -434,6 +501,24 @@ rule-providers:
       url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ChinaDomain.list,
     }
 
+  # Emby
+  Emby:
+    {
+      <<: *c,
+      format: text,
+      path: ./rule-providers/Emby.list,
+      url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Emby.list,
+    }
+
+  # 国际媒体
+  ProxyMedia:
+    {
+      <<: *c,
+      format: text,
+      path: ./rule-providers/ProxyMedia.list,
+      url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyMedia.list,
+    }
+
   # 代理网站
   ProxyGFW:
     {
@@ -446,23 +531,27 @@ rule-providers:
 rules:
   #- SCRIPT,quic,REJECT
   #- RULE-SET,Download,DIRECT
-  - RULE-SET,AdRule,🛑 广告拦截
-  - RULE-SET,AI,🤖 OpenAI
-  - RULE-SET,Unbreak-d,DIRECT
-  - RULE-SET,Unbreak-p,🌏 国外网站
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,OneDrive,🖥️ 微软服务
-  - RULE-SET,Github,🖥️ 微软服务
-  - RULE-SET,Microsoft,🖥️ 微软服务
-  - RULE-SET,Google,🌌 谷歌服务
-  - RULE-SET,BiliBili,📺 哔哩哔哩
-  - RULE-SET,Steam,🎮 游戏平台
-  - RULE-SET,Epic,🎮 游戏平台
-  - RULE-SET,ProxyGFW,🌏 国外网站
-  - RULE-SET,ChinaDomain,🌏 国内网站
+  - RULE-SET,AD,广告拦截
+  - RULE-SET,Unbreak-d,国内网站
+  - RULE-SET,Unbreak-p,国外网站
+  - RULE-SET,OpenAI,OpenAI
+  - RULE-SET,Apple,苹果服务
+  - RULE-SET,OneDrive,微软服务
+  - RULE-SET,Github,微软服务
+  - RULE-SET,Microsoft,微软服务
+  - RULE-SET,YouTube,谷歌服务
+  - RULE-SET,Google,谷歌服务
+  - RULE-SET,Spotify,Spotify
+  - RULE-SET,BiliBili,哔哩哔哩
+  - RULE-SET,Steam,游戏平台
+  - RULE-SET,Epic,游戏平台
+  - RULE-SET,Emby,Emby
+  - RULE-SET,ProxyMedia,国际媒体
+  - RULE-SET,ProxyGFW,国外网站
+  - RULE-SET,ChinaDomain,国内网站
   - RULE-SET,Lan,DIRECT
-  - GEOIP,CN,🌏 国内网站
-  - MATCH,🐟 兜底分流
+  - GEOIP,CN,国内网站
+  - MATCH,兜底分流
 
 script:
   shortcuts:

@@ -249,6 +249,12 @@ proxy-groups:
     }
 
   - {
+      name: 国际媒体,
+      <<: *pg,
+      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png,
+    }
+
+  - {
       name: 微软服务,
       <<: *pg,
       icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png,

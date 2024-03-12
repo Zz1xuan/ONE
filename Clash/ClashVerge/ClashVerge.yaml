@@ -489,7 +489,7 @@ rule-providers:
       <<: *c,
       format: text,
       path: ./rule-providers/OpenAI.list,
-      url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/OpenAI.list,
+      url: https://raw.githubusercontent.com/Zz1xuan/ONE/main/Clash/ClashVerge/OpenAI.list,
     }
 
   # 中国大陆

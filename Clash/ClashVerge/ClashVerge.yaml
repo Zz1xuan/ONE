@@ -352,18 +352,6 @@ proxy-groups:
       icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png,
     }
 
-  - {
-      name: 自动选择,
-      <<: *auto,
-      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png,
-    }
-
-  - {
-      name: 故障转移,
-      <<: *fallback,
-      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hijacking.png,
-    }
-
 rule-providers:
   # 局域网
   Lan:

@@ -141,17 +141,7 @@ pg:
   &pg {
     type: select,
     proxies:
-      [
-        手动切换,
-        香港节点,
-        美国节点,
-        狮城节点,
-        日本节点,
-        台湾节点,
-        自动选择,
-        故障转移,
-        DIRECT,
-      ],
+      [手动切换, 香港节点, 美国节点, 狮城节点, 日本节点, 台湾节点, DIRECT],
   }
 
 # 订阅更新和延迟测试相关参数
@@ -250,7 +240,8 @@ proxy-groups:
 
   - {
       name: 苹果服务,
-      <<: *pg,
+      type: select,
+      proxies: [手动切换, DIRECT],
       icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png,
     }
 
@@ -274,7 +265,8 @@ proxy-groups:
 
   - {
       name: OpenAI,
-      <<: *pg,
+      type: select,
+      proxies: [手动切换, 美国节点, 狮城节点, DIRECT],
       icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png,
     }
 
@@ -293,8 +285,8 @@ proxy-groups:
 
   - {
       name: Emby,
-      <<: *pg,
-      use: [Subscribe],
+      type: select,
+      proxies: [DIRECT, 美国节点, 狮城节点],
       icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png,
     }
 
@@ -360,18 +352,6 @@ proxy-groups:
       <<: *select,
       filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)",
       icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png,
-    }
-
-  - {
-      name: 自动选择,
-      <<: *auto,
-      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png,
-    }
-
-  - {
-      name: 故障转移,
-      <<: *fallback,
-      icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hijacking.png,
     }
 
 rule-providers:

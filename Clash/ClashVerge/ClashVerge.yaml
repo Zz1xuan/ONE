@@ -310,7 +310,8 @@ proxy-groups:
 
   - {
       name: 兜底分流,
-      <<: *pg,
+      type: select,
+      proxies: [DIRECT, 手动切换],
       icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color//Final.png,
     }
 

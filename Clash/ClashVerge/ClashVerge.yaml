@@ -262,7 +262,8 @@ proxy-groups:
 
   - {
       name: OpenAI,
-      <<: *pg,
+      type: select,
+      proxies: [狮城节点, 美国节点],
       icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png,
     }
 
@@ -281,8 +282,8 @@ proxy-groups:
 
   - {
       name: Emby,
-      <<: *pg,
-      use: [Subscribe],
+      type: select,
+      proxies: [DIRECT, 狮城节点, 美国节点],
       icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png,
     }
 

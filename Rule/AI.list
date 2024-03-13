@@ -35,3 +35,6 @@ DOMAIN,www.bing.com
 
 # > Meta
 DOMAIN,imagine.meta.com
+
+# > codeium
+DOMAIN-SUFFIX,codeium.com

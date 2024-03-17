@@ -26,9 +26,6 @@ DOMAIN,sdkclick.biz.weibo.com
 DOMAIN,sdkmonitor.biz.weibo.com
 # > A
 # > B
-# > 百词斩
-DOMAIN,advertise.baicizhan.com
-DOMAIN,advertise.baicizhan.org
 # > 百度网盘
 DOMAIN,mobads.baidu.com
 DOMAIN,mobads-logs.baidu.com
@@ -57,10 +54,11 @@ DOMAIN,free-aos-cdn-image.amap.com
 # 工商银行 开屏广告
 DOMAIN,pageviewp.icbc.com.cn
 # 广告联盟
-DOMAIN, ad.zijieapi.com, REJECT
-DOMAIN, i.snssdk.com, REJECT
-DOMAIN, is.snssdk.com, REJECT
-DOMAIN, open.e.kuaishou.com, REJECT
+DOMAIN,ad.zijieapi.com, REJECT
+DOMAIN,i.snssdk.com, REJECT
+DOMAIN,is.snssdk.com, REJECT
+DOMAIN,open.e.kuaishou.com, REJECT
+DOMAIN,pgdt.ugdtimg.com
 DOMAIN-SUFFIX, miaozhen.com, REJECT
 DOMAIN-KEYWORD, -ad-sign.byteimg.com, REJECT
 DOMAIN-KEYWORD, -tos.pstatp.com, REJECT
@@ -214,7 +212,7 @@ DOMAIN,tysdk.95516.com
 DOMAIN-SUFFIX,atm.youku.com
 DOMAIN,ad.mobile.youku.com
 DOMAIN,pl.cp31.ott.cibntv.net
-DOMAIN-SUFFIX,ugdtimg.com
+DOMAIN,adsmind.ugdtimg.com
 DOMAIN,amdc.m.youku.com
 DOMAIN,apiv4-iyes.youku.com
 DOMAIN,huichuan-mc.sm.cn

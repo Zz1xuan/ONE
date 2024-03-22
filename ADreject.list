@@ -1,5 +1,5 @@
 # 运动世界校园
-DOMAIN,discovery.gxapp.iydsj.com
+# DOMAIN,discovery.gxapp.iydsj.com
 DOMAIN,cmt.comp.360os.com
 #wps
 DOMAIN,cloudservice22.kingsoft-office-service.com
@@ -100,6 +100,8 @@ DOMAIN,ad.tencentmusic.com
 DOMAIN,g.koowo.com
 DOMAIN,mobilead.kuwo.cn
 DOMAIN,rich.kuwo.cn
+# keep 
+DOMAIN,hc-ssp.sm.cn
 # L
 # > 两步路
 DOMAIN-SUFFIX,admobile.top

@@ -1,6 +1,6 @@
-# 基于 https://github.com/MisakaFxxk/MisakaF_Subconverter/blob/main/Sub/Emby.list 修改
-#
-# 2024-01-14 11:55
+
+# 来源： https://github.com/MisakaFxxk/MisakaF_Subconverter/blob/main/Sub/Emby.list
+# 最后更新时间： 2024-03-01 22:44
 
 
 ##### A #####
@@ -14,6 +14,7 @@ DOMAIN-SUFFIX,porn.aca.best
 ##### C #####
 
 # ccemby
+DOMAIN,cc.coemn.com
 DOMAIN-SUFFIX,cc.ccemby.tk
 DOMAIN-SUFFIX,carryz.net
 
@@ -32,12 +33,25 @@ DOMAIN-SUFFIX,mius.uk
 
 ##### F #####
 
+# Facmata
+DOMAIN-SUFFIX,cinema.facmata.net
+
 ##### G #####
+
+# Godetia
+DOMAIN-SUFFIX,emby.ssltd.xyz
 
 ##### H #####
 
 # 花云
 DOMAIN-SUFFIX,emby.flowercloud
+
+# 黑猫影视EMBY
+DOMAIN-SUFFIX,uuuoo.cc
+DOMAIN-SUFFIX,emby.bid
+DOMAIN-SUFFIX,emby.date
+DOMAIN-SUFFIX,emby.loan
+DOMAIN-SUFFIX,emby.trade
 
 ##### I #####
 
@@ -58,6 +72,9 @@ DOMAIN-SUFFIX,cf1.jmsooo.com
 # 剧狗
 DOMAIN-SUFFIX,ju.dog
 IP-CIDR,202.61.255.248/32,no-resolve
+
+# 江湖
+DOMAIN-SUFFIX,reddust.link
 
 ##### K #####
 
@@ -80,6 +97,9 @@ DOMAIN-SUFFIX,mjjemby.org
 # Maying
 DOMAIN-SUFFIX,emby.maying.club
 
+# Marmot
+DOMAIN-SUFFIX,20120714.xyz
+
 ##### N #####
 
 # ntRRR
@@ -89,7 +109,7 @@ DOMAIN-SUFFIX,ntrrr.am.sb
 DOMAIN-SUFFIX,emby.nexitally.com
 
 # Nebula
-DOMAIN-SUFFIX,direct.nebula-emby.com
+DOMAIN-SUFFIX,nebula-emby.com
 
 ##### O #####
 
@@ -107,9 +127,7 @@ DOMAIN-SUFFIX,pilipiliultra.com
 
 # pornemby
 DOMAIN-SUFFIX,pornemby.club
-DOMAIN-SUFFIX,s.ii00.cc
-DOMAIN-SUFFIX,us.ii00.cc
-DOMAIN-SUFFIX,jp.ii00.cc
+DOMAIN-SUFFIX,ii00.cc
 
 # polo
 DOMAIN-SUFFIX,poloemby.xyz
@@ -152,8 +170,8 @@ DOMAIN-SUFFIX,post.cn2gias.uk
 # TreeDiagram
 DOMAIN-SUFFIX,123456.al
 
-# 土拨鼠
-DOMAIN-SUFFIX,20120714.xyz
+# 太空人
+DOMAIN-SUFFIX,tkremby.xyz
 
 ##### U #####
 
@@ -180,6 +198,9 @@ DOMAIN-SUFFIX,servers.xeton.dev
 DOMAIN-SUFFIX,emby.ytoo.li
 
 ##### Z #####
+
+# 纸片人小站
+DOMAIN-SUFFIX,embyplus.org
 
 ##### 0-9 #####
 
@@ -215,7 +236,6 @@ DOMAIN-SUFFIX,newwan.top
 DOMAIN-SUFFIX,shuipo.lol
 DOMAIN-SUFFIX,dicarerhome.com
 DOMAIN-SUFFIX,emby77.cf
-DOMAIN-SUFFIX,embyplus.org
 IP-CIDR,188.172.228.49/32,no-resolve
 DOMAIN-SUFFIX,embytv.cf
 DOMAIN-SUFFIX,zox.show

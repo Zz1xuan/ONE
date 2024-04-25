@@ -29,6 +29,7 @@ DOMAIN,sdkmonitor.biz.weibo.com
 # > 百度网盘
 DOMAIN,mobads.baidu.com
 DOMAIN,mobads-logs.baidu.com
+DOMAIN,sdk.1rtb.net
 # > 百度
 DOMAIN-SUFFIX,pos.baidu.com
 # 百度地图

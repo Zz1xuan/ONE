@@ -28,6 +28,7 @@ DOMAIN-SUFFIX,poe.com
 DOMAIN-SUFFIX,segment.io
 DOMAIN-SUFFIX,sentry.io
 DOMAIN-SUFFIX,stripe.com
+DOMAIN-SUFFIX,chatgpt.com
 DOMAIN-KEYWORD,openaicom-api
 # > CDN & API
 DOMAIN,chat.openai.com.cdn.cloudflare.net

@@ -32,3 +32,12 @@ DOMAIN,imagine.meta.com
 
 # > codeium
 DOMAIN-SUFFIX,codeium.com
+
+# > 豆包
+DOMAIN-SUFFIX,coze.com
+DOMAIN-SUFFIX,ciciai.com
+DOMAIN-SUFFIX,byteoversea.com
+# > 下面的不确定
+DOMAIN-SUFFIX,ttwstatic.com
+DOMAIN-SUFFIX,ciciaicdn.com
+DOMAIN-SUFFIX,byteintlapi.com

@@ -1,4 +1,4 @@
-// 2024-02-07 17:35
+// 2024-04-13 19:05
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -105,11 +105,6 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         }
       }
       obj.cards = newCards;
-    }
-  } else if (url.includes("/2/checkin/show")) {
-    // 首页签到
-    if (obj?.show) {
-      obj.show = 0;
     }
   } else if (url.includes("/2/client/publisher_list")) {
     // 首页右上角按钮
@@ -378,7 +373,12 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         if (item?.category === "card") {
           // 58微博展示时间段提示 216筛选按钮
           if ([58, 216]?.includes(item?.data?.card_type)) {
-            newItems.push(item);
+            if (/没有公开博文，为你推荐以下精彩内容/.test(item?.data?.name)) {
+              // 个人微博页刷完后的推荐信息流
+              continue;
+            } else {
+              newItems.push(item);
+            }
           }
         } else if (item?.category === "group") {
           // 遍历group,保留置顶微博
@@ -442,6 +442,10 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                 // 移除赞过的微博 保留热门内容
                 continue;
               }
+              if (item?.data?.cleaned !== true) {
+                // 个人微博页刷完后的推荐微博
+                continue;
+              }
               newItems.push(item);
             }
           }
@@ -503,11 +507,11 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                 i.itemId === "100505_-_album" || // 我的相册
                 i.itemId === "100505_-_like" || // 赞/收藏
                 i.itemId === "100505_-_watchhistory" || // 浏览记录
-                i.itemId === "100505_-_draft" // 草稿箱
-              // i.itemId === "100505_-_pay" || // 我的钱包
-              // i.itemId === "100505_-_ordercenter" || // 我的订单
-              // i.itemId === "100505_-_productcenter" || // 创作中心
-              // i.itemId === "100505_-_promote" || // 广告中心
+                i.itemId === "100505_-_draft" || // 草稿箱
+                i.itemId === "100505_-_pay" || // 我的钱包
+                i.itemId === "100505_-_ordercenter" || // 我的订单
+                i.itemId === "100505_-_productcenter" || // 创作中心
+                i.itemId === "100505_-_promote"  // 广告中心
             );
           }
           newItems.push(item);
@@ -620,13 +624,6 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     // 全套个性皮肤
     if (obj?.profileSkin?.data) {
       delete obj.profileSkin.data;
-    }
-  } else if (url.includes("/2/push/active")) {
-    // 首页右上角红包图标
-    if (obj?.feed_redpacket) {
-      obj.feed_redpacket.starttime = "2208960000";
-      obj.feed_redpacket.interval = "31536000";
-      obj.feed_redpacket.endtime = "2209046399";
     }
   } else if (url.includes("/2/search/")) {
     // 搜索页信息流

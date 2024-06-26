@@ -510,8 +510,8 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                 i.itemId === "100505_-_draft" || // 草稿箱
                 i.itemId === "100505_-_pay" || // 我的钱包
                 i.itemId === "100505_-_ordercenter" || // 我的订单
-                i.itemId === "100505_-_productcenter" || // 创作中心
-                i.itemId === "100505_-_promote"  // 广告中心
+                i.itemId === "100505_-_productcenter" // 创作中心
+                //i.itemId === "100505_-_promote"  // 广告中心
             );
           }
           newItems.push(item);

@@ -1135,7 +1135,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         }
       }
     }
-  } else if (url.includes("/v1/ad/preload")) {
+  } else if (url.includes("/v1/ad/preload") || url.includes("/v2/ad/preload")) {
     // 开屏广告
     if (obj?.ads?.length > 0) {
       for (let item of obj.ads) {

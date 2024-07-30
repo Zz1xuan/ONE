@@ -243,7 +243,7 @@ IP-CIDR, 118.89.204.198/32
 IP-CIDR, 103.41.167.237/32
 IP6-CIDR, 2402:4e00:1200:ed00:0:9089:6dac:96b6/128
 #金融
-DOMAIN,punion.tjjt360.com
+#DOMAIN,punion.tjjt360.com
 #有道
 DOMAIN,staticsns.cdn.bcebos.com
 # > 芒果TV

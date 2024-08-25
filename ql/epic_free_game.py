@@ -1,5 +1,5 @@
 """
-cron: 0 0 * * *
+cron: 10 8 * * 5
 new Env('Epic免费游戏');
 根据 https://github.com/Cat-Zhua/Epic-Weekly-Free-Games 改编所得
 author: Zz1xuan

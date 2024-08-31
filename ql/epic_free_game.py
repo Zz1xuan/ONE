@@ -15,7 +15,7 @@ def get_free_games() -> dict:
     timestamp = datetime.timestamp(datetime.now())
     games = {'timestamp': timestamp, 'free_now': [], 'free_next': []}
     base_store_url = 'https://store.epicgames.com'
-    api_url = 'https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions?locale=zh-CN&country=CN'
+    api_url = 'https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions?locale=zh-CN&country=CN&allowCountries=CN'
 
     try:
         resp = requests.get(api_url)
@@ -31,12 +31,13 @@ def get_free_games() -> dict:
             game['title'] = element.get('keyImages', [{}])[
                 0].get('title', element['title'])
             game['origin_price'] = element['price']['totalPrice']['fmtPrice']['originalPrice']
-            game['store_url'] = f"{base_store_url}/p/{element['catalogNs']['mappings'][0]['pageSlug']}" if element['catalogNs']['mappings'] else base_store_url
+            game['store_url'] = f"{base_store_url}/p/{element['catalogNs']['mappings'][0]['pageSlug']}" if element[
+                'catalogNs']['mappings'] else f"{base_store_url}/bundles/{element['urlSlug']}"
             if offers := promotions['promotionalOffers']:
                 game['start_date'] = offers[0]['promotionalOffers'][0]['startDate']
                 game['end_date'] = offers[0]['promotionalOffers'][0]['endDate']
                 games['free_now'].append(game)
-            if offers := promotions['upcomingPromotionalOffers']:
+            elif offers := promotions['upcomingPromotionalOffers']:
                 game['start_date'] = offers[0]['promotionalOffers'][0]['startDate']
                 game['end_date'] = offers[0]['promotionalOffers'][0]['endDate']
                 games['free_next'].append(game)
@@ -51,16 +52,19 @@ def main():
         return
 
     message = ""
-    for game in games['free_now']:
-        game_info = f"{game['title']}\n原价: {game['origin_price']}\n{game['store_url']}\n"
-        print(game_info)
-        message += game_info + "\n"
+    if games['free_now']:
+        message += "本周免费:\n"
+        for game in games['free_now']:
+            game_info = f"{game['title']}\n原价: {game['origin_price']}\n{game['store_url']}\n"
+            print(game_info)
+            message += game_info + "\n"
 
-    message += "\n下周免费:\n"
-    for game in games['free_next']:
-        game_info = f"{game['title']}\n原价: {game['origin_price']}\n{game['store_url']}\n"
-        print(game_info)
-        message += game_info + "\n"
+    if games['free_next']:
+        message += "\n下周免费:\n"
+        for game in games['free_next']:
+            game_info = f"{game['title']}\n原价: {game['origin_price']}\n{game['store_url']}\n"
+            print(game_info)
+            message += game_info + "\n"
 
     send("Epic免费游戏更新", message.strip())
 

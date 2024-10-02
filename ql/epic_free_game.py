@@ -33,6 +33,29 @@ def get_free_games() -> dict:
             game['origin_price'] = element['price']['totalPrice']['fmtPrice']['originalPrice']
             game['store_url'] = f"{base_store_url}/p/{element['catalogNs']['mappings'][0]['pageSlug']}" if element[
                 'catalogNs']['mappings'] else f"{base_store_url}/bundles/{element['urlSlug']}"
+
+            if offers := promotions['promotionalOffers']:
+                promo_offer = offers[0]['promotionalOffers'][0]
+                if promo_offer['discountSetting']['discountPercentage'] == 0:
+                    game['start_date'] = promo_offer['startDate']
+                    game['end_date'] = promo_offer['endDate']
+                    games['free_now'].append(game)
+            elif offers := promotions['upcomingPromotionalOffers']:
+                promo_offer = offers[0]['promotionalOffers'][0]
+                if promo_offer['discountSetting']['discountPercentage'] == 0:
+                    game['start_date'] = promo_offer['startDate']
+                    game['end_date'] = promo_offer['endDate']
+                    games['free_next'].append(game)
+    return games
+
+    for element in resp.json()['data']['Catalog']['searchStore']['elements']:
+        if promotions := element['promotions']:
+            game = {}
+            game['title'] = element.get('keyImages', [{}])[
+                0].get('title', element['title'])
+            game['origin_price'] = element['price']['totalPrice']['fmtPrice']['originalPrice']
+            game['store_url'] = f"{base_store_url}/p/{element['catalogNs']['mappings'][0]['pageSlug']}" if element[
+                'catalogNs']['mappings'] else f"{base_store_url}/bundles/{element['urlSlug']}"
             if offers := promotions['promotionalOffers']:
                 game['start_date'] = offers[0]['promotionalOffers'][0]['startDate']
                 game['end_date'] = offers[0]['promotionalOffers'][0]['endDate']

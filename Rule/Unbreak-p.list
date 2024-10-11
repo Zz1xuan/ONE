@@ -121,6 +121,8 @@ DOMAIN-SUFFIX,fastly-analytics.com
 DOMAIN-KEYWORD,trello
 #魔戒
 DOMAIN-KEYWORD,mojie
+# aca
+DOMAIN,dadada.acaisbest.com
 
 #不知道是啥
 IP-CIDR,5.28.195.37/32,no-resolve

@@ -179,6 +179,9 @@ DOMAIN,nex.163.com
 DOMAIN,gorgon.youdao.com
 DOMAIN,tk.anythinktech.com
 DOMAIN,api.anythinktech.com
+# 章鱼sdk
+DOMAIN-SUFFIX, bridgeoos.com
+DOMAIN-SUFFIX, adintl.cn
 
 # > X
 # > 闲鱼

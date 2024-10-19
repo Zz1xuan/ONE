@@ -34,36 +34,23 @@ def get_free_games() -> dict:
             game['store_url'] = f"{base_store_url}/p/{element['catalogNs']['mappings'][0]['pageSlug']}" if element[
                 'catalogNs']['mappings'] else f"{base_store_url}/bundles/{element['urlSlug']}"
 
+            # 处理当前的免费游戏
             if offers := promotions['promotionalOffers']:
                 promo_offer = offers[0]['promotionalOffers'][0]
                 if promo_offer['discountSetting']['discountPercentage'] == 0:
                     game['start_date'] = promo_offer['startDate']
                     game['end_date'] = promo_offer['endDate']
                     games['free_now'].append(game)
-            elif offers := promotions['upcomingPromotionalOffers']:
-                promo_offer = offers[0]['promotionalOffers'][0]
-                if promo_offer['discountSetting']['discountPercentage'] == 0:
-                    game['start_date'] = promo_offer['startDate']
-                    game['end_date'] = promo_offer['endDate']
-                    games['free_next'].append(game)
-    return games
 
-    for element in resp.json()['data']['Catalog']['searchStore']['elements']:
-        if promotions := element['promotions']:
-            game = {}
-            game['title'] = element.get('keyImages', [{}])[
-                0].get('title', element['title'])
-            game['origin_price'] = element['price']['totalPrice']['fmtPrice']['originalPrice']
-            game['store_url'] = f"{base_store_url}/p/{element['catalogNs']['mappings'][0]['pageSlug']}" if element[
-                'catalogNs']['mappings'] else f"{base_store_url}/bundles/{element['urlSlug']}"
-            if offers := promotions['promotionalOffers']:
-                game['start_date'] = offers[0]['promotionalOffers'][0]['startDate']
-                game['end_date'] = offers[0]['promotionalOffers'][0]['endDate']
-                games['free_now'].append(game)
-            elif offers := promotions['upcomingPromotionalOffers']:
-                game['start_date'] = offers[0]['promotionalOffers'][0]['startDate']
-                game['end_date'] = offers[0]['promotionalOffers'][0]['endDate']
-                games['free_next'].append(game)
+            # 处理即将到来的免费游戏
+            if upcoming_offers := promotions['upcomingPromotionalOffers']:
+                for offer in upcoming_offers:  # 遍历所有即将到来的促销
+                    for promo_offer in offer['promotionalOffers']:  # 遍历每个促销
+                        if promo_offer['discountSetting']['discountPercentage'] == 0:  # 检查是否免费
+                            game['start_date'] = promo_offer['startDate']
+                            game['end_date'] = promo_offer['endDate']
+                            games['free_next'].append(game)
+                            break  # 找到免费游戏后跳出，处理下一个游戏
     return games
 
 
@@ -83,7 +70,7 @@ def main():
             message += game_info + "\n"
 
     if games['free_next']:
-        message += "\n下周免费:\n"
+        message += "下周免费:\n"
         for game in games['free_next']:
             game_info = f"{game['title']}\n原价: {game['origin_price']}\n{game['store_url']}\n"
             print(game_info)

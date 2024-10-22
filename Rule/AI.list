@@ -31,9 +31,9 @@ DOMAIN-SUFFIX,grazie.ai
 
 # Microsoft
 # > Copilot
-DOMAIN,copilot.microsoft.com
-DOMAIN,sydney.bing.com
-DOMAIN,www.bing.com
+#DOMAIN,copilot.microsoft.com
+#DOMAIN,sydney.bing.com
+#DOMAIN,www.bing.com
 
 # Meta
 DOMAIN,imagine.meta.com

@@ -30,6 +30,7 @@ DOMAIN,sdkmonitor.biz.weibo.com
 DOMAIN,mobads.baidu.com
 DOMAIN,mobads-logs.baidu.com
 DOMAIN,sdk.1rtb.net
+DOMAIN-SUFFIX,ubixioe.com
 # > 百度
 DOMAIN-SUFFIX,pos.baidu.com
 # 百度地图
@@ -179,6 +180,7 @@ DOMAIN,nex.163.com
 DOMAIN,gorgon.youdao.com
 DOMAIN,tk.anythinktech.com
 DOMAIN,api.anythinktech.com
+DOMAIN,iad.g.163.com,
 # 章鱼sdk
 DOMAIN-SUFFIX, bridgeoos.com
 DOMAIN-SUFFIX, adintl.cn
@@ -266,3 +268,6 @@ DOMAIN,rc-topic-api.bz.mgtv.com
 DOMAIN,v2.da.mgtv.com
 DOMAIN,vip.bz.mgtv.com
 DOMAIN,ys.da.mgtv.com
+
+
+DOMAIN,wxs.qq.com

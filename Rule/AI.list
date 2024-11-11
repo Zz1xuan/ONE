@@ -36,6 +36,9 @@ DOMAIN-SUFFIX,grazie.ai
 #DOMAIN,sydney.bing.com
 #DOMAIN,www.bing.com
 
+# x
+DOMAIN-SUFFIX,x.ai
+
 # Meta
 DOMAIN,imagine.meta.com
 

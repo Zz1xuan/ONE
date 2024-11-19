@@ -1,5 +1,14 @@
-# > OpenAI & ChatGPT
-DOMAIN-SUFFIX,chat.com
+# x
+DOMAIN-SUFFIX,x.ai
+
+# Meta
+DOMAIN,imagine.meta.com
+
+# > codeium
+DOMAIN-SUFFIX,codeium.com
+
+# OpenAI
+# > ChatGPT
 DOMAIN-SUFFIX,chatgpt.com
 DOMAIN-SUFFIX,oaistatic.com
 DOMAIN-SUFFIX,oaiusercontent.com
@@ -12,6 +21,14 @@ DOMAIN,openaiapi-site.azureedge.net
 DOMAIN,sfo3.turn.livekit.cloud
 DOMAIN-KEYWORD,openaicom
 
+# Apple Intelligence
+DOMAIN-SUFFIX,smoot.apple.com
+DOMAIN,apple-relay.apple.com
+DOMAIN,apple-relay.cloudflare.com
+DOMAIN,apple-relay.fastly-edge.com
+DOMAIN,cp4.cloudflare.com
+DOMAIN,guzzoni.apple.com
+
 # Anthropic
 # > Claude
 DOMAIN-SUFFIX,claude.ai
@@ -23,6 +40,7 @@ DOMAIN,ai.google.dev
 DOMAIN,bard.google.com
 DOMAIN,gemini.google.com
 DOMAIN,generativelanguage.googleapis.com
+DOMAIN,proactivebackend-pa.googleapis.com
 # > AI Studio
 DOMAIN,aistudio.google.com
 DOMAIN,alkalimakersuite-pa.clients6.google.com
@@ -32,18 +50,15 @@ DOMAIN-SUFFIX,grazie.ai
 
 # Microsoft
 # > Copilot
-#DOMAIN,copilot.microsoft.com
-#DOMAIN,sydney.bing.com
-#DOMAIN,www.bing.com
-
-# x
-DOMAIN-SUFFIX,x.ai
+# DOMAIN,copilot.microsoft.com
+# DOMAIN,sydney.bing.com
+# DOMAIN,www.bing.com
 
 # Meta
 DOMAIN,imagine.meta.com
 
-# > codeium
-DOMAIN-SUFFIX,codeium.com
+# GitHub Copilot
+DOMAIN-SUFFIX,githubcopilot.com
 
 # > 豆包 新日韩
 DOMAIN-SUFFIX,coze.com

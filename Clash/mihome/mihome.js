@@ -100,13 +100,13 @@ function main(config) {
       "proxies": ["手动切换", "DIRECT"],
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
     },
-    {
-      ...groupBaseOption,
-      "name": "国外网站",
-      "type": "select",
-      "proxies": ["手动切换", "香港节点", "美国节点", "狮城节点", "日本节点", "台湾节点", "DIRECT"],
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
-    },
+    // {
+    //   ...groupBaseOption,
+    //   "name": "国外网站",
+    //   "type": "select",
+    //   "proxies": ["手动切换", "香港节点", "美国节点", "狮城节点", "日本节点", "台湾节点", "DIRECT"],
+    //   "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
+    // },
     {
       ...groupBaseOption,
       "name": "苹果服务",
@@ -118,7 +118,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "微软服务",
       "type": "select",
-      "proxies": ["手动切换", "香港节点", "美国节点", "狮城节点", "日本节点", "台湾节点", "DIRECT"],
+      "proxies": ["手动切换", "DIRECT"],
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png"
     },
     {

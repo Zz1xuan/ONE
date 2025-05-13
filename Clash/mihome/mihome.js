@@ -192,6 +192,12 @@ function main(config) {
 
   // 覆盖规则集
   config["rule-providers"] = {
+    "Unbreak-d": {
+      ...ruleProviderCommon,
+      "behavior": "classical",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/Unbreak-d.list",
+      "path": "./rules/Unbreak-d.list"
+    },
     "Apple": {
       ...ruleProviderCommon,
       "behavior": "classical",
@@ -262,6 +268,7 @@ function main(config) {
 
   // 覆盖规则
   config["rules"] = [
+    "RULE-SET,Unbreak-d,DIRECT",
     "RULE-SET,AI,AI",
     "RULE-SET,Apple,苹果服务",
     "RULE-SET,Steam,游戏平台",

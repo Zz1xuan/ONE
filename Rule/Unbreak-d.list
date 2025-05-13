@@ -44,17 +44,10 @@ DOMAIN-SUFFIX,peropero.net
 DOMAIN-SUFFIX,hifini.com
 DOMAIN-SUFFIX,wegame.com.cn
 
-# xsus
-DOMAIN,home.xsus.me
-DOMAIN,cook.yunyoujun.cn
-DOMAIN,busuanzi.ibruce.info
-DOMAIN,unpkg.com
-DOMAIN-SUFFIX,qianling.pw
 # remove
 DOMAIN,www.remove.bg
 # prpr
-DOMAIN,bypass.cloudflare.cyou
-DOMAIN,api.prprcloud.life
+DOMAIN,prpr.96110.cn.com
 # deepl
 DOMAIN-SUFFIX,deepl.com
 # nga

@@ -204,6 +204,12 @@ function main(config) {
       "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Apple.list",
       "path": "./rules/Apple.list"
     },
+    "Telegram": {
+      ...ruleProviderCommon,
+      "behavior": "classical",
+      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/Telegram.list",
+      "path": "./rules/Telegram.list"
+    },
     "Steam": {
       ...ruleProviderCommon,
       "behavior": "classical",
@@ -271,6 +277,7 @@ function main(config) {
     "RULE-SET,Unbreak-d,DIRECT",
     "RULE-SET,AI,AI",
     "RULE-SET,Apple,苹果服务",
+    "RULE-SET,Telegram,手动切换",
     "RULE-SET,Steam,游戏平台",
     "RULE-SET,Epic,游戏平台",
     "RULE-SET,Emby,Emby",

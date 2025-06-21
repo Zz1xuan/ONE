@@ -1,55 +1,99 @@
 const url = $request.url;
-if (!$response.body) $done({});
-let obj = JSON.parse($response.body);
+const body = $response?.body;
 
-if (url.includes("/feed/detail")) {
-  if (obj.data?.hotReplyRows?.length > 0) {
-    obj.data.hotReplyRows = obj.data.hotReplyRows.filter((item) => item?.id);
+if (!body) $done({});
+
+// 配置化的过滤规则
+const FILTER_CONFIG = {
+  blockedEntityIds: [945, 6390, 8639, 29349, 33006, 32557],
+  blockedTemplates: ["sponsorCard", "iconButtonGridCard", "iconLargeScrollCard"],
+  blockedKeywords: ["值得买", "红包"],
+  blockedTitlePatterns: /流量|精选配件/
+};
+
+const processJSON = (processor) => {
+  try {
+    const obj = JSON.parse(body);
+    processor(obj);
+    $done({ body: JSON.stringify(obj) });
+  } catch (err) {
+    console.log(`处理异常: ${err}`);
+    $done({});
   }
-  if (obj.data?.topReplyRows?.length > 0) {
-    obj.data.topReplyRows = obj.data.topReplyRows.filter((item) => item?.id);
-  }
-  const item = ["detailSponsorCard", "include_goods", "include_goods_ids"];
-  for (let i of item) {
-    if (obj.data?.[i]) {
-      obj.data[i] = [];
+};
+
+// 通用过滤函数
+const filterValidItems = (items) => items?.filter(item => item.id) || [];
+
+const filterContent = (items) => {
+  if (!items) return items;
+  
+  return items.filter(item => {
+    // 过滤广告模板
+    if (FILTER_CONFIG.blockedTemplates.includes(item.entityTemplate)) return false;
+    
+    // 过滤特定ID
+    if (FILTER_CONFIG.blockedEntityIds.includes(item.entityId)) return false;
+    
+    // 过滤关键词
+    if (item.title && FILTER_CONFIG.blockedKeywords.some(keyword => 
+      item.title.includes(keyword))) return false;
+    
+    return true;
+  });
+};
+
+// 路由处理
+const urlHandlers = {
+  'replyList': (obj) => {
+    if (obj.data?.length) {
+      obj.data = filterValidItems(obj.data);
+    }
+  },
+  
+  'main/init': (obj) => {
+    if (obj.data?.length) {
+      obj.data = obj.data.filter(item => 
+        ![945, 6390].includes(item.entityId)
+      );
+    }
+  },
+  
+  'indexV8': (obj) => {
+    if (obj.data) {
+      obj.data = filterContent(obj.data);
+    }
+  },
+  
+  'dataList': (obj) => {
+    if (obj.data) {
+      obj.data = obj.data.filter(item => {
+        if (FILTER_CONFIG.blockedTemplates.includes(item.entityTemplate)) return false;
+        if (FILTER_CONFIG.blockedTitlePatterns.test(item.title)) return false;
+        return true;
+      });
+    }
+  },
+  
+  'detail': (obj) => {
+    const data = obj.data;
+    if (data) {
+      // 过滤回复列表
+      data.hotReplyRows = filterValidItems(data.hotReplyRows);
+      data.topReplyRows = filterValidItems(data.topReplyRows);
+      
+      // 清空广告相关字段
+      ['include_goods_ids', 'include_goods', 'detailSponsorCard'].forEach(field => {
+        if (data[field]) data[field] = [];
+      });
     }
   }
-} else if (url.includes("/feed/replyList")) {
-  if (obj.data?.length > 0) {
-    obj.data = obj.data.filter((item) => item?.id);
-  }
-} else if (url.includes("/main/dataList")) {
-  if (obj.data?.length > 0) {
-    obj.data = obj.data.filter((item) => !(item?.entityTemplate === "sponsorCard" || item?.title === "精选配件"));
-  }
-} else if (url.includes("/main/indexV8")) {
-  if (obj.data?.length > 0) {
-    obj.data = obj.data.filter(
-      (item) =>
-        !(
-          item?.entityTemplate === "sponsorCard" ||
-          item?.entityId === 8639 ||
-          item?.entityId === 29349 ||
-          item?.entityId === 33006 ||
-          item?.entityId === 32557 ||
-          item?.title?.includes("值得买") ||
-          item?.title?.includes("红包")
-        )
-    );
-  }
-} else if (url.includes("/main/init")) {
-  if (obj.data?.length > 0) {
-    // 944热门搜索 945开屏广告 6390首页Tab
-    obj.data = obj.data.filter((item) => ![944, 945, 6390].includes(item?.entityId));
-  }
-} else if (url.includes("/page/dataList")) {
-  if (obj.data?.length > 0) {
-    obj.data = obj.data.filter(
-      (item) =>
-        !(item?.title === "酷安热搜" || item?.entityTemplate === "imageScaleCard" || item?.entityTemplate === "sponsorCard")
-    );
-  }
-}
+};
 
-$done({ body: JSON.stringify(obj) });
+// 执行处理
+const handler = Object.keys(urlHandlers).find(key => url.includes(key));
+if (handler) {
+  processJSON(urlHandlers[handler]);
+} else {
+  $done({});
+}

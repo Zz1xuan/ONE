@@ -1,105 +1,111 @@
 /***********************************
   > update 2025-06-28
 [rewrite_local]
-^https:\/\/yxc\.bzlsp\.cn\/api\/front\/index\/indexOpen url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/own/bzl.js
+^https:\/\/yxc\.bzlsp\.cn\/api\/front\/index\/indexOpen url script-request-header bzl.js
 
 [mitm] 
 
-hostname=api.coolapk.com
+hostname=yxc.bzlsp.cn
 ***********************************/
 
 const $ = new Env("宾之郎");
 
 // -------- 抓 token 和 appId 的 Rewrite 规则 --------
-if ($request && $request.url.includes("/api/front/index/indexOpen")) {
-  const url = $request.url;
-  const tokenMatch = url.match(/token=([^&]+)/);
-  const appIdMatch = url.match(/appId=([^&]+)/);
-  if (tokenMatch && appIdMatch) {
-    const token = tokenMatch[1];
-    const appId = appIdMatch[1];
-    const key = "bzl_token";
-    const newCK = `${token}@${appId}`;
-    let old = $.getdata(key) || "";
-    let list = old ? old.split("&") : [];
+function handleAccountCapture() {
+  if ($request &&$request.url.includes("/api/front/product/category/index")) {
+    const url = $request.url;
+    const tokenMatch = url.match(/token=([^&]+)/);
+    const appIdMatch = url.match(/appId=([^&]+)/);
+    if (tokenMatch && appIdMatch) {
+      const token = tokenMatch[1];
+      const appId = appIdMatch[1];
+      const key = "bzl_token";
+      const newCK = `${token}@${appId}`;
+      let old = $.getdata(key) || "";
+      let list = old ? old.split("&") : [];
 
-    if (list.includes(newCK)) {
-      $.msg("宾之郎", "⚠️ 账号已存在", "该账号 token@appId 已存在，无需重复添加");
+      if (list.includes(newCK)) {
+        $.msg("宾之郎", "⚠️ 账号已存在", "该账号 token@appId 已存在，无需重复添加");
+      } else {
+        list.push(newCK);
+        $.setdata(list.join("&"), key);
+        $.msg("宾之郎", "✅ 获取账号成功", `已添加账号，共 ${list.length} 个`);
+      }
     } else {
-      list.push(newCK);
-      $.setdata(list.join("&"), key);
-      $.msg("宾之郎", "✅ 获取账号成功", `已添加账号，共 ${list.length} 个`);
+      $.msg("宾之郎", "❌ 获取失败", "未检测到 token 或 appId 参数");
     }
-  } else {
-    $.msg("宾之郎", "❌ 获取失败", "未检测到 token 或 appId 参数");
+    $.done();
+    return true; // 表示已处理账号获取
   }
-  $.done();
-  return;
+  return false; // 表示未处理账号获取
 }
 
-(async () => {
-  let allAccounts = $.getdata("bzl_token");
-  if (!allAccounts) {
-    $.msg("宾之郎", "⚠️ 尚未获取账号", "请先打开相关页面抓取 token 和 appId");
-    $.done();
-    return;
-  }
-  let accounts = allAccounts.split("&");
-  let notifyMsg = [];
-
-  for (let i = 0; i < accounts.length; i++) {
-    let [token, appId] = accounts[i].split("@");
-    if (!token || !appId) {
-      $.log(`❌ 第${i + 1}个账号格式错误，跳过`);
-      continue;
+// 只有当没有处理账号获取时，才执行任务
+if (!handleAccountCapture()) {
+  (async () => {
+    let allAccounts = $.getdata("bzl_token");
+    if (!allAccounts) {
+      $.msg("宾之郎", "⚠️ 尚未获取账号", "请先打开相关页面抓取 token 和 appId");
+      $.done();
+      return;
     }
-    $.log(`\n🔔 开始执行第${i + 1}个账号任务`);
-    notifyMsg.push(`\n🔐【账号${i + 1}】`);
+    let accounts = allAccounts.split("&");
+    let notifyMsg = [];
 
-    let taskList = await getTaskList(token, appId);
-    if (!taskList) {
-      $.log("❌ 获取任务列表失败");
-      notifyMsg.push("❌ 获取任务列表失败");
-      continue;
-    }
+    for (let i = 0; i < accounts.length; i++) {
+      let [token, appId] = accounts[i].split("@");
+      if (!token || !appId) {
+        $.log(`❌ 第${i + 1}个账号格式错误，跳过`);
+        continue;
+      }
+      $.log(`\n🔔 开始执行第${i + 1}个账号任务`);
+      notifyMsg.push(`\n🔐【账号${i + 1}】`);
 
-    $.log(`📋 总任务数：${taskList.length}`);
-    let pendingTasks = taskList.filter(t => t.isOpen === 1 && t.status === 0);
-    $.log(`📌 可执行任务数：${pendingTasks.length}`);
-    if (pendingTasks.length === 0) {
-      notifyMsg.push("✅ 今日任务已全部完成，无需操作");
-    }
-
-    for (const task of pendingTasks) {
-      if (!["sign", "day_read"].includes(task.taskType)) {
-        $.log(`⏭️ 跳过任务类型：${task.taskType} [${task.name}]`);
+      let taskList = await getTaskList(token, appId);
+      if (!taskList) {
+        $.log("❌ 获取任务列表失败");
+        notifyMsg.push("❌ 获取任务列表失败");
         continue;
       }
 
-      $.log(`➡️ 开始任务：${task.name} [${task.taskType}]`);
-      notifyMsg.push(`开始任务：${task.name} [${task.taskType}]`);
-
-      if (task.taskType === "sign") {
-        let signResult = await doSign(token, appId);
-        notifyMsg.push(signResult);
-      } else if (task.taskType === "day_read") {
-        let skipUrl = await getSkipUrl(token, appId);
-        if (skipUrl) {
-          let readResult = await doRead(skipUrl, token, appId);
-          notifyMsg.push(readResult);
-        } else {
-          $.log("⚠️ 未获取到阅读任务的 skipUrl，跳过阅读任务");
-          notifyMsg.push("⚠️ 未获取到阅读任务的 skipUrl，跳过阅读任务");
-        }
+      $.log(`📋 总任务数：${taskList.length}`);
+      let pendingTasks = taskList.filter(t => t.isOpen === 1 && t.status === 0);
+      $.log(`📌 可执行任务数：${pendingTasks.length}`);
+      if (pendingTasks.length === 0) {
+        notifyMsg.push("✅ 今日任务已全部完成，无需操作");
       }
-      await $.wait(1500);
-    }
-  }
 
-  if (notifyMsg.length === 1) notifyMsg.push("ℹ️ 今日无可执行任务");
-  $.msg("宾之郎", "", notifyMsg.join("\n"));
-  $.done();
-})();
+      for (const task of pendingTasks) {
+        if (!["sign", "day_read"].includes(task.taskType)) {
+          $.log(`⏭️ 跳过任务类型：${task.taskType} [${task.name}]`);
+          continue;
+        }
+
+        $.log(`➡️ 开始任务：${task.name} [${task.taskType}]`);
+        notifyMsg.push(`开始任务：${task.name} [${task.taskType}]`);
+
+        if (task.taskType === "sign") {
+          let signResult = await doSign(token, appId);
+          notifyMsg.push(signResult);
+        } else if (task.taskType === "day_read") {
+          let skipUrl = await getSkipUrl(token, appId);
+          if (skipUrl) {
+            let readResult = await doRead(skipUrl, token, appId);
+            notifyMsg.push(readResult);
+          } else {
+            $.log("⚠️ 未获取到阅读任务的 skipUrl，跳过阅读任务");
+            notifyMsg.push("⚠️ 未获取到阅读任务的 skipUrl，跳过阅读任务");
+          }
+        }
+        await $.wait(1500);
+      }
+    }
+
+    if (notifyMsg.length === 1) notifyMsg.push("ℹ️ 今日无可执行任务");
+    $.msg("宾之郎", "", notifyMsg.join("\n"));
+    $.done();
+  })();
+}
 
 async function getTaskList(token, appId) {
   const url = `https://yxc.bzlsp.cn/api/front/plus/task/task/index?token=${token}&appId=${appId}`;

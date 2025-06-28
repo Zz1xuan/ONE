@@ -1,6 +1,7 @@
 /***********************************
   > update 2025-06-28
 [rewrite_local]
+
 ^https:\/\/yxc\.bzlsp\.cn\/api\/front\/product\/category\/index url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Script/own/bzl.js
 
 [mitm] 

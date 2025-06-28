@@ -39,14 +39,46 @@ function main(config) {
   config["global-client-fingerprint"] = "chrome";
 
   // 覆盖 dns 配置
+  // config["dns"] = {
+  //   "enable": true,
+  //   "listen": "0.0.0.0:1053",
+  //   "ipv6": false,
+  //   "enhanced-mode": "fake-ip",
+  //   "fake-ip-range": "198.18.0.1/16",
+  //   "fake-ip-filter": ["*", "+.lan", "+.local", "+.direct", "+.msftconnecttest.com", "+.msftncsi.com"],
+  //   "nameserver": ["114.114.115.115", "223.6.6.6", "119.29.29.29"]
+  // };
+  // 参考https://linux.do/t/topic/425740
   config["dns"] = {
     "enable": true,
     "listen": "0.0.0.0:1053",
     "ipv6": false,
+    "prefer-h3": true,
+    "respect-rules": true,
+    "use-hosts": true,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
-    "fake-ip-filter": ["*", "+.lan", "+.local", "+.direct", "+.msftconnecttest.com", "+.msftncsi.com"],
-    "nameserver": ["114.114.115.115", "223.6.6.6", "119.29.29.29"]
+    "fake-ip-filter": [
+      "*", "+.lan", "+.local", "+.direct",
+      "+.msftconnecttest.com", "+.msftncsi.com",
+      "+.stun.*.*", "+.stun.*.*.*", "+.stun.*.*.*.*"
+    ],
+    "default-nameserver": [
+      "117.50.11.11", "180.168.255.18", "223.5.5.5"
+    ],
+    "nameserver": [
+      "https://dns.google/dns-query",
+      "https://1.1.1.1/dns-query"
+    ],
+    "proxy-server-nameserver": [
+      "https://223.5.5.5/dns-query",
+      "https://1.12.12.12/dns-query"
+    ],
+    "nameserver-policy": {
+      "geosite:cn,apple-cn,category-games@cn,private": [
+        "117.50.11.11", "180.168.255.18", "223.5.5.5"
+      ]
+    }
   };
 
   // 覆盖 geodata 配置

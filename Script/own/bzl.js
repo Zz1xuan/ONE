@@ -77,7 +77,7 @@ if (!handleAccountCapture()) {
       }
 
       for (const task of pendingTasks) {
-        if (!["sign", "day_read"].includes(task.taskType)) {
+        if (!["sign", "day_read", "product"].includes(task.taskType)) {
           $.log(`⏭️ 跳过任务类型：${task.taskType} [${task.name}]`);
           continue;
         }
@@ -97,6 +97,9 @@ if (!handleAccountCapture()) {
             $.log("⚠️ 未获取到阅读任务的 skipUrl，跳过阅读任务");
             notifyMsg.push("⚠️ 未获取到阅读任务的 skipUrl，跳过阅读任务");
           }
+        } else if (task.taskType === "product") {
+          let shareResult = await doShare(token, appId);
+          notifyMsg.push(shareResult);
         }
         await $.wait(1500);
       }
@@ -165,6 +168,27 @@ async function doRead(skipUrl, token, appId) {
   } else {
     $.log(`❌ 阅读任务失败：${data?.msg || "未知原因"}`);
     return `❌ 阅读任务失败：${data?.msg || "未知原因"}`;
+  }
+}
+
+async function doShare(token, appId) {
+  const url = `https://yxc.bzlsp.cn/api/front/plus/task/task/dayRead`;
+  const body = `taskType=product&url=124&token=${token}&appId=${appId}`;
+  let resp = await $.http.post({
+    url,
+    body,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "appId": appId
+    }
+  });
+  let data = $.toObj(resp.body);
+  if (data && data.code === 1) {
+    $.log("✅ 分享任务完成");
+    return "✅ 分享任务完成";
+  } else {
+    $.log(`❌ 分享任务失败：${data?.msg || "未知原因"}`);
+    return `❌ 分享任务失败：${data?.msg || "未知原因"}`;
   }
 }
 

@@ -63,14 +63,15 @@ const handlers = [
       obj.data.ability = [];
       obj.data.container.sections.forEach(section => {
         if (section.index === "1") delete section.item.level;
-        // if (section.index === "5") {
-        //   const tools = section.item.tool.exContent.tools;
-        //   const targetToolIds = [20, 1, 13, 26];
-        //   const filteredTools = [
-        //     tools.flatMap(sub => sub.filter(tool => targetToolIds.includes(tool.exContent.toolId)))
-        //   ];
-        //   section.item.tool.exContent.tools = filteredTools;
-        // }
+
+        if (section.index === "5") {
+          const tools = section.item.tool.exContent.tools;
+          const targetToolIds = [20, 1, 13, 26];
+          const filteredTools = [
+            tools.flatMap(sub => sub.filter(tool => targetToolIds.includes(tool.exContent.toolId)))
+          ];
+          section.item.tool.exContent.tools = filteredTools;
+        }
       });
     }
   },

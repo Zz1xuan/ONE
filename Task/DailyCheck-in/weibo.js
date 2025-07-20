@@ -20,8 +20,8 @@ api.weibo.cn
 api.weibo.cn
 
 [rewrite_local]
-^https:\/\/api\.weibo\.cn\/\d\/users\/show url script-request-header https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js
-^https:\/\/api\.weibo\.cn\/2\/logservice\/attach url script-request-header https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js
+^https:\/\/api\.weibo\.cn\/\d\/users\/show url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/DailyCheck-in/weibo.js
+^https:\/\/api\.weibo\.cn\/2\/logservice\/attach url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/DailyCheck-in/weibo.js
 
 [task_local]
 15 8 * * * https://raw.githubusercontent.com/FoKit/Scripts/main/scripts/weibo_sign.js, tag=新浪微博, enabled=true

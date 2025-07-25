@@ -43,7 +43,10 @@ DOMAIN-SUFFIX,notability.com
 DOMAIN-SUFFIX,peropero.net
 DOMAIN-SUFFIX,hifini.com
 DOMAIN-SUFFIX,wegame.com.cn
+# quark下载
 DOMAIN-SUFFIX,quark.cn
+# 海绵小站
+DOMAIN-SUFFIX,haimianxz.com
 
 # remove
 DOMAIN,www.remove.bg

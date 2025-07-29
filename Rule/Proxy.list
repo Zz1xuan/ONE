@@ -1,10 +1,12 @@
 # Proxy
+DOMAIN-SUFFIX,500px.com
 DOMAIN-SUFFIX,9cache.com
 DOMAIN-SUFFIX,9gag.com
 DOMAIN-SUFFIX,abc.com
 DOMAIN-SUFFIX,about.me
 DOMAIN-SUFFIX,anchor.fm
 DOMAIN-SUFFIX,annas-archive.org
+DOMAIN-SUFFIX,aomedia.org
 DOMAIN-SUFFIX,apkmirror.com
 DOMAIN-SUFFIX,apkpure.com
 DOMAIN-SUFFIX,archive.md
@@ -23,7 +25,12 @@ DOMAIN-SUFFIX,bloglovin.com
 DOMAIN-SUFFIX,blubrry.com
 DOMAIN-SUFFIX,box.com
 DOMAIN-SUFFIX,brave.com
+DOMAIN-SUFFIX,bsky.app
+DOMAIN-SUFFIX,bsky.social
+DOMAIN-SUFFIX,bsky.network
 DOMAIN-SUFFIX,bullguard.com
+DOMAIN-SUFFIX,cachefly.com
+DOMAIN-SUFFIX,cachefly.net
 DOMAIN-SUFFIX,castbox.fm
 DOMAIN-SUFFIX,change.org
 DOMAIN-SUFFIX,civitai.com
@@ -34,13 +41,16 @@ DOMAIN-SUFFIX,comparitech.com
 DOMAIN-SUFFIX,conoha.jp
 DOMAIN-SUFFIX,coursehero.com
 DOMAIN-SUFFIX,c-span.org
+DOMAIN-SUFFIX,cutout.pro
 DOMAIN-SUFFIX,dailymotion.com
+DOMAIN-SUFFIX,dashlane.com
 DOMAIN-SUFFIX,daum.net
 DOMAIN-SUFFIX,deadline.com
 DOMAIN-SUFFIX,depositphotos.com
 DOMAIN-SUFFIX,deviantart.com
 DOMAIN-SUFFIX,deviantart.net
 DOMAIN-SUFFIX,devv.ai
+DOMAIN-SUFFIX,dify.ai
 DOMAIN-SUFFIX,disconnect.me
 DOMAIN-SUFFIX,disqus.com
 DOMAIN-SUFFIX,dlive.tv
@@ -65,12 +75,15 @@ DOMAIN-SUFFIX,getsync.com
 DOMAIN-SUFFIX,gfw.report
 DOMAIN-SUFFIX,git.io
 DOMAIN-SUFFIX,githack.com
+DOMAIN-SUFFIX,glarity.app
 DOMAIN-SUFFIX,godaddy.com
 DOMAIN-SUFFIX,goodreads.com
 DOMAIN-SUFFIX,graphql.org
+DOMAIN-SUFFIX,greasyfork.org
 DOMAIN-SUFFIX,gumroad.com
 DOMAIN-SUFFIX,hackmd.io
 DOMAIN-SUFFIX,heroku.com
+DOMAIN-SUFFIX,herokuapp.com
 DOMAIN-SUFFIX,hiccears.com
 DOMAIN-SUFFIX,hket.com
 DOMAIN-SUFFIX,huffpost.com
@@ -113,7 +126,6 @@ DOMAIN-SUFFIX,newyorker.com
 DOMAIN-SUFFIX,now.com
 DOMAIN-SUFFIX,ok.ru
 DOMAIN-SUFFIX,omny.fm
-DOMAIN-SUFFIX,openai.com
 DOMAIN-SUFFIX,openvpn.net
 DOMAIN-SUFFIX,owltail.com
 DOMAIN-SUFFIX,oxfordscholarship.com
@@ -177,6 +189,7 @@ DOMAIN-SUFFIX,time.com
 DOMAIN-SUFFIX,tineye.com
 DOMAIN-SUFFIX,tiny.cc
 DOMAIN-SUFFIX,torproject.org
+DOMAIN-SUFFIX,tortoisesvn.net
 DOMAIN-SUFFIX,tradingview.com
 DOMAIN-SUFFIX,turbobit.net
 DOMAIN-SUFFIX,tutanota.com
@@ -229,6 +242,8 @@ DOMAIN,d3c33hcgiwev3.cloudfront.net
 DOMAIN,payments-jp.amazon.com
 DOMAIN,s3-ap-northeast-1.amazonaws.com
 DOMAIN,s3-ap-southeast-2.amazonaws.com
+DOMAIN,s3-ap-southeast-1.amazonaws.com
+DOMAIN,s3.eu-central-1.amazonaws.com
 # > Alphabet
 # DOMAIN-SUFFIX,ampproject.org
 DOMAIN-SUFFIX,apigee.com
@@ -285,6 +300,8 @@ DOMAIN-SUFFIX,upbit.com
 DOMAIN-SUFFIX,binance.com
 DOMAIN-SUFFIX,binance.info
 DOMAIN-SUFFIX,bnbstatic.com
+DOMAIN-SUFFIX,bntrace.com
+DOMAIN-SUFFIX,yingwangtech.cloud
 # > Bybit
 DOMAIN-SUFFIX,byabcde.com
 DOMAIN-SUFFIX,bybdc6.com
@@ -306,7 +323,7 @@ DOMAIN-SUFFIX,dropboxapi.com
 DOMAIN-SUFFIX,dropboxusercontent.com
 # > Fastly
 DOMAIN-SUFFIX,freetls.fastly.net
-DOMAIN,cloud-cdn-digitalocean-com.global.ssl.fastly.net
+DOMAIN-SUFFIX,global.ssl.fastly.net
 # > Financial Times
 DOMAIN-SUFFIX,ft.com
 DOMAIN-SUFFIX,ftchinese.com
@@ -337,6 +354,8 @@ DOMAIN-SUFFIX,fbworkmail.com
 DOMAIN-SUFFIX,instagram.com
 DOMAIN-SUFFIX,m.me
 DOMAIN-SUFFIX,messenger.com
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,meta.com
 DOMAIN-SUFFIX,oculus.com
 DOMAIN-SUFFIX,oculuscdn.com
 DOMAIN-SUFFIX,readyatdawn.com
@@ -359,12 +378,16 @@ DOMAIN,assets2.xboxlive.com
 DOMAIN,az416426.vo.msecnd.net
 DOMAIN,az668014.vo.msecnd.net
 DOMAIN,github.global.ssl.fastly.net
+# > OpenAI
+DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,openai.com
 # > Pinterest
 DOMAIN-SUFFIX,pinimg.com
 DOMAIN-KEYWORD,.pinterest.
 # > pixiv
 DOMAIN-SUFFIX,pixiv.net
 DOMAIN-SUFFIX,pixiv.org
+DOMAIN-SUFFIX,pixivsketch.net
 DOMAIN-SUFFIX,pximg.net
 # > Reddit
 DOMAIN-SUFFIX,redd.it
@@ -393,30 +416,20 @@ DOMAIN-SUFFIX,telegram.space
 DOMAIN-SUFFIX,telegram-cdn.org
 DOMAIN-SUFFIX,telesco.pe
 DOMAIN-SUFFIX,tg.dev
-# > Americas
-IP-ASN,59930,no-resolve
-IP-CIDR6,2a0a:f280::/32,no-resolve
-# IP-CIDR,91.108.12.0/22,no-resolve
-# > Finland
-IP-ASN,211157,no-resolve
-# IP-CIDR,91.105.192.0/23,no-resolve
-# IP-CIDR,185.76.151.0/24,no-resolve
-# > Europe
-IP-ASN,62041,no-resolve
+IP-CIDR,91.108.56.0/22,no-resolve
+IP-CIDR,91.108.4.0/22,no-resolve
+IP-CIDR,91.108.8.0/22,no-resolve
+IP-CIDR,91.108.16.0/22,no-resolve
+IP-CIDR,91.108.12.0/22,no-resolve
 IP-CIDR,149.154.160.0/20,no-resolve
+IP-CIDR,91.105.192.0/23,no-resolve
+IP-CIDR,91.108.20.0/22,no-resolve
+IP-CIDR,185.76.151.0/24,no-resolve
+IP-CIDR6,2001:b28:f23d::/48,no-resolve
+IP-CIDR6,2001:b28:f23f::/48,no-resolve
 IP-CIDR6,2001:67c:4e8::/48,no-resolve
-# IP-CIDR,91.108.4.0/22,no-resolve
-# IP-CIDR,91.108.8.0/22,no-resolve
-# IP-CIDR6,2001:b28:f23d::/48,no-resolve
-# > Singapore
-IP-ASN,62014,no-resolve
-# IP-CIDR,91.108.16.0/22,no-resolve
-# IP-CIDR,91.108.56.0/22,no-resolve
-# IP-CIDR6,2001:b28:f23f::/48,no-resolve
-# > India
-IP-ASN,44907,no-resolve
-# IP-CIDR,91.108.20.0/22,no-resolve
-# IP-CIDR6,2001:b28:f23c::/48,no-resolve
+IP-CIDR6,2001:b28:f23c::/48,no-resolve
+IP-CIDR6,2a0a:f280::/32,no-resolve
 # ------
 # > The Economist
 DOMAIN-SUFFIX,economist.com
@@ -431,18 +444,6 @@ DOMAIN-SUFFIX,nytlog.com
 DOMAIN-SUFFIX,nytstyle.com
 DOMAIN-SUFFIX,tmagazine.com
 DOMAIN,nytimes.map.fastly.net
-# > Twitter
-DOMAIN-SUFFIX,periscope.tv
-DOMAIN-SUFFIX,pscp.tv
-DOMAIN-SUFFIX,t.co
-DOMAIN-SUFFIX,tweetdeck.com
-DOMAIN-SUFFIX,twimg.co
-DOMAIN-SUFFIX,twimg.com
-DOMAIN-SUFFIX,twitpic.com
-DOMAIN-SUFFIX,twitter.com
-DOMAIN-SUFFIX,twitter.jp
-DOMAIN-SUFFIX,vine.co
-DOMAIN-SUFFIX,x.com
 # > Wikimedia Foundation
 DOMAIN-SUFFIX,mediawiki.org
 DOMAIN-SUFFIX,wikibooks.org
@@ -457,6 +458,20 @@ DOMAIN-SUFFIX,wikisource.org
 DOMAIN-SUFFIX,wikiversity.org
 DOMAIN-SUFFIX,wikivoyage.org
 DOMAIN-SUFFIX,wiktionary.org
+# > xAI
+DOMAIN-SUFFIX,grok.com
+DOMAIN-SUFFIX,periscope.tv
+DOMAIN-SUFFIX,pscp.tv
+DOMAIN-SUFFIX,t.co
+DOMAIN-SUFFIX,tweetdeck.com
+DOMAIN-SUFFIX,twimg.co
+DOMAIN-SUFFIX,twimg.com
+DOMAIN-SUFFIX,twitpic.com
+DOMAIN-SUFFIX,twitter.com
+DOMAIN-SUFFIX,twitter.jp
+DOMAIN-SUFFIX,vine.co
+DOMAIN-SUFFIX,x.ai
+DOMAIN-SUFFIX,x.com
 # > Yahoo
 DOMAIN-SUFFIX,yahoo.com
 DOMAIN-SUFFIX,yimg.com
@@ -474,16 +489,21 @@ DOMAIN-SUFFIX,z-lib.gs
 DOMAIN-SUFFIX,z-library.rs
 
 # (Region-Restricted Access Denied)
+DOMAIN-SUFFIX,cnbeta.com.tw
 DOMAIN-SUFFIX,engadget.com
 DOMAIN-SUFFIX,ifixit.com
 DOMAIN-SUFFIX,terabox.com
 DOMAIN-SUFFIX,wowhead.com
+DOMAIN-SUFFIX,wunderground.com
 DOMAIN-SUFFIX,xiaomi.eu
 DOMAIN-SUFFIX,zaobao.com.sg
+DOMAIN-SUFFIX,zoominfo.com
+
 DOMAIN-SUFFIX,zoom.us
 DOMAIN,addons.mozilla.org
-DOMAIN,c.mi.com
+DOMAIN,community.oneplus.com
 DOMAIN,wego.here.com
+
 # > Alphabet
 DOMAIN-SUFFIX,go.dev
 DOMAIN-SUFFIX,golang.org
@@ -496,6 +516,13 @@ DOMAIN,books.itunes.apple.com // iBooks Store download
 DOMAIN,facetime.apple.com // FaceTime Links
 DOMAIN,lookup-api.apple.com // Look Up
 DOMAIN,radio.itunes.apple.com // Apple Music Radio
+DOMAIN,apple-relay.apple.com // Apple Intelligence
+DOMAIN,apple-relay.cloudflare.com
+DOMAIN,apple-relay.fastly-edge.com
+DOMAIN,cp4.cloudflare.com
+# > Mi
+DOMAIN,c.mi.com
+DOMAIN,new.c.mi.com
 # > Web Preview
 DOMAIN,apps.apple.com
 DOMAIN,books.apple.com
@@ -516,4 +543,4 @@ DOMAIN-SUFFIX,bing.com
 DOMAIN-SUFFIX,linkedin.com
 DOMAIN-SUFFIX,licdn.com
 DOMAIN-SUFFIX,msn.com
-DOMAIN-SUFFIX,skype.com
+DOMAIN,copilot.microsoft.com

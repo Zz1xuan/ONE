@@ -6,6 +6,8 @@ DOMAIN-SUFFIX,haimianxz.com
 # nga
 DOMAIN,bugenzhao.com
 DOMAIN-SUFFIX,ngacn.cc
+# steam下载
+DOMAIN-SUFFIX,steamcontent.com
 
 # Direct+ ConnersHua
 DOMAIN,app.adjust.com

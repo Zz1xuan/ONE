@@ -19,12 +19,7 @@ DOMAIN,o33249.ingest.sentry.io
 
 #彩云天气
 DOMAIN,ad.cyapi.cn
-# 微博 开屏广告
-DOMAIN,adstrategy.biz.weibo.com
-DOMAIN,kadmimage.biz.weibo.com
-DOMAIN,sdkaction.biz.weibo.com
-DOMAIN,sdkclick.biz.weibo.com
-DOMAIN,sdkmonitor.biz.weibo.com
+
 # > A
 # > B
 # > 百度网盘

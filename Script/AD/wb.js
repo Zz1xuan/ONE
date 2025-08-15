@@ -111,7 +111,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj?.elements?.length > 0) {
       obj.elements = obj.elements.filter((i) => i.app_name === "写微博" || i.app_name === "图片" || i.app_name === "视频");
     }
-  } else if (url.includes("/2/comments/build_comments")) {
+  } else if (url.includes("/2/statuses/container_detail_comment")) {
     // 评论区
     if (obj?.datas?.length > 0) {
       let newItems = [];
@@ -146,7 +146,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             if (item?.type === 6 || item?.type === 15) {
               continue;
             }
-            if (item?.adType === "相关内容" || item?.adType === "相关评论" || item?.adType === "推荐") {
+            if (item?.adType === "相关内容" || item?.adType === "相关评论" || item?.adType === "推荐" || item?.adType === "广告") {
               continue;
             }
             newItems.push(item);

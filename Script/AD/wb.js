@@ -901,7 +901,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
       obj.statuses = newStatuses;
     }
-  } else if (url.includes("/2/statuses/container_timeline?") || url.includes("/2/statuses/container_detail") || url.includes("/2/statuses/container_detail_comment")) {
+  } else if (url.includes("/2/statuses/container_detail") || url.includes("/2/statuses/container_detail_comment")) {
     // 首页关注tab信息流
     if (obj?.loadedInfo?.headers) {
       delete obj.loadedInfo.headers;

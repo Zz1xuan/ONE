@@ -906,10 +906,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
   if (obj?.pageHeader?.items) {
     obj.pageHeader.items = obj.pageHeader.items.filter(item => {
       // 判断是否为指定类型的广告卡片
-      const isTopSearchingCard =
-        item?.category === "card" &&
-        item?.data?.card_type === 248 &&
-        item?.data?.hint === "大家都在搜";
+      const isTopSearchingCard = item?.data?.hint === "大家都在搜";
       const isWboxCardAd =
         item?.category === "wboxcard" &&
         item?.data?.card_type === 236 &&
@@ -917,9 +914,13 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       const isBloggerModule =
         item?.category === "group" &&
         item?.header?.title?.content === "博主好物种草";
+        // 判断是否为“关注推荐”模块
+      const isFollowRecommendations =
+        item?.category === "group" &&
+        item?.itemExt?.anchorId === "2302831003_";
 
       // 保留非广告项
-      return !(isTopSearchingCard || isWboxCardAd || isBloggerModule);
+      return !(isTopSearchingCard || isWboxCardAd || isBloggerModule || isFollowRecommendations);
     });
   }
 

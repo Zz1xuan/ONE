@@ -726,40 +726,25 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         obj.items = newItems;
       }
     }else if (url.includes("finder")) {
-  if (obj?.channelInfo?.channels?.length > 0) {
-    let newChannels = [];
-    for (let channel of obj.channelInfo.channels) {
-      if (["band_channel", "discover_channel", "trends_channel"]?.includes(channel?.key)) {
-        let payload = channel.payload;
-        if (payload) {
-          payload.items = []; // 删除所有信息流内容
+        const hotSearchesData = data.header.data.items.find(item => item.data && item.data.group);
+        if (hotSearchesData) {
+            hotSearchesData.data.col = 1; // 将热搜列表的布局改为单列
+            
+            // 重新构建 header.data.items 数组，只保留需要的项目
+            data.header.data.items = [
+                data.header.data.items[0], // 搜索栏和Logo
+                data.header.data.items[1], // 空白区域
+                {
+                    "category": "card",
+                    "itemExt": { "filterType": "search" },
+                    "style": {
+                        "background": { "color": "#ffffff", "type": "color", "colorKey": "CommonCardBackground" }
+                    },
+                    "data": hotSearchesData.data
+                }
+            ];
         }
-        newChannels.push(channel);
-      } else {
-        continue;
-      }
-    }
-    obj.channelInfo.channels = newChannels;
-  }
-  if (obj?.channelInfo?.moreChannels) {
-    delete obj.channelInfo.moreChannels;
-  }
-  if (obj?.header?.data?.items?.length > 0) {
-    let newItems = [];
-    for (let item of obj.header.data.items) {
-      if (item?.category === "card" && item?.data?.card_type === 17) {
-        if (item?.data?.group?.length > 0) {
-          // 将热搜榜变为一列
-          item.data.col = 1;
-        }
-        newItems.push(item);
-      } else if (item?.category === "cell") {
-        newItems.push(item);
-      }
-    }
-    obj.header.data.items = newItems;
-  }
-}
+    } 
     // else if (url.includes("finder")) {
     //   if (obj?.channelInfo?.channels?.length > 0) {
     //     let newChannels = [];

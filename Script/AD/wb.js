@@ -902,84 +902,78 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       obj.statuses = newStatuses;
     }
   } else if (url.includes("/2/statuses/container_detail")) {
-      // 信息流去广告
-      if (obj?.items?.length > 0) {
-        let newItems = [];
-        for (let item of obj.items) {
-          if (!isAd(item?.data)) {
-            if (item?.category === "feed") {
-              removeFeedAd(item?.data);
-
-              if (item.data?.title?.structs) continue;
-              if (item?.data?.action_button_icon_dic) {
-                delete item.data.action_button_icon_dic;
-              }
-              removeVoteInfo(item?.data);
-
-              if (item?.data?.screen_name_suffix_new?.[3]?.content === "快转了") continue;
-              if (item?.data?.title?.text?.includes("精选")) continue;
-              if (item?.data?.user?.following === false) continue;
-
-              if (item?.data?.user?.unfollowing_recom_switch === 1) {
-                item.data.user.unfollowing_recom_switch = 0;
-              }
-              if (item?.data?.tag_struct?.length > 0) {
-                item.data.tag_struct = [];
-              }
-
-              newItems.push(item);
-            } else if (item?.category === "feedBiz") {
-              newItems.push(item);
+  // 首页关注tab信息流
+    if (obj?.loadedInfo?.headers) {
+      delete obj.loadedInfo.headers;
+    }
+    // 商品橱窗
+    if (obj?.common_struct) {
+      delete obj?.common_struct;
+    }
+    if (obj?.items?.length > 0) {
+      let newItems = [];
+      for (let item of obj.items) {
+        if (isAd(item?.data)) {
+          // This is the isAd function to filter general ads
+          continue;
+        }
+        if (item?.category === "feed") {
+          // 信息流推广
+          if (item.data?.title?.structs) {
+            // 移除 未关注人消息 (你关注的博主，他自己关注的别的博主的微博消息)
+            continue;
+          }
+          if (item?.data?.action_button_icon_dic) {
+            delete item.data.action_button_icon_dic;
+          }
+          // 投票窗口
+          removeVoteInfo(item?.data);
+          // 快转内容
+          if (item?.data?.screen_name_suffix_new?.length > 0) {
+            if (item?.data?.screen_name_suffix_new?.[3]?.content === "快转了") {
+              continue;
             }
           }
-        }
-        obj.items = newItems;
-      }
-    }else if (url.includes("/2/statuses/container_detail_comment")) {
-      // 评论区仅移除广告，不影响普通评论
-      if (obj?.items?.length > 0) {
-        obj.items = obj.items.filter(item => {
-          if (item?.data?.is_ad === 1 || item?.data?.promotion_info) {
-            return false; // 移除广告
+          // 美妆精选季
+          if (item?.data?.title?.text?.includes("精选")) {
+            continue;
           }
-          return true; // 保留普通评论
-        });
+          // 未关注博主
+          if (item?.data?.user?.following === false) {
+            continue;
+          }
+          // 关闭关注推荐
+          if (item?.data?.user?.unfollowing_recom_switch === 1) {
+            item.data.user.unfollowing_recom_switch = 0;
+          }
+          // 博主top100
+          if (item?.data?.tag_struct?.length > 0) {
+            item.data.tag_struct = [];
+          }
+          newItems.push(item);
+        } else if (item?.category === "feedBiz") {
+          // 管理特别关注按钮
+          newItems.push(item);
+        } else {
+          // 移除其他推广
+          continue;
+        }
       }
+      obj.items = newItems;
     }
-    
-    // if (url.includes("/2/statuses/container_detail") || url.includes("/2/statuses/container_detail_comment")) {
-    // // 首页关注tab信息流
-    // if (obj?.items?.length > 0) {
-    //   let newItems = [];
-    //   for (let item of obj.items) {
-    //     if (!isAd(item?.data)) {
-    //       if (item?.category === "feed") {
-    //         // 信息流广告清理逻辑
-    //         removeFeedAd(item?.data);
-    //         if (item.data?.title?.structs) continue;
-    //         removeVoteInfo(item?.data);
-    //         if (item?.data?.screen_name_suffix_new?.[3]?.content === "快转了") continue;
-    //         if (item?.data?.title?.text?.includes("精选")) continue;
-    //         if (item?.data?.user?.following === false) continue;
-
-    //         if (item?.data?.user?.unfollowing_recom_switch === 1) {
-    //           item.data.user.unfollowing_recom_switch = 0;
-    //         }
-    //         if (item?.data?.tag_struct?.length > 0) {
-    //           item.data.tag_struct = [];
-    //         }
-    //         newItems.push(item);
-    //       } else if (item?.category === "feedBiz") {
-    //         newItems.push(item);
-    //       } else {
-    //         // ⚠️ 评论、普通内容走这里 → 不删除
-    //         newItems.push(item);
-    //       }
-    //     }
-    //   }
-    //   obj.items = newItems;
-    // }
-    else if (url.includes("/2/statuses/container_timeline_topic")) {
+  } else if (url.includes("/2/statuses/container_detail_comment")) {
+    // 评论区逻辑
+    if (obj?.items?.length > 0) {
+      let newItems = [];
+      for (let item of obj.items) {
+        // Keep only regular comments
+        if (item?.category === "detail" && item?.type === "comment") {
+          newItems.push(item);
+        }
+      }
+      obj.items = newItems;
+    }
+  }else if (url.includes("/2/statuses/container_timeline_topic")) {
     // 超话信息流
     if (obj?.header?.data?.follow_guide_info) {
       // 底部弹出的关注按钮

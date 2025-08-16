@@ -908,7 +908,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       // 判断是否为指定类型的 wboxcard 广告
       const isWboxCardAd =
         item?.category === "wboxcard" &&
-        [236, 227, 248].includes(item?.data?.card_type) &&
+        [236, 227, 248].includes(item?.data?.wboxParam?.cardData?.card_type) &&
         item?.data?.is_ad_card === 1;
       // 保留非广告项
       return !isWboxCardAd;

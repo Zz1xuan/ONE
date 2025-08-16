@@ -934,7 +934,14 @@ if (url.includes("/interface/sdk/sdkad.php")) {
   }
 }else if (url.includes("/2/statuses/container_detail_comment")) {
     if (obj?.items?.length > 0) {
-      obj.items = obj.items.filter(item => item?.type === "comment");
+        obj.items = obj.items.filter(item => {
+            const isAIAdCard =
+                item?.category === "card" &&
+                item?.data?.card_type === 236 &&
+                item?.data?.wboxParam?.title === "罗伯特总结";
+            // 保留所有评论项和非广告卡片
+            return !(isAIAdCard);
+        });
     }
 }else if (url.includes("/2/statuses/container_timeline_topic")) {
     // 超话信息流

@@ -771,7 +771,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
                     }
                   } else if (item?.category === "cell") {
                     // 保留信息流分割线
-                    newItems.push(item);
+                    // newItems.push(item);
                   } else if (item?.category === "group") {
                     if (item?.items?.length > 0) {
                       let newII = [];
@@ -799,7 +799,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             continue;
           }
         }
-        obj.channelInfo.channels = [];
+        obj.channelInfo.channels = newChannels;
       }
       if (obj?.channelInfo?.moreChannels) {
         // 更多版块

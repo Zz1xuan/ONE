@@ -66,6 +66,20 @@ if (url.includes("/2/statuses/container_detail")) {
       return !(isAIAdCard || isTrendAd);
     });
   }
+}else if (url.includes("/2/statuses/container_timeline_hot")) {
+  if (obj?.items) {
+    // 过滤掉广告项
+    obj.items = obj.items.filter(item => {
+      // 检查item?.data?.mark字段是否包含 "ad" 字符串，这是广告的常见标识
+      const isMarkedAsAd = item?.data?.mark?.includes("ad");
+      
+      // 检查item?.data?.ad_state是否为1，这是另一种广告标识
+      const isAdStateActive = item?.data?.ad_state === 1;
+
+      // 只要满足任一条件，就认为是广告，返回false进行过滤
+      return !(isMarkedAsAd || isAdStateActive);
+    });
+  }
 }
 
 body = JSON.stringify(obj);

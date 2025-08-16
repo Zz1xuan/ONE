@@ -726,141 +726,115 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         obj.items = newItems;
       }
     }else if (url.includes("finder")) {
-      // 1. 获取热搜列表卡片，它位于 header.data.items 的第3个位置（索引为3）
-      const hotSearchesCard = obj.header.data.items[3];
-
-      if (hotSearchesCard?.data?.group) {
-          // 2. 将热搜列表的布局改为单列（将 col 的值从 2 改为 1）
-          hotSearchesCard.data.col = 1;
-
-          // 3. 重新构建 header.data.items 数组，只保留搜索栏和热搜卡片
-          //    - obj.header.data.items[0] 是搜索栏和Logo
-          //    - obj.header.data.items[1] 是热搜榜的标题
-          //    - hotSearchesCard 是我们找到并修改后的热搜卡片
-          obj.header.data.items = [
-              obj.header.data.items[0],
-              obj.header.data.items[1],
-              obj.header.data.items[2], // 保留热搜榜标题与热搜列表之间的空白区域
-              hotSearchesCard
-          ];
-
-          // 4. 删除所有频道信息，包括 "热问"、"热转" 等
-          if (obj?.channelInfo) {
-              delete obj.channelInfo;
+      if (obj?.channelInfo?.channels?.length > 0) {
+        let newChannels = [];
+        for (let channel of obj.channelInfo.channels) {
+          // 顶部标签栏 白名单
+          if (["band_channel", "discover_channel", "trends_channel"]?.includes(channel?.key)) {
+            let payload = channel.payload;
+            if (payload) {
+              if (payload?.loadedInfo) {
+                // 去除搜索框填充词
+                if (payload?.loadedInfo?.searchBarContent?.length > 0) {
+                  payload.loadedInfo.searchBarContent = [];
+                }
+                if (payload?.loadedInfo?.headerBack?.channelStyleMap) {
+                  delete payload.loadedInfo.headerBack.channelStyleMap; // 去除搜索背景图片
+                }
+                if (payload?.loadedInfo?.searchBarStyleInfo) {
+                  delete payload.loadedInfo.searchBarStyleInfo; // 搜索框样式
+                }
+              }
+              if (payload?.items?.length > 0) {
+                let newItems = [];
+                for (let item of payload.items) {
+                  if (item?.category === "feed") {
+                    if (!isAd(item?.data)) {
+                      removeFeedAd(item.data); // 信息流推广
+                      newItems.push(item);
+                    }
+                  } else if (item?.category === "card") {
+                    // 19热议等tab 22商业推广 118横版广告图片 206,249横版视频广告 208实况热聊 217错过了热议 236微博趋势 261奥运滚动横幅
+                    if ([19, 22, 118, 206, 208, 217, 236, 249, 261]?.includes(item?.data?.card_type)) {
+                      continue;
+                    } else if (item?.data?.itemid === "ads_slide") {
+                      // 商业推广 主图 附图
+                      continue;
+                    } else if (item?.data?.cate_id === "1114") {
+                      // 微博趋势标题
+                      continue;
+                    } else if (item?.data?.hasOwnProperty("rank")) {
+                      // 奥运等排行榜
+                      continue;
+                    } else {
+                      newItems.push(item);
+                    }
+                  } else if (item?.category === "cell") {
+                    // 保留信息流分割线
+                    newItems.push(item);
+                  } else if (item?.category === "group") {
+                    if (item?.items?.length > 0) {
+                      let newII = [];
+                      for (let ii of item.items) {
+                        // 118横版广告图片 182热议话题 192横版好看视频 217错过了热议 247横版视频广告 264微博趋势
+                        if ([118, 182, 192, 217, 247, 264]?.includes(ii?.data?.card_type)) {
+                          continue;
+                        } else if (ii?.data?.cate_id === "1114") {
+                          // 微博趋势
+                          continue;
+                        } else {
+                          newII.push(ii);
+                        }
+                      }
+                      item.items = newII;
+                    }
+                    newItems.push(item);
+                  }
+                }
+                payload.items = newItems;
+              }
+            }
+            newChannels.push(channel);
+          } else {
+            continue;
           }
+        }
+        obj.channelInfo.channels = [];
       }
-  }
-
-    // else if (url.includes("finder")) {
-    //   if (obj?.channelInfo?.channels?.length > 0) {
-    //     let newChannels = [];
-    //     for (let channel of obj.channelInfo.channels) {
-    //       // 顶部标签栏 白名单
-    //       if (["band_channel", "discover_channel", "trends_channel"]?.includes(channel?.key)) {
-    //         let payload = channel.payload;
-    //         if (payload) {
-    //           if (payload?.loadedInfo) {
-    //             // 去除搜索框填充词
-    //             if (payload?.loadedInfo?.searchBarContent?.length > 0) {
-    //               payload.loadedInfo.searchBarContent = [];
-    //             }
-    //             if (payload?.loadedInfo?.headerBack?.channelStyleMap) {
-    //               delete payload.loadedInfo.headerBack.channelStyleMap; // 去除搜索背景图片
-    //             }
-    //             if (payload?.loadedInfo?.searchBarStyleInfo) {
-    //               delete payload.loadedInfo.searchBarStyleInfo; // 搜索框样式
-    //             }
-    //           }
-    //           if (payload?.items?.length > 0) {
-    //             let newItems = [];
-    //             for (let item of payload.items) {
-    //               if (item?.category === "feed") {
-    //                 if (!isAd(item?.data)) {
-    //                   removeFeedAd(item.data); // 信息流推广
-    //                   newItems.push(item);
-    //                 }
-    //               } else if (item?.category === "card") {
-    //                 // 19热议等tab 22商业推广 118横版广告图片 206,249横版视频广告 208实况热聊 217错过了热议 236微博趋势 261奥运滚动横幅
-    //                 if ([19, 22, 118, 206, 208, 217, 236, 249, 261]?.includes(item?.data?.card_type)) {
-    //                   continue;
-    //                 } else if (item?.data?.itemid === "ads_slide") {
-    //                   // 商业推广 主图 附图
-    //                   continue;
-    //                 } else if (item?.data?.cate_id === "1114") {
-    //                   // 微博趋势标题
-    //                   continue;
-    //                 } else if (item?.data?.hasOwnProperty("rank")) {
-    //                   // 奥运等排行榜
-    //                   continue;
-    //                 } else {
-    //                   newItems.push(item);
-    //                 }
-    //               } else if (item?.category === "cell") {
-    //                 // 保留信息流分割线
-    //                 newItems.push(item);
-    //               } else if (item?.category === "group") {
-    //                 if (item?.items?.length > 0) {
-    //                   let newII = [];
-    //                   for (let ii of item.items) {
-    //                     // 118横版广告图片 182热议话题 192横版好看视频 217错过了热议 247横版视频广告 264微博趋势
-    //                     if ([118, 182, 192, 217, 247, 264]?.includes(ii?.data?.card_type)) {
-    //                       continue;
-    //                     } else if (ii?.data?.cate_id === "1114") {
-    //                       // 微博趋势
-    //                       continue;
-    //                     } else {
-    //                       newII.push(ii);
-    //                     }
-    //                   }
-    //                   item.items = newII;
-    //                 }
-    //                 newItems.push(item);
-    //               }
-    //             }
-    //             payload.items = newItems;
-    //           }
-    //         }
-    //         newChannels.push(channel);
-    //       } else {
-    //         continue;
-    //       }
-    //     }
-    //     obj.channelInfo.channels = newChannels;
-    //   }
-    //   if (obj?.channelInfo?.moreChannels) {
-    //     // 更多版块
-    //     delete obj.channelInfo.moreChannels;
-    //   }
-    //   if (obj?.header?.data?.items?.length > 0) {
-    //     // 2025-01-24更新 新版本finder_window
-    //     let newItems = [];
-    //     for (let item of obj.header.data.items) {
-    //       if (item?.category === "card") {
-    //         if ([19, 22, 118, 206, 208, 217, 236, 249, 261]?.includes(item?.data?.card_type)) {
-    //           continue;
-    //         }
-    //         if (item?.data?.hasOwnProperty("rank")) {
-    //           // 各种赛事排行榜
-    //           continue;
-    //         }
-    //       } else if (item?.category === "group") {
-    //         if (item?.items?.length > 0) {
-    //           let newII = [];
-    //           for (let i of item.items) {
-    //             if ([118, 182, 192, 217, 247, 264]?.includes(i?.data?.card_type)) {
-    //               continue;
-    //             } else {
-    //               newII.push(i);
-    //             }
-    //           }
-    //           item.items = newII;
-    //         }
-    //       }
-    //       newItems.push(item);
-    //     }
-    //     obj.header.data.items = newItems;
-    //   }
-    // }
+      if (obj?.channelInfo?.moreChannels) {
+        // 更多版块
+        delete obj.channelInfo.moreChannels;
+      }
+      if (obj?.header?.data?.items?.length > 0) {
+        // 2025-01-24更新 新版本finder_window
+        let newItems = [];
+        for (let item of obj.header.data.items) {
+          if (item?.category === "card") {
+            if ([19, 22, 118, 206, 208, 217, 236, 249, 261]?.includes(item?.data?.card_type)) {
+              continue;
+            }
+            if (item?.data?.hasOwnProperty("rank")) {
+              // 各种赛事排行榜
+              continue;
+            }
+          } else if (item?.category === "group") {
+            if (item?.items?.length > 0) {
+              let newII = [];
+              for (let i of item.items) {
+                if ([118, 182, 192, 217, 247, 264]?.includes(i?.data?.card_type)) {
+                  continue;
+                } else {
+                  newII.push(i);
+                }
+              }
+              item.items = newII;
+            }
+          }
+          newItems.push(item);
+        }
+        obj.header.data.items = newItems;
+      }
+    }
   } else if (url.includes("/2/searchall")) {
     if (obj?.header?.data) {
       // 商品推广头部淘宝跳转

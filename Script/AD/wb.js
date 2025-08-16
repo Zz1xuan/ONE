@@ -905,13 +905,18 @@ if (url.includes("/interface/sdk/sdkad.php")) {
   // 删除“大家都在搜”的卡片和"card_type": 236的wboxcard广告
   if (obj?.pageHeader?.items) {
     obj.pageHeader.items = obj.pageHeader.items.filter(item => {
-      // 判断是否为指定类型的 wboxcard 广告
+      // 判断是否为指定类型的广告卡片
+      const isTopSearchingCard =
+        item?.category === "card" &&
+        item?.data?.card_type === 248 &&
+        item?.data?.itemid === "top_searching";
       const isWboxCardAd =
         item?.category === "wboxcard" &&
-        [236, 227, 248].includes(item?.data?.wboxParam?.cardData?.card_type) &&
+        item?.data?.card_type === 236 &&
         item?.data?.is_ad_card === 1;
+
       // 保留非广告项
-      return !isWboxCardAd;
+      return !(isTopSearchingCard || isWboxCardAd);
     });
   }
 
@@ -924,10 +929,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     delete obj.detailInfo.extend.reward_info;
     obj.detailInfo.extend.reward_exhibition_type = 0;
   }
-}
-
-// 评论区过滤逻辑保持不变，确保只保留普通评论
-if (url.includes("/2/statuses/container_detail_comment")) {
+}else if (url.includes("/2/statuses/container_detail_comment")) {
     if (obj?.items?.length > 0) {
       obj.items = obj.items.filter(item => item?.type === "comment");
     }

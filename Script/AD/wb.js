@@ -905,13 +905,13 @@ if (url.includes("/interface/sdk/sdkad.php")) {
   // 删除“大家都在搜”的卡片和"card_type": 236的wboxcard广告
   if (obj?.pageHeader?.items) {
     obj.pageHeader.items = obj.pageHeader.items.filter(item => {
-      // 检查itemid是否为“大家都在搜”
-      const isTopSearching = item?.data?.itemid === "top_searching";
-      // 检查card_type是否为236的wboxcard广告，其中is_ad_card为1
-      const isWboxCardAd = item?.category === "wboxcard" && item?.data?.card_type === 236 && item?.data?.is_ad_card === 1;
-      
-      // 如果不是这两种广告，则返回true保留该项目
-      return !isTopSearching && !isWboxCardAd;
+      // 判断是否为指定类型的 wboxcard 广告
+      const isWboxCardAd =
+        item?.category === "wboxcard" &&
+        [236, 227, 248].includes(item?.data?.card_type) &&
+        item?.data?.is_ad_card === 1;
+      // 保留非广告项
+      return !isWboxCardAd;
     });
   }
 

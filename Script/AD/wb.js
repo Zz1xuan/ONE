@@ -901,118 +901,36 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
       obj.statuses = newStatuses;
     }
-  } else if (url.includes("/2/statuses/container_detail") || url.includes("/2/statuses/container_detail_comment")) {
-  // 首页关注tab信息流
-  if (obj?.loadedInfo?.headers) {
-    delete obj.loadedInfo.headers;
-  }
-
-  // 定义一个更通用的函数来判断是否是广告
-  const isAd = (item) => {
-    // 检查项目本身是否有广告标记
-    if (item?.data?.is_ad || item?.data?.is_ad_card) {
-      return true;
-    }
-    // 检查评论区特有的广告标记
-    if (item?.data?.adType === "广告" || item?.data?.commentAdType === 1) {
-      return true;
-    }
-    // 检查主 feed 流的推广标记
-    if (item?.data?.ad_object || item?.data?.promotion || item?.data?.ad_state) {
-      return true;
-    }
-    // 检查评论区广告的类型
-    if (item?.category === "detail" && item?.type === "trend") {
-      return true;
-    }
-    return false;
-  };
-
-  // 在处理主信息流时，额外删除指定内容
-  if (url.includes("/2/statuses/container_detail")) {
-    // 删除“大家都在搜”的卡片和"card_type": 236的wboxcard广告
-    if (obj?.pageHeader?.items) {
-      obj.pageHeader.items = obj.pageHeader.items.filter(item => {
-        // 检查itemid是否为“大家都在搜”
-        const isTopSearching = item?.data?.itemid === "top_searching";
-        // 检查card_type是否为236的wboxcard广告
-        const isWboxCardAd = item?.category === "wboxcard" && item?.data?.card_type === 236;
-        return !isTopSearching && !isWboxCardAd;
-      });
-    }
-
-    // 删除“点赞是美意”的赞赏信息
-    if (obj?.detailInfo?.status?.reward_info) {
-      delete obj.detailInfo.status.reward_info;
-      obj.detailInfo.status.reward_exhibition_type = 0;
-    }
-    if (obj?.detailInfo?.extend?.reward_info) {
-      delete obj.detailInfo.extend.reward_info;
-      obj.detailInfo.extend.reward_exhibition_type = 0;
-    }
-  }
-
-  if (obj?.items?.length > 0) {
-    let newItems = [];
-    for (let item of obj.items) {
-      // 如果是广告，则跳过
-      if (isAd(item)) {
-        continue;
-      }
+  } else if (url.includes("/2/statuses/container_detail")) {
+  // 删除“大家都在搜”的卡片和"card_type": 236的wboxcard广告
+  if (obj?.pageHeader?.items) {
+    obj.pageHeader.items = obj.pageHeader.items.filter(item => {
+      // 检查itemid是否为“大家都在搜”
+      const isTopSearching = item?.data?.itemid === "top_searching";
+      // 检查card_type是否为236的wboxcard广告，其中is_ad_card为1
+      const isWboxCardAd = item?.category === "wboxcard" && item?.data?.card_type === 236 && item?.data?.is_ad_card === 1;
       
-      // 如果是评论页，只保留普通的评论
-      if (url.includes("/2/statuses/container_detail_comment")) {
-        if (item?.category === "detail" && item?.type === "comment") {
-          newItems.push(item);
-        }
-      } else {
-        // 如果是主信息流，保留原有逻辑
-        if (item?.category === "feed") {
-          // 信息流推广
-          removeFeedAd(item?.data);
-          if (item.data?.title?.structs) {
-            // 移除 未关注人消息 (你关注的博主，他自己关注的别的博主的微博消息)
-            continue;
-          }
-          if (item?.data?.action_button_icon_dic) {
-            delete item.data.action_button_icon_dic;
-          }
-          // 投票窗口
-          removeVoteInfo(item?.data);
-          // 快转内容
-          if (item?.data?.screen_name_suffix_new?.length > 0) {
-            if (item?.data?.screen_name_suffix_new?.[3]?.content === "快转了") {
-              continue;
-            }
-          }
-          // 美妆精选季
-          if (item?.data?.title?.text?.includes("精选")) {
-            continue;
-          }
-          // 未关注博主
-          if (item?.data?.user?.following === false) {
-            continue;
-          }
-          // 关闭关注推荐
-            if (item?.data?.user?.unfollowing_recom_switch === 1) {
-              item.data.user.unfollowing_recom_switch = 0;
-            }
-            // 博主top100
-            if (item?.data?.tag_struct?.length > 0) {
-              item.data.tag_struct = [];
-            }
-            newItems.push(item);
-        } else if (item?.category === "feedBiz") {
-          // 管理特别关注按钮
-          newItems.push(item);
-        } else {
-          // 移除其他推广
-          continue;
-        }
-      }
-    }
-    obj.items = newItems;
+      // 如果不是这两种广告，则返回true保留该项目
+      return !isTopSearching && !isWboxCardAd;
+    });
   }
+
+  // 删除“点赞是美意”的赞赏信息
+  if (obj?.detailInfo?.status?.reward_info) {
+    delete obj.detailInfo.status.reward_info;
+    obj.detailInfo.status.reward_exhibition_type = 0;
+  }
+  if (obj?.detailInfo?.extend?.reward_info) {
+    delete obj.detailInfo.extend.reward_info;
+    obj.detailInfo.extend.reward_exhibition_type = 0;
+  }
+}
+
+// 评论区过滤逻辑保持不变，确保只保留普通评论
+if (url.includes("/2/statuses/container_detail_comment")) {
+    if (obj?.items?.length > 0) {
+      obj.items = obj.items.filter(item => item?.type === "comment");
+    }
 }else if (url.includes("/2/statuses/container_timeline_topic")) {
     // 超话信息流
     if (obj?.header?.data?.follow_guide_info) {

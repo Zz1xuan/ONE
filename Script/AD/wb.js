@@ -726,33 +726,30 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         obj.items = newItems;
       }
     }else if (url.includes("finder")) {
-      // 1. 找到热搜列表所在的卡片
-      const hotSearchesCard = data.header.data.items.find(item => item.data && item.data.group);
+      // 1. 获取热搜列表卡片，它位于 header.data.items 的第3个位置（索引为3）
+      const hotSearchesCard = obj.header.data.items[3];
 
-      if (hotSearchesCard) {
-          // 2. 将热搜列表的布局改为单列
+      if (hotSearchesCard?.data?.group) {
+          // 2. 将热搜列表的布局改为单列（将 col 的值从 2 改为 1）
           hotSearchesCard.data.col = 1;
 
-          // 3. 删除 channelInfo 中所有的频道（热问、热转等）
-          if (data.channelInfo?.channels) {
-              data.channelInfo.channels = [];
+          // 3. 重新构建 header.data.items 数组，只保留搜索栏和热搜卡片
+          //    - obj.header.data.items[0] 是搜索栏和Logo
+          //    - obj.header.data.items[1] 是热搜榜的标题
+          //    - hotSearchesCard 是我们找到并修改后的热搜卡片
+          obj.header.data.items = [
+              obj.header.data.items[0],
+              obj.header.data.items[1],
+              obj.header.data.items[2], // 保留热搜榜标题与热搜列表之间的空白区域
+              hotSearchesCard
+          ];
+
+          // 4. 删除所有频道信息，包括 "热问"、"热转" 等
+          if (obj?.channelInfo) {
+              delete obj.channelInfo;
           }
-          // 4. 删除更多频道入口
-          if (data.channelInfo?.moreChannels) {
-              delete data.channelInfo.moreChannels;
-          }
-          
-          // 5. 重新构建 header.data.items 数组，只保留必要的元素：
-          //    - 搜索框和logo
-          //    - 热搜榜标题
-          //    - 热搜列表卡片
-          data.header.data.items = data.header.data.items.filter(item => 
-              (item.type === "span" && item.category === "cell") ||
-              (item.data && item.data.left_tag_img) ||
-              (item.data && item.data.group)
-          );
       }
-    }
+  }
 
     // else if (url.includes("finder")) {
     //   if (obj?.channelInfo?.channels?.length > 0) {

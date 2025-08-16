@@ -110,12 +110,12 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     }
   } else if (url.includes("/2/checkin/show")) {
     // 首页签到
-    if (obj?.show) {
-      obj.show = 0;
-    }
-    if (obj?.show_time) {
-      obj.show_time = 0;
-    }
+    // if (obj?.show) {
+    //   obj.show = 0;
+    // }
+    // if (obj?.show_time) {
+    //   obj.show_time = 0;
+    // }
   } else if (url.includes("/2/client/publisher_list")) {
     // 首页右上角按钮
     if (obj?.elements?.length > 0) {

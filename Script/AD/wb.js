@@ -588,7 +588,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             delete item.body; // 移除框内推广
           }
           newItems.push(item);
-        } else if (itemId === "100505_-_chaohua" || itemId === "100505_-_recentlyuser") {
+        } else if (itemId === "100505_-_chaohua" || itemId === "100505_-_recentlyuser" || itemId === "100505_-_newusertask") {
           newItems.push(item);
         } else {
           // 移除其他推广
@@ -725,7 +725,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         }
         obj.items = newItems;
       }
-    }else if (url.includes("finder")) {
+    } else if (url.includes("finder")) {
       if (obj?.channelInfo?.channels?.length > 0) {
         let newChannels = [];
         for (let channel of obj.channelInfo.channels) {

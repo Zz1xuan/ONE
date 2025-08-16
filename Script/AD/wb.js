@@ -909,14 +909,17 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       const isTopSearchingCard =
         item?.category === "card" &&
         item?.data?.card_type === 248 &&
-        item?.data?.itemid === "top_searching";
+        item?.data?.hint === "大家都在搜";
       const isWboxCardAd =
         item?.category === "wboxcard" &&
         item?.data?.card_type === 236 &&
         item?.data?.is_ad_card === 1;
+      const isBloggerModule =
+        item?.category === "group" &&
+        item?.header?.title?.content === "博主好物种草";
 
       // 保留非广告项
-      return !(isTopSearchingCard || isWboxCardAd);
+      return !(isTopSearchingCard || isWboxCardAd || isBloggerModule);
     });
   }
 

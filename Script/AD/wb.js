@@ -905,21 +905,26 @@ if (url.includes("/interface/sdk/sdkad.php")) {
   // 删除“大家都在搜”的卡片和"card_type": 236的wboxcard广告
   if (obj?.pageHeader?.items) {
     obj.pageHeader.items = obj.pageHeader.items.filter(item => {
-      // 判断是否为指定类型的广告卡片
-      const isTopSearchingCard = item?.data?.hint === "大家都在搜";
-      const isWboxCardAd =
-        item?.category === "wboxcard" &&
-        item?.data?.card_type === 236 &&
-        item?.data?.is_ad_card === 1;
+      // 1. 删除“大家都在搜”的卡片，通过其显示的提示文本来识别
+      const isTopSearchingCard =
+        item?.category === "card" &&
+        item?.data?.card_type === 248 &&
+        item?.data?.hint === "大家都在搜";
+
+      // 2. 删除 wboxcard 广告，通过其广告标志 is_ad_card 来识别
+      const isWboxCardAd = item?.data?.is_ad_card === 1;
+
+      // 3. 删除“博主好物种草”模块，通过其 category 和标题来识别
       const isBloggerModule =
         item?.category === "group" &&
         item?.header?.title?.content === "博主好物种草";
-        // 判断是否为“关注推荐”模块
+
+      // 4. 删除“关注推荐”模块，通过其 category 和唯一ID来识别
       const isFollowRecommendations =
         item?.category === "group" &&
         item?.itemExt?.anchorId === "2302831003_";
 
-      // 保留非广告项
+      // 保留所有非广告和非推荐项
       return !(isTopSearchingCard || isWboxCardAd || isBloggerModule || isFollowRecommendations);
     });
   }

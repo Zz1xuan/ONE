@@ -901,7 +901,30 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
       obj.statuses = newStatuses;
     }
-  } else if (url.includes("/2/statuses/container_detail")) {
+  } else if (url.includes("/statuses/container_timeline_hot")) {
+    if (obj?.items?.length > 0) {
+        obj.items = obj.items.filter(item => {
+            // 1. 删除顶部的“大家正在搜”搜索卡片
+            const isSearchBarGroup =
+                item?.category === "group" &&
+                item?.itemId === "hot_bottom_tab_search_input";
+
+            // 2. 删除明确标注为“广告”的帖子
+            const isFeedAd =
+                item?.item_category === "hot_ad" ||
+                item?.data?.is_ad === 1 ||
+                item?.status?.is_ad === 1;
+
+            // 3. 删除带有“推荐内容”标签的动态流广告
+            const isRecommendedAd = 
+                item?.status?.readtimetype === "adMblog" ||
+                item?.status?.ad_state === 1;
+
+            // 保留所有非广告和非推荐项
+            return !(isSearchBarGroup || isFeedAd || isRecommendedAd);
+        });
+    }
+}else if (url.includes("/2/statuses/container_detail")) {
     if (obj?.pageHeader?.items) {
       obj.pageHeader.items = obj.pageHeader.items.filter(item => {
         // 1. 删除“大家都在搜”的卡片，通过其显示的提示文本来识别

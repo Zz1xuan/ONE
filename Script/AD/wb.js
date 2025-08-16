@@ -121,7 +121,61 @@ if (url.includes("/interface/sdk/sdkad.php")) {
     if (obj?.elements?.length > 0) {
       obj.elements = obj.elements.filter((i) => ["写微博", "图片", "视频"]?.includes(i?.app_name));
     }
-  }else if (url.includes("/2/comments/build_comments")) {
+  }else if (url.includes("/2/push/active")) {
+    if (obj?.compose_add_guide) {
+      delete obj.compose_add_guide; // 过期情人节红包
+    }
+    // delete obj.feed_redpacket; // 首页右上角红包图标
+    if (obj?.floating_windows_force_show) {
+      delete obj.floating_windows_force_show; // 强制展示的悬浮窗
+    }
+    if (obj?.interceptad) {
+      delete obj.interceptad; // 可能是首页签到弹窗
+    }
+    if (obj?.interceptad_cardlist) {
+      delete obj.interceptad_cardlist; // 可能是首页签到弹窗
+    }
+    if (obj?.loginconfig) {
+      delete obj.loginconfig; // 登录领红包
+    }
+    if (obj?.profile_lotties) {
+      delete obj.profile_lotties; // 个人主页头像挂件素材
+    }
+    if (obj?.ug_red_paper) {
+      delete obj.ug_red_paper; // 可能是首页签到弹窗
+    }
+    // 禁用所有的悬浮窗
+    if (obj?.disable_floating_window) {
+      obj.disable_floating_window = "1";
+    }
+    // 首页右上角红包图标
+    // if (obj?.feed_redpacket) {
+    //   obj.feed_redpacket.starttime = "2208960000";
+    //   obj.feed_redpacket.interval = "31536000";
+    //   obj.feed_redpacket.endtime = "2209046399";
+    //   if (obj?.feed_redpacket?.finish_icon) {
+    //     delete obj.feed_redpacket.finish_icon;
+    //   }
+    //   if (obj?.feed_redpacket?.guide) {
+    //     delete obj.feed_redpacket.guide;
+    //   }
+    //   if (obj?.feed_redpacket?.icon) {
+    //     delete obj.feed_redpacket.icon;
+    //   }
+    //   if (obj?.feed_redpacket?.pre_icon) {
+    //     delete obj.feed_redpacket.pre_icon;
+    //   }
+    // }
+    if (obj?.floating_window_for_live_streaming) {
+      obj.floating_window_for_live_streaming = false;
+    }
+    if (obj?.floating_window_show_interval) {
+      obj.floating_window_show_interval = 31536000;
+    }
+    if (obj?.floating_windows?.length > 0) {
+      obj.floating_windows = obj.floating_windows.filter((i) => !/(?:^ad_?|red_pocket|ug_high_priority)/.test(i?.subtype));
+    }
+  } else if (url.includes("/2/comments/build_comments")) {
     // 评论区
     if (obj?.datas?.length > 0) {
       let newItems = [];
@@ -612,61 +666,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         toolbar.items = newTools;
       }
     }
-  }else if (url.includes("/2/push/active")) {
-    if (obj?.compose_add_guide) {
-      delete obj.compose_add_guide; // 过期情人节红包
-    }
-    // delete obj.feed_redpacket; // 首页右上角红包图标
-    if (obj?.floating_windows_force_show) {
-      delete obj.floating_windows_force_show; // 强制展示的悬浮窗
-    }
-    if (obj?.interceptad) {
-      delete obj.interceptad; // 可能是首页签到弹窗
-    }
-    if (obj?.interceptad_cardlist) {
-      delete obj.interceptad_cardlist; // 可能是首页签到弹窗
-    }
-    if (obj?.loginconfig) {
-      delete obj.loginconfig; // 登录领红包
-    }
-    if (obj?.profile_lotties) {
-      delete obj.profile_lotties; // 个人主页头像挂件素材
-    }
-    if (obj?.ug_red_paper) {
-      delete obj.ug_red_paper; // 可能是首页签到弹窗
-    }
-    // 禁用所有的悬浮窗
-    if (obj?.disable_floating_window) {
-      obj.disable_floating_window = "1";
-    }
-    // 首页右上角红包图标
-    if (obj?.feed_redpacket) {
-      obj.feed_redpacket.starttime = "2208960000";
-      obj.feed_redpacket.interval = "31536000";
-      obj.feed_redpacket.endtime = "2209046399";
-      if (obj?.feed_redpacket?.finish_icon) {
-        delete obj.feed_redpacket.finish_icon;
-      }
-      if (obj?.feed_redpacket?.guide) {
-        delete obj.feed_redpacket.guide;
-      }
-      if (obj?.feed_redpacket?.icon) {
-        delete obj.feed_redpacket.icon;
-      }
-      if (obj?.feed_redpacket?.pre_icon) {
-        delete obj.feed_redpacket.pre_icon;
-      }
-    }
-    if (obj?.floating_window_for_live_streaming) {
-      obj.floating_window_for_live_streaming = false;
-    }
-    if (obj?.floating_window_show_interval) {
-      obj.floating_window_show_interval = 31536000;
-    }
-    if (obj?.floating_windows?.length > 0) {
-      obj.floating_windows = obj.floating_windows.filter((i) => !/(?:^ad_?|red_pocket|ug_high_priority)/.test(i?.subtype));
-    }
-  } else if (url.includes("/2/search/")) {
+  }else if (url.includes("/2/search/")) {
     // 搜索页信息流
     if (url.includes("container_timeline")) {
       if (obj?.loadedInfo) {

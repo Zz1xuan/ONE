@@ -561,14 +561,14 @@ if (url.includes("/interface/sdk/sdkad.php")) {
           if (item?.items?.length > 0) {
             item.items = item.items.filter(
               (i) =>
-                i?.itemId === "100505_-_album" || // 我的相册
+                // i?.itemId === "100505_-_album" || // 我的相册
                 i?.itemId === "100505_-_like" || // 赞/收藏
                 i?.itemId === "100505_-_watchhistory" || // 浏览记录
                 i?.itemId === "100505_-_draft"|| // 草稿箱
-                i?.itemId === "100505_-_pay" || // 我的钱包
-                i?.itemId === "100505_-_ordercenter" || // 我的订单
-                i?.itemId === "100505_-_productcenter" || // 创作中心
-                i?.itemId === "100505_-_promote"  // 广告中心
+                i?.itemId === "100505_-_pay" // 我的钱包
+                // i?.itemId === "100505_-_ordercenter" || // 我的订单
+                // i?.itemId === "100505_-_productcenter" || // 创作中心
+                // i?.itemId === "100505_-_promote"  // 广告中心
             );
           }
           newItems.push(item);
@@ -588,7 +588,7 @@ if (url.includes("/interface/sdk/sdkad.php")) {
             delete item.body; // 移除框内推广
           }
           newItems.push(item);
-        } else if (itemId === "100505_-_chaohua" || itemId === "100505_-_recentlyuser" || itemId === "100505_-_newusertask") {
+        } else if (itemId === "100505_-_chaohua" || itemId === "100505_-_recentlyuser") {
           newItems.push(item);
         } else {
           // 移除其他推广

@@ -727,79 +727,79 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
     } else if (url.includes("finder")) {
       if (obj?.channelInfo?.channels?.length > 0) {
-        // let newChannels = [];
-        // for (let channel of obj.channelInfo.channels) {
-        //   // 顶部标签栏 白名单
-        //   if (["band_channel", "discover_channel", "trends_channel"]?.includes(channel?.key)) {
-        //     let payload = channel.payload;
-        //     if (payload) {
-        //       if (payload?.loadedInfo) {
-        //         // 去除搜索框填充词
-        //         if (payload?.loadedInfo?.searchBarContent?.length > 0) {
-        //           payload.loadedInfo.searchBarContent = [];
-        //         }
-        //         if (payload?.loadedInfo?.headerBack?.channelStyleMap) {
-        //           delete payload.loadedInfo.headerBack.channelStyleMap; // 去除搜索背景图片
-        //         }
-        //         if (payload?.loadedInfo?.searchBarStyleInfo) {
-        //           delete payload.loadedInfo.searchBarStyleInfo; // 搜索框样式
-        //         }
-        //       }
-        //       if (payload?.items?.length > 0) {
-        //         let newItems = [];
-        //         for (let item of payload.items) {
-        //           if (item?.category === "feed") {
-        //             if (!isAd(item?.data)) {
-        //               removeFeedAd(item.data); // 信息流推广
-        //               newItems.push(item);
-        //             }
-        //           } else if (item?.category === "card") {
-        //             // 19热议等tab 22商业推广 118横版广告图片 206,249横版视频广告 208实况热聊 217错过了热议 236微博趋势 261奥运滚动横幅
-        //             if ([19, 22, 118, 206, 208, 217, 236, 249, 261]?.includes(item?.data?.card_type)) {
-        //               continue;
-        //             } else if (item?.data?.itemid === "ads_slide") {
-        //               // 商业推广 主图 附图
-        //               continue;
-        //             } else if (item?.data?.cate_id === "1114") {
-        //               // 微博趋势标题
-        //               continue;
-        //             } else if (item?.data?.hasOwnProperty("rank")) {
-        //               // 奥运等排行榜
-        //               continue;
-        //             } else {
-        //               newItems.push(item);
-        //             }
-        //           } else if (item?.category === "cell") {
-        //             // 保留信息流分割线
-        //             newItems.push(item);
-        //           } else if (item?.category === "group") {
-        //             if (item?.items?.length > 0) {
-        //               let newII = [];
-        //               for (let ii of item.items) {
-        //                 // 118横版广告图片 182热议话题 192横版好看视频 217错过了热议 247横版视频广告 264微博趋势
-        //                 if ([118, 182, 192, 217, 247, 264]?.includes(ii?.data?.card_type)) {
-        //                   continue;
-        //                 } else if (ii?.data?.cate_id === "1114") {
-        //                   // 微博趋势
-        //                   continue;
-        //                 } else {
-        //                   newII.push(ii);
-        //                 }
-        //               }
-        //               item.items = newII;
-        //             }
-        //             newItems.push(item);
-        //           }
-        //         }
-        //         payload.items = newItems;
-        //       }
-        //     }
-        //     newChannels.push(channel);
-        //   } else {
-        //     continue;
-        //   }
-        // }
-        obj.channelInfo.channels = [];
+        let newChannels = [];
+        for (let channel of obj.channelInfo.channels) {
+          // 顶部标签栏 白名单
+          if (["band_channel", "discover_channel", "trends_channel"]?.includes(channel?.key)) {
+            let payload = channel.payload;
+            if (payload) {
+              if (payload?.loadedInfo) {
+                // 去除搜索框填充词
+                if (payload?.loadedInfo?.searchBarContent?.length > 0) {
+                  payload.loadedInfo.searchBarContent = [];
+                }
+                if (payload?.loadedInfo?.headerBack?.channelStyleMap) {
+                  delete payload.loadedInfo.headerBack.channelStyleMap; // 去除搜索背景图片
+                }
+                if (payload?.loadedInfo?.searchBarStyleInfo) {
+                  delete payload.loadedInfo.searchBarStyleInfo; // 搜索框样式
+                }
+              }
+              if (payload?.items?.length > 0) {
+                let newItems = [];
+                for (let item of payload.items) {
+                  if (item?.category === "feed") {
+                    if (!isAd(item?.data)) {
+                      removeFeedAd(item.data); // 信息流推广
+                      newItems.push(item);
+                    }
+                  } else if (item?.category === "card") {
+                    // 19热议等tab 22商业推广 118横版广告图片 206,249横版视频广告 208实况热聊 217错过了热议 236微博趋势 261奥运滚动横幅
+                    if ([19, 22, 118, 206, 208, 217, 236, 249, 261]?.includes(item?.data?.card_type)) {
+                      continue;
+                    } else if (item?.data?.itemid === "ads_slide") {
+                      // 商业推广 主图 附图
+                      continue;
+                    } else if (item?.data?.cate_id === "1114") {
+                      // 微博趋势标题
+                      continue;
+                    } else if (item?.data?.hasOwnProperty("rank")) {
+                      // 奥运等排行榜
+                      continue;
+                    } else {
+                      newItems.push(item);
+                    }
+                  } else if (item?.category === "cell") {
+                    // 保留信息流分割线
+                    newItems.push(item);
+                  } else if (item?.category === "group") {
+                    if (item?.items?.length > 0) {
+                      let newII = [];
+                      for (let ii of item.items) {
+                        // 118横版广告图片 182热议话题 192横版好看视频 217错过了热议 247横版视频广告 264微博趋势
+                        if ([118, 182, 192, 217, 247, 264]?.includes(ii?.data?.card_type)) {
+                          continue;
+                        } else if (ii?.data?.cate_id === "1114") {
+                          // 微博趋势
+                          continue;
+                        } else {
+                          newII.push(ii);
+                        }
+                      }
+                      item.items = newII;
+                    }
+                    newItems.push(item);
+                  }
+                }
+                payload.items = newItems;
+              }
+            }
+            newChannels.push(channel);
+          } else {
+            continue;
+          }
+        }
+        obj.channelInfo.channels = newChannels;
       }
       if (obj?.channelInfo?.moreChannels) {
         // 更多版块

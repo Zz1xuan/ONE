@@ -727,7 +727,66 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
     } else if (url.includes("finder")) {
       if (obj?.channelInfo?.channels?.length > 0) {
-        obj.channelInfo.channels = [];
+        let newChannels = [];
+        for (let ch of obj.channelInfo.channels) {
+          if (ch.payload) {
+            // 只保留前 10 条热搜（可改数字）
+            if (ch.payload.items) {
+              ch.payload.items = ch.payload.items.slice(0, 10);
+            }
+            // 清理不必要的内容
+            if (ch.payload?.loadedInfo?.searchBarContent) {
+              ch.payload.loadedInfo.searchBarContent = [{}];
+            }
+            if (ch.payload?.loadedInfo?.headerBack) {
+              ch.payload.loadedInfo.headerBack.channelStyleMap = {};
+            }
+          }
+          delete ch.titleInfoAbsorb;
+          delete ch.titleInfo;
+          delete ch.title;
+          newChannels.push(ch);
+        }
+        obj.channelInfo.channels = newChannels;
+
+        // 删除其他频道入口
+        if (obj.channelInfo?.moreChannels) {
+          delete obj.channelInfo.moreChannels;
+          delete obj.channelInfo.channelConfig;
+        }
+        if (obj?.header?.data?.items) {
+          let items = [];
+          for (let item of obj.header.data.items) {
+            if (item.category === "group") {
+              item.items = item.items
+                .filter(e => {
+                  let type = e.data?.card_type;
+                  return type === 101 || type === 17;
+                })
+                .map(e => {
+                  if (e.data?.card_type === 17) {
+                    e.data.col = 1; // 强制单列
+                  }
+                  return e;
+                });
+              if (item.items.length > 0) {
+                items.push(item);
+              }
+            }
+          }
+          obj.header.data.items = items;
+        }
+
+        // 禁止下拉刷新 / 上拉加载
+        if (obj?.pageData) {
+          obj.pageData.flowId = "";
+        }
+        if (obj?.config?.paging) {
+          obj.config.paging = {};
+        }
+        if (obj?.refreshInfo) {
+          obj.refreshInfo = {};
+        }
         // let newChannels = [];
         // for (let channel of obj.channelInfo.channels) {
         //   // 顶部标签栏 白名单
@@ -802,22 +861,10 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         // }
         // obj.channelInfo.channels = newChannels;
       }
-      if (obj?.channelInfo?.payload?.items) {
-        obj.channelInfo.payload.items = obj.channelInfo.payload.items.slice(0, 10);
-      }
+      
 
-      if (obj?.header?.data?.items) {
-        obj.header.data.items = obj.header.data.items.slice(0, 10);
-        // 强制改成单列
-        obj.header.data.items.forEach(item => {
-          if (item.data?.group) {
-            item.data.col = 1;
-          }
-        });
-      }
-      if (obj?.channelInfo?.flowId) {
-        obj.channelInfo.flowId = "";
-      }
+
+      
       if (obj?.channelInfo?.moreChannels) {
         // 更多版块
         delete obj.channelInfo.moreChannels;

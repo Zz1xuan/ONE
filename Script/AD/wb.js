@@ -727,27 +727,27 @@ if (url.includes("/interface/sdk/sdkad.php")) {
       }
     } else if (url.includes("finder")) {
       if (obj?.channelInfo?.channels?.length > 0) {
-        // let newChannels = [];
-        // for (let ch of obj.channelInfo.channels) {
-        //   if (ch.payload) {
-        //     // 只保留前 10 条热搜（可改数字）
-        //     if (ch.payload.items) {
-        //       ch.payload.items = ch.payload.items.slice(0, 10);
-        //     }
-        //     // 清理不必要的内容
-        //     if (ch.payload?.loadedInfo?.searchBarContent) {
-        //       ch.payload.loadedInfo.searchBarContent = [{}];
-        //     }
-        //     if (ch.payload?.loadedInfo?.headerBack) {
-        //       ch.payload.loadedInfo.headerBack.channelStyleMap = {};
-        //     }
-        //   }
-        //   delete ch.titleInfoAbsorb;
-        //   delete ch.titleInfo;
-        //   delete ch.title;
-        //   newChannels.push(ch);
-        // }
-        obj.channelInfo.channels = [];
+        let newChannels = [];
+        for (let ch of obj.channelInfo.channels) {
+          if (ch.payload) {
+            // 只保留前 10 条热搜（可改数字）
+            // if (ch.payload.items) {
+            //   ch.payload.items = ch.payload.items.slice(0, 15);
+            // }
+            // 清理不必要的内容
+            if (ch.payload?.loadedInfo?.searchBarContent) {
+              ch.payload.loadedInfo.searchBarContent = [{}];
+            }
+            if (ch.payload?.loadedInfo?.headerBack) {
+              ch.payload.loadedInfo.headerBack.channelStyleMap = {};
+            }
+          }
+          delete ch.titleInfoAbsorb;
+          delete ch.titleInfo;
+          delete ch.title;
+          newChannels.push(ch);
+        }
+        obj.channelInfo.channels = newChannels;
 
         // 删除其他频道入口
         if (obj.channelInfo?.moreChannels) {
@@ -778,15 +778,15 @@ if (url.includes("/interface/sdk/sdkad.php")) {
         }
 
         // 禁止下拉刷新 / 上拉加载
-        if (obj?.pageData) {
-          obj.pageData.flowId = "";
-        }
-        if (obj?.config?.paging) {
-          obj.config.paging = {};
-        }
-        if (obj?.refreshInfo) {
-          obj.refreshInfo = {};
-        }
+        // if (obj?.pageData) {
+        //   obj.pageData.flowId = "";
+        // }
+        // if (obj?.config?.paging) {
+        //   obj.config.paging = {};
+        // }
+        // if (obj?.refreshInfo) {
+        //   obj.refreshInfo = {};
+        // }
         // let newChannels = [];
         // for (let channel of obj.channelInfo.channels) {
         //   // 顶部标签栏 白名单

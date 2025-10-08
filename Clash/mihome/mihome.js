@@ -151,7 +151,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Emby",
       "type": "select",
-      "proxies": ["手动切换", "DIRECT"],
+      "proxies": ["手动切换","香港节点", "美国节点", "狮城节点", "DIRECT"],
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
     },
     // {

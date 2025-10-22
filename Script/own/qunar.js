@@ -5,75 +5,52 @@
 [MITM]
 hostname = m.flight.qunar.com
 ****/
-const $ = new Env("去哪儿旅行签到");
-const CK_KEY = "qunar_cookie";
+const $ = new Env('去哪儿')
+const CK_KEY = 'qunar_cookie'
 
-// 获取 Cookie 模式
+// =============== 获取 Cookie ===============
 if ($request && $request.headers) {
-  const ck = $request.headers["Cookie"] || $request.headers["cookie"];
+  const ck = JSON.stringify($request.headers)
   if (ck) {
-    $.setdata(ck, CK_KEY);
-    $.msg("去哪儿签到", "✅ Cookie 获取成功", ck);
+    $.setdata(ck, CK_KEY)
+    $.msg($.name, '✅ 获取Cookie成功', ck)
+  }
+  $.done()
+}
+
+// =============== 签到逻辑 ===============
+!(async () => {
+  const cookieVal = $.getdata(CK_KEY)
+  if (!cookieVal) {
+    $.msg($.name, '❌ 未获取Cookie', '请先运行获取CK的重写脚本')
+    return
+  }
+
+  const headers = JSON.parse(cookieVal)
+  const url = `https://user.qunar.com/webapi/member/signNewIndex.htm`
+  const body = `channel=app&platform=ios`
+
+  const resp = await $.http.post({ url, headers, body })
+  const result = JSON.parse(resp.body)
+
+  let subTitle = ''
+  let detail = ''
+
+  if (result.status === 0 && result.data?.data?.hasSignToday) {
+    const day = result.data.data.continuousDays || 0
+    const today = result.data.data.itemList?.find(i => i.todayFlag)
+    subTitle = `签到成功 ✅`
+    detail = `已连续签到 ${day} 天，今日奖励 ${today?.amount || 0} 积分`
+  } else if (result.status === 0 && result.data?.data?.todayCanSign === false) {
+    subTitle = `重复签到 ✅`
+    detail = `今日已签到，无需重复`
   } else {
-    $.msg("去哪儿签到", "❌ 未能捕获 Cookie", "请检查请求来源");
-  }
-  $.done();
-} else {
-  main();
-}
-
-async function main() {
-  const ck = $.getdata(CK_KEY);
-  if (!ck) {
-    $.msg("去哪儿签到", "❗ 请先获取 Cookie", "打开去哪儿App签到页以自动获取");
-    return $.done();
+    subTitle = `签到失败 ❌`
+    detail = JSON.stringify(result)
   }
 
-  const url = "https://m.flight.qunar.com/gw/f/pallas/sc/sign/show";
-  const headers = {
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Origin": "https://m.flight.qunar.com",
-    "Referer": "https://m.flight.qunar.com/",
-    "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 QunariPhone/80011352 m/14.5",
-    "Cookie": ck,
-  };
-  const body = "userIp=&clientGps=29.3,121.43&platform=ios";
-
-  const request = {
-    url,
-    method: "POST",
-    headers,
-    body,
-  };
-
-  $.post(request, (err, resp, data) => {
-    if (err) {
-      $.msg("去哪儿签到", "❌ 请求出错", String(err));
-      return $.done();
-    }
-
-    try {
-      const obj = JSON.parse(data);
-      if (obj?.status === 0 && obj?.data?.data) {
-        const d = obj.data.data.data;
-        const hasSignToday = d.hasSignToday;
-        const continuousDays = d.continuousDays;
-        const todayReward = d.itemList.find((i) => i.todayFlag)?.amount || 0;
-
-        $.msg(
-          "去哪儿签到",
-          hasSignToday ? "✅ 今日已签到" : "❌ 今日未签到",
-          `连续签到：${continuousDays} 天\n今日奖励：${todayReward} 积分`
-        );
-      } else {
-        $.msg("去哪儿签到", "⚠️ 返回异常", data);
-      }
-    } catch (e) {
-      $.msg("去哪儿签到", "❌ 解析失败", e.message);
-    }
-    $.done();
-  });
-}
+  $.msg($.name, subTitle, detail)
+})().catch((e) => $.logErr(e)).finally(() => $.done())
 
 /* Env 模板（参考 uicbox.js） */
 function Env(t, e) {

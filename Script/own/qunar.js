@@ -27,7 +27,7 @@ if ($request && $request.headers) {
   }
 
   const headers = JSON.parse(cookieVal)
-  const url = `https://user.qunar.com/webapi/member/signNewIndex.htm`
+  const url = `https://m.flight.qunar.com/gw/f/pallas/sc/sign/show`
   const body = `channel=app&platform=ios`
 
   const resp = await $.http.post({ url, headers, body })

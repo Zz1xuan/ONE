@@ -1,6 +1,6 @@
 /****
 [rewrite_local]
-^https:\/\/m\.flight\.qunar\.com\/gw\/f\/pallas\/sc\/sign\/show url script-request-header qunar_sign.js
+^https:\/\/m\.flight\.qunar\.com\/gw\/f\/pallas\/sc\/sign\/show url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Script/own/qunar.js
 
 [MITM]
 hostname = m.flight.qunar.com

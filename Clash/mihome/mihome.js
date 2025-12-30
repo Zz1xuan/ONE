@@ -53,56 +53,10 @@ function main(config) {
     "enable": true,
     "listen": "0.0.0.0:1053",
     "ipv6": false,
-    // "prefer-h3": true,
-    // "respect-rules": true,
-    // "use-hosts": true,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
-    "fake-ip-filter": [
-      "*.lan", "stun.*.*.*", "stun.*.*",
-      "time.windows.com", "time.nist.gov", "time.apple.com", "time.asia.apple.com",
-      "*.ntp.org.cn", "*.openwrt.pool.ntp.org", "time1.cloud.tencent.com", "time.ustc.edu.cn",
-      "pool.ntp.org", "ntp.ubuntu.com", "ntp.aliyun.com", "ntp1.aliyun.com", "ntp2.aliyun.com",
-      "ntp3.aliyun.com", "ntp4.aliyun.com", "ntp5.aliyun.com", "ntp6.aliyun.com", "ntp7.aliyun.com",
-      "time1.aliyun.com", "time2.aliyun.com", "time3.aliyun.com", "time4.aliyun.com",
-      "time5.aliyun.com", "time6.aliyun.com", "time7.aliyun.com", "*.time.edu.cn",
-      "time1.apple.com", "time2.apple.com", "time3.apple.com", "time4.apple.com",
-      "time5.apple.com", "time6.apple.com", "time7.apple.com", "time1.google.com",
-      "time2.google.com", "time3.google.com", "time4.google.com", "alt1-mtalk.google.com",
-      "alt2-mtalk.google.com", "alt3-mtalk.google.com", "alt4-mtalk.google.com",
-      "alt5-mtalk.google.com", "alt6-mtalk.google.com", "alt7-mtalk.google.com",
-      "alt8-mtalk.google.com", "mtalk.google.com", "music.163.com", "*.music.163.com",
-      "*.126.net", "musicapi.taihe.com", "music.taihe.com", "songsearch.kugou.com",
-      "trackercdn.kugou.com", "*.kuwo.cn", "api-jooxtt.sanook.com", "api.joox.com",
-      "joox.com", "y.qq.com", "*.y.qq.com", "streamoc.music.tc.qq.com",
-      "mobileoc.music.tc.qq.com", "isure.stream.qqmusic.qq.com", "dl.stream.qqmusic.qq.com",
-      "aqqmusic.tc.qq.com", "amobile.music.tc.qq.com", "*.xiami.com", "*.music.migu.cn",
-      "weatherapi.market.xiaomi.com", "wtradv.market.xiaomi.com", "music.migu.cn",
-      "*.msftconnecttest.com", "*.msftncsi.com", "localhost.ptlogin2.qq.com",
-      "*.*.*.srv.nintendo.net", "*.*.stun.playstation.net", "xbox.*.*.microsoft.com",
-      "*.ipv6.microsoft.com", "*.*.xboxlive.com", "speedtest.cros.wr.pvp.net"
-    ],
-    // "default-nameserver": [
-    //   "223.5.5.5",
-    //   "119.29.29.29",
-    //   "180.184.1.1",
-    //   "114.114.114.114"
-    // ],
-    "nameserver": [
-      "223.5.5.5",
-      "119.29.29.29",
-      "https://dns.alidns.com/dns-query",
-      "tls://dns.alidns.com",
-      "https://doh.pub/dns-query",
-      "tls://dot.pub"
-    ]
-    // "proxy-server-nameserver": [
-    //   "https://223.5.5.5/dns-query",
-    //   "https://1.12.12.12/dns-query"
-    // ],
-    // "nameserver-policy": {
-    //   "geosite:cn,private,steam@cn,apple@cn,microsoft@cn,apple-cn,category-games@cn": "119.29.29.29"
-    // }
+    "fake-ip-filter": ['+.lan', '*', '+.local', '+.cmpassport.com', 'id6.me', 'open.e.189.cn', 'mdn.open.wo.cn', 'opencloud.wostore.cn', 'auth.wosms.cn', '+.10099.com.cn', '+.msftconnecttest.com', '+.msftncsi.com', 'lancache.steamcontent.com'],
+    "nameserver": ["223.5.5.5", "119.29.29.29"]
   };
 
   // 覆盖 geodata 配置
@@ -320,11 +274,10 @@ function main(config) {
       "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Lan.list",
       "path": "./rules/Lan.list"
     },
-    "ProxyGFW": {
+    "Proxy": {
       ...ruleProviderCommon,
       "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/ProxyGFW.list",
-      "path": "./rules/ProxyGFW.list"
+      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Proxy.list"
     }
   };
 
@@ -341,9 +294,8 @@ function main(config) {
     "GEOSITE,github,手动切换",
     "GEOSITE,onedrive,微软服务",
     "GEOSITE,microsoft,微软服务",
-    "GEOSITE,gfw,手动切换",
-    "GEOIP,private,DIRECT",
-    "GEOIP,cn,DIRECT",
+    "RULE-SET,Lan,DIRECT",
+    "GEOIP,CN,DIRECT",
     "MATCH,兜底分流"
   ];
 

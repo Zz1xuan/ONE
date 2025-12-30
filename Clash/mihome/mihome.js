@@ -53,9 +53,9 @@ function main(config) {
     "enable": true,
     "listen": "0.0.0.0:1053",
     "ipv6": false,
-    "prefer-h3": true,
-    "respect-rules": true,
-    "use-hosts": true,
+    // "prefer-h3": true,
+    // "respect-rules": true,
+    // "use-hosts": true,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
     "fake-ip-filter": [
@@ -82,25 +82,27 @@ function main(config) {
       "*.*.*.srv.nintendo.net", "*.*.stun.playstation.net", "xbox.*.*.microsoft.com",
       "*.ipv6.microsoft.com", "*.*.xboxlive.com", "speedtest.cros.wr.pvp.net"
     ],
-    "default-nameserver": [
+    // "default-nameserver": [
+    //   "223.5.5.5",
+    //   "119.29.29.29",
+    //   "180.184.1.1",
+    //   "114.114.114.114"
+    // ],
+    "nameserver": [
       "223.5.5.5",
       "119.29.29.29",
-      "180.184.1.1",
-      "114.114.114.114"
-    ],
-    "nameserver": [
       "https://dns.alidns.com/dns-query",
       "tls://dns.alidns.com",
       "https://doh.pub/dns-query",
       "tls://dot.pub"
-    ],
-    "proxy-server-nameserver": [
-      "https://223.5.5.5/dns-query",
-      "https://1.12.12.12/dns-query"
-    ],
-    "nameserver-policy": {
-      "geosite:cn,private,steam@cn,apple@cn,microsoft@cn,apple-cn,category-games@cn": "119.29.29.29"
-    }
+    ]
+    // "proxy-server-nameserver": [
+    //   "https://223.5.5.5/dns-query",
+    //   "https://1.12.12.12/dns-query"
+    // ],
+    // "nameserver-policy": {
+    //   "geosite:cn,private,steam@cn,apple@cn,microsoft@cn,apple-cn,category-games@cn": "119.29.29.29"
+    // }
   };
 
   // 覆盖 geodata 配置

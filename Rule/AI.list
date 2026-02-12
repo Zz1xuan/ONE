@@ -1,14 +1,19 @@
+# ConnersHua
 # Apple Intelligence
 DOMAIN-SUFFIX,smoot.apple.com
 DOMAIN,apple-relay.apple.com
 DOMAIN,apple-relay.cloudflare.com
 DOMAIN,apple-relay.fastly-edge.com
+DOMAIN-SUFFIX,gateway.icloud.com
 DOMAIN,cp4.cloudflare.com
 DOMAIN,guzzoni.apple.com
+DOMAIN,gspe1-ssl.ls.apple.com
+DOMAIN-SUFFIX,apps.mzstatic.com
 
 # Anthropic
 # > Claude
 DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,claude.com
 DOMAIN-SUFFIX,anthropic.com
 
 # OpenAI
@@ -26,6 +31,8 @@ DOMAIN,o33249.ingest.sentry.io
 DOMAIN,openaiapi-site.azureedge.net
 DOMAIN-KEYWORD,openaiapi
 DOMAIN-KEYWORD,openaicom
+# OpenRouter
+DOMAIN-SUFFIX,openrouter.ai
 
 # Cloudflare
 # > AI Gateway
@@ -44,6 +51,9 @@ DOMAIN-SUFFIX,makersuite.google.com
 DOMAIN,aistudio.google.com
 DOMAIN,alkalicore-pa.clients6.google.com
 DOMAIN,alkalimakersuite-pa.clients6.google.com
+# > Antigravity
+DOMAIN,antigravity.google
+DOMAIN,antigravity-unleash.goog
 # > DeepMind
 DOMAIN-SUFFIX,deepmind.com
 DOMAIN-SUFFIX,deepmind.google
@@ -85,3 +95,10 @@ DOMAIN,pplx-res.cloudinary.com
 # xAI
 DOMAIN-SUFFIX,grok.com
 DOMAIN-SUFFIX,x.ai
+
+# Doubao
+# > Doubao Dola
+DOMAIN-SUFFIX,cici.com,extended-matching
+DOMAIN-SUFFIX,ciciai.com,extended-matching
+DOMAIN-SUFFIX,dola.com,extended-matching
+DOMAIN-SUFFIX,byteoversea.com,extended-matching

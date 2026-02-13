@@ -205,12 +205,6 @@ function main(config) {
       "url": "https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct.list",
       "path": "./rules/Direct.list"
     },
-    "WeChat": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/WeChat.list",
-      "path": "./rules/WeChat.list"
-    },
     "Lan": {
       ...ruleProviderCommon,
       "behavior": "classical",
@@ -234,7 +228,6 @@ function main(config) {
     "RULE-SET,Github,手动切换",
     "RULE-SET,Proxy,手动切换",
     "RULE-SET,Direct,DIRECT",
-    "RULE-SET,WeChat,DIRECT",
     "RULE-SET,Lan,DIRECT",
     "GEOIP,CN,DIRECT",
     "RULE-SET,Proxy+,手动切换",

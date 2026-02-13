@@ -1,4 +1,4 @@
-// 参考 Verge Rev 示例 Script 配置
+// 参考 Verge Rev 示例 Script 配置 & repcz & ConnersHua
 //
 // Clash Verge Rev (Version ≥ 17.2) & Mihomo-Party (Version ≥ 1.5.10)
 //
@@ -99,40 +99,12 @@ function main(config) {
       "proxies": ["手动切换","香港节点", "美国节点", "狮城节点", "DIRECT"],
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
     },
-    // {
-    //   ...groupBaseOption,
-    //   "name": "国外网站",
-    //   "type": "select",
-    //   "proxies": ["手动切换", "香港节点", "美国节点", "狮城节点", "日本节点", "台湾节点", "DIRECT"],
-    //   "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
-    // },
-    {
-      ...groupBaseOption,
-      "name": "苹果服务",
-      "type": "select",
-      "proxies": ["手动切换", "香港节点", "美国节点", "狮城节点", "日本节点", "台湾节点", "DIRECT"],
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "微软服务",
-      "type": "select",
-      "proxies": ["手动切换", "DIRECT"],
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png"
-    },
     {
       ...groupBaseOption,
       "name": "AI",
       "type": "select",
       "proxies": ["手动切换", "香港节点", "美国节点", "狮城节点", "日本节点", "台湾节点", "DIRECT"],
       "icon": "https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png"
-    },
-    {
-      ...groupBaseOption,
-      "name": "游戏平台",
-      "type": "select",
-      "proxies": ["手动切换", "香港节点", "美国节点", "狮城节点", "日本节点", "台湾节点", "DIRECT"],
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png"
     },
     {
       ...groupBaseOption,
@@ -191,40 +163,16 @@ function main(config) {
 
   // 覆盖规则集
   config["rule-providers"] = {
-    "Unbreak-d": {
+    "Direct+": {
       ...ruleProviderCommon,
       "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/Unbreak-d.list",
-      "path": "./rules/Unbreak-d.list"
-    },
-    "Apple": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Apple.list",
-      "path": "./rules/Apple.list"
-    },
-    "Telegram": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/Telegram.list",
-      "path": "./rules/Telegram.list"
-    },
-    "Steam": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Steam.list",
-      "path": "./rules/Steam.list"
-    },
-    "Epic": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Epic.list",
-      "path": "./rules/Epic.list"
+      "url": "https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct+.list",
+      "path": "./rules/Direct+.list"
     },
     "AI": {
       ...ruleProviderCommon,
       "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/AI.list",
+      "url": "https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list",
       "path": "./rules/AI.list"
     },
     "Emby": {
@@ -239,23 +187,23 @@ function main(config) {
       "url": "https://raw.githubusercontent.com/Zz1xuan/ONE/main/Rule/Spotify.list",
       "path": "./rules/Spotify.list"
     },
-    "OneDrive": {
-      ...ruleProviderCommon,
-      "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/OneDrive.list",
-      "path": "./rules/OneDrive.list"
-    },
     "Github": {
       ...ruleProviderCommon,
       "behavior": "classical",
       "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Github.list",
       "path": "./rules/Github.list"
     },
-    "Microsoft": {
+    "Proxy": {
       ...ruleProviderCommon,
       "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Microsoft.list",
-      "path": "./rules/Microsoft.list"
+      "url": "https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy.list",
+      "path": "./rules/Proxy.list"
+    },
+    "Direct": {
+      ...ruleProviderCommon,
+      "behavior": "classical",
+      "url": "https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Direct.list",
+      "path": "./rules/Direct.list"
     },
     "Lan": {
       ...ruleProviderCommon,
@@ -263,28 +211,26 @@ function main(config) {
       "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Lan.list",
       "path": "./rules/Lan.list"
     },
-    "Proxy": {
+    "Proxy+": {
       ...ruleProviderCommon,
       "behavior": "classical",
-      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Proxy.list"
+      "url": "https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Proxy+.list",
+      "path": "./rules/Proxy+.list"
     }
   };
 
   // 覆盖规则
   config["rules"] = [
-    "RULE-SET,Unbreak-d,DIRECT",
+    "RULE-SET,Direct+,DIRECT",
     "RULE-SET,AI,AI",
-    "RULE-SET,Apple,苹果服务",
-    "RULE-SET,Telegram,手动切换",
-    "RULE-SET,Steam,游戏平台",
-    "RULE-SET,Epic,游戏平台",
     "RULE-SET,Emby,Emby",
     "RULE-SET,Spotify,香港节点",
-    "GEOSITE,github,手动切换",
-    "GEOSITE,onedrive,微软服务",
-    "GEOSITE,microsoft,微软服务",
+    "RULE-SET,Github,手动切换",
+    "RULE-SET,Proxy,手动切换",
+    "RULE-SET,Direct,DIRECT",
     "RULE-SET,Lan,DIRECT",
     "GEOIP,CN,DIRECT",
+    "RULE-SET,Proxy+,手动切换",
     "MATCH,兜底分流"
   ];
 

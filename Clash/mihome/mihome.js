@@ -33,7 +33,7 @@ function main(config) {
   config["allow-lan"] = true;
   config["ipv6"] = false;
   config["log-level"] = "info";
-  config["unified-delay"] = "true";
+  config["unified-delay"] = true;
   config["find-process-mode"] = "strict";
   config["global-client-fingerprint"] = "chrome";
 
@@ -44,8 +44,13 @@ function main(config) {
     "ipv6": false,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
-    "fake-ip-filter": ['+.lan', '*', '+.local', '+.cmpassport.com', 'id6.me', 'open.e.189.cn', 'mdn.open.wo.cn', 'opencloud.wostore.cn', 'auth.wosms.cn', '+.10099.com.cn', '+.msftconnecttest.com', '+.msftncsi.com', 'lancache.steamcontent.com'],
-    "nameserver": ["223.5.5.5", "119.29.29.29"]
+    "fake-ip-filter": [
+      "+.lan",
+      "+.local",
+      "+.msftconnecttest.com",
+      "+.msftncsi.com"
+      ],
+    "nameserver": ["223.5.5.5", "119.29.29.29", "180.184.1.1"]
   };
 
   // 覆盖 geodata 配置
@@ -61,6 +66,8 @@ function main(config) {
   config["sniffer"] = {
     "enable": true,
     "parse-pure-ip": true,
+    "force-dns-mapping": true,
+    "sniffing-timeout": 300,
     "sniff": {
       "TLS": {
         "ports": ["443", "8443"]

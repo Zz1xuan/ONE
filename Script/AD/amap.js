@@ -282,7 +282,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "nearby_map_entry_guide",
     "nearby_map_pull_down_guide",
     "operation_layer", // 首页右上角图层
-    "poi_rec",
+    // "poi_rec",
     "preword",
     "route_banner", // 搜索路线 免费抽手机
     "routeresult_banner",
@@ -291,7 +291,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "search_moni",
     "search_perf",
     "search_poi_recommend",
-    "search_service_adcode",
+    // "search_service_adcode",
     "search_word",
     "sportsGroupConfig",
     "sportsHealthConfig",

@@ -306,13 +306,12 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "small_biz_news",
     "splashscreen",
     "splashview_config",
-
-    "sur_bar", // 双十一特惠
-    "taxi_activity", // 打车活动
+    // "sur_bar", // 双十一特惠
+    // "taxi_activity", // 打车活动
     "testflight_adiu",
-    // "tf_remind", // tf测试版
-    // "tips_bar_black_list",
-    // "vip"
+    "tf_remind", // tf测试版
+    "tips_bar_black_list",
+    "vip"
   ];
   if (obj?.data) {
     for (let i of items) {

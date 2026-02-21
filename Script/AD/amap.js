@@ -294,12 +294,12 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "search_service_adcode",
     "search_word",
 
-    // "sportsGroupConfig",
-    // "sportsHealthConfig",
-    // "sportsHomeConfig",
-    // "sportsRouteConfig",
-    // "sportsTaskConfig",
-    // "sports_walk",
+    "sportsGroupConfig",
+    "sportsHealthConfig",
+    "sportsHomeConfig",
+    "sportsRouteConfig",
+    "sportsTaskConfig",
+    "sports_walk",
     // "small_biz_b2b_kb", // 入驻高德
     // "small_biz_case", // 推广
     // "small_biz_fun",

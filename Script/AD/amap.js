@@ -293,20 +293,20 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "search_poi_recommend",
     "search_service_adcode",
     "search_word",
-
     "sportsGroupConfig",
     "sportsHealthConfig",
     "sportsHomeConfig",
     "sportsRouteConfig",
     "sportsTaskConfig",
     "sports_walk",
-    // "small_biz_b2b_kb", // 入驻高德
-    // "small_biz_case", // 推广
-    // "small_biz_fun",
-    // "small_biz_index",
-    // "small_biz_news",
-    // "splashscreen",
-    // "splashview_config",
+
+    "small_biz_b2b_kb", // 入驻高德
+    "small_biz_case", // 推广
+    "small_biz_fun",
+    "small_biz_index",
+    "small_biz_news",
+    "splashscreen",
+    "splashview_config",
     // "sur_bar", // 双十一特惠
     // "taxi_activity", // 打车活动
     // "testflight_adiu",

@@ -259,18 +259,19 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 } else if (url.includes("/shield/frogserver/aocs/updatable/")) {
   // 整体图层
   const items = [
-    "Naviendpage_Searchwords",
-    "SplashScreenControl",
-    "TipsTaxiButton", // 选路线页面 打车图标
-    "amapCoin",
-    "favorites_info", // 收藏页顶部横图推广
-    "feedback_banner", // 店主专属通道
-    "footprint", // 足迹
-    "his_input_tip",
-    "home_business_position_config", // 首页右上角动图
-    "hotel_activity",
-    "hotel_fillin_opt",
-    "hotel_loop",
+    // "Naviendpage_Searchwords",
+    // "SplashScreenControl",
+    // "TipsTaxiButton", // 选路线页面 打车图标
+    // "amapCoin",
+    // "favorites_info", // 收藏页顶部横图推广
+    // "feedback_banner", // 店主专属通道
+    // "footprint", // 足迹
+    // "his_input_tip",
+    // "home_business_position_config", // 首页右上角动图
+    // "hotel_activity",
+    // "hotel_fillin_opt",
+    // "hotel_loop",
+
     // "hotel_portal", // 附近-酒店-页面布局
     "hotel_tipsicon",
     "hotsaleConfig", // 酒店限时抢购

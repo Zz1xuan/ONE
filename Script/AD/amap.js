@@ -259,34 +259,35 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 } else if (url.includes("/shield/frogserver/aocs/updatable/")) {
   // 整体图层
   const items = [
-    // "Naviendpage_Searchwords",
-    // "SplashScreenControl",
-    // "TipsTaxiButton", // 选路线页面 打车图标
-    // "amapCoin",
-    // "favorites_info", // 收藏页顶部横图推广
-    // "feedback_banner", // 店主专属通道
-    // "footprint", // 足迹
-    // "his_input_tip",
-    // "home_business_position_config", // 首页右上角动图
-    // "hotel_activity",
-    // "hotel_fillin_opt",
-    // "hotel_loop",
+    "Naviendpage_Searchwords",
+    "SplashScreenControl",
+    "TipsTaxiButton", // 选路线页面 打车图标
+    "amapCoin",
+    "favorites_info", // 收藏页顶部横图推广
+    "feedback_banner", // 店主专属通道
+    "footprint", // 足迹
+    "his_input_tip",
+    "home_business_position_config", // 首页右上角动图
+    "hotel_activity",
+    "hotel_fillin_opt",
+    "hotel_loop",
 
     // "hotel_portal", // 附近-酒店-页面布局
-    "hotel_tipsicon",
-    "hotsaleConfig", // 酒店限时抢购
-    "landing_page_info", // 发现吃喝玩乐好去处
-    "map_weather_switch", // 天气
-    "maplayers", // 赏花地图
-    "navi_end", // 导航结束 领油滴
-    "nearby_business_popup",
-    "nearby_map_entry_guide",
-    "nearby_map_pull_down_guide",
-    "operation_layer", // 首页右上角图层
+    // "hotel_tipsicon",
+    // "hotsaleConfig", // 酒店限时抢购
+    // "landing_page_info", // 发现吃喝玩乐好去处
+    // "map_weather_switch", // 天气
+    // "maplayers", // 赏花地图
+    // "navi_end", // 导航结束 领油滴
+    // "nearby_business_popup",
+    // "nearby_map_entry_guide",
+    // "nearby_map_pull_down_guide",
+    // "operation_layer", // 首页右上角图层
+
     // "poi_rec",
     // "preword",
-    "route_banner", // 搜索路线 免费抽手机
-    "routeresult_banner",
+    // "route_banner", // 搜索路线 免费抽手机
+    // "routeresult_banner",
     // "search_homepage",
     // "search_keyword",
     // "search_moni",

@@ -271,49 +271,48 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "hotel_activity",
     "hotel_fillin_opt",
     "hotel_loop",
-
     // "hotel_portal", // 附近-酒店-页面布局
-    // "hotel_tipsicon",
-    // "hotsaleConfig", // 酒店限时抢购
-    // "landing_page_info", // 发现吃喝玩乐好去处
-    // "map_weather_switch", // 天气
-    // "maplayers", // 赏花地图
-    // "navi_end", // 导航结束 领油滴
-    // "nearby_business_popup",
-    // "nearby_map_entry_guide",
-    // "nearby_map_pull_down_guide",
-    // "operation_layer", // 首页右上角图层
+    "hotel_tipsicon",
+    "hotsaleConfig", // 酒店限时抢购
+    "landing_page_info", // 发现吃喝玩乐好去处
+    "map_weather_switch", // 天气
+    "maplayers", // 赏花地图
+    "navi_end", // 导航结束 领油滴
+    "nearby_business_popup",
+    "nearby_map_entry_guide",
+    "nearby_map_pull_down_guide",
+    "operation_layer", // 首页右上角图层
+    "poi_rec",
+    "preword",
+    "route_banner", // 搜索路线 免费抽手机
+    "routeresult_banner",
+    "search_homepage",
+    "search_keyword",
+    "search_moni",
+    "search_perf",
+    "search_poi_recommend",
+    "search_service_adcode",
+    "search_word",
 
-    // "poi_rec",
-    // "preword",
-    // "route_banner", // 搜索路线 免费抽手机
-    // "routeresult_banner",
-    // "search_homepage",
-    // "search_keyword",
-    // "search_moni",
-    // "search_perf",
-    // "search_poi_recommend",
-    // "search_service_adcode",
-    // "search_word",
-    "sportsGroupConfig",
-    "sportsHealthConfig",
-    "sportsHomeConfig",
-    "sportsRouteConfig",
-    "sportsTaskConfig",
-    "sports_walk",
-    "small_biz_b2b_kb", // 入驻高德
-    "small_biz_case", // 推广
-    "small_biz_fun",
-    "small_biz_index",
-    "small_biz_news",
-    "splashscreen",
-    "splashview_config",
-    "sur_bar", // 双十一特惠
-    "taxi_activity", // 打车活动
-    "testflight_adiu",
-    "tf_remind", // tf测试版
-    "tips_bar_black_list",
-    "vip"
+    // "sportsGroupConfig",
+    // "sportsHealthConfig",
+    // "sportsHomeConfig",
+    // "sportsRouteConfig",
+    // "sportsTaskConfig",
+    // "sports_walk",
+    // "small_biz_b2b_kb", // 入驻高德
+    // "small_biz_case", // 推广
+    // "small_biz_fun",
+    // "small_biz_index",
+    // "small_biz_news",
+    // "splashscreen",
+    // "splashview_config",
+    // "sur_bar", // 双十一特惠
+    // "taxi_activity", // 打车活动
+    // "testflight_adiu",
+    // "tf_remind", // tf测试版
+    // "tips_bar_black_list",
+    // "vip"
   ];
   if (obj?.data) {
     for (let i of items) {

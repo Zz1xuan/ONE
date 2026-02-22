@@ -306,7 +306,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "small_biz_news",
     "splashscreen",
     "splashview_config",
-    // "sur_bar", // 双十一特惠
+    // "sur_bar", // 双十一特惠 会导致无法正常搜索某地附近的内容
     "taxi_activity", // 打车活动
     "testflight_adiu",
     "tf_remind", // tf测试版

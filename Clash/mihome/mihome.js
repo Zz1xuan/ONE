@@ -49,7 +49,7 @@ function main(config) {
       "+.local",
       "+.msftconnecttest.com",
       "+.msftncsi.com"
-      ],
+    ],
     "nameserver": ["223.5.5.5", "119.29.29.29", "180.184.1.1"]
   };
 
@@ -103,7 +103,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Emby",
       "type": "select",
-      "proxies": ["手动切换","香港节点", "美国节点", "狮城节点", "DIRECT"],
+      "proxies": ["手动切换", "香港节点", "美国节点", "狮城节点", "DIRECT"],
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
     },
     {
@@ -117,7 +117,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "兜底分流",
       "type": "select",
-      "proxies": ["手动切换","DIRECT"],
+      "proxies": ["手动切换", "DIRECT"],
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png"
     },
     // 地区分组
@@ -200,6 +200,12 @@ function main(config) {
       "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Github.list",
       "path": "./rules/Github.list"
     },
+    "Microsoft": {
+      ...ruleProviderCommon,
+      "behavior": "classical",
+      "url": "https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Microsoft.list",
+      "path": "./rules/Microsoft.list"
+    },
     "Proxy": {
       ...ruleProviderCommon,
       "behavior": "classical",
@@ -233,6 +239,7 @@ function main(config) {
     "RULE-SET,Emby,Emby",
     "RULE-SET,Spotify,香港节点",
     "RULE-SET,Github,手动切换",
+    "RULE-SET,Microsoft,DIRECT",
     "RULE-SET,Proxy,手动切换",
     "RULE-SET,Direct,DIRECT",
     "RULE-SET,Lan,DIRECT",

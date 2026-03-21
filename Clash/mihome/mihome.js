@@ -14,7 +14,7 @@ const ruleProviderCommon = {
 // 策略组通用配置
 const groupBaseOption = {
   "interval": 300,
-  "url": "http://cp.cloudflare.com/generate_204",
+  "url": "https://cp.cloudflare.com/generate_204",
   "max-failed-times": 3,
 };
 
@@ -30,39 +30,50 @@ function main(config) {
   // 覆盖通用配置
   config["mixed-port"] = 7890;
   config["tcp-concurrent"] = true;
-  config["allow-lan"] = true;
+  config["allow-lan"] = false;
   config["ipv6"] = false;
   config["log-level"] = "info";
   config["unified-delay"] = true;
-  config["find-process-mode"] = "strict";
+  config["find-process-mode"] = "off";
   config["global-client-fingerprint"] = "chrome";
 
   // 覆盖 dns 配置
   config["dns"] = {
     "enable": true,
-    "listen": "0.0.0.0:1053",
+    "listen": "127.0.0.1:1053",
     "ipv6": false,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
     "fake-ip-filter": [
       "+.lan",
       "+.local",
+      "*.local",
       "+.msftconnecttest.com",
-      "+.msftncsi.com"
+      "+.msftncsi.com",
+      "localhost.ptlogin2.qq.com",
+      "localhost.sec.qq.com",
+      "+.srv.nintendo.net",
+      "+.stun.playstation.net",
+      "+.xboxlive.com",
+      "stun.*.*",
+      "stun.*.*.*",
+      "+.stun.*.*",
+      "+.stun.*.*.*",
+      "+.market.xiaomi.com",
+      "WORKGROUP"
     ],
     "default-nameserver": [
       "223.5.5.5",
       "119.29.29.29"
     ],
     "nameserver": [
-      "https://dns.volcengineapi.com/dns-query",
       "https://dns.alidns.com/dns-query",
-      "https://doh.pub/dns-query"
+      "https://doh.pub/dns-query",
+      "https://dns.volcengineapi.com/dns-query"
     ],
     "proxy-server-nameserver": [
-      "https://dns.volcengineapi.com/dns-query",
-      "https://dns.alidns.com/dns-query",
-      "https://doh.pub/dns-query"
+      "223.5.5.5",
+      "119.29.29.29"
     ]
   };
 
@@ -81,6 +92,15 @@ function main(config) {
     "parse-pure-ip": true,
     "force-dns-mapping": true,
     "sniffing-timeout": 300,
+    "skip-domain": [
+      "+.apple.com",
+      "+.icloud.com",
+      "+.push.apple.com",
+      "+.oray.com",
+      "+.sunlogin.net",
+      "Mijia Cloud",
+      "dlg.io.mi.com"
+    ],
     "sniff": {
       "TLS": {
         "ports": ["443", "8443"]
@@ -179,8 +199,8 @@ function main(config) {
       "type": "url-test",
       "tolerance": 0,
       "include-all": true,
-      "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)",
-      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
+      "filter": "(?i)🇹🇼|台湾|台北|(\\b(TW|Tai|Taiwan)\\b)",
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
     }
   ];
 

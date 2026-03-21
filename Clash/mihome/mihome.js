@@ -28,7 +28,7 @@ function main(config) {
   }
 
   // 覆盖通用配置
-  config["mixed-port"] = "7890";
+  config["mixed-port"] = 7890;
   config["tcp-concurrent"] = true;
   config["allow-lan"] = true;
   config["ipv6"] = false;
@@ -50,7 +50,20 @@ function main(config) {
       "+.msftconnecttest.com",
       "+.msftncsi.com"
     ],
-    "nameserver": ["223.5.5.5", "119.29.29.29", "180.184.1.1"]
+    "default-nameserver": [
+      "223.5.5.5",
+      "119.29.29.29"
+    ],
+    "nameserver": [
+      "https://dns.volcengineapi.com/dns-query",
+      "https://dns.alidns.com/dns-query",
+      "https://doh.pub/dns-query"
+    ],
+    "proxy-server-nameserver": [
+      "https://dns.volcengineapi.com/dns-query",
+      "https://dns.alidns.com/dns-query",
+      "https://doh.pub/dns-query"
+    ]
   };
 
   // 覆盖 geodata 配置
@@ -86,7 +99,10 @@ function main(config) {
   config["tun"] = {
     "enable": true,
     "stack": "mixed",
-    "dns-hijack": ["any:53"]
+    "dns-hijack": ["any:53"],
+    "auto-route": true,
+    "auto-detect-interface": true,
+    "strict-route": false
   };
 
   // 覆盖策略组

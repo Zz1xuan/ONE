@@ -224,7 +224,14 @@ async function runSignIn() {
   }
 
   const execJson = execResp.json || {};
-  $.log(`[run] exec-result code=${execJson.code} msg=${execJson.msg || '-'} data=${summarizeExecData(execJson.data)}`);
+  $.log(
+    '[run] exec-result code=' +
+      execJson.code +
+      ' msg=' +
+      (execJson.msg || '-') +
+      ' data=' +
+      summarizeExecData(execJson.data)
+  );
   if (Number(execJson.code) !== 1) {
     $.msg(APP_NAME, '签到失败', execJson.msg || stringify(execJson));
     return;

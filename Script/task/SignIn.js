@@ -94,7 +94,6 @@ const $ = new Env(APP_NAME);
   }
 })()
   .catch((err) => {
-    $.log(`异常: ${formatError(err)}`);
     $.msg(APP_NAME, '执行异常', formatError(err));
   })
   .finally(() => $.done({}));
@@ -103,7 +102,6 @@ async function captureRequest() {
   const url = ($request && $request.url) || '';
   const path = getPath(url);
   if (!/\/signIn\/(info|exec)$/.test(path)) {
-    $.log(`忽略请求: ${url}`);
     return;
   }
 
@@ -139,23 +137,11 @@ async function captureRequest() {
   $.write(now, STORE_CAPTURE_KEY);
 
   const templateText = path === INFO_PATH ? 'info 模板' : 'exec 模板';
-  const cookieText = state.cookie ? 'Cookie已更新' : 'Cookie缺失';
-  $.log(
-    `[capture] path=${path} actId=${state.actId || '-'} query=${summarizeKeys(state.query)} body=${summarizeKeys(
-      body
-    )} cookie=${summarizeCookie(state.cookie)}`
-  );
-  $.log(`抓包成功: ${templateText}, ${cookieText}`);
   $.msg(APP_NAME, '抓包成功', `已更新 ${templateText}`);
 }
 
 async function runSignIn() {
   const state = getState();
-  $.log(
-    `[run] start updatedAt=${state.updatedAt || '-'} actId=${state.actId || '-'} hasInfo=${hasData(
-      state.infoBody
-    )} hasExec=${hasData(state.execBody)} cookie=${summarizeCookie(state.cookie)}`
-  );
   if (!state.cookie) {
     $.msg(APP_NAME, '缺少 Cookie', '请先打开签到页触发一次抓包');
     return;
@@ -168,7 +154,6 @@ async function runSignIn() {
   }
 
   const infoUrl = buildApiUrl(INFO_PATH, state.query, infoBody);
-  $.log(`[run] info-check actId=${state.actId || '-'} body=${summarizeBody(infoBody)}`);
   const infoResp = await postSigned(infoUrl, infoBody, state);
   if (!infoResp.ok) {
     $.msg(APP_NAME, '签到前检查失败', infoResp.message);
@@ -184,16 +169,10 @@ async function runSignIn() {
   const infoData = infoJson.data || {};
   const signInInfo = infoData.signInInfo || {};
   const basicInfo = infoData.basicInfo || {};
-  $.log(
-    `[run] info-result code=${infoJson.code} todaySinged=${signInInfo.todaySinged} cycleDays=${
-      signInInfo.cycleDays || 0
-    } respActId=${basicInfo.actId || '-'}`
-  );
 
   if (basicInfo.actId && basicInfo.actId !== state.actId) {
     state.actId = basicInfo.actId;
     saveState(state);
-    $.log(`[run] actId updated from info: ${state.actId}`);
   }
 
   if (Number(signInInfo.todaySinged) === 1) {
@@ -216,7 +195,6 @@ async function runSignIn() {
 
   const execBody = buildExecBody(state, infoBody, actId);
   const execUrl = buildApiUrl(EXEC_PATH, state.query, execBody);
-  $.log(`[run] exec-submit actId=${actId} body=${summarizeBody(execBody)}`);
   const execResp = await postSigned(execUrl, execBody, state);
   if (!execResp.ok) {
     $.msg(APP_NAME, '签到请求失败', execResp.message);
@@ -224,20 +202,11 @@ async function runSignIn() {
   }
 
   const execJson = execResp.json || {};
-  $.log(
-    '[run] exec-result code=' +
-      execJson.code +
-      ' msg=' +
-      (execJson.msg || '-') +
-      ' data=' +
-      summarizeExecData(execJson.data)
-  );
   if (Number(execJson.code) !== 1) {
     $.msg(APP_NAME, '签到失败', execJson.msg || stringify(execJson));
     return;
   }
 
-  $.log('[run] verify-submit after exec');
   const verifyResp = await postSigned(infoUrl, infoBody, state);
   if (!verifyResp.ok) {
     $.msg(APP_NAME, '签到后校验失败', verifyResp.message);
@@ -246,11 +215,6 @@ async function runSignIn() {
 
   const verifyJson = verifyResp.json || {};
   const verifyInfo = (((verifyJson || {}).data || {}).signInInfo) || {};
-  $.log(
-    `[run] verify-result code=${verifyJson.code} todaySinged=${verifyInfo.todaySinged} cycleDays=${
-      verifyInfo.cycleDays || 0
-    }`
-  );
   if (Number(verifyInfo.todaySinged) === 1) {
     const rewardText = formatReward(execJson.data || {});
     $.msg(
@@ -302,25 +266,18 @@ async function postSigned(url, bodyObj, state) {
     Authorization: authorization
   };
 
-  $.log(
-    `[http] POST ${getPath(url)} api_key=${apiKey || '-'} bodyKeys=${summarizeKeys(bodyObj)} auth=${maskAuthorization(
-      authorization
-    )}`
-  );
   const response = await $.request({
     url,
     method: 'POST',
     headers,
     body
   });
-  $.log(`[http] response status=${response.status} path=${getPath(url)}`);
 
   const mergedCookie = mergeCookie(state.cookie, response.headers || {});
   if (mergedCookie && mergedCookie !== state.cookie) {
     state.cookie = mergedCookie;
     state.updatedAt = isoNow();
     saveState(state);
-    $.log('检测到响应 Set-Cookie，已合并保存');
   }
 
   const text = response.body || '';
@@ -380,7 +337,6 @@ function getState() {
   try {
     return JSON.parse(raw);
   } catch (e) {
-    $.log(`状态解析失败，已忽略: ${formatError(e)}`);
     return {};
   }
 }

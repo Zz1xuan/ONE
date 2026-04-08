@@ -167,7 +167,7 @@ async function validateCookie() {
     saveState(state);
   }
 
-  $.msg(APP_NAME, 'Cookie 仍有效', '已完成校验；如后续失效，请重新打开签到页触发被动更新');
+  $.msg(APP_NAME, 'Cookie 仍有效');
 }
 
 function buildInfoBody(state) {

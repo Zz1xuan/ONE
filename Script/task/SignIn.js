@@ -137,11 +137,13 @@ async function captureRequest() {
   $.write(now, STORE_CAPTURE_KEY);
 
   const templateText = path === INFO_PATH ? 'info 模板' : 'exec 模板';
+  $.log('唯品会签到：已抓取' + templateText);
   $.msg(APP_NAME, '抓包成功', `已更新 ${templateText}`);
 }
 
 async function runSignIn() {
   const state = getState();
+  $.log('唯品会签到：开始执行');
   if (!state.cookie) {
     $.msg(APP_NAME, '缺少 Cookie', '请先打开签到页触发一次抓包');
     return;
@@ -154,6 +156,7 @@ async function runSignIn() {
   }
 
   const infoUrl = buildApiUrl(INFO_PATH, state.query, infoBody);
+  $.log('唯品会签到：先检查今日签到状态');
   const infoResp = await postSigned(infoUrl, infoBody, state);
   if (!infoResp.ok) {
     $.msg(APP_NAME, '签到前检查失败', infoResp.message);
@@ -176,6 +179,7 @@ async function runSignIn() {
   }
 
   if (Number(signInInfo.todaySinged) === 1) {
+    $.log('唯品会签到：今天已经签过了');
     const signedDay = extractSignedDay(infoData);
     $.msg(
       APP_NAME,
@@ -195,6 +199,7 @@ async function runSignIn() {
 
   const execBody = buildExecBody(state, infoBody, actId);
   const execUrl = buildApiUrl(EXEC_PATH, state.query, execBody);
+  $.log('唯品会签到：提交签到请求');
   const execResp = await postSigned(execUrl, execBody, state);
   if (!execResp.ok) {
     $.msg(APP_NAME, '签到请求失败', execResp.message);
@@ -203,10 +208,12 @@ async function runSignIn() {
 
   const execJson = execResp.json || {};
   if (Number(execJson.code) !== 1) {
+    $.log('唯品会签到：签到请求失败');
     $.msg(APP_NAME, '签到失败', execJson.msg || stringify(execJson));
     return;
   }
 
+  $.log('唯品会签到：签到成功，正在校验结果');
   const verifyResp = await postSigned(infoUrl, infoBody, state);
   if (!verifyResp.ok) {
     $.msg(APP_NAME, '签到后校验失败', verifyResp.message);
@@ -217,12 +224,18 @@ async function runSignIn() {
   const verifyInfo = (((verifyJson || {}).data || {}).signInInfo) || {};
   if (Number(verifyInfo.todaySinged) === 1) {
     const rewardText = formatReward(execJson.data || {});
+    $.log(
+      rewardText
+        ? '唯品会签到：' + rewardText + '，已连续签到 ' + (verifyInfo.cycleDays || 0) + ' 天'
+        : '唯品会签到：签到成功，已连续签到 ' + (verifyInfo.cycleDays || 0) + ' 天'
+    );
     $.msg(
       APP_NAME,
       rewardText ? `签到成功，${rewardText}` : '签到成功',
       `已连续签到 ${verifyInfo.cycleDays || 0} 天`
     );
   } else {
+    $.log('唯品会签到：接口已返回成功，但最终状态还需确认');
     $.msg(APP_NAME, '签到结果待确认', stringify(execJson));
   }
 }

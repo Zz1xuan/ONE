@@ -20,6 +20,64 @@ const API_SECRET_MAP = {
   '8cec5243ade04ed3a02c5972bcda0d3f': 'd97f3d38280d4c64a55c48a8f589907a'
 };
 
+function Env(name) {
+  this.name = name;
+  this.isQX = typeof $task !== 'undefined';
+  this.isLoon = typeof $loon !== 'undefined';
+  this.isSurge = typeof $httpClient !== 'undefined' && !this.isLoon;
+}
+
+Env.prototype.read = function (key) {
+  if (this.isQX) return $prefs.valueForKey(key);
+  return $persistentStore.read(key);
+};
+
+Env.prototype.write = function (value, key) {
+  if (this.isQX) return $prefs.setValueForKey(String(value), key);
+  return $persistentStore.write(String(value), key);
+};
+
+Env.prototype.msg = function (title, subtitle, body) {
+  if (this.isQX) {
+    $notify(title, subtitle, body);
+    return;
+  }
+  $notification.post(title, subtitle, body);
+};
+
+Env.prototype.log = function (text) {
+  console.log(String(text));
+};
+
+Env.prototype.done = function (value) {
+  $done(value);
+};
+
+Env.prototype.request = function (options) {
+  if (this.isQX) {
+    return $task.fetch(options).then((resp) => ({
+      status: resp.statusCode || resp.status,
+      headers: resp.headers || {},
+      body: resp.body || ''
+    }));
+  }
+
+  return new Promise((resolve, reject) => {
+    const method = String((options.method || 'GET')).toLowerCase();
+    $httpClient[method](options, (error, response, body) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve({
+        status: response.status || response.statusCode || 0,
+        headers: response.headers || {},
+        body: body || ''
+      });
+    });
+  });
+};
+
 const $ = new Env(APP_NAME);
 
 !(async () => {
@@ -464,61 +522,3 @@ function toHex(value) {
   }
   return str;
 }
-
-function Env(name) {
-  this.name = name;
-  this.isQX = typeof $task !== 'undefined';
-  this.isLoon = typeof $loon !== 'undefined';
-  this.isSurge = typeof $httpClient !== 'undefined' && !this.isLoon;
-}
-
-Env.prototype.read = function (key) {
-  if (this.isQX) return $prefs.valueForKey(key);
-  return $persistentStore.read(key);
-};
-
-Env.prototype.write = function (value, key) {
-  if (this.isQX) return $prefs.setValueForKey(String(value), key);
-  return $persistentStore.write(String(value), key);
-};
-
-Env.prototype.msg = function (title, subtitle, body) {
-  if (this.isQX) {
-    $notify(title, subtitle, body);
-    return;
-  }
-  $notification.post(title, subtitle, body);
-};
-
-Env.prototype.log = function (text) {
-  console.log(String(text));
-};
-
-Env.prototype.done = function (value) {
-  $done(value);
-};
-
-Env.prototype.request = function (options) {
-  if (this.isQX) {
-    return $task.fetch(options).then((resp) => ({
-      status: resp.statusCode || resp.status,
-      headers: resp.headers || {},
-      body: resp.body || ''
-    }));
-  }
-
-  return new Promise((resolve, reject) => {
-    const method = String((options.method || 'GET')).toLowerCase();
-    $httpClient[method](options, (error, response, body) => {
-      if (error) {
-        reject(error);
-        return;
-      }
-      resolve({
-        status: response.status || response.statusCode || 0,
-        headers: response.headers || {},
-        body: body || ''
-      });
-    });
-  });
-};

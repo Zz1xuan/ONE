@@ -88,7 +88,7 @@ const $ = new Env(APP_NAME);
   }
 })()
   .catch((err) => {
-    $.log(`异常: ${formatError(err)}`);
+    $.log('唯品会刷新Cookie：执行异常');
     $.msg(APP_NAME, '执行异常', formatError(err));
   })
   .finally(() => $.done({}));
@@ -129,19 +129,22 @@ async function refreshByCapture() {
   saveState(state);
   $.write(now, STORE_CAPTURE_KEY);
 
-  $.log(`已更新 Cookie 与模板: ${path}`);
+  $.log('唯品会刷新Cookie：已更新请求参数');
   $.msg(APP_NAME, '刷新成功', `已更新 ${path === INFO_PATH ? 'info' : 'exec'} 请求参数`);
 }
 
 async function validateCookie() {
   const state = getState();
+  $.log('唯品会刷新Cookie：开始校验');
   if (!state.cookie) {
+    logResult('缺少 Cookie', '请先打开签到页，让刷新脚本拦截一次请求');
     $.msg(APP_NAME, '缺少 Cookie', '请先打开签到页，让刷新脚本拦截一次请求');
     return;
   }
 
   const infoBody = buildInfoBody(state);
   if (!infoBody) {
+    logResult('缺少 info 模板', '请先打开签到页，让 signIn/info 请求经过脚本');
     $.msg(APP_NAME, '缺少 info 模板', '请先打开签到页，让 signIn/info 请求经过脚本');
     return;
   }
@@ -151,12 +154,14 @@ async function validateCookie() {
   $.write(isoNow(), STORE_VALIDATE_KEY);
 
   if (!response.ok) {
+    logResult('校验失败', response.message);
     $.msg(APP_NAME, '校验失败', response.message);
     return;
   }
 
   const json = response.json || {};
   if (Number(json.code) !== 1) {
+    logResult('Cookie 可能失效', json.msg || `code=${json.code || 'unknown'}`);
     $.msg(APP_NAME, 'Cookie 可能失效', json.msg || `code=${json.code || 'unknown'}`);
     return;
   }
@@ -167,6 +172,7 @@ async function validateCookie() {
     saveState(state);
   }
 
+  logResult('Cookie 仍有效');
   $.msg(APP_NAME, 'Cookie 仍有效');
 }
 
@@ -210,7 +216,7 @@ async function postSigned(url, bodyObj, state) {
     state.cookie = mergedCookie;
     state.updatedAt = isoNow();
     saveState(state);
-    $.log('检测到响应 Set-Cookie，已更新本地 Cookie');
+    $.log('唯品会刷新Cookie：已更新本地 Cookie');
   }
 
   const text = response.body || '';
@@ -269,7 +275,7 @@ function getState() {
   try {
     return JSON.parse(raw);
   } catch (e) {
-    $.log(`状态解析失败，已忽略: ${formatError(e)}`);
+    $.log('唯品会刷新Cookie：本地状态解析失败');
     return {};
   }
 }
@@ -388,6 +394,10 @@ function decode(text) {
 function trimText(text, length) {
   const value = String(text || '');
   return value.length > length ? `${value.slice(0, length)}...` : value;
+}
+
+function logResult(title, detail) {
+  $.log('唯品会刷新Cookie：' + title + (detail ? ' | ' + detail : ''));
 }
 
 function clone(obj) {

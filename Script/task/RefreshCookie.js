@@ -10,6 +10,15 @@ WPH.RefreshCookie.js
 - WPH_SIGN_STATE
 - WPH_SIGN_LAST_CAPTURE
 - WPH_SIGN_LAST_REFRESH
+
+
+[rewrite_local]
+^https:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/user\/get_session\/v1$ url script-request-body https://your.example.com/RefreshCookie.js
+^https:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/user\/get_session\/v1$ url script-response-body https://your.example.com/RefreshCookie.js
+
+[mitm]
+hostname = mapi.appvipshop.com
+
 */
 
 const APP_NAME = 'WPH刷新Cookie';

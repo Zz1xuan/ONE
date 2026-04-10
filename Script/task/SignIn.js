@@ -94,78 +94,81 @@ const $ = new Env(APP_NAME);
   }
 })()
   .catch((err) => {
-    $.msg(APP_NAME, '执行异常', formatError(err));
+    const message = formatError(err);
+    logResult('执行异常', message);
+    $.msg(APP_NAME, '执行异常', message);
   })
   .finally(() => $.done({}));
 
 async function captureRequest() {
   const url = ($request && $request.url) || '';
   const path = getPath(url);
-  if (!/\/signIn\/(info|exec)$/.test(path)) {
-    return;
-  }
+  if (!/\/signIn\/(info|exec)$/.test(path)) return;
 
-  const requestHeaders = lowerCaseHeaders(($request.headers || {}));
   const state = getState();
+  const headers = lowerCaseHeaders($request.headers || {});
   const body = parseForm(($request.body || '').trim());
   const query = parseQuery(url);
-  const now = isoNow();
 
-  state.cookie = requestHeaders.cookie || state.cookie || '';
+  if (headers.cookie) state.cookie = headers.cookie;
   state.headers = {
-    'User-Agent': requestHeaders['user-agent'] || getStoredHeader(state, 'User-Agent'),
+    'User-Agent': headers['user-agent'] || getStoredHeader(state, 'User-Agent'),
     'Content-Type':
-      requestHeaders['content-type'] ||
+      headers['content-type'] ||
       getStoredHeader(state, 'Content-Type') ||
       'application/x-www-form-urlencoded; charset=UTF-8',
-    Origin: requestHeaders.origin || getStoredHeader(state, 'Origin') || 'https://mst.vip.com',
-    Referer: requestHeaders.referer || getStoredHeader(state, 'Referer') || 'https://mst.vip.com/'
+    Origin: headers.origin || getStoredHeader(state, 'Origin') || 'https://mst.vip.com',
+    Referer: headers.referer || getStoredHeader(state, 'Referer') || 'https://mst.vip.com/'
   };
   state.query = Object.assign({}, state.query || {}, query);
 
   if (path === INFO_PATH) {
     state.infoBody = body;
-  }
-
-  if (path === EXEC_PATH) {
+  } else if (path === EXEC_PATH) {
     state.execBody = body;
     if (body.actId) state.actId = body.actId;
   }
 
-  state.updatedAt = now;
+  state.updatedAt = isoNow();
   saveState(state);
-  $.write(now, STORE_CAPTURE_KEY);
+  $.write(state.updatedAt, STORE_CAPTURE_KEY);
 
-  const templateText = path === INFO_PATH ? 'info 模板' : 'exec 模板';
-  $.log('唯品会签到：已抓取' + templateText);
-  $.msg(APP_NAME, '抓包成功', `已更新 ${templateText}`);
+  const templateName = path === INFO_PATH ? 'info 模板' : 'exec 模板';
+  logResult('已抓取' + templateName, '');
+  $.msg(APP_NAME, '抓包成功', '已更新 ' + templateName);
 }
 
 async function runSignIn() {
   const state = getState();
-  $.log('唯品会签到：开始执行');
+  logResult('开始执行', '');
+
   if (!state.cookie) {
-    $.msg(APP_NAME, '缺少 Cookie', '请先打开签到页触发一次抓包');
+    logResult('缺少 Cookie', '请先打开签到页抓包');
+    $.msg(APP_NAME, '缺少 Cookie', '请先打开签到页抓包');
     return;
   }
 
   const infoBody = buildInfoBody(state);
   if (!infoBody) {
+    logResult('缺少 info 模板', '请先打开签到页，让 signIn/info 请求经过脚本');
     $.msg(APP_NAME, '缺少 info 模板', '请先打开签到页，让 signIn/info 请求经过脚本');
     return;
   }
 
+  logResult('先检查今日签到状态', '');
   const infoUrl = buildApiUrl(INFO_PATH, state.query, infoBody);
-  $.log('唯品会签到：先检查今日签到状态');
   const infoResp = await postSigned(infoUrl, infoBody, state);
   if (!infoResp.ok) {
+    logResult('签到前检查失败', infoResp.message);
     $.msg(APP_NAME, '签到前检查失败', infoResp.message);
     return;
   }
 
   const infoJson = infoResp.json || {};
   if (Number(infoJson.code) !== 1) {
-    $.msg(APP_NAME, '签到前检查失败', infoJson.msg || `code=${infoJson.code || 'unknown'}`);
+    const detail = infoJson.msg || ('code=' + (infoJson.code || 'unknown'));
+    logResult('签到前检查失败', detail);
+    $.msg(APP_NAME, '签到前检查失败', detail);
     return;
   }
 
@@ -179,43 +182,44 @@ async function runSignIn() {
   }
 
   if (Number(signInInfo.todaySinged) === 1) {
-    $.log('唯品会签到：今天已经签过了');
     const signedDay = extractSignedDay(infoData);
-    $.msg(
-      APP_NAME,
-      '今日已签到',
-      signedDay
-        ? `已连续签到 ${signInInfo.cycleDays || 0} 天，签到日期 ${signedDay}`
-        : `已连续签到 ${signInInfo.cycleDays || 0} 天`
-    );
+    const detail = signedDay
+      ? '已连续签到 ' + (signInInfo.cycleDays || 0) + ' 天，签到日期 ' + signedDay
+      : '已连续签到 ' + (signInInfo.cycleDays || 0) + ' 天';
+    logResult('今日已签到', detail);
+    $.msg(APP_NAME, '今日已签到', detail);
     return;
   }
 
   const actId = basicInfo.actId || state.actId;
   if (!actId) {
-    $.msg(APP_NAME, '缺少 actId', '请重新打开签到页，或先手动签到一次后再抓包');
+    logResult('缺少 actId', '请重新打开签到页抓包');
+    $.msg(APP_NAME, '缺少 actId', '请重新打开签到页抓包');
     return;
   }
 
+  logResult('提交签到请求', '');
   const execBody = buildExecBody(state, infoBody, actId);
   const execUrl = buildApiUrl(EXEC_PATH, state.query, execBody);
-  $.log('唯品会签到：提交签到请求');
   const execResp = await postSigned(execUrl, execBody, state);
   if (!execResp.ok) {
+    logResult('签到请求失败', execResp.message);
     $.msg(APP_NAME, '签到请求失败', execResp.message);
     return;
   }
 
   const execJson = execResp.json || {};
   if (Number(execJson.code) !== 1) {
-    $.log('唯品会签到：签到请求失败');
-    $.msg(APP_NAME, '签到失败', execJson.msg || stringify(execJson));
+    const detail = execJson.msg || stringify(execJson);
+    logResult('签到失败', detail);
+    $.msg(APP_NAME, '签到失败', detail);
     return;
   }
 
-  $.log('唯品会签到：签到成功，正在校验结果');
+  logResult('签到成功，正在校验结果', '');
   const verifyResp = await postSigned(infoUrl, infoBody, state);
   if (!verifyResp.ok) {
+    logResult('签到后校验失败', verifyResp.message);
     $.msg(APP_NAME, '签到后校验失败', verifyResp.message);
     return;
   }
@@ -224,20 +228,16 @@ async function runSignIn() {
   const verifyInfo = (((verifyJson || {}).data || {}).signInInfo) || {};
   if (Number(verifyInfo.todaySinged) === 1) {
     const rewardText = formatReward(execJson.data || {});
-    $.log(
-      rewardText
-        ? '唯品会签到：' + rewardText + '，已连续签到 ' + (verifyInfo.cycleDays || 0) + ' 天'
-        : '唯品会签到：签到成功，已连续签到 ' + (verifyInfo.cycleDays || 0) + ' 天'
-    );
-    $.msg(
-      APP_NAME,
-      rewardText ? `签到成功，${rewardText}` : '签到成功',
-      `已连续签到 ${verifyInfo.cycleDays || 0} 天`
-    );
-  } else {
-    $.log('唯品会签到：接口已返回成功，但最终状态还需确认');
-    $.msg(APP_NAME, '签到结果待确认', stringify(execJson));
+    const detail = rewardText
+      ? rewardText + '，已连续签到 ' + (verifyInfo.cycleDays || 0) + ' 天'
+      : '已连续签到 ' + (verifyInfo.cycleDays || 0) + ' 天';
+    logResult('签到成功', detail);
+    $.msg(APP_NAME, rewardText ? '签到成功，' + rewardText : '签到成功', '已连续签到 ' + (verifyInfo.cycleDays || 0) + ' 天');
+    return;
   }
+
+  logResult('签到结果待确认', stringify(execJson));
+  $.msg(APP_NAME, '签到结果待确认', stringify(execJson));
 }
 
 function buildInfoBody(state) {
@@ -261,56 +261,50 @@ function buildExecBody(state, infoBody, actId) {
 }
 
 async function postSigned(url, bodyObj, state) {
-  const apiKey = bodyObj.api_key || (state.query || {}).api_key;
+  const apiKey = bodyObj.api_key || ((state.query || {}).api_key || '');
   const secret = API_SECRET_MAP[apiKey];
   if (!secret) {
-    return { ok: false, message: `未知 api_key: ${apiKey || 'empty'}` };
+    return { ok: false, message: '未知 api_key: ' + (apiKey || 'empty') };
   }
 
   const cookie = state.cookie || '';
   const authorization = getApiSign(url.split('?')[0], bodyObj, cookie, secret);
-  const body = toForm(bodyObj);
-  const headers = {
-    'Content-Type': getStoredHeader(state, 'Content-Type') || 'application/x-www-form-urlencoded; charset=UTF-8',
-    Origin: getStoredHeader(state, 'Origin') || 'https://mst.vip.com',
-    Referer: getStoredHeader(state, 'Referer') || 'https://mst.vip.com/',
-    'User-Agent': getStoredHeader(state, 'User-Agent') || '',
-    Cookie: cookie,
-    Authorization: authorization
-  };
-
   const response = await $.request({
-    url,
+    url: url,
     method: 'POST',
-    headers,
-    body
+    headers: {
+      'Content-Type': getStoredHeader(state, 'Content-Type') || 'application/x-www-form-urlencoded; charset=UTF-8',
+      Origin: getStoredHeader(state, 'Origin') || 'https://mst.vip.com',
+      Referer: getStoredHeader(state, 'Referer') || 'https://mst.vip.com/',
+      'User-Agent': getStoredHeader(state, 'User-Agent') || '',
+      Cookie: cookie,
+      Authorization: authorization
+    },
+    body: toForm(bodyObj)
   });
 
-  const mergedCookie = mergeCookie(state.cookie, response.headers || {});
+  const mergedCookie = mergeCookie(state.cookie || '', response.headers || {});
   if (mergedCookie && mergedCookie !== state.cookie) {
     state.cookie = mergedCookie;
     state.updatedAt = isoNow();
     saveState(state);
   }
 
-  const text = response.body || '';
-  let json = null;
-  try {
-    json = JSON.parse(text);
-  } catch (e) {
+  const json = safeJsonParse(response.body || '');
+  if (!json) {
     return {
       ok: false,
-      message: `响应不是 JSON: ${trimText(text, 160)}`
+      message: '响应不是 JSON: ' + trimText(response.body || '', 120)
     };
   }
 
   return {
-    ok: response.status === 200,
+    ok: Number(response.status) === 200,
     status: response.status,
     headers: response.headers || {},
-    body: text,
-    json,
-    message: response.status === 200 ? '' : `HTTP ${response.status}: ${trimText(text, 160)}`
+    body: response.body || '',
+    json: json,
+    message: Number(response.status) === 200 ? '' : 'HTTP ' + response.status
   };
 }
 
@@ -324,7 +318,7 @@ function buildApiUrl(path, storedQuery, body) {
     },
     storedQuery || {}
   );
-  return `${API_HOST}${path}?${toQuery(query)}`;
+  return API_HOST + path + '?' + toQuery(query);
 }
 
 function getApiSign(url, params, cookie, secret) {
@@ -336,12 +330,12 @@ function getApiSign(url, params, cookie, secret) {
     Object.keys(params)
       .sort()
       .filter((key) => key !== 'api_key')
-      .map((key) => `${key}=${params[key] == null ? '' : String(params[key])}`)
+      .map((key) => key + '=' + (params[key] == null ? '' : String(params[key])))
       .join('&')
   );
   const cid = getCookieValue(cookie, 'mars_cid');
   const sid = getCookieValue(cookie, 'mars_sid');
-  return `OAuth api_sign=${sha1(apiPath + hashedParams + cid + sid + secret)}`;
+  return 'OAuth api_sign=' + sha1(apiPath + hashedParams + cid + sid + secret);
 }
 
 function getState() {
@@ -350,6 +344,7 @@ function getState() {
   try {
     return JSON.parse(raw);
   } catch (e) {
+    logResult('本地状态损坏', '已忽略旧数据');
     return {};
   }
 }
@@ -364,7 +359,7 @@ function getStoredHeader(state, key) {
 
 function parseQuery(url) {
   const result = {};
-  const queryString = (url.split('?')[1] || '').split('#')[0];
+  const queryString = (String(url || '').split('?')[1] || '').split('#')[0];
   if (!queryString) return result;
   queryString.split('&').forEach((pair) => {
     if (!pair) return;
@@ -379,7 +374,7 @@ function parseQuery(url) {
 function parseForm(body) {
   const result = {};
   if (!body) return result;
-  body.split('&').forEach((pair) => {
+  String(body).split('&').forEach((pair) => {
     if (!pair) return;
     const index = pair.indexOf('=');
     const key = index >= 0 ? pair.slice(0, index) : pair;
@@ -392,19 +387,19 @@ function parseForm(body) {
 function toQuery(obj) {
   return Object.keys(obj || {})
     .filter((key) => obj[key] !== undefined && obj[key] !== null)
-    .map((key) => `${encode(key)}=${encode(String(obj[key]))}`)
+    .map((key) => encode(key) + '=' + encode(String(obj[key])))
     .join('&');
 }
 
 function toForm(obj) {
   return Object.keys(obj || {})
     .filter((key) => obj[key] !== undefined && obj[key] !== null)
-    .map((key) => `${encode(key)}=${encode(String(obj[key]))}`)
+    .map((key) => encode(key) + '=' + encode(String(obj[key])))
     .join('&');
 }
 
 function getCookieValue(cookie, name) {
-  const matched = String(cookie || '').match(new RegExp(`(?:^|;\\s*)${escapeRegExp(name)}=([^;]*)`));
+  const matched = String(cookie || '').match(new RegExp('(?:^|;\\s*)' + escapeRegExp(name) + '=([^;]*)'));
   return matched ? decodeURIComponent(matched[1]) : '';
 }
 
@@ -430,7 +425,7 @@ function mergeCookie(originCookie, headers) {
   });
 
   return Object.keys(jar)
-    .map((key) => `${key}=${jar[key]}`)
+    .map((key) => key + '=' + jar[key])
     .join('; ');
 }
 
@@ -445,78 +440,6 @@ function getSetCookieList(headers) {
     .filter(Boolean);
 }
 
-function getPath(url) {
-  return url.replace(/^https?:\/\/[^/]+/i, '').split('?')[0];
-}
-
-function lowerCaseHeaders(headers) {
-  const result = {};
-  Object.keys(headers || {}).forEach((key) => {
-    result[String(key).toLowerCase()] = headers[key];
-  });
-  return result;
-}
-
-function encode(text) {
-  return encodeURIComponent(String(text));
-}
-
-function decode(text) {
-  return decodeURIComponent(String(text || '').replace(/\+/g, '%20'));
-}
-
-function trimText(text, length) {
-  const value = String(text || '');
-  return value.length > length ? `${value.slice(0, length)}...` : value;
-}
-
-function hasData(obj) {
-  return !!(obj && Object.keys(obj).length);
-}
-
-function summarizeKeys(obj) {
-  const keys = Object.keys(obj || {});
-  if (!keys.length) return '-';
-  return keys.join(',');
-}
-
-function summarizeBody(body) {
-  if (!body) return '-';
-  return [
-    `api_key=${body.api_key || '-'}`,
-    `fdc_area_id=${body.fdc_area_id || '-'}`,
-    `province_id=${body.province_id || '-'}`,
-    `actId=${body.actId || '-'}`,
-    `youngType=${body.youngType || '-'}`,
-    `sceneCode=${body.sceneCode || '-'}`
-  ].join(' ');
-}
-
-function summarizeExecData(data) {
-  if (!data) return '-';
-  const subsidy = data.subsidy || {};
-  return [
-    `awardType=${data.awardType || '-'}`,
-    `awardEndTime=${data.awardEndTime || '-'}`,
-    `subsidyStatus=${subsidy.status || '-'}`
-  ].join(' ');
-}
-
-function formatReward(data) {
-  if (!data) return '';
-  const subsidy = data.subsidy || {};
-  if (subsidy.handOutNum) {
-    const until = formatTimestamp(subsidy.effectTimeTo || data.awardEndTime);
-    return until
-      ? `获得 ${subsidy.handOutNum} 补贴，截止 ${until}`
-      : `获得 ${subsidy.handOutNum} 补贴`;
-  }
-  if (data.awardType) {
-    return `获得签到奖励（类型 ${data.awardType}）`;
-  }
-  return '';
-}
-
 function extractSignedDay(infoData) {
   const list = infoData.signInList || [];
   for (let i = list.length - 1; i >= 0; i -= 1) {
@@ -527,45 +450,77 @@ function extractSignedDay(infoData) {
   return '';
 }
 
+function formatReward(data) {
+  if (!data) return '';
+  const subsidy = data.subsidy || {};
+  if (subsidy.handOutNum) {
+    const until = formatTimestamp(subsidy.effectTimeTo || data.awardEndTime);
+    return until ? '获得 ' + subsidy.handOutNum + ' 补贴，截止 ' + until : '获得 ' + subsidy.handOutNum + ' 补贴';
+  }
+  if (data.awardType) {
+    return '获得签到奖励（类型 ' + data.awardType + '）';
+  }
+  return '';
+}
+
 function formatTimestamp(value) {
   const num = Number(value);
   if (!num) return '';
   const date = new Date(num);
-  const y = date.getFullYear();
-  const m = `${date.getMonth() + 1}`.padStart(2, '0');
-  const d = `${date.getDate()}`.padStart(2, '0');
-  const hh = `${date.getHours()}`.padStart(2, '0');
-  const mm = `${date.getMinutes()}`.padStart(2, '0');
-  return `${y}-${m}-${d} ${hh}:${mm}`;
+  return (
+    date.getFullYear() +
+    '-' +
+    pad2(date.getMonth() + 1) +
+    '-' +
+    pad2(date.getDate()) +
+    ' ' +
+    pad2(date.getHours()) +
+    ':' +
+    pad2(date.getMinutes())
+  );
 }
 
 function formatDateText(value) {
   const text = String(value || '');
   if (!/^\d{8}$/.test(text)) return text;
-  return `${text.slice(0, 4)}-${text.slice(4, 6)}-${text.slice(6, 8)}`;
+  return text.slice(0, 4) + '-' + text.slice(4, 6) + '-' + text.slice(6, 8);
 }
 
-function summarizeCookie(cookie) {
-  if (!cookie) return 'missing';
-  const vipTank = getCookieValue(cookie, 'VIP_TANK');
-  const marsSid = getCookieValue(cookie, 'mars_sid');
-  const marsCid = getCookieValue(cookie, 'mars_cid');
-  return [
-    `VIP_TANK=${maskMiddle(vipTank, 6, 4)}`,
-    `mars_sid=${maskMiddle(marsSid, 6, 4)}`,
-    `mars_cid=${maskMiddle(marsCid, 6, 4)}`
-  ].join(' ');
+function safeJsonParse(text) {
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    return null;
+  }
 }
 
-function maskAuthorization(value) {
-  return maskMiddle(String(value || '').replace(/^OAuth api_sign=/, ''), 6, 4);
+function getPath(url) {
+  return String(url || '').replace(/^https?:\/\/[^/]+/i, '').split('?')[0];
 }
 
-function maskMiddle(value, left, right) {
-  const text = String(value || '');
-  if (!text) return '-';
-  if (text.length <= left + right) return text;
-  return `${text.slice(0, left)}***${text.slice(-right)}`;
+function lowerCaseHeaders(headers) {
+  const result = {};
+  Object.keys(headers || {}).forEach((key) => {
+    result[String(key).toLowerCase()] = headers[key];
+  });
+  return result;
+}
+
+function trimText(text, length) {
+  const value = String(text || '');
+  return value.length > length ? value.slice(0, length) + '...' : value;
+}
+
+function encode(text) {
+  return encodeURIComponent(String(text));
+}
+
+function decode(text) {
+  return decodeURIComponent(String(text || '').replace(/\+/g, '%20'));
+}
+
+function pad2(value) {
+  return String(value).padStart(2, '0');
 }
 
 function clone(obj) {
@@ -589,6 +544,10 @@ function formatError(err) {
   if (typeof err === 'string') return err;
   if (err.message) return err.message;
   return stringify(err);
+}
+
+function logResult(title, detail) {
+  $.log('唯品会签到：' + title + (detail ? ' | ' + detail : ''));
 }
 
 function escapeRegExp(text) {
@@ -631,7 +590,7 @@ function sha1(message) {
   }
   words.push(tail);
 
-  while ((words.length % 16) !== 14) words.push(0);
+  while (words.length % 16 !== 14) words.push(0);
   words.push(Math.floor((msgLength * 8) / 0x100000000));
   words.push((msgLength * 8) & 0xffffffff);
 

@@ -13,8 +13,8 @@ WPH.RefreshCookie.js
 
 
 [rewrite_local]
-^https:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/user\/get_session\/v1$ url script-request-body https://your.example.com/RefreshCookie.js
-^https:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/user\/get_session\/v1$ url script-response-body https://your.example.com/RefreshCookie.js
+^https:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/user\/get_session\/v1$ url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Script/task/RefreshCookie.js
+^https:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/user\/get_session\/v1$ url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Script/task/RefreshCookie.js
 
 [mitm]
 hostname = mapi.appvipshop.com

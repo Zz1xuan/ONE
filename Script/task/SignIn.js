@@ -28,6 +28,9 @@ const TASK_DETAIL_PATH = '/commonTask/getTaskDetail';
 const TASK_FINISH_PATH = '/commonTask/finishTask';
 const TASK_AWARD_PATH = '/commonTask/getAward';
 const DRESS_RECORD_PATH = '/signIn/getDressRecord';
+const NOTIFY_CAPTURE = false;
+const NOTIFY_TASK_DETAIL = true;
+const NOTIFY_TASK_MAX_LINES = 6;
 const API_SECRET_MAP = {
   '8cec5243ade04ed3a02c5972bcda0d3f': 'd97f3d38280d4c64a55c48a8f589907a'
 };
@@ -183,7 +186,9 @@ async function captureRequest() {
                   ? 'getDressRecord 模板'
                   : '模板';
   logResult('已抓取' + templateName, '');
-  $.msg(APP_NAME, '抓包成功', '已更新 ' + templateName);
+  if (NOTIFY_CAPTURE) {
+    $.msg(APP_NAME, '抓包成功', '已更新 ' + templateName);
+  }
 }
 
 async function runSignIn() {
@@ -408,10 +413,11 @@ async function runCommonTasks() {
   }
 
   const summary = 'finish ' + finished + ', award ' + awarded + ', skip ' + skipped + ', fail ' + failed;
-  const detailText = trimText(detailLines.join('\n'), 360);
+  const detailText = buildTaskDetailText(detailLines);
   logResult('任务执行完成', summary);
   logResult('任务详情', detailText);
-  $.msg(APP_NAME, '任务执行完成', summary + '\n' + detailText);
+  const notifyBody = NOTIFY_TASK_DETAIL && detailText ? summary + '\n' + detailText : summary;
+  $.msg(APP_NAME, '任务执行完成', notifyBody);
 }
 
 function buildInfoBody(state) {
@@ -465,6 +471,14 @@ function formatTaskAward(awardType, awardNum) {
   if (numText && typeText) return '奖励 ' + numText + ' (' + typeText + ')';
   if (numText) return '奖励 ' + numText;
   return '奖励 ' + typeText;
+}
+
+function buildTaskDetailText(lines) {
+  if (!lines || !lines.length) return '';
+  const maxLines = Math.max(1, Number(NOTIFY_TASK_MAX_LINES) || 6);
+  const slice = lines.slice(0, maxLines);
+  const more = lines.length > maxLines ? '\n...' : '';
+  return trimText(slice.join('\n') + more, 360);
 }
 
 async function postSigned(url, bodyObj, state) {

@@ -1,0 +1,1 @@
+Windows workspace commands: `Get-ChildItem` to list files, `Get-Content <file>` to read files, `rg <pattern>` / `rg --files` for fast search if ripgrep is installed, `git status` for repo state, and PowerShell from `C:\Users\zzx\Desktop\ONE` as the main workspace. No standard build/test/lint commands were found at the repo root.

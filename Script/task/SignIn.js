@@ -8,7 +8,8 @@
 - WPH_SIGN_LAST_CAPTURE
 
 [rewrite_local]
-^https:\/\/act-ug\.vip\.com\/signIn\/(info|exec)\? url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Script/task/SignIn.js
+^https:\/\/act-ug\.vip\.com\/signIn\/(info|exec|getDressRecord)\? url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Script/task/SignIn.js
+^https:\/\/act-ug\.vip\.com\/commonTask\/(getTaskList|getTaskDetail|finishTask|getAward)\? url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Script/task/SignIn.js
 
 [mitm]
 hostname = act-ug.vip.com
@@ -22,6 +23,11 @@ const STORE_CAPTURE_KEY = 'WPH_SIGN_LAST_CAPTURE';
 const API_HOST = 'https://act-ug.vip.com';
 const INFO_PATH = '/signIn/info';
 const EXEC_PATH = '/signIn/exec';
+const TASK_LIST_PATH = '/commonTask/getTaskList';
+const TASK_DETAIL_PATH = '/commonTask/getTaskDetail';
+const TASK_FINISH_PATH = '/commonTask/finishTask';
+const TASK_AWARD_PATH = '/commonTask/getAward';
+const DRESS_RECORD_PATH = '/signIn/getDressRecord';
 const API_SECRET_MAP = {
   '8cec5243ade04ed3a02c5972bcda0d3f': 'd97f3d38280d4c64a55c48a8f589907a'
 };
@@ -91,6 +97,7 @@ const $ = new Env(APP_NAME);
     await captureRequest();
   } else {
     await runSignIn();
+    await runCommonTasks();
   }
 })()
   .catch((err) => {
@@ -103,7 +110,16 @@ const $ = new Env(APP_NAME);
 async function captureRequest() {
   const url = ($request && $request.url) || '';
   const path = getPath(url);
-  if (!/\/signIn\/(info|exec)$/.test(path)) return;
+  const trackedPaths = [
+    INFO_PATH,
+    EXEC_PATH,
+    TASK_LIST_PATH,
+    TASK_DETAIL_PATH,
+    TASK_FINISH_PATH,
+    TASK_AWARD_PATH,
+    DRESS_RECORD_PATH
+  ];
+  if (!trackedPaths.includes(path)) return;
 
   const state = getState();
   const headers = lowerCaseHeaders($request.headers || {});
@@ -127,13 +143,45 @@ async function captureRequest() {
   } else if (path === EXEC_PATH) {
     state.execBody = body;
     if (body.actId) state.actId = body.actId;
+  } else if (path === TASK_LIST_PATH) {
+    state.taskListBody = body;
+    if (body.actId) state.taskActId = body.actId;
+  } else if (path === TASK_DETAIL_PATH) {
+    state.taskDetailBody = body;
+    if (body.actId) state.taskActId = body.actId;
+    if (body.taskId) state.lastTaskId = body.taskId;
+  } else if (path === TASK_FINISH_PATH) {
+    state.taskFinishBody = body;
+    if (body.actId) state.taskActId = body.actId;
+    if (body.taskId) state.lastTaskId = body.taskId;
+  } else if (path === TASK_AWARD_PATH) {
+    state.taskAwardBody = body;
+    if (body.actId) state.taskActId = body.actId;
+    if (body.taskId) state.lastTaskId = body.taskId;
+  } else if (path === DRESS_RECORD_PATH) {
+    state.dressRecordBody = body;
   }
 
   state.updatedAt = isoNow();
   saveState(state);
   $.write(state.updatedAt, STORE_CAPTURE_KEY);
 
-  const templateName = path === INFO_PATH ? 'info 模板' : 'exec 模板';
+  const templateName =
+    path === INFO_PATH
+      ? 'info 模板'
+      : path === EXEC_PATH
+        ? 'exec 模板'
+        : path === TASK_LIST_PATH
+          ? 'getTaskList 模板'
+          : path === TASK_DETAIL_PATH
+            ? 'getTaskDetail 模板'
+            : path === TASK_FINISH_PATH
+              ? 'finishTask 模板'
+              : path === TASK_AWARD_PATH
+                ? 'getAward 模板'
+                : path === DRESS_RECORD_PATH
+                  ? 'getDressRecord 模板'
+                  : '模板';
   logResult('已抓取' + templateName, '');
   $.msg(APP_NAME, '抓包成功', '已更新 ' + templateName);
 }
@@ -240,6 +288,132 @@ async function runSignIn() {
   $.msg(APP_NAME, '签到结果待确认', stringify(execJson));
 }
 
+async function runCommonTasks() {
+  const state = getState();
+  logResult('开始执行任务', '');
+
+  if (!state.cookie) {
+    logResult('缺少 Cookie', '请先打开签到页抓包');
+    $.msg(APP_NAME, '缺少 Cookie', '请先打开签到页抓包');
+    return;
+  }
+
+  const taskBase = buildTaskBase(state);
+  if (!taskBase) {
+    logResult('缺少任务模板', '请先打开签到页，让 commonTask 请求经过脚本');
+    $.msg(APP_NAME, '缺少任务模板', '请先打开签到页，让 commonTask 请求经过脚本');
+    return;
+  }
+
+  const actId = taskBase.actId || state.taskActId || state.actId;
+  if (!actId) {
+    logResult('缺少 actId', '请重新打开签到页抓包');
+    $.msg(APP_NAME, '缺少 actId', '请重新打开签到页抓包');
+    return;
+  }
+  taskBase.actId = actId;
+
+  const listUrl = buildApiUrl(TASK_LIST_PATH, state.query, taskBase);
+  const listResp = await postSigned(listUrl, taskBase, state);
+  if (!listResp.ok) {
+    logResult('任务列表请求失败', listResp.message);
+    $.msg(APP_NAME, '任务列表请求失败', listResp.message);
+    return;
+  }
+
+  const listJson = listResp.json || {};
+  if (Number(listJson.code) !== 1) {
+    const detail = listJson.msg || ('code=' + (listJson.code || 'unknown'));
+    logResult('任务列表获取失败', detail);
+    $.msg(APP_NAME, '任务列表获取失败', detail);
+    return;
+  }
+
+  const taskList = ((listJson.data || {}).taskList) || [];
+  if (!taskList.length) {
+    logResult('任务列表为空', '');
+    $.msg(APP_NAME, '任务列表为空', '');
+    return;
+  }
+
+  let finished = 0;
+  let awarded = 0;
+  let skipped = 0;
+  let failed = 0;
+  const detailLines = [];
+
+  for (let i = 0; i < taskList.length; i += 1) {
+    const task = taskList[i] || {};
+    const taskId = task.taskId || '';
+    const baseTaskName = task.taskName || taskId;
+    if (!taskId) {
+      skipped += 1;
+      detailLines.push('未知任务 | 跳过');
+      continue;
+    }
+
+    const detailBody = buildTaskBody(taskBase, { actId: actId, taskId: taskId });
+    const detailUrl = buildApiUrl(TASK_DETAIL_PATH, state.query, detailBody);
+    const detailResp = await postSigned(detailUrl, detailBody, state);
+    if (!detailResp.ok || !detailResp.json || Number(detailResp.json.code) !== 1) {
+      failed += 1;
+      detailLines.push(baseTaskName + ' | 详情失败');
+      continue;
+    }
+
+    const detailData = detailResp.json.data || {};
+    const userTaskId = detailData.userTaskId || task.userTaskId || '';
+    const taskStatus = Number(
+      detailData.taskStatus != null ? detailData.taskStatus : task.taskStatus || 0
+    );
+    const taskName = detailData.taskName || baseTaskName;
+    const awardNum = detailData.awardNum || task.awardNum || '';
+    const awardType = detailData.awardType || task.awardType || '';
+    const awardText = formatTaskAward(awardType, awardNum);
+
+    if (!userTaskId) {
+      skipped += 1;
+      detailLines.push(taskName + ' | 跳过' + (awardText ? ' | ' + awardText : ''));
+      continue;
+    }
+
+    if (taskStatus === 2) {
+      skipped += 1;
+      detailLines.push(taskName + ' | 已领奖' + (awardText ? ' | ' + awardText : ''));
+      continue;
+    }
+
+    if (taskStatus === 0) {
+      const finishBody = buildTaskBody(taskBase, { actId: actId, taskId: taskId, userTaskId: userTaskId });
+      const finishUrl = buildApiUrl(TASK_FINISH_PATH, state.query, finishBody);
+      const finishResp = await postSigned(finishUrl, finishBody, state);
+      if (!finishResp.ok || !finishResp.json || Number(finishResp.json.code) !== 1) {
+        failed += 1;
+        detailLines.push(taskName + ' | 完成失败' + (awardText ? ' | ' + awardText : ''));
+        continue;
+      }
+      finished += 1;
+    }
+
+    const awardBody = buildTaskBody(taskBase, { actId: actId, taskId: taskId, userTaskId: userTaskId });
+    const awardUrl = buildApiUrl(TASK_AWARD_PATH, state.query, awardBody);
+    const awardResp = await postSigned(awardUrl, awardBody, state);
+    if (awardResp.ok && awardResp.json && Number(awardResp.json.code) === 1) {
+      awarded += 1;
+      detailLines.push(taskName + ' | 已领奖' + (awardText ? ' | ' + awardText : ''));
+    } else {
+      failed += 1;
+      detailLines.push(taskName + ' | 领奖失败' + (awardText ? ' | ' + awardText : ''));
+    }
+  }
+
+  const summary = 'finish ' + finished + ', award ' + awarded + ', skip ' + skipped + ', fail ' + failed;
+  const detailText = trimText(detailLines.join('\n'), 360);
+  logResult('任务执行完成', summary);
+  logResult('任务详情', detailText);
+  $.msg(APP_NAME, '任务执行完成', summary + '\n' + detailText);
+}
+
 function buildInfoBody(state) {
   if (state.infoBody && Object.keys(state.infoBody).length) {
     return clone(state.infoBody);
@@ -258,6 +432,39 @@ function buildExecBody(state, infoBody, actId) {
   delete body.sceneCode;
   body.actId = actId;
   return body;
+}
+
+function buildTaskBase(state) {
+  const source =
+    state.taskListBody ||
+    state.taskDetailBody ||
+    state.taskFinishBody ||
+    state.taskAwardBody ||
+    null;
+  if (!source || !Object.keys(source).length) return null;
+  const body = clone(source);
+  delete body.taskId;
+  delete body.userTaskId;
+  return body;
+}
+
+function buildTaskBody(base, overrides) {
+  const body = Object.assign({}, base || {});
+  Object.keys(overrides || {}).forEach((key) => {
+    if (overrides[key] !== undefined && overrides[key] !== null) {
+      body[key] = overrides[key];
+    }
+  });
+  return body;
+}
+
+function formatTaskAward(awardType, awardNum) {
+  if (!awardNum && !awardType) return '';
+  const typeText = awardType ? 'type ' + awardType : '';
+  const numText = awardNum ? String(awardNum) : '';
+  if (numText && typeText) return '奖励 ' + numText + ' (' + typeText + ')';
+  if (numText) return '奖励 ' + numText;
+  return '奖励 ' + typeText;
 }
 
 async function postSigned(url, bodyObj, state) {

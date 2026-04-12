@@ -1,0 +1,1 @@
+For script-reading or patch tasks in this repository, verify the touched script logic directly because no root-level automated test or lint workflow was found. When editing task scripts, check related request/response helpers and persistent storage keys to avoid behavior regressions across Quantumult X/Loon/Surge environments.

@@ -1,0 +1,1 @@
+JavaScript scripts in this project are mostly standalone automation/rewrite files for proxy environments such as Quantumult X, Loon, and Surge. Common conventions in inspected scripts: plain JavaScript, top-level constants, small helper functions, Env wrapper for cross-platform APIs, persistent store keys as uppercase snake case strings, and async IIFE entrypoints.

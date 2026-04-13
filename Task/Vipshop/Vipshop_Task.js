@@ -35,7 +35,7 @@ const TASK_FINISH_PATH = '/commonTask/finishTask';
 const TASK_AWARD_PATH = '/commonTask/getAward';
 
 const DEFAULT_STANDBY_ID = 'native';
-const NOTIFY_CAPTURE = false;
+const NOTIFY_CAPTURE = true;
 const NOTIFY_MAX_LINES = 8;
 
 const API_SECRET_MAP = {
@@ -118,6 +118,7 @@ const $ = new Env(APP_NAME);
 
 async function captureRequest() {
   const url = ($request && $request.url) || '';
+  const method = String(($request && $request.method) || 'GET').toUpperCase();
   const path = getPath(url);
   const trackedPaths = [
     TASK_LIST_PATH,
@@ -128,10 +129,20 @@ async function captureRequest() {
   ];
   if (!trackedPaths.includes(path)) return;
 
+  if (method !== 'POST') {
+    logResult('忽略请求', method + ' ' + path);
+    return;
+  }
+
   const state = getState();
   const headers = lowerCaseHeaders($request.headers || {});
   const body = parseForm(($request.body || '').trim());
   const query = parseQuery(url);
+
+  if (!Object.keys(body).length) {
+    logResult('忽略空模板', path + ' | body 为空');
+    return;
+  }
 
   if (headers.cookie) state.cookie = headers.cookie;
   state.headers = {
@@ -172,9 +183,16 @@ async function captureRequest() {
   $.write(state.updatedAt, STORE_CAPTURE_KEY);
 
   const name = getCaptureName(path);
-  logResult('已抓取模板', name);
+  const fields = [
+    body.actId ? 'actId=' + body.actId : '',
+    body.taskId ? 'taskId=' + body.taskId : '',
+    body.userTaskId ? 'userTaskId=' + body.userTaskId : ''
+  ]
+    .filter(Boolean)
+    .join(' | ');
+  logResult('已抓取模板', name + (fields ? ' | ' + fields : ''));
   if (NOTIFY_CAPTURE) {
-    $.msg(APP_NAME, '抓包成功', '已更新 ' + name);
+    $.msg(APP_NAME, '抓包成功', '已更新 ' + name + (fields ? '\n' + fields : ''));
   }
 }
 

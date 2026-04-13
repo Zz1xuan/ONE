@@ -10,6 +10,9 @@
 [rewrite_local]
 ^https:\/\/act-ug\.vip\.com\/signIn\/(info|exec)\? url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/Vipshop/Vipshop_SignIn.js
 
+[task_local]
+10 9 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/Vipshop/Vipshop_SignIn.js, tag=Vipshop签到
+
 [mitm]
 hostname = act-ug.vip.com
 

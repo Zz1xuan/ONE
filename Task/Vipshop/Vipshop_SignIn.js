@@ -8,7 +8,7 @@
 - WPH_SIGN_LAST_CAPTURE
 
 [rewrite_local]
-^https:\/\/act-ug\.vip\.com\/signIn\/(info|exec)\? url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Script/task/SignIn.js
+^https:\/\/act-ug\.vip\.com\/signIn\/(info|exec)\? url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/Vipshop/Vipshop_SignIn.js
 
 [mitm]
 hostname = act-ug.vip.com

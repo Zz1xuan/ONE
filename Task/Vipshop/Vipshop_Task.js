@@ -14,10 +14,10 @@ Capture endpoints:
 
 Quantumult X example:
 [rewrite_local]
-^https:\/\/act-ug\.vip\.com\/commonTask\/(getTaskList|getTask|getTaskDetail|finishTask|getAward)\? url script-request-body https://example.com/WPH.Task.js
+^https:\/\/act-ug\.vip\.com\/commonTask\/(getTaskList|getTask|getTaskDetail|finishTask|getAward)\? url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/Vipshop/Vipshop_Task.js
 
 [task_local]
-0 15 10 * * * https://example.com/WPH.Task.js, tag=WPH任务
+15 9 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/Vipshop/Vipshop_Task.js, tag=Vipshop任务
 
 [mitm]
 hostname = act-ug.vip.com

@@ -16,6 +16,9 @@ WPH.RefreshCookie.js
 ^https:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/user\/get_session\/v1$ url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/Vipshop/Vipshop_RefreshCookie.js
 ^https:\/\/mapi\.appvipshop\.com\/vips-mobile\/rest\/user\/get_session\/v1$ url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/Vipshop/Vipshop_RefreshCookie.js
 
+[task_local]
+0 9 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/Vipshop/Vipshop_RefreshCookie.js, tag=Vipshop刷新
+
 [mitm]
 hostname = mapi.appvipshop.com
 

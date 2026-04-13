@@ -549,12 +549,13 @@ function getApiSign(url, params, cookie, secret) {
   const hashedParams = sha1(
     Object.keys(params)
       .sort()
-      .map((key) => key + '=' + params[key])
+      .filter((key) => key !== 'api_key')
+      .map((key) => key + '=' + (params[key] == null ? '' : String(params[key])))
       .join('&')
   );
-  const vipTank = getCookieValue(cookie, 'VIP_TANK');
-  const signSource = apiPath + hashedParams + vipTank + secret;
-  return 'OAuth api_sign=' + sha1(signSource);
+  const cid = getCookieValue(cookie, 'mars_cid');
+  const sid = getCookieValue(cookie, 'mars_sid');
+  return 'OAuth api_sign=' + sha1(apiPath + hashedParams + cid + sid + secret);
 }
 
 function getState() {

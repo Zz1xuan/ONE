@@ -1,6 +1,4 @@
 /*
-智行签到+任务 - Quantumult X 极简版
-
 用途：
 1. 抓取用户自己的 Cookie / 必要请求头 / body 模板
 2. 自动执行：查询签到状态 -> 签到 -> 获取任务列表 -> 完成待完成任务
@@ -18,9 +16,9 @@
 - 当前 HAR 未发现稳定的独立领奖接口，因此本脚本默认以 FinishVipCredit 直接到账为准
 
 [rewrite_local]
-^https:\/\/m\.suanya\.com\/restapi\/soa2\/18903\/(getAttendanceConData|attendanceDay)\?.* url script-request-body https://example.com/QX_Zhixing_Task.js
-^https:\/\/m\.suanya\.com\/restapi\/soa2\/20707\/getCreditTask\?.* url script-request-body https://example.com/QX_Zhixing_Task.js
-^https:\/\/m\.suanya\.com\/restapi\/soa2\/14593\/FinishVipCredit\?.* url script-request-body https://example.com/QX_Zhixing_Task.js
+^https:\/\/m\.suanya\.com\/restapi\/soa2\/18903\/(getAttendanceConData|attendanceDay)\?.* url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/ZhiXing/ZhiXing.js
+^https:\/\/m\.suanya\.com\/restapi\/soa2\/20707\/getCreditTask\?.* url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/ZhiXing/ZhiXing.js
+^https:\/\/m\.suanya\.com\/restapi\/soa2\/14593\/FinishVipCredit\?.* url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Task/ZhiXing/ZhiXing.js
 
 [task_local]
 5 9 * * * https://example.com/QX_Zhixing_Task.js, tag=智行签到任务

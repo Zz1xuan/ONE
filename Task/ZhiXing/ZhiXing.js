@@ -27,6 +27,10 @@ const STATUS_PATH = '/restapi/soa2/18903/getAttendanceConData';
 const SIGN_PATH = '/restapi/soa2/18903/attendanceDay';
 const TASK_LIST_PATH = '/restapi/soa2/20707/getCreditTask';
 const FINISH_TASK_PATH = '/restapi/soa2/14593/FinishVipCredit';
+const ACTIVITY_INFO_PATH = '/restapi/soa2/17679/get2020ZtripIntergrationDailyAttendanceInfo';
+const ACTIVITY_RECORD_PATH = '/restapi/soa2/17679/get2020ZtripIntergrationDailyAttendanceRecord';
+const ACTIVITY_ENROLL_PATH = '/restapi/soa2/17679/attend2020ZtripIntergrationDailyAttendance';
+const ACTIVITY_PUNCH_PATH = '/restapi/soa2/17679/join2020ZtripIntergrationDailyAttendance';
 
 const REQUEST_GAP_MS = 3000;
 const BUSY_RETRY_TIMES = 1;
@@ -239,7 +243,18 @@ async function capture() {
     return;
   }
 
-  if (![STATUS_PATH, SIGN_PATH, TASK_LIST_PATH, FINISH_TASK_PATH].includes(path)) {
+  if (
+    ![
+      STATUS_PATH,
+      SIGN_PATH,
+      TASK_LIST_PATH,
+      FINISH_TASK_PATH,
+      ACTIVITY_INFO_PATH,
+      ACTIVITY_RECORD_PATH,
+      ACTIVITY_ENROLL_PATH,
+      ACTIVITY_PUNCH_PATH
+    ].includes(path)
+  ) {
     return;
   }
 
@@ -280,6 +295,18 @@ async function capture() {
     state.finishTaskHeaders['w-payload-source'] =
       headers['w-payload-source'] || state.finishTaskHeaders['w-payload-source'];
   }
+  if (path === ACTIVITY_INFO_PATH && hasObjectKeys(body)) {
+    state.activityInfoBody = body;
+  }
+  if (path === ACTIVITY_RECORD_PATH && hasObjectKeys(body)) {
+    state.activityRecordBody = body;
+  }
+  if (path === ACTIVITY_ENROLL_PATH && hasObjectKeys(body)) {
+    state.activityEnrollBody = body;
+  }
+  if (path === ACTIVITY_PUNCH_PATH && hasObjectKeys(body)) {
+    state.activityPunchBody = body;
+  }
 
   state.updatedAt = isoNow();
   saveState(state);
@@ -311,6 +338,11 @@ async function run() {
 
   const signMessage = await doSign(state);
   logs.push(signMessage);
+
+  await sleep(REQUEST_GAP_MS);
+
+  const activityMessage = await doDailyAttendanceActivity(state);
+  logs.push(activityMessage);
 
   await sleep(REQUEST_GAP_MS);
 
@@ -411,6 +443,123 @@ async function doTasks(state) {
   }
 
   return '任务结果\n' + doneList.join('\n');
+}
+
+async function doDailyAttendanceActivity(state) {
+  const infoResult = await callApiWithRetry(
+    '鎵撳崱鐡滃垎绉垎淇℃伅',
+    ACTIVITY_INFO_PATH,
+    buildBody(state.activityInfoBody, state),
+    state,
+    'activityInfo'
+  );
+  if (!infoResult.ok) {
+    return '鎵撳崱鐡滃垎绉垎澶辫触: ' + infoResult.message;
+  }
+
+  let infoJson = infoResult.json || {};
+  if (Number(infoJson.resultCode) !== 1) {
+    return '鎵撳崱鐡滃垎绉垎澶辫触: ' + (infoJson.resultMessage || briefJson(infoJson));
+  }
+  if (infoJson.isLogin === false) {
+    return '鎵撳崱鐡滃垎绉垎: 褰撳墠鏈櫥褰?';
+  }
+
+  logStep('娲诲姩鐘舵€?', formatActivityInfo(infoJson));
+  const actionLogs = [];
+
+  if (infoJson.attendFlag === false) {
+    await sleep(REQUEST_GAP_MS);
+    const enrollResult = await callApiWithRetry(
+      '鎵撳崱鐡滃垎绉垎鎶ュ悕',
+      ACTIVITY_ENROLL_PATH,
+      buildBody(state.activityEnrollBody, state),
+      state,
+      'activityEnroll'
+    );
+    if (!enrollResult.ok) {
+      return '鎵撳崱鐡滃垎绉垎鎶ュ悕澶辫触: ' + enrollResult.message;
+    }
+
+    const enrollJson = enrollResult.json || {};
+    if (Number(enrollJson.resultCode) !== 1) {
+      return '鎵撳崱鐡滃垎绉垎鎶ュ悕澶辫触: ' + (enrollJson.resultMessage || briefJson(enrollJson));
+    }
+    actionLogs.push(extractMessage(enrollJson) || '鎶ュ悕鎴愬姛');
+
+    await sleep(REQUEST_GAP_MS);
+    const refreshAfterEnroll = await callApiWithRetry(
+      '鎵撳崱鐡滃垎绉垎淇℃伅鍒锋柊',
+      ACTIVITY_INFO_PATH,
+      buildBody(state.activityInfoBody, state),
+      state,
+      'activityInfo'
+    );
+    if (
+      refreshAfterEnroll.ok &&
+      refreshAfterEnroll.json &&
+      Number(refreshAfterEnroll.json.resultCode) === 1
+    ) {
+      infoJson = refreshAfterEnroll.json;
+      logStep('娲诲姩鎶ュ悕鍚庣姸鎬?', formatActivityInfo(infoJson));
+    }
+  }
+
+  if (infoJson.todayAttendanceFlag !== true) {
+    await sleep(REQUEST_GAP_MS);
+    const punchResult = await callApiWithRetry(
+      '鎵撳崱鐡滃垎绉垎鎵撳崱',
+      ACTIVITY_PUNCH_PATH,
+      buildBody(state.activityPunchBody, state),
+      state,
+      'activityPunch'
+    );
+    if (!punchResult.ok) {
+      return '鎵撳崱鐡滃垎绉垎鎵撳崱澶辫触: ' + punchResult.message;
+    }
+
+    const punchJson = punchResult.json || {};
+    if (Number(punchJson.resultCode) !== 1) {
+      return '鎵撳崱鐡滃垎绉垎鎵撳崱澶辫触: ' + (punchJson.resultMessage || briefJson(punchJson));
+    }
+    actionLogs.push(extractMessage(punchJson) || '鎵撳崱鎴愬姛');
+
+    await sleep(REQUEST_GAP_MS);
+    const refreshAfterPunch = await callApiWithRetry(
+      '鎵撳崱鐡滃垎绉垎淇℃伅鍒锋柊',
+      ACTIVITY_INFO_PATH,
+      buildBody(state.activityInfoBody, state),
+      state,
+      'activityInfo'
+    );
+    if (
+      refreshAfterPunch.ok &&
+      refreshAfterPunch.json &&
+      Number(refreshAfterPunch.json.resultCode) === 1
+    ) {
+      infoJson = refreshAfterPunch.json;
+      logStep('娲诲姩鎵撳崱鍚庣姸鎬?', formatActivityInfo(infoJson));
+    }
+  } else {
+    actionLogs.push('浠婃棩宸叉墦鍗?');
+  }
+
+  const lines = [];
+  lines.push('鎵撳崱鐡滃垎绉垎: ' + actionLogs.join(' / '));
+  lines.push(formatActivityInfo(infoJson));
+
+  const recordResult = await callApiWithRetry(
+    '鎵撳崱鐡滃垎绉垎璁板綍',
+    ACTIVITY_RECORD_PATH,
+    buildBody(state.activityRecordBody, state),
+    state,
+    'activityRecord'
+  );
+  if (recordResult.ok && recordResult.json && Number(recordResult.json.resultCode) === 1) {
+    lines.push(formatActivityRecord(recordResult.json));
+  }
+
+  return lines.filter(Boolean).join('\n');
 }
 
 async function callApiWithRetry(name, path, body, state, headerType, extraInfo) {
@@ -570,6 +719,52 @@ function extractTaskList(json) {
   return [];
 }
 
+function formatActivityInfo(json) {
+  if (!json || typeof json !== 'object') return '';
+  const parts = [];
+  parts.push('鎶ュ悕=' + formatBoolFlag(json.attendFlag));
+  parts.push('浠婃棩鎵撳崱=' + formatBoolFlag(json.todayAttendanceFlag));
+  if (json.paymentIntegration !== undefined) parts.push('浠婃棩闇€鎶曞叆=' + json.paymentIntegration);
+  if (json.credit !== undefined) parts.push('褰撳墠绉垎=' + json.credit);
+  if (json.attendanceCount !== undefined) parts.push('浜哄皵=' + json.attendanceCount);
+  if (json.totalIntergration !== undefined) parts.push('濂栨睜=' + json.totalIntergration);
+  if (json.expectedMaxAlloactionOnTomorrow !== undefined) {
+    parts.push('鏄庢棩棰勪及=' + json.expectedMaxAlloactionOnTomorrow);
+  }
+  return parts.join(' | ');
+}
+
+function formatActivityRecord(json) {
+  if (!json || typeof json !== 'object') return '';
+  const parts = [];
+  if (json.totalPayment !== undefined) parts.push('绱鎶曞叆=' + json.totalPayment);
+  if (json.totalAcquire !== undefined) parts.push('绱鑾峰彇=' + json.totalAcquire);
+  if (json.successDays !== undefined) parts.push('鎴愬姛澶╂暟=' + json.successDays);
+  const first = Array.isArray(json.recordList) && json.recordList.length ? json.recordList[0] : null;
+  if (first) {
+    parts.push(
+      '鏈€鏂拌褰?=' +
+        (first.day || '-') +
+        '/' +
+        'result=' +
+        formatBoolFlag(first.result) +
+        '/' +
+        'pay=' +
+        (first.paymentNumber || 0) +
+        '/' +
+        'get=' +
+        (first.acquireNumber || 0)
+    );
+  }
+  return parts.join(' | ');
+}
+
+function formatBoolFlag(value) {
+  if (value === true) return '鏄?';
+  if (value === false) return '鍚?';
+  return String(value);
+}
+
 function getTaskName(task) {
   return (
     task.taskName ||
@@ -603,6 +798,18 @@ function withDefaults(state) {
   next.signBody = hasObjectKeys(next.signBody) ? next.signBody : clone(DEFAULT_SIGN_BODY);
   next.taskListBody = hasObjectKeys(next.taskListBody) ? next.taskListBody : clone(DEFAULT_TASK_LIST_BODY);
   next.finishTaskBody = hasObjectKeys(next.finishTaskBody) ? next.finishTaskBody : clone(DEFAULT_FINISH_TASK_BODY);
+  next.activityInfoBody = hasObjectKeys(next.activityInfoBody)
+    ? next.activityInfoBody
+    : clone(DEFAULT_STATUS_BODY);
+  next.activityRecordBody = hasObjectKeys(next.activityRecordBody)
+    ? next.activityRecordBody
+    : clone(DEFAULT_STATUS_BODY);
+  next.activityEnrollBody = hasObjectKeys(next.activityEnrollBody)
+    ? next.activityEnrollBody
+    : clone(DEFAULT_STATUS_BODY);
+  next.activityPunchBody = hasObjectKeys(next.activityPunchBody)
+    ? next.activityPunchBody
+    : clone(DEFAULT_STATUS_BODY);
   next.signHeaders = Object.assign(
     { 'w-payload-source': DEFAULT_SIGN_PAYLOAD_SOURCE },
     next.signHeaders || {}

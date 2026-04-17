@@ -1,269 +1,272 @@
+# 通用广告关键词
 DOMAIN-KEYWORD,adservice
-# 运动世界校园
-# DOMAIN,discovery.gxapp.iydsj.com
+
+# 360 / 系统组件 / 上报
 DOMAIN,cmt.comp.360os.com
-#wps
+
+# 金山办公 / WPS / 云服务
 DOMAIN,cloudservice22.kingsoft-office-service.com
-# 网易云
+
+# 网易 / 网易云音乐 / 有道
+DOMAIN-SUFFIX,163jiasu.com
+DOMAIN,g1.163.com
+DOMAIN,gorgon.youdao.com
 DOMAIN,httpdns.n.netease.com
+DOMAIN,iad.g.163.com
 DOMAIN,iadmat.nosdn.127.net
 DOMAIN,iadmusicmat.music.126.net
 DOMAIN,iadmusicmatvideo.music.126.net
-DOMAIN-SUFFIX,163jiasu.com
-# 数字联盟
+DOMAIN,nex.163.com
+
+# 数字联盟 / 设备指纹 / 归因
 DOMAIN-SUFFIX,shuzilm.cn
-# 什么值得买
-DOMAIN,api.zuihuimai.com
-# ChatGPT
+DOMAIN-SUFFIX,shuzilm.com
+
+# Sentry / 崩溃上报
 DOMAIN,o33249.ingest.sentry.io
 
-#彩云天气
+# 彩云天气 / 广告
 DOMAIN,ad.cyapi.cn
 
-# > A
-# > B
-# > 百度网盘
-DOMAIN,mobads.baidu.com
-DOMAIN,mobads-logs.baidu.com
-DOMAIN,sdk.1rtb.net
-DOMAIN-SUFFIX,ubixioe.com
-# > 百度
+# 百度 / 广告 / 地图 / 内容分发
 DOMAIN-SUFFIX,pos.baidu.com
-# 百度地图
 DOMAIN,afd.baidu.com
 DOMAIN,afdconf.baidu.com
 DOMAIN,httpdns.baidubce.com
 DOMAIN,lc.map.baidu.com
-# 百度贴吧
-IP-CIDR, 180.76.76.200/32
-# > C
-# > 车来了（包括小程序）
+DOMAIN,mobads-logs.baidu.com
+DOMAIN,mobads.baidu.com
+IP-CIDR,180.76.76.200/32
+
+# 百度云 / BCE / 静态资源
+DOMAIN,staticsns.cdn.bcebos.com
+
+# 车来了 / 广告 / 追踪
 DOMAIN-SUFFIX,atrace.chelaile.net.cn
-DOMAIN,logs.chelaile.net.cn
 DOMAIN,ad.chelaile.net.cn
-# > D
-# > E
-# > F
-# > G
-# > 高德
+DOMAIN,logs.chelaile.net.cn
+
+# 高德地图 / 唤醒 / 统计 / 资源调度
 DOMAIN,amap-aos-info-nogw.amap.com
 DOMAIN,awaken.amap.com
 DOMAIN,free-aos-cdn-image.amap.com
-# 工商银行 开屏广告
+
+# 工商银行 / 页面曝光
 DOMAIN,pageviewp.icbc.com.cn
-# 广告联盟
-DOMAIN,ad.zijieapi.com, REJECT
-DOMAIN,i.snssdk.com, REJECT
-DOMAIN,is.snssdk.com, REJECT
-DOMAIN,open.e.kuaishou.com, REJECT
-DOMAIN,pgdt.ugdtimg.com
-DOMAIN-SUFFIX, miaozhen.com, REJECT
-DOMAIN-KEYWORD, -ad-sign.byteimg.com, REJECT
-DOMAIN-KEYWORD, -tos.pstatp.com, REJECT
-DOMAIN-KEYWORD, asiad.byteactivity, REJECT
-DOMAIN-KEYWORD, pangolin-sdk-toutiao, REJECT
-DOMAIN-KEYWORD, pangolin.snssdk.com, REJECT
-DOMAIN-KEYWORD, pglstatp-toutiao, REJECT
-DOMAIN-KEYWORD, video-cn.snssdk.com, REJECT
-# > H
-# > HDO
+
+# 字节跳动 / 穿山甲 / 巨量引擎
+DOMAIN-SUFFIX,ctobsnssdk.com
+DOMAIN-SUFFIX,pglstatp-toutiao.com
+DOMAIN,ad.zijieapi.com,REJECT
+DOMAIN,dm.toutiao.com
+DOMAIN,i.snssdk.com,REJECT
+DOMAIN,is.snssdk.com,REJECT
+DOMAIN,log3-normal-hl.toutiaoapi.com
+DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT
+DOMAIN-KEYWORD,-tos.pstatp.com,REJECT
+DOMAIN-KEYWORD,asiad.byteactivity,REJECT
+DOMAIN-KEYWORD,pangolin-sdk-toutiao,REJECT
+DOMAIN-KEYWORD,pangolin.snssdk.com,REJECT
+DOMAIN-KEYWORD,pglstatp-toutiao,REJECT
+DOMAIN-KEYWORD,video-cn.snssdk.com,REJECT
+
+# 快手 / 广告开放平台
+DOMAIN,open.e.kuaishou.com,REJECT
+
+# 秒针 / 广告监测
+DOMAIN-SUFFIX,miaozhen.com,REJECT
+
+# AppLovin / 广告
 DOMAIN-SUFFIX,applovin.com
 DOMAIN-SUFFIX,applvn.com
+
+# Google / DoubleClick / 广告
 DOMAIN,googleads.g.doubleclick-cn.net
 DOMAIN,googleads.g.doubleclick.net
-DOMAIN,pubads.g.doubleclick.net
 DOMAIN,pagead2.googlesyndication.com
-# > I
-# > J
-# > 京东
+DOMAIN,pubads.g.doubleclick.net
+
+# 京东 / 开普勒 / 广告 / 统计
+DOMAIN-SUFFIX,im-x.jd.com
+DOMAIN-SUFFIX,kepler.jd.com
 DOMAIN,dsp-x.jd.com
 DOMAIN,xlog.jd.com
-# > 今日头条
-DOMAIN-SUFFIX,id6.me
-DOMAIN-SUFFIX,im-x.jd.com
-DOMAIN-SUFFIX,miaozhen.com
-DOMAIN,log3-normal-hl.toutiaoapi.com
-# > K
-# > 酷安
-DOMAIN,dm.toutiao.com
-DOMAIN-SUFFIX,ios.bugly.qq.com
+
+# 友盟 / 统计 / 归因
 DOMAIN-SUFFIX,umeng.com
-DOMAIN-SUFFIX,shuzilm.com
 DOMAIN-SUFFIX,umengcloud.com
-DOMAIN-SUFFIX,pglstatp-toutiao.com
-DOMAIN-SUFFIX,ctobsnssdk.com
-DOMAIN-SUFFIX,kepler.jd.com
-# 酷我音乐
+
+# 腾讯 / Bugly / 崩溃上报
+DOMAIN-SUFFIX,ios.bugly.qq.com
+
+# 腾讯音乐 / QQ 音乐
 DOMAIN,ad.tencentmusic.com
+DOMAIN,adstats.tencentmusic.com
+DOMAIN,tmead.y.qq.com
+DOMAIN,tmeadcomm.y.qq.com
+
+# 酷我音乐 / 广告
 DOMAIN,g.koowo.com
 DOMAIN,mobilead.kuwo.cn
 DOMAIN,rich.kuwo.cn
-# keep 
+
+# 阿里 / UC / 神马 / 汇川
 DOMAIN,hc-ssp.sm.cn
-# L
-# > 两步路
-DOMAIN-SUFFIX,admobile.top
-# > 蓝奏云
-DOMAIN-SUFFIX,statics.woozooo.com
-# > M
-# > 美团
+DOMAIN,huichuan-mc.sm.cn
+DOMAIN,huichuan.sm.cn
+
+# 美团 / 统计 / 定位 / 路由上报
 DOMAIN,al-log.d.meituan.net
 DOMAIN,babel-statistics-android.d.meituan.net
 DOMAIN,maplocatesdksnapshot.d.meituan.net
 DOMAIN,metrics-picture.d.meituan.net
 DOMAIN,route-stats.d.meituan.net
-# > N
-# > NicoNico
+
+# Niconico / 广告
 DOMAIN,ads.nicovideo.jp
-# > O
-# > Outlook
+
+# Xandr / AppNexus / 广告竞价
 DOMAIN,acdn.adnxs.com
 DOMAIN,mediation.adnxs.com
 DOMAIN,sin3-ib.adnxs.com
-# > P
-# > Q
-# QQ音乐广告
-DOMAIN,tmead.y.qq.com
-DOMAIN,tmeadcomm.y.qq.com
-DOMAIN,adstats.tencentmusic.com
-DOMAIN-SUFFIX,rqd.qq.com
-DOMAIN-SUFFIX,wup.imtt.qq.com
+
+# 腾讯广告 / 优量汇
 DOMAIN-SUFFIX,e.qq.com
+DOMAIN-SUFFIX,gdt.qq.com
+DOMAIN-SUFFIX,l.qq.com
+DOMAIN-SUFFIX,mdt.qq.com
+DOMAIN,adsmind.gdtimg.com
+DOMAIN,adsmind.ugdtimg.com
+DOMAIN,pgdt.gtimg.cn
+DOMAIN,pgdt.ugdtimg.com
+DOMAIN,qzs.gdtimg.com
+
+# 腾讯 / 统计追踪 / 推送 / 上报
 DOMAIN-SUFFIX,beacon.qq.com
-# > R
-# > S
-# > T
-# > 淘宝
-DOMAIN-SUFFIX,h-adashx.ut.taobao.com
-DOMAIN-SUFFIX,apoll.m.taobao.com
-# > 腾讯视频
-DOMAIN,ios.video.mpush.qq.com
+DOMAIN-SUFFIX,rqd.qq.com
+DOMAIN-SUFFIX,tpns.tencent.com
+DOMAIN-SUFFIX,trace.qq.com
+DOMAIN-SUFFIX,wup.imtt.qq.com
+DOMAIN,aedns.weixin.qq.com
+DOMAIN,dp3.qq.com
+DOMAIN,mtrace.qq.com
+DOMAIN,wup.imtt.qq.com
+DOMAIN,wxs.qq.com
+
+# 腾讯视频 / 广告 / 推送 / 上报
 DOMAIN,btrace.qq.com
 DOMAIN,info4.video.qq.com
 DOMAIN,info6.video.qq.com
+DOMAIN,ios.video.mpush.qq.com
+
+# 阿里 / 淘宝 / 广告
+DOMAIN-SUFFIX,apoll.m.taobao.com
+DOMAIN-SUFFIX,h-adashx.ut.taobao.com
+DOMAIN,aid.m.taobao.com
+
+# 阿里 / 优酷 / CIBN
+DOMAIN-SUFFIX,atm.youku.com
+DOMAIN,ad.mobile.youku.com
+DOMAIN,amdc.m.youku.com
+DOMAIN,apiv4-iyes.youku.com
+DOMAIN,iyes.youku.com
+DOMAIN,m-vali.cp31.ott.cibntv.net
+DOMAIN,mc.atm.youku.com
+DOMAIN,pl.cp31.ott.cibntv.net
+DOMAIN,vali-g1.cp31.ott.cibntv.net
+DOMAIN,vali-ugc.cp31.ott.cibntv.net
+DOMAIN,yk-ssp.ad.youku.com
+DOMAIN,ykad-data.youku.com
+
+# 阿里云 CDN / 用途待确认
 DOMAIN,ilce.alicdn.com
-DOMAIN,adsmind.gdtimg.com
-DOMAIN,pgdt.gtimg.cn
-# 会导致qq无法查找
-# DOMAIN,rdelivery.qq.com
-DOMAIN-SUFFIX,trace.qq.com
-DOMAIN,dp3.qq.com
-DOMAIN,mtrace.qq.com
-DOMAIN,aedns.weixin.qq.com
-DOMAIN-SUFFIX,mdt.qq.com
-DOMAIN-SUFFIX,tpns.tencent.com
-DOMAIN,id6.me
-DOMAIN-SUFFIX,l.qq.com
-DOMAIN,wup.imtt.qq.com
-# > 腾讯广告
-DOMAIN-SUFFIX,gdt.qq.com
-# > U
-# > V
-# > W
-# > 微软
+
+# 微软 / 广告
 DOMAIN-SUFFIX,ads.msn.com
 DOMAIN-SUFFIX,ads1.msn.com
 DOMAIN-SUFFIX,ads2.msn.com
 DOMAIN-SUFFIX,bingads.microsoft.com
 DOMAIN-SUFFIX,rads.msn.com
 DOMAIN,mobileads.msn.com
-# > 网易
-DOMAIN,g1.163.com
-DOMAIN,qzs.gdtimg.com
-DOMAIN,adx-cn.anythinktech.com
-DOMAIN,adx-bj.anythinktech.com
-DOMAIN,nex.163.com
-DOMAIN,gorgon.youdao.com
-DOMAIN,tk.anythinktech.com
-DOMAIN,api.anythinktech.com
-DOMAIN,iad.g.163.com
-# 章鱼sdk
-DOMAIN-SUFFIX, bridgeoos.com
-DOMAIN-SUFFIX, adintl.cn
 
-# > X
-# > 闲鱼
-DOMAIN,aid.m.taobao.com
-DOMAIN,iyes.youku.com
-# > 小米
+# AnyThink / TopOn / 广告聚合
+DOMAIN,adx-bj.anythinktech.com
+DOMAIN,adx-cn.anythinktech.com
+DOMAIN,api.anythinktech.com
+DOMAIN,tk.anythinktech.com
+
+# 小米 / 广告配置
 DOMAIN,sdkconfig.ad.xiaomi.com
-# > 新浪
+
+# 新浪 / 广告 / 统计
 DOMAIN-SUFFIX,beacon.sina.com.cn
-DOMAIN,u1.img.mobile.sina.cn
 DOMAIN,sax.sina.com.cn
-DOMAIN,saxs.sina.com.cn
 DOMAIN,saxn.sina.com.cn
-# > 迅雷
+DOMAIN,saxs.sina.com.cn
+DOMAIN,u1.img.mobile.sina.cn
+
+# 迅雷 / 广告 / 追踪
 DOMAIN,adsp.xunlei.com
 DOMAIN,etl.xlmc.sandai.net
-# > 喜马拉雅
+
+# 喜马拉雅 / 广告 / 行为上报
 DOMAIN,ad.ximalaya.com
-DOMAIN,adbs.ximalaya.com
-DOMAIN,adse.ximalaya.com
-DOMAIN,adse.wsa.ximalaya.com
 DOMAIN,adbehavior.wsa.ximalaya.com
 DOMAIN,adbehavior.ximalaya.com
+DOMAIN,adbs.ximalaya.com
+DOMAIN,adse.wsa.ximalaya.com
+DOMAIN,adse.ximalaya.com
 DOMAIN,adsebs.ximalaya.com
 DOMAIN,adwbs.ximalaya.com
-# Y
-# > 云闪付
+
+# 银联 / 云闪付
 DOMAIN,ads.95516.com
-DOMAIN,cm-10-138.getui.com
-DOMAIN,sdk.open.talk.getui.net
-DOMAIN,sdk-conf.getui.com
-DOMAIN,switch.cup.com.cn 
-# 充值不可用
+DOMAIN,switch.cup.com.cn
 DOMAIN,tysdk.95516.com
-# > 优酷
-DOMAIN-SUFFIX,atm.youku.com
-DOMAIN,ad.mobile.youku.com
-DOMAIN,pl.cp31.ott.cibntv.net
-DOMAIN,adsmind.ugdtimg.com
-DOMAIN,amdc.m.youku.com
-DOMAIN,apiv4-iyes.youku.com
-DOMAIN,huichuan-mc.sm.cn
-DOMAIN,huichuan.sm.cn
-DOMAIN,m-vali.cp31.ott.cibntv.net
-DOMAIN,mc.atm.youku.com
-DOMAIN,vali-g1.cp31.ott.cibntv.net
-DOMAIN,vali-ugc.cp31.ott.cibntv.net
-DOMAIN,yk-ssp.ad.youku.com
-DOMAIN,ykad-data.youku.com
-# Z
-# > 中国电信
+
+# 个推 / 推送 / 配置
+DOMAIN,cm-10-138.getui.com
+DOMAIN,sdk-conf.getui.com
+DOMAIN,sdk.open.talk.getui.net
+
+# 中国电信 / 21CN / 广告
 DOMAIN,ad.21cn.com
 DOMAIN,ad.k.21cn.com
 DOMAIN,admarket.21cn.com
 DOMAIN,adshows.21cn.com
-# > 知乎
+
+# 知乎 / 云控 / 推送 / 崩溃 / 增长
 DOMAIN,appcloud.zhihu.com
 DOMAIN,appcloud2.in.zhihu.com
 DOMAIN,crash2.zhihu.com
 DOMAIN,mqtt.zhihu.com
 DOMAIN,sugar.zhihu.com
-IP-CIDR, 118.89.204.198/32
-IP-CIDR, 103.41.167.237/32
-IP6-CIDR, 2402:4e00:1200:ed00:0:9089:6dac:96b6/128
-#金融
-#DOMAIN,punion.tjjt360.com
-#有道
-DOMAIN,staticsns.cdn.bcebos.com
-# > 芒果TV
-# > 开屏
-DOMAIN,mobile.da.mgtv.com
-#不知道是啥
-DOMAIN,video.da.mgtv.com
-DOMAIN,pcvideoaliyun.titan.mgtv.com
+IP-CIDR,103.41.167.237/32
+IP-CIDR,118.89.204.198/32
+IP6-CIDR,2402:4e00:1200:ed00:0:9089:6dac:96b6/128
+
+# 芒果 TV / 广告 / 运营位
 DOMAIN,dflow.bz.mgtv.com
 DOMAIN,encounter.bz.mgtv.com
 DOMAIN,floor.bz.mgtv.com
 DOMAIN,img.da.mgtv.com
 DOMAIN,layer.bz.mgtv.com
 DOMAIN,mob.bz.mgtv.com
+DOMAIN,mobile.da.mgtv.com
+DOMAIN,pcvideoaliyun.titan.mgtv.com
 DOMAIN,rc-topic-api.bz.mgtv.com
 DOMAIN,v2.da.mgtv.com
+DOMAIN,video.da.mgtv.com
 DOMAIN,vip.bz.mgtv.com
 DOMAIN,ys.da.mgtv.com
 
-
-DOMAIN,wxs.qq.com
+# 其他 / 待确认
+DOMAIN-SUFFIX,adintl.cn
+DOMAIN-SUFFIX,admobile.top
+DOMAIN-SUFFIX,bridgeoos.com
+DOMAIN-SUFFIX,id6.me
+DOMAIN-SUFFIX,statics.woozooo.com
+DOMAIN-SUFFIX,ubixioe.com
+DOMAIN,api.zuihuimai.com
+DOMAIN,id6.me
+DOMAIN,sdk.1rtb.net

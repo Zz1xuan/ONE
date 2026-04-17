@@ -34,6 +34,34 @@ const ACTIVITY_PUNCH_PATH = '/restapi/soa2/17679/join2020ZtripIntergrationDailyA
 
 const REQUEST_GAP_MS = 3000;
 const BUSY_RETRY_TIMES = 1;
+const CAPTURE_POST_PATHS = [
+  STATUS_PATH,
+  SIGN_PATH,
+  TASK_LIST_PATH,
+  FINISH_TASK_PATH,
+  ACTIVITY_INFO_PATH,
+  ACTIVITY_RECORD_PATH,
+  ACTIVITY_ENROLL_PATH,
+  ACTIVITY_PUNCH_PATH
+];
+const COMMON_HEADER_KEYS = [
+  'user-agent',
+  'content-type',
+  'origin',
+  'referer',
+  'x-ctx-rmstoken',
+  'x-ctx-ubt-pageid',
+  'x-ctx-ubt-pvid',
+  'x-ctx-ubt-sid',
+  'x-ctx-ubt-vid'
+];
+const OPTIONAL_CTX_HEADER_KEYS = [
+  'x-ctx-rmstoken',
+  'x-ctx-ubt-pageid',
+  'x-ctx-ubt-pvid',
+  'x-ctx-ubt-sid',
+  'x-ctx-ubt-vid'
+];
 
 /*
  * 以下默认模板来自 HAR 中状态正常、字段较完整的一组请求。
@@ -243,18 +271,7 @@ async function capture() {
     return;
   }
 
-  if (
-    ![
-      STATUS_PATH,
-      SIGN_PATH,
-      TASK_LIST_PATH,
-      FINISH_TASK_PATH,
-      ACTIVITY_INFO_PATH,
-      ACTIVITY_RECORD_PATH,
-      ACTIVITY_ENROLL_PATH,
-      ACTIVITY_PUNCH_PATH
-    ].includes(path)
-  ) {
+  if (!CAPTURE_POST_PATHS.includes(path)) {
     return;
   }
 
@@ -264,17 +281,7 @@ async function capture() {
   const query = parseQuery(url);
 
   if (headers.cookie) state.cookie = headers.cookie;
-  state.commonHeaders = {
-    'user-agent': headers['user-agent'] || state.commonHeaders['user-agent'],
-    'content-type': headers['content-type'] || state.commonHeaders['content-type'],
-    origin: headers.origin || state.commonHeaders.origin,
-    referer: headers.referer || state.commonHeaders.referer,
-    'x-ctx-rmstoken': headers['x-ctx-rmstoken'] || state.commonHeaders['x-ctx-rmstoken'],
-    'x-ctx-ubt-pageid': headers['x-ctx-ubt-pageid'] || state.commonHeaders['x-ctx-ubt-pageid'],
-    'x-ctx-ubt-pvid': headers['x-ctx-ubt-pvid'] || state.commonHeaders['x-ctx-ubt-pvid'],
-    'x-ctx-ubt-sid': headers['x-ctx-ubt-sid'] || state.commonHeaders['x-ctx-ubt-sid'],
-    'x-ctx-ubt-vid': headers['x-ctx-ubt-vid'] || state.commonHeaders['x-ctx-ubt-vid']
-  };
+  state.commonHeaders = mergeCommonHeaders(state.commonHeaders, headers);
 
   if (query._fxpcqlniredt) state.query._fxpcqlniredt = query._fxpcqlniredt;
   if (query['x-traceID']) state.query['x-traceID'] = query['x-traceID'];
@@ -341,7 +348,7 @@ async function run() {
 
   await sleep(REQUEST_GAP_MS);
 
-  const activityMessage = await doDailyAttendanceActivity(state);
+  const activityMessage = await doDailyAttendanceActivityV2(state);
   logs.push(activityMessage);
 
   await sleep(REQUEST_GAP_MS);
@@ -447,49 +454,49 @@ async function doTasks(state) {
 
 async function doDailyAttendanceActivity(state) {
   const infoResult = await callApiWithRetry(
-    '鎵撳崱鐡滃垎绉垎淇℃伅',
+    '瓜分活动状态',
     ACTIVITY_INFO_PATH,
     buildBody(state.activityInfoBody, state),
     state,
     'activityInfo'
   );
   if (!infoResult.ok) {
-    return '鎵撳崱鐡滃垎绉垎澶辫触: ' + infoResult.message;
+    return '瓜分活动失败: ' + infoResult.message;
   }
 
   let infoJson = infoResult.json || {};
   if (Number(infoJson.resultCode) !== 1) {
-    return '鎵撳崱鐡滃垎绉垎澶辫触: ' + (infoJson.resultMessage || briefJson(infoJson));
+    return '瓜分活动失败: ' + (infoJson.resultMessage || briefJson(infoJson));
   }
   if (infoJson.isLogin === false) {
-    return '鎵撳崱鐡滃垎绉垎: 褰撳墠鏈櫥褰?';
+    return '瓜分活动: 当前未登录';
   }
 
-  logStep('娲诲姩鐘舵€?', formatActivityInfo(infoJson));
+  logStep('瓜分活动状态', formatActivityInfo(infoJson));
   const actionLogs = [];
 
   if (infoJson.attendFlag === false) {
     await sleep(REQUEST_GAP_MS);
     const enrollResult = await callApiWithRetry(
-      '鎵撳崱鐡滃垎绉垎鎶ュ悕',
+      '瓜分活动报名',
       ACTIVITY_ENROLL_PATH,
       buildBody(state.activityEnrollBody, state),
       state,
       'activityEnroll'
     );
     if (!enrollResult.ok) {
-      return '鎵撳崱鐡滃垎绉垎鎶ュ悕澶辫触: ' + enrollResult.message;
+      return '瓜分活动报名失败: ' + enrollResult.message;
     }
 
     const enrollJson = enrollResult.json || {};
     if (Number(enrollJson.resultCode) !== 1) {
-      return '鎵撳崱鐡滃垎绉垎鎶ュ悕澶辫触: ' + (enrollJson.resultMessage || briefJson(enrollJson));
+      return '瓜分活动报名失败: ' + (enrollJson.resultMessage || briefJson(enrollJson));
     }
-    actionLogs.push(extractMessage(enrollJson) || '鎶ュ悕鎴愬姛');
+    actionLogs.push(extractMessage(enrollJson) || '报名成功');
 
     await sleep(REQUEST_GAP_MS);
     const refreshAfterEnroll = await callApiWithRetry(
-      '鎵撳崱鐡滃垎绉垎淇℃伅鍒锋柊',
+      '报名后刷新状态',
       ACTIVITY_INFO_PATH,
       buildBody(state.activityInfoBody, state),
       state,
@@ -501,32 +508,32 @@ async function doDailyAttendanceActivity(state) {
       Number(refreshAfterEnroll.json.resultCode) === 1
     ) {
       infoJson = refreshAfterEnroll.json;
-      logStep('娲诲姩鎶ュ悕鍚庣姸鎬?', formatActivityInfo(infoJson));
+      logStep('报名后状态', formatActivityInfo(infoJson));
     }
   }
 
   if (infoJson.todayAttendanceFlag !== true) {
     await sleep(REQUEST_GAP_MS);
     const punchResult = await callApiWithRetry(
-      '鎵撳崱鐡滃垎绉垎鎵撳崱',
+      '瓜分活动打卡',
       ACTIVITY_PUNCH_PATH,
       buildBody(state.activityPunchBody, state),
       state,
       'activityPunch'
     );
     if (!punchResult.ok) {
-      return '鎵撳崱鐡滃垎绉垎鎵撳崱澶辫触: ' + punchResult.message;
+      return '瓜分活动打卡失败: ' + punchResult.message;
     }
 
     const punchJson = punchResult.json || {};
     if (Number(punchJson.resultCode) !== 1) {
-      return '鎵撳崱鐡滃垎绉垎鎵撳崱澶辫触: ' + (punchJson.resultMessage || briefJson(punchJson));
+      return '瓜分活动打卡失败: ' + (punchJson.resultMessage || briefJson(punchJson));
     }
-    actionLogs.push(extractMessage(punchJson) || '鎵撳崱鎴愬姛');
+    actionLogs.push(extractMessage(punchJson) || '打卡成功');
 
     await sleep(REQUEST_GAP_MS);
     const refreshAfterPunch = await callApiWithRetry(
-      '鎵撳崱鐡滃垎绉垎淇℃伅鍒锋柊',
+      '打卡后刷新状态',
       ACTIVITY_INFO_PATH,
       buildBody(state.activityInfoBody, state),
       state,
@@ -538,18 +545,18 @@ async function doDailyAttendanceActivity(state) {
       Number(refreshAfterPunch.json.resultCode) === 1
     ) {
       infoJson = refreshAfterPunch.json;
-      logStep('娲诲姩鎵撳崱鍚庣姸鎬?', formatActivityInfo(infoJson));
+      logStep('打卡后状态', formatActivityInfo(infoJson));
     }
   } else {
-    actionLogs.push('浠婃棩宸叉墦鍗?');
+    actionLogs.push('今日已打卡');
   }
 
   const lines = [];
-  lines.push('鎵撳崱鐡滃垎绉垎: ' + actionLogs.join(' / '));
+  lines.push('瓜分活动: ' + actionLogs.join(' / '));
   lines.push(formatActivityInfo(infoJson));
 
   const recordResult = await callApiWithRetry(
-    '鎵撳崱鐡滃垎绉垎璁板綍',
+    '瓜分活动记录',
     ACTIVITY_RECORD_PATH,
     buildBody(state.activityRecordBody, state),
     state,
@@ -557,6 +564,125 @@ async function doDailyAttendanceActivity(state) {
   );
   if (recordResult.ok && recordResult.json && Number(recordResult.json.resultCode) === 1) {
     lines.push(formatActivityRecord(recordResult.json));
+  }
+
+  return lines.filter(Boolean).join('\\n');
+}
+
+async function doDailyAttendanceActivityV2(state) {
+  const infoResult = await callApiWithRetry(
+    '瓜分活动状态',
+    ACTIVITY_INFO_PATH,
+    buildBody(state.activityInfoBody, state),
+    state,
+    'activityInfo'
+  );
+  if (!infoResult.ok) {
+    return '瓜分活动失败: ' + infoResult.message;
+  }
+
+  let infoJson = infoResult.json || {};
+  if (Number(infoJson.resultCode) !== 1) {
+    return '瓜分活动失败: ' + (infoJson.resultMessage || briefJson(infoJson));
+  }
+  if (infoJson.isLogin === false) {
+    return '瓜分活动: 当前未登录';
+  }
+
+  logStep('瓜分活动状态', formatActivityInfoV2(infoJson));
+  const actionLogs = [];
+
+  if (infoJson.attendFlag === false) {
+    await sleep(REQUEST_GAP_MS);
+    const enrollResult = await callApiWithRetry(
+      '瓜分活动报名',
+      ACTIVITY_ENROLL_PATH,
+      buildBody(state.activityEnrollBody, state),
+      state,
+      'activityEnroll'
+    );
+    if (!enrollResult.ok) {
+      return '瓜分活动报名失败: ' + enrollResult.message;
+    }
+
+    const enrollJson = enrollResult.json || {};
+    if (Number(enrollJson.resultCode) !== 1) {
+      return '瓜分活动报名失败: ' + (enrollJson.resultMessage || briefJson(enrollJson));
+    }
+    actionLogs.push('已报名');
+
+    const refreshedInfo = await refreshActivityInfo(
+      state,
+      '报名后刷新状态'
+    );
+    if (refreshedInfo) {
+      infoJson = refreshedInfo;
+      logStep('报名后状态', formatActivityInfoV2(infoJson));
+    }
+  } else {
+    actionLogs.push('已报名');
+  }
+
+  if (infoJson.todayAttendanceFlag !== true) {
+    await sleep(REQUEST_GAP_MS);
+    const beforeCredit = toNumberOrNull(infoJson.credit);
+
+    const punchResult = await callApiWithRetry(
+      '瓜分活动打卡',
+      ACTIVITY_PUNCH_PATH,
+      buildBody(state.activityPunchBody, state),
+      state,
+      'activityPunch'
+    );
+    if (!punchResult.ok) {
+      return '瓜分活动打卡失败: ' + punchResult.message;
+    }
+
+    const punchJson = punchResult.json || {};
+    if (Number(punchJson.resultCode) !== 1) {
+      const punchMessage = punchJson.resultMessage || briefJson(punchJson);
+      if (Number(punchJson.resultCode) === 3) {
+        actionLogs.push('今日暂不可打卡: ' + punchMessage);
+      } else {
+        return '瓜分活动打卡失败: ' + punchMessage;
+      }
+    } else {
+      actionLogs.push('已打卡');
+
+      const refreshedInfo = await refreshActivityInfo(
+        state,
+        '打卡后刷新状态'
+      );
+      if (refreshedInfo) {
+        infoJson = refreshedInfo;
+        logStep('打卡后状态', formatActivityInfoV2(infoJson));
+
+        const afterCredit = toNumberOrNull(infoJson.credit);
+        if (beforeCredit !== null && afterCredit !== null) {
+          const diff = beforeCredit - afterCredit;
+          if (diff > 0) {
+            actionLogs.push('扣了' + diff + '积分');
+          }
+        }
+      }
+    }
+  } else {
+    actionLogs.push('已打卡');
+  }
+
+  const lines = [];
+  lines.push('瓜分活动: ' + actionLogs.join(' / '));
+  lines.push(formatActivityInfoV2(infoJson));
+
+  const recordResult = await callApiWithRetry(
+    '瓜分活动记录',
+    ACTIVITY_RECORD_PATH,
+    buildBody(state.activityRecordBody, state),
+    state,
+    'activityRecord'
+  );
+  if (recordResult.ok && recordResult.json && Number(recordResult.json.resultCode) === 1) {
+    lines.push(formatActivityRecordV2(recordResult.json));
   }
 
   return lines.filter(Boolean).join('\n');
@@ -632,11 +758,11 @@ function buildHeaders(state, type) {
     'x-ctx-wclient-req': randomHex(32)
   };
 
-  if (h['x-ctx-rmstoken']) headers['x-ctx-rmstoken'] = h['x-ctx-rmstoken'];
-  if (h['x-ctx-ubt-pageid']) headers['x-ctx-ubt-pageid'] = h['x-ctx-ubt-pageid'];
-  if (h['x-ctx-ubt-pvid']) headers['x-ctx-ubt-pvid'] = h['x-ctx-ubt-pvid'];
-  if (h['x-ctx-ubt-sid']) headers['x-ctx-ubt-sid'] = h['x-ctx-ubt-sid'];
-  if (h['x-ctx-ubt-vid']) headers['x-ctx-ubt-vid'] = h['x-ctx-ubt-vid'];
+  OPTIONAL_CTX_HEADER_KEYS.forEach((key) => {
+    if (h[key]) {
+      headers[key] = h[key];
+    }
+  });
 
   if (type === 'sign') {
     headers['w-payload-source'] =
@@ -654,6 +780,7 @@ function buildHeaders(state, type) {
 function buildBody(template, state) {
   const body = clone(template || {});
   const cid = resolveCid(body, state);
+  const reqTime = String(Math.floor(Date.now() / 1000));
 
   if (body.head && body.head.cid != null) {
     body.head.cid = cid;
@@ -663,7 +790,7 @@ function buildBody(template, state) {
     body.head.extension = body.head.extension.map((item) => {
       const next = clone(item);
       if (next.name === 'reqTime') {
-        next.value = String(Math.floor(Date.now() / 1000));
+        next.value = reqTime;
       }
       return next;
     });
@@ -722,14 +849,14 @@ function extractTaskList(json) {
 function formatActivityInfo(json) {
   if (!json || typeof json !== 'object') return '';
   const parts = [];
-  parts.push('鎶ュ悕=' + formatBoolFlag(json.attendFlag));
-  parts.push('浠婃棩鎵撳崱=' + formatBoolFlag(json.todayAttendanceFlag));
-  if (json.paymentIntegration !== undefined) parts.push('浠婃棩闇€鎶曞叆=' + json.paymentIntegration);
-  if (json.credit !== undefined) parts.push('褰撳墠绉垎=' + json.credit);
-  if (json.attendanceCount !== undefined) parts.push('浜哄皵=' + json.attendanceCount);
-  if (json.totalIntergration !== undefined) parts.push('濂栨睜=' + json.totalIntergration);
+  parts.push('已报名=' + formatBoolFlag(json.attendFlag));
+  parts.push('已打卡=' + formatBoolFlag(json.todayAttendanceFlag));
+  if (json.paymentIntegration !== undefined) parts.push('需投入=' + json.paymentIntegration);
+  if (json.credit !== undefined) parts.push('当前积分=' + json.credit);
+  if (json.attendanceCount !== undefined) parts.push('当前人数=' + json.attendanceCount);
+  if (json.totalIntergration !== undefined) parts.push('奖池积分=' + json.totalIntergration);
   if (json.expectedMaxAlloactionOnTomorrow !== undefined) {
-    parts.push('鏄庢棩棰勪及=' + json.expectedMaxAlloactionOnTomorrow);
+    parts.push('明日预估=' + json.expectedMaxAlloactionOnTomorrow);
   }
   return parts.join(' | ');
 }
@@ -737,13 +864,13 @@ function formatActivityInfo(json) {
 function formatActivityRecord(json) {
   if (!json || typeof json !== 'object') return '';
   const parts = [];
-  if (json.totalPayment !== undefined) parts.push('绱鎶曞叆=' + json.totalPayment);
-  if (json.totalAcquire !== undefined) parts.push('绱鑾峰彇=' + json.totalAcquire);
-  if (json.successDays !== undefined) parts.push('鎴愬姛澶╂暟=' + json.successDays);
+  if (json.totalPayment !== undefined) parts.push('累计投入=' + json.totalPayment);
+  if (json.totalAcquire !== undefined) parts.push('累计获得=' + json.totalAcquire);
+  if (json.successDays !== undefined) parts.push('成功天数=' + json.successDays);
   const first = Array.isArray(json.recordList) && json.recordList.length ? json.recordList[0] : null;
   if (first) {
     parts.push(
-      '鏈€鏂拌褰?=' +
+      '记录详情=' +
         (first.day || '-') +
         '/' +
         'result=' +
@@ -760,9 +887,55 @@ function formatActivityRecord(json) {
 }
 
 function formatBoolFlag(value) {
-  if (value === true) return '鏄?';
-  if (value === false) return '鍚?';
+  if (value === true) return '是';
+  if (value === false) return '否';
   return String(value);
+}
+
+function formatBoolFlagV2(value) {
+  if (value === true) return '是';
+  if (value === false) return '否';
+  return String(value);
+}
+
+function formatActivityInfoV2(json) {
+  if (!json || typeof json !== 'object') return '';
+  const parts = [];
+  parts.push('已报名=' + formatBoolFlagV2(json.attendFlag));
+  parts.push('已打卡=' + formatBoolFlagV2(json.todayAttendanceFlag));
+  if (json.paymentIntegration !== undefined) parts.push('需投入=' + json.paymentIntegration);
+  if (json.credit !== undefined) parts.push('当前积分=' + json.credit);
+  if (json.attendanceCount !== undefined) parts.push('当前人数=' + json.attendanceCount);
+  if (json.totalIntergration !== undefined) parts.push('奖池积分=' + json.totalIntergration);
+  if (json.expectedMaxAlloactionOnTomorrow !== undefined) {
+    parts.push('明日预估=' + json.expectedMaxAlloactionOnTomorrow);
+  }
+  return parts.join(' | ');
+}
+
+function formatActivityRecordV2(json) {
+  if (!json || typeof json !== 'object') return '';
+  const parts = [];
+  if (json.totalPayment !== undefined) parts.push('累计投入=' + json.totalPayment);
+  if (json.totalAcquire !== undefined) parts.push('累计获得=' + json.totalAcquire);
+  if (json.successDays !== undefined) parts.push('成功天数=' + json.successDays);
+  const first = Array.isArray(json.recordList) && json.recordList.length ? json.recordList[0] : null;
+  if (first) {
+    parts.push(
+      '记录详情=' +
+        (first.day || '-') +
+        ' / ' +
+        '结果=' +
+        formatBoolFlagV2(first.result) +
+        ' / ' +
+        '投入=' +
+        (first.paymentNumber || 0) +
+        ' / ' +
+        '获得=' +
+        (first.acquireNumber || 0)
+    );
+  }
+  return parts.join(' | ');
 }
 
 function getTaskName(task) {
@@ -873,6 +1046,16 @@ function lowerCaseHeaders(headers) {
   return out;
 }
 
+function mergeCommonHeaders(baseHeaders, incomingHeaders) {
+  const current = Object.assign({}, DEFAULT_COMMON_HEADERS, baseHeaders || {});
+  COMMON_HEADER_KEYS.forEach((key) => {
+    if (incomingHeaders[key]) {
+      current[key] = incomingHeaders[key];
+    }
+  });
+  return current;
+}
+
 function parseCookieMap(cookie) {
   const out = {};
   String(cookie || '')
@@ -889,6 +1072,28 @@ function parseCookieMap(cookie) {
 
 function hasObjectKeys(obj) {
   return !!obj && typeof obj === 'object' && Object.keys(obj).length > 0;
+}
+
+function isSuccessResult(result) {
+  return !!(result && result.ok && result.json && Number(result.json.resultCode) === 1);
+}
+
+function toNumberOrNull(value) {
+  if (value === undefined) return null;
+  const num = Number(value);
+  return Number.isNaN(num) ? null : num;
+}
+
+async function refreshActivityInfo(state, actionName) {
+  await sleep(REQUEST_GAP_MS);
+  const result = await callApiWithRetry(
+    actionName,
+    ACTIVITY_INFO_PATH,
+    buildBody(state.activityInfoBody, state),
+    state,
+    'activityInfo'
+  );
+  return isSuccessResult(result) ? result.json : null;
 }
 
 function clone(obj) {

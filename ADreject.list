@@ -195,6 +195,11 @@ DOMAIN,adx-cn.anythinktech.com
 DOMAIN,api.anythinktech.com
 DOMAIN,tk.anythinktech.com
 
+# Sigmob / 广告聚合 / 竞价回传
+DOMAIN,dc.sigmob.cn
+DOMAIN,rtbcallback.sigmob.cn
+DOMAIN,tm.sigmob.cn
+
 # 小米 / 广告配置
 DOMAIN,sdkconfig.ad.xiaomi.com
 
@@ -260,6 +265,22 @@ DOMAIN,video.da.mgtv.com
 DOMAIN,vip.bz.mgtv.com
 DOMAIN,ys.da.mgtv.com
 
+# 1RTB / 广告竞价 / 素材
+DOMAIN,cdn.1rtb.com
+DOMAIN,s.1rtb.net
+DOMAIN,sdk.1rtb.net
+
+# 推啊 / 广告 / 跟踪
+DOMAIN,event.tuia.cn
+DOMAIN,s.tuia.cn
+DOMAIN,tuia-adx-web.tuia.cn
+
+# 掌娱移动 / 广告 / 回传
+DOMAIN,adm.zhangyuyidong.cn
+DOMAIN,iosid.zhangyuyidong.cn
+DOMAIN,sdk.zhangyuyidong.cn
+DOMAIN,sdklog.zhangyuyidong.cn
+
 # 其他 / 待确认
 DOMAIN-SUFFIX,adintl.cn
 DOMAIN-SUFFIX,admobile.top
@@ -269,4 +290,3 @@ DOMAIN-SUFFIX,statics.woozooo.com
 DOMAIN-SUFFIX,ubixioe.com
 DOMAIN,api.zuihuimai.com
 DOMAIN,id6.me
-DOMAIN,sdk.1rtb.net

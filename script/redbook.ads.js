@@ -53,6 +53,20 @@ function enableEntriesByShare(share) {
   });
 }
 
+function patchMediaSaveDeep(node) {
+  if (Array.isArray(node)) {
+    node.forEach(patchMediaSaveDeep);
+    return;
+  }
+  if (!isObj(node)) return;
+  if (isObj(node.media_save_config)) {
+    node.media_save_config.disable_save = false;
+    node.media_save_config.disable_watermark = true;
+    node.media_save_config.disable_weibo_cover = true;
+  }
+  Object.keys(node).forEach((k) => patchMediaSaveDeep(node[k]));
+}
+
 function saveVideoCache(modules) {
   const old = parse($.read(KEY_VIDEO) || '[]', []);
   const cache = Array.isArray(old) ? old : [];
@@ -112,21 +126,31 @@ if (body) {
         listFrom(obj?.data?.items || obj?.data).forEach((m) => {
           stripGoods(m); unlockSave(m); forceShare(m); enableEntriesByShare(m?.share_info);
         });
+        patchMediaSaveDeep(obj?.data);
       } else if (inUrl(/api\/sns\/v\d+\/note\/(tabfeed|videofeed)/)) {
         const items = listFrom(obj?.data?.items || obj?.data);
         items.forEach((m) => {
           stripGoods(m); unlockSave(m); forceShare(m); enableEntriesByShare(m?.share_info);
+          arr(m?.note_list).forEach((n) => { stripGoods(n); unlockSave(n); enableEntriesByShare(n?.share_info); });
         });
+        patchMediaSaveDeep(obj?.data);
         saveVideoCache(items);
       } else if (inUrl(/api\/sns\/v\d+\/note\/feed/)) {
         arr(obj?.data).forEach((m) => {
           stripGoods(m);
-          arr(m?.note_list).forEach(unlockSave);
+          arr(m?.note_list).forEach((n) => { stripGoods(n); unlockSave(n); enableEntriesByShare(n?.share_info); });
           enableEntriesByShare(m?.share_info);
         });
+        patchMediaSaveDeep(obj?.data);
       } else if (inUrl(/api\/sns\/v\d+\/note\/imagefeed/)) {
         const items = listFrom(obj?.data?.items || obj?.data);
-        items.forEach((m) => { stripGoods(m); unlockSave(m); enableEntriesByShare(m?.share_info); });
+        items.forEach((m) => {
+          stripGoods(m);
+          unlockSave(m);
+          arr(m?.note_list).forEach((n) => { stripGoods(n); unlockSave(n); enableEntriesByShare(n?.share_info); });
+          enableEntriesByShare(m?.share_info);
+        });
+        patchMediaSaveDeep(obj?.data);
         savePhotoCache(items);
       } else if (inUrl(/api\/sns\/v\d+\/homefeed\/categories/)) {
         const cs = arr(obj?.data?.categories);

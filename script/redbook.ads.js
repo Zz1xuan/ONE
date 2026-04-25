@@ -5,14 +5,15 @@ const url = $request.url || '';
 let body = $response.body;
 
 const SHARE_ENTRIES = [
-  { type: 'video_download' },
-  { type: 'generate_image' },
-  { type: 'copy_link' },
-  { type: 'native_voice' },
-  { type: 'video_speed' },
-  { type: 'dislike' },
-  { type: 'report' },
-  { type: 'video_feedback' }
+  { type: 'image_download', enable: true },
+  { type: 'video_download', enable: true },
+  { type: 'generate_image', enable: true },
+  { type: 'copy_link', enable: true },
+  { type: 'native_voice', enable: true },
+  { type: 'video_speed', enable: true },
+  { type: 'dislike', enable: true },
+  { type: 'report', enable: true },
+  { type: 'video_feedback', enable: true }
 ];
 
 const parse = (s, d = null) => { try { return JSON.parse(s); } catch { return d; } };
@@ -44,13 +45,48 @@ function forceShare(m) {
   m.share_info.function_entries = SHARE_ENTRIES.map((x) => ({ ...x }));
 }
 
-function enableEntriesByShare(share) {
-  const entries = arr(share?.function_entries);
-  entries.forEach((x) => {
+function ensureEntryList(list, types) {
+  const out = Array.isArray(list) ? list : [];
+  const seen = new Set(out.map((x) => x?.type));
+  types.forEach((type) => {
+    if (!seen.has(type)) out.push({ type, enable: true });
+  });
+  out.forEach((x) => {
     if (!isObj(x)) return;
     x.enable = true;
     if ('reason' in x) delete x.reason;
   });
+  return out;
+}
+
+function enableEntriesByShare(share) {
+  if (!isObj(share)) return;
+  share.function_entries = ensureEntryList(share.function_entries, ['image_download', 'video_download']);
+}
+
+function patchFunctionSwitch(node) {
+  if (!isObj(node)) return;
+  node.function_switch = ensureEntryList(node.function_switch, ['image_download', 'video_download']);
+}
+
+function patchLongPress(node) {
+  if (!isObj(node)) return;
+  if (!isObj(node.long_press_share_info)) node.long_press_share_info = {};
+  node.long_press_share_info.function_entries = ensureEntryList(node.long_press_share_info.function_entries, ['image_download', 'video_download']);
+}
+
+function looksLikeNote(node) {
+  return isObj(node) && (
+    Array.isArray(node.note_list) ||
+    Array.isArray(node.images_list) ||
+    Array.isArray(node.image_list) ||
+    'media_save_config' in node ||
+    'long_press_share_info' in node ||
+    'share_info' in node ||
+    'function_switch' in node ||
+    'note_id' in node ||
+    'id' in node
+  );
 }
 
 function patchMediaSaveDeep(node) {
@@ -59,12 +95,30 @@ function patchMediaSaveDeep(node) {
     return;
   }
   if (!isObj(node)) return;
-  if (isObj(node.media_save_config)) {
-    node.media_save_config.disable_save = false;
-    node.media_save_config.disable_watermark = true;
-    node.media_save_config.disable_weibo_cover = true;
+  if (looksLikeNote(node)) {
+    unlockSave(node);
+    patchFunctionSwitch(node);
+    patchLongPress(node);
+    enableEntriesByShare(node.share_info);
   }
   Object.keys(node).forEach((k) => patchMediaSaveDeep(node[k]));
+}
+
+function patchNote(node) {
+  if (!isObj(node)) return;
+  stripGoods(node);
+  unlockSave(node);
+  forceShare(node);
+  enableEntriesByShare(node.share_info);
+  patchFunctionSwitch(node);
+  patchLongPress(node);
+  arr(node.note_list).forEach((n) => {
+    stripGoods(n);
+    unlockSave(n);
+    enableEntriesByShare(n.share_info);
+    patchFunctionSwitch(n);
+    patchLongPress(n);
+  });
 }
 
 function saveVideoCache(modules) {
@@ -122,36 +176,14 @@ if (body) {
             if (u) { p.url = u; p.origin_url = u; }
           });
         });
-      } else if (inUrl(/api\/sns\/v\d+\/note\/redtube/)) {
-        listFrom(obj?.data?.items || obj?.data).forEach((m) => {
-          stripGoods(m); unlockSave(m); forceShare(m); enableEntriesByShare(m?.share_info);
-        });
-        patchMediaSaveDeep(obj?.data);
-      } else if (inUrl(/api\/sns\/v\d+\/note\/(tabfeed|videofeed)/)) {
+      } else if (inUrl(/api\/sns\/v\d+\/note\/(redtube|tabfeed|videofeed|feed|imagefeed|detail)/)) {
         const items = listFrom(obj?.data?.items || obj?.data);
-        items.forEach((m) => {
-          stripGoods(m); unlockSave(m); forceShare(m); enableEntriesByShare(m?.share_info);
-          arr(m?.note_list).forEach((n) => { stripGoods(n); unlockSave(n); enableEntriesByShare(n?.share_info); });
-        });
+        if (items.length) items.forEach(patchNote);
+        else if (Array.isArray(obj?.data)) arr(obj.data).forEach(patchNote);
+        else if (isObj(obj?.data)) patchNote(obj.data);
         patchMediaSaveDeep(obj?.data);
-        saveVideoCache(items);
-      } else if (inUrl(/api\/sns\/v\d+\/note\/feed/)) {
-        arr(obj?.data).forEach((m) => {
-          stripGoods(m);
-          arr(m?.note_list).forEach((n) => { stripGoods(n); unlockSave(n); enableEntriesByShare(n?.share_info); });
-          enableEntriesByShare(m?.share_info);
-        });
-        patchMediaSaveDeep(obj?.data);
-      } else if (inUrl(/api\/sns\/v\d+\/note\/imagefeed/)) {
-        const items = listFrom(obj?.data?.items || obj?.data);
-        items.forEach((m) => {
-          stripGoods(m);
-          unlockSave(m);
-          arr(m?.note_list).forEach((n) => { stripGoods(n); unlockSave(n); enableEntriesByShare(n?.share_info); });
-          enableEntriesByShare(m?.share_info);
-        });
-        patchMediaSaveDeep(obj?.data);
-        savePhotoCache(items);
+        if (inUrl(/api\/sns\/v\d+\/note\/(tabfeed|videofeed)/)) saveVideoCache(items);
+        if (inUrl(/api\/sns\/v\d+\/note\/imagefeed/)) savePhotoCache(items);
       } else if (inUrl(/api\/sns\/v\d+\/homefeed\/categories/)) {
         const cs = arr(obj?.data?.categories);
         if (obj?.data) obj.data.categories = cs.filter((e) => e?.oid !== 'homefeed.shop' && e?.oid !== 'homefeed.live');

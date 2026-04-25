@@ -1,10 +1,5 @@
-/***********************************************
-* 项目：ONE / 小红书强力净化脚本（明文增强版）
-* 目标：尽量保持 ddgksf2013 redbook.ads.js 功能一致，并提升可维护性
-* 说明：仅处理命中接口的响应体 JSON
-***********************************************/
-
 const $ = new Env('XHS-Ads-Pro');
+
 let body = $response.body;
 const url = $request.url || '';
 
@@ -61,12 +56,15 @@ function enableEntries(item) {
   });
 }
 function saveVideoCacheFromModules(modules) {
-  let cache = parseJSON($.read(KEY_VIDEO) || '[]', []);
-  if (!Array.isArray(cache)) cache = [];
+  const cacheRaw = parseJSON($.read(KEY_VIDEO) || '[]', []);
+  let cache = Array.isArray(cacheRaw) ? cacheRaw : [];
+  const seen = new Set(cache.map((x) => String(x?.note_id || '')));
   modules.forEach((m) => {
     const master = m?.video_info_v2?.media?.stream?.h264?.[0]?.master_url;
-    if (master && m?.id) {
-      cache.push({ type: 2, note_id: m.id, download_url: master });
+    const noteId = m?.id;
+    if (master && noteId && !seen.has(String(noteId))) {
+      cache.push({ type: 2, note_id: noteId, download_url: master });
+      seen.add(String(noteId));
     }
   });
   while (cache.length > 100) cache.shift();
@@ -145,7 +143,7 @@ if (body) {
             setNoGoods(m);
             setSaveConfig(m);
             setShareEntries(m);
-            enableEntries(m);
+            enableEntries(m?.share_info || {});
           });
           saveVideoCacheFromModules(items);
           body = stringify(obj);
@@ -172,21 +170,21 @@ if (body) {
 
       case /api\/sns\/v\d+\/note\/imagefeed/.test(url): {
         try {
-          const cache = parseJSON($.read(KEY_PHOTO) || '[]', []);
+          const cacheRaw = parseJSON($.read(KEY_PHOTO) || '[]', []);
+          const cache = Array.isArray(cacheRaw) ? cacheRaw : [];
           const items = toArrayMaybe(obj?.data?.items || obj?.data);
           items.forEach((m) => {
             setNoGoods(m);
             setSaveConfig(m);
-            if (Array.isArray(m?.image_list)) {
-              cache.push(...m.image_list);
-            }
+            if (Array.isArray(m?.image_list)) cache.push(...m.image_list);
+            if (Array.isArray(m?.images_list)) cache.push(...m.images_list);
             enableEntries(m?.share_info || {});
           });
           const uniq = [];
-          const seen = {};
-          arr(cache).forEach((x) => {
-            const k = String(x?.file_id || x?.url || JSON.stringify(x));
-            if (!seen[k]) { seen[k] = true; uniq.push(x); }
+          const seen = new Set();
+          cache.forEach((x) => {
+            const k = String(x?.file_id || x?.trace_id || x?.live_photo_file_id || x?.url || JSON.stringify(x));
+            if (!seen.has(k)) { seen.add(k); uniq.push(x); }
           });
           while (uniq.length > 100) uniq.shift();
           $.write(JSON.stringify(uniq), KEY_PHOTO);

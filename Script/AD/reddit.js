@@ -1,30 +1,60 @@
-// Reddit 过滤推广, 关 subreddit 的 NSFW 提示
+// Reddit 去广告 + 关 NSFW，避免破坏原始字段结构
 
-let modified;
-let body;
-try {
-  body = JSON.parse($response.body.replace(/\"isNsfw\"/gi, '"_isNsfw"'));
-  if (body?.data?.subredditInfoByName?.elements?.edges) {
-    body.data.subredditInfoByName.elements.edges =
-      body.data.subredditInfoByName.elements.edges.filter(
-        i => i?.node?.__typename !== 'AdPost'
-      );
-    modified = true;
-  } else if (body?.data?.home?.elements?.edges) {
-    body.data.home.elements.edges = body.data.home.elements.edges.filter(
-      i => i?.node?.__typename !== 'AdPost'
-    );
-    modified = true;
-  } else if (body?.data?.homeV3?.elements?.edges) {
-    body.data.homeV3.elements.edges = body.data.homeV3.elements.edges.filter(
-      i => !i?.node?.cells?.some(j => j?.__typename === 'AdMetadataCell')
-    );
-    modified = true;
-  } else if ($response.body.includes('"isNsfw"')) {
-    modified = true;
+function walk(value) {
+  if (Array.isArray(value)) {
+    var out = [];
+    for (var i = 0; i < value.length; i++) {
+      var next = walk(value[i]);
+      if (next !== undefined) out.push(next);
+    }
+    return out;
   }
+
+  if (value && typeof value === 'object') {
+    for (var key in value) {
+      if (Object.prototype.hasOwnProperty.call(value, key)) {
+        var child = walk(value[key]);
+        if (child === undefined) {
+          delete value[key];
+        } else {
+          value[key] = child;
+        }
+      }
+    }
+
+    if (value.isNsfw === true) value.isNsfw = false;
+    if (value.isNsfwMediaBlocked === true) value.isNsfwMediaBlocked = false;
+    if (value.isNsfwContentShown === false) value.isNsfwContentShown = true;
+    if (Array.isArray(value.commentsPageAds)) value.commentsPageAds = [];
+
+    if (
+      value.node &&
+      typeof value.node === 'object' &&
+      Array.isArray(value.node.cells) &&
+      value.node.cells.some(function (cell) {
+        return cell && (cell.__typename === 'AdMetadataCell' || cell.isAdPost === true);
+      })
+    ) {
+      return undefined;
+    }
+
+    if (value.node && typeof value.node === 'object' && value.node.adPayload && typeof value.node.adPayload === 'object') {
+      return undefined;
+    }
+
+    if (value.__typename === 'AdPost') {
+      return undefined;
+    }
+  }
+
+  return value;
+}
+
+try {
+  var body = JSON.parse($response.body);
+  var result = walk(body);
+  $done({ body: JSON.stringify(result) });
 } catch (e) {
-  console.log(e);
-} finally {
-  $done(modified ? { body: JSON.stringify(body) } : {});
+  console.log('reddit.js parse error: ' + e);
+  $done({});
 }

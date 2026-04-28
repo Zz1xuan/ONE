@@ -31,6 +31,7 @@ const ACTIVITY_INFO_PATH = '/restapi/soa2/17679/get2020ZtripIntergrationDailyAtt
 const ACTIVITY_RECORD_PATH = '/restapi/soa2/17679/get2020ZtripIntergrationDailyAttendanceRecord';
 const ACTIVITY_ENROLL_PATH = '/restapi/soa2/17679/attend2020ZtripIntergrationDailyAttendance';
 const ACTIVITY_PUNCH_PATH = '/restapi/soa2/17679/join2020ZtripIntergrationDailyAttendance';
+const ACTIVITY_SHARE_PATH = '/restapi/soa2/17679/share2020ZtripIntergrationDailyAttendance';
 
 const REQUEST_GAP_MS = 3000;
 const BUSY_RETRY_TIMES = 1;
@@ -42,7 +43,8 @@ const CAPTURE_POST_PATHS = [
   ACTIVITY_INFO_PATH,
   ACTIVITY_RECORD_PATH,
   ACTIVITY_ENROLL_PATH,
-  ACTIVITY_PUNCH_PATH
+  ACTIVITY_PUNCH_PATH,
+  ACTIVITY_SHARE_PATH
 ];
 const COMMON_HEADER_KEYS = [
   'user-agent',
@@ -176,10 +178,10 @@ const DEFAULT_FINISH_PAYLOAD_SOURCE =
   '1.0.9@102!O2CSGaOtOXAbGSjaOSyVOX42+6qn9lNPO6NV+rK2+6FaOl4Z9P4I9EbbOrK2+ET5+rApbbbpOST2KlA5OSkS+EqIbEkbKtb/KlbRKrA2OrtIKr42KSVS+ET5OtbpOS4SOrAnOS4LOSqLQlqIOldvt6qLNLh1rbb=';
 
 const DEFAULT_COMMON_HEADERS = {
-  'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 ctrip_wireless_h5/10.20.8',
+  'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148_Tieyou_TieyouWireless_10.21.2_partner_zhixing_aid_5208_cDevice=iPhone 13_isPhoneX=1__cSize=w390*h844_&cw=1isiPhoneX_correctVersion=710212_ Version/26.4.2 (like Safari/605.1.15)',
   'content-type': 'application/json',
   origin: 'https://m.suanya.com',
-  referer: 'https://m.suanya.com/',
+  referer: 'https://m.suanya.com/yun/common/travelXiaozhi/home?isHideNavBar=YES&isImmersiveMode=YES&disablePredownload=true&zt_needlogin=1&from_native_page=1',
   'x-ctx-rmstoken': '',
   'x-ctx-ubt-pageid': '',
   'x-ctx-ubt-pvid': '',
@@ -304,15 +306,28 @@ async function capture() {
   }
   if (path === ACTIVITY_INFO_PATH && hasObjectKeys(body)) {
     state.activityInfoBody = body;
+    state.activityInfoHeaders['w-payload-source'] =
+      headers['w-payload-source'] || state.activityInfoHeaders['w-payload-source'];
   }
   if (path === ACTIVITY_RECORD_PATH && hasObjectKeys(body)) {
     state.activityRecordBody = body;
+    state.activityRecordHeaders['w-payload-source'] =
+      headers['w-payload-source'] || state.activityRecordHeaders['w-payload-source'];
   }
   if (path === ACTIVITY_ENROLL_PATH && hasObjectKeys(body)) {
     state.activityEnrollBody = body;
+    state.activityEnrollHeaders['w-payload-source'] =
+      headers['w-payload-source'] || state.activityEnrollHeaders['w-payload-source'];
   }
   if (path === ACTIVITY_PUNCH_PATH && hasObjectKeys(body)) {
     state.activityPunchBody = body;
+    state.activityPunchHeaders['w-payload-source'] =
+      headers['w-payload-source'] || state.activityPunchHeaders['w-payload-source'];
+  }
+  if (path === ACTIVITY_SHARE_PATH && hasObjectKeys(body)) {
+    state.activityShareBody = body;
+    state.activityShareHeaders['w-payload-source'] =
+      headers['w-payload-source'] || state.activityShareHeaders['w-payload-source'];
   }
 
   state.updatedAt = isoNow();
@@ -592,35 +607,10 @@ async function doDailyAttendanceActivityV2(state) {
   logStep('瓜分活动状态', formatActivityInfoV2(infoJson));
   const actionLogs = [];
 
-  if (infoJson.attendFlag === false) {
-    await sleep(REQUEST_GAP_MS);
-    const enrollResult = await callApiWithRetry(
-      '瓜分活动报名',
-      ACTIVITY_ENROLL_PATH,
-      buildBody(state.activityEnrollBody, state),
-      state,
-      'activityEnroll'
-    );
-    if (!enrollResult.ok) {
-      return '瓜分活动报名失败: ' + enrollResult.message;
-    }
-
-    const enrollJson = enrollResult.json || {};
-    if (Number(enrollJson.resultCode) !== 1) {
-      return '瓜分活动报名失败: ' + (enrollJson.resultMessage || briefJson(enrollJson));
-    }
+  if (infoJson.attendFlag === true) {
     actionLogs.push('已报名');
-
-    const refreshedInfo = await refreshActivityInfo(
-      state,
-      '报名后刷新状态'
-    );
-    if (refreshedInfo) {
-      infoJson = refreshedInfo;
-      logStep('报名后状态', formatActivityInfoV2(infoJson));
-    }
   } else {
-    actionLogs.push('已报名');
+    actionLogs.push('attendFlag=否');
   }
 
   if (infoJson.todayAttendanceFlag !== true) {
@@ -668,6 +658,46 @@ async function doDailyAttendanceActivityV2(state) {
     }
   } else {
     actionLogs.push('已打卡');
+  }
+
+  if (state.activityShareHeaders['w-payload-source']) {
+    await sleep(REQUEST_GAP_MS);
+    const beforeShareCredit = toNumberOrNull(infoJson.credit);
+    const shareResult = await callApiWithRetry(
+      '瓜分活动分享',
+      ACTIVITY_SHARE_PATH,
+      buildBody(state.activityShareBody, state),
+      state,
+      'activityShare'
+    );
+    if (!shareResult.ok) {
+      actionLogs.push('分享失败: ' + shareResult.message);
+    } else {
+      const shareJson = shareResult.json || {};
+      if (Number(shareJson.resultCode) === 1) {
+        actionLogs.push('已分享');
+        const refreshedInfo = await refreshActivityInfo(
+          state,
+          '分享后刷新状态'
+        );
+        if (refreshedInfo) {
+          infoJson = refreshedInfo;
+          logStep('分享后状态', formatActivityInfoV2(infoJson));
+
+          const afterShareCredit = toNumberOrNull(infoJson.credit);
+          if (beforeShareCredit !== null && afterShareCredit !== null) {
+            const gain = afterShareCredit - beforeShareCredit;
+            if (gain > 0) {
+              actionLogs.push('分享奖励+' + gain);
+            }
+          }
+        }
+      } else {
+        actionLogs.push('分享返回: ' + (shareJson.resultMessage || briefJson(shareJson)));
+      }
+    }
+  } else {
+    actionLogs.push('未抓到分享模板');
   }
 
   const lines = [];
@@ -769,9 +799,24 @@ function buildHeaders(state, type) {
       state.signHeaders['w-payload-source'] || DEFAULT_SIGN_PAYLOAD_SOURCE;
   }
 
-  if (type === 'finishTask') {
-    headers['w-payload-source'] =
-      state.finishTaskHeaders['w-payload-source'] || DEFAULT_FINISH_PAYLOAD_SOURCE;
+  if (type === 'activityInfo') {
+    headers['w-payload-source'] = state.activityInfoHeaders['w-payload-source'] || headers['w-payload-source'];
+  }
+
+  if (type === 'activityRecord') {
+    headers['w-payload-source'] = state.activityRecordHeaders['w-payload-source'] || headers['w-payload-source'];
+  }
+
+  if (type === 'activityEnroll') {
+    headers['w-payload-source'] = state.activityEnrollHeaders['w-payload-source'] || headers['w-payload-source'];
+  }
+
+  if (type === 'activityPunch') {
+    headers['w-payload-source'] = state.activityPunchHeaders['w-payload-source'] || headers['w-payload-source'];
+  }
+
+  if (type === 'activityShare') {
+    headers['w-payload-source'] = state.activityShareHeaders['w-payload-source'] || headers['w-payload-source'];
   }
 
   return headers;
@@ -983,6 +1028,9 @@ function withDefaults(state) {
   next.activityPunchBody = hasObjectKeys(next.activityPunchBody)
     ? next.activityPunchBody
     : clone(DEFAULT_STATUS_BODY);
+  next.activityShareBody = hasObjectKeys(next.activityShareBody)
+    ? next.activityShareBody
+    : clone(DEFAULT_STATUS_BODY);
   next.signHeaders = Object.assign(
     { 'w-payload-source': DEFAULT_SIGN_PAYLOAD_SOURCE },
     next.signHeaders || {}
@@ -991,6 +1039,11 @@ function withDefaults(state) {
     { 'w-payload-source': DEFAULT_FINISH_PAYLOAD_SOURCE },
     next.finishTaskHeaders || {}
   );
+  next.activityInfoHeaders = Object.assign({}, next.activityInfoHeaders || {});
+  next.activityRecordHeaders = Object.assign({}, next.activityRecordHeaders || {});
+  next.activityEnrollHeaders = Object.assign({}, next.activityEnrollHeaders || {});
+  next.activityPunchHeaders = Object.assign({}, next.activityPunchHeaders || {});
+  next.activityShareHeaders = Object.assign({}, next.activityShareHeaders || {});
   return next;
 }
 

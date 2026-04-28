@@ -1,3 +1,4 @@
+// 一佬
 // Reddit 去广告 + 关 NSFW + 自动翻译
 
 function walk(value) {

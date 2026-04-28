@@ -1,4 +1,4 @@
-// Reddit 去广告 + 关 NSFW，避免破坏原始字段结构
+// Reddit 去广告 + 关 NSFW + 自动翻译
 
 function walk(value) {
   if (Array.isArray(value)) {
@@ -50,11 +50,21 @@ function walk(value) {
   return value;
 }
 
-try {
-  var body = JSON.parse($response.body);
-  var result = walk(body);
-  $done({ body: JSON.stringify(result) });
-} catch (e) {
-  console.log('reddit.js parse error: ' + e);
+if (typeof $request !== 'undefined' && $request.headers) {
+  var headers = $request.headers || {};
+  delete headers['x-reddit-translations'];
+  delete headers['X-Reddit-Translations'];
+  headers['x-reddit-translations'] = 'enabled, seo, zh-hans';
+  $done({ headers: headers });
+} else if (typeof $response !== 'undefined' && $response.body) {
+  try {
+    var body = JSON.parse($response.body);
+    var result = walk(body);
+    $done({ body: JSON.stringify(result) });
+  } catch (e) {
+    console.log('reddit.js parse error: ' + e);
+    $done({});
+  }
+} else {
   $done({});
 }

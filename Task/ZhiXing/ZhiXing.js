@@ -616,37 +616,39 @@ async function doDailyAttendanceActivityV2(state) {
   if (infoJson.todayAttendanceFlag !== true) {
     await sleep(REQUEST_GAP_MS);
     const beforeCredit = toNumberOrNull(infoJson.credit);
+    let punchDone = false;
+    let lastPunchMessage = '';
 
-    const punchResult = await callApiWithRetry(
-      '瓜分活动打卡',
-      ACTIVITY_PUNCH_PATH,
-      buildBody(state.activityPunchBody, state),
-      state,
-      'activityPunch'
-    );
-    if (!punchResult.ok) {
-      return '瓜分活动打卡失败: ' + punchResult.message;
-    }
-
-    const punchJson = punchResult.json || {};
-    if (Number(punchJson.resultCode) !== 1) {
-      const punchMessage = punchJson.resultMessage || briefJson(punchJson);
-      if (Number(punchJson.resultCode) === 3) {
-        actionLogs.push('今日暂不可打卡: ' + punchMessage);
-      } else {
-        return '瓜分活动打卡失败: ' + punchMessage;
+    const tryPunch = async (name, path, bodyKey, headerType) => {
+      const result = await callApiWithRetry(
+        name,
+        path,
+        buildBody(state[bodyKey], state),
+        state,
+        headerType
+      );
+      if (!result.ok) {
+        lastPunchMessage = result.message;
+        return false;
       }
-    } else {
-      actionLogs.push('已打卡');
 
+      const json = result.json || {};
+      if (Number(json.resultCode) !== 1) {
+        lastPunchMessage = json.resultMessage || briefJson(json);
+        return false;
+      }
+
+      actionLogs.push(extractMessage(json) || (name + '成功'));
       const refreshedInfo = await refreshActivityInfo(
         state,
-        '打卡后刷新状态'
+        name + '后刷新状态'
       );
       if (refreshedInfo) {
         infoJson = refreshedInfo;
-        logStep('打卡后状态', formatActivityInfoV2(infoJson));
+        logStep(name + '后状态', formatActivityInfoV2(infoJson));
+      }
 
+      if (infoJson.todayAttendanceFlag === true) {
         const afterCredit = toNumberOrNull(infoJson.credit);
         if (beforeCredit !== null && afterCredit !== null) {
           const diff = beforeCredit - afterCredit;
@@ -654,6 +656,41 @@ async function doDailyAttendanceActivityV2(state) {
             actionLogs.push('扣了' + diff + '积分');
           }
         }
+        return true;
+      }
+
+      lastPunchMessage = '返回成功但 todayAttendanceFlag 未变更';
+      return false;
+    };
+
+    if (state.activityEnrollHeaders['w-payload-source']) {
+      punchDone = await tryPunch(
+        '瓜分活动报名打卡',
+        ACTIVITY_ENROLL_PATH,
+        'activityEnrollBody',
+        'activityEnroll'
+      );
+    }
+
+    if (!punchDone) {
+      if (state.activityPunchHeaders['w-payload-source']) {
+        await sleep(REQUEST_GAP_MS);
+        punchDone = await tryPunch(
+          '瓜分活动直接打卡',
+          ACTIVITY_PUNCH_PATH,
+          'activityPunchBody',
+          'activityPunch'
+        );
+      } else if (!state.activityEnrollHeaders['w-payload-source']) {
+        actionLogs.push('未抓到打卡模板');
+      }
+    }
+
+    if (!punchDone) {
+      if (Number(infoJson.todayAttendanceFlag) === true || infoJson.todayAttendanceFlag === true) {
+        actionLogs.push('已打卡');
+      } else {
+        return '瓜分活动打卡失败: ' + (lastPunchMessage || '未知原因');
       }
     }
   } else {

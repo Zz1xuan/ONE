@@ -613,7 +613,7 @@ async function doDailyAttendanceActivityV2(state) {
     actionLogs.push('attendFlag=否');
   }
 
-  if (infoJson.todayAttendanceFlag !== true) {
+  if (!isTrueFlag(infoJson.todayAttendanceFlag)) {
     await sleep(REQUEST_GAP_MS);
     const beforeCredit = toNumberOrNull(infoJson.credit);
     let punchDone = false;
@@ -648,7 +648,7 @@ async function doDailyAttendanceActivityV2(state) {
         logStep(name + '后状态', formatActivityInfoV2(infoJson));
       }
 
-      if (infoJson.todayAttendanceFlag === true) {
+      if (isTrueFlag(infoJson.todayAttendanceFlag)) {
         const afterCredit = toNumberOrNull(infoJson.credit);
         if (beforeCredit !== null && afterCredit !== null) {
           const diff = beforeCredit - afterCredit;
@@ -687,7 +687,7 @@ async function doDailyAttendanceActivityV2(state) {
     }
 
     if (!punchDone) {
-      if (Number(infoJson.todayAttendanceFlag) === true || infoJson.todayAttendanceFlag === true) {
+      if (isTrueFlag(infoJson.todayAttendanceFlag)) {
         actionLogs.push('已打卡');
       } else {
         return '瓜分活动打卡失败: ' + (lastPunchMessage || '未知原因');
@@ -968,15 +968,25 @@ function formatActivityRecord(json) {
   return parts.join(' | ');
 }
 
+function isTrueFlag(value) {
+  if (value === true) return true;
+  if (value === 1 || value === '1') return true;
+  if (typeof value === 'string') {
+    const v = value.trim().toLowerCase();
+    return v === 'true' || v === 'yes' || v === 'y';
+  }
+  return false;
+}
+
 function formatBoolFlag(value) {
-  if (value === true) return '是';
-  if (value === false) return '否';
+  if (isTrueFlag(value)) return '是';
+  if (value === false || value === 0 || value === '0') return '否';
   return String(value);
 }
 
 function formatBoolFlagV2(value) {
-  if (value === true) return '是';
-  if (value === false) return '否';
+  if (isTrueFlag(value)) return '是';
+  if (value === false || value === 0 || value === '0') return '否';
   return String(value);
 }
 

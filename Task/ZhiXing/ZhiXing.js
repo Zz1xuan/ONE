@@ -331,6 +331,11 @@ async function capture() {
   }
 
   state.updatedAt = isoNow();
+  const shouldNotifyCapture = !state.captureNotified && hasCoreCaptureFields(state);
+  if (shouldNotifyCapture) {
+    state.captureNotified = true;
+    state.captureNotifiedAt = isoNow();
+  }
   saveState(state);
 
   const tip =
@@ -342,7 +347,9 @@ async function capture() {
     (hasObjectKeys(body) ? '实时请求' : '沿用默认');
 
   logStep('抓包成功', tip.replace(/\n/g, ' | '));
-  $.msg(APP_NAME, '抓包成功', tip);
+  if (shouldNotifyCapture) {
+    $.msg(APP_NAME, '抓包关键字段已就绪', '后续抓包将静默进行');
+  }
 }
 
 async function run() {
@@ -1172,6 +1179,20 @@ function parseCookieMap(cookie) {
 
 function hasObjectKeys(obj) {
   return !!obj && typeof obj === 'object' && Object.keys(obj).length > 0;
+}
+
+function hasCoreCaptureFields(state) {
+  if (!state || typeof state !== 'object') return false;
+  const hasCookie = !!state.cookie;
+  const hasTaskListBody = hasObjectKeys(state.taskListBody);
+  const hasTaskPayload =
+    !!(state.finishTaskHeaders && state.finishTaskHeaders['w-payload-source']);
+  const hasActivityPayload =
+    !!(
+      (state.activityEnrollHeaders && state.activityEnrollHeaders['w-payload-source']) ||
+      (state.activityPunchHeaders && state.activityPunchHeaders['w-payload-source'])
+    );
+  return hasCookie && hasTaskListBody && hasTaskPayload && hasActivityPayload;
 }
 
 function isSuccessResult(result) {

@@ -46,6 +46,10 @@
 ^https?:\/\/web\.chelaile\.net\.cn\/api\/adpub\/ad - reject
 ^https?:\/\/(cdn.)?api.chelaile.net.cn|124.71.153.172\/(goocity\/)?adpub\/ - reject
 ^https?:\/\/atrace.chelaile.net.cn\/(adpub|exhibit\?&adv_image) - reject
+# > 微信小程序广告素材  wxsmw.wxs.qq.com, wximg.wxs.qq.com, wxa.wxs.qq.com
+^https:\/\/wxsmw\.wxs\.qq\.com\/.*(?:ads_svp_video__|ad[s]?[_-]?).* - reject
+^https:\/\/wximg\.wxs\.qq\.com\/.*[?&](?:posid|adpos|ad_pos|gdt_vid|traceid|aid)=.* - reject
+^https:\/\/wxa\.wxs\.qq\.com\/images\/wxapp\/.*(?:reward_ad|advert|ad[_-]).* - reject
 # > D
 # > 大众点评 img.meituan.net,
 ^https:\/\/img\.meituan\.net\/dpmobile\/([a-fA-F0-9]+)\.jpg\.webp - reject

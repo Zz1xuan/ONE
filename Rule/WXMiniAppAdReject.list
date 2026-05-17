@@ -1,0 +1,5 @@
+# 微信小程序广告素材分流 Reject（按当前 HAR 命中整理，偏激进）
+HOST,wximg.wxs.qq.com,REJECT
+HOST,wxsmw.wxs.qq.com,REJECT
+HOST,wxsnsdythumb.wxs.qq.com,REJECT
+HOST,wxa.wxs.qq.com,REJECT

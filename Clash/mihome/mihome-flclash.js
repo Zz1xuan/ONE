@@ -244,13 +244,13 @@ function main(config) {
   };
 
   config["rules"] = [
+    "RULE-SET,AllReject,REJECT",
     "RULE-SET,Direct+,DIRECT",
     "RULE-SET,AI,AI",
     "RULE-SET,Emby,Emby",
     "RULE-SET,Spotify,香港节点",
     "RULE-SET,Github,手动切换",
     "RULE-SET,Microsoft,DIRECT",
-    "RULE-SET,AllReject,REJECT",
     "RULE-SET,Proxy,手动切换",
     "RULE-SET,Direct,DIRECT",
     "RULE-SET,Lan,DIRECT",

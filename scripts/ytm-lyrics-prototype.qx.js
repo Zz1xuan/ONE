@@ -2,30 +2,30 @@
 
 原型作者：Minis
 参考思路：Spotify 歌词增强类脚本写法
-用途：识别 YouTube Music 歌词面板（get_panel），并进行第一阶段安全替换实验。
+用途：拦截 YouTube Music 歌词面板（get_panel），提取歌词行并进行真实翻译替换实验。
 
 ------------ Quantumult X 配置 ------------
 
 [mitm]
-hostname = youtubei.googleapis.com
+hostname = youtubei.googleapis.com, translate.googleapis.com
 
 [rewrite_local]
 ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/scripts/ytm-lyrics-prototype.qx.js
 
 说明：
-1. 这是一版 v5 实验脚本，会尝试替换命中的第一条歌词文本。
+1. 这是一版 v6 实验脚本，会把命中的部分歌词行翻译成中文后回写到原歌词位置。
 2. 采用“等字节长度替换”，不改 protobuf 结构长度，只做局部文本替换。
-3. 当前目标不是成品增强，而是验证：改动歌词文本后，YTM 客户端是否仍能正常显示。
-4. 若替换失败或未命中可安全替换的歌词行，脚本会原样放行。
+3. 若翻译失败、未命中可安全替换的歌词行，脚本会原样放行。
+4. 当前默认最多替换 8 行，优先用于验证真实外部文本替换链路。
 
 */
 
-const $ = new Env('YTM Lyrics Prototype v5');
+const $ = new Env('YTM Lyrics Prototype v6');
+const MAX_LINES = 8;
 
 (async () => {
   try {
     if (!$response || !$response.bodyBytes) return $.done({});
-
     const url = $request.url || '';
     if (!/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel/.test(url)) {
       return $.done({ bodyBytes: $response.bodyBytes });
@@ -37,37 +37,49 @@ const $ = new Env('YTM Lyrics Prototype v5');
 
     if (!probe.isLyricsPanel) {
       $.log('get_panel hit, but not lyrics panel');
-      return $.done({ bodyBytes: $response.bodyBytes });
+      return $.done({ bodyBytes: sliceBytes(raw) });
     }
 
-    $.log('=== YTM lyrics panel detected (v5) ===');
+    $.log('=== YTM lyrics panel detected (v6) ===');
     $.log(`rawBytes: ${raw.byteLength}`);
     $.log(`bestAnchor: ${probe.bestAnchor ? probe.bestAnchor.name : 'none'}`);
     $.log(`candidateLines: ${probe.linePairs.length}`);
 
-    const target = pickReplacementTarget(probe.linePairs);
-    if (!target) {
-      $.log('No safe replacement target found, pass through unchanged');
-      return $.done({ bodyBytes: raw.buffer.slice(raw.byteOffset, raw.byteOffset + raw.byteLength) });
+    const targets = pickTargets(probe.linePairs, MAX_LINES);
+    if (!targets.length) {
+      $.log('No safe replacement targets found, pass through unchanged');
+      return $.done({ bodyBytes: sliceBytes(raw) });
     }
 
-    $.log(`Target RAW: ${target.raw}`);
-    $.log(`Target CLN: ${target.cleaned}`);
+    $.log(`Selected lines: ${targets.length}`);
+    targets.forEach((t, i) => $.log(`${i + 1}. ${t.cleaned}`));
 
-    const fromBytes = utf8Bytes(target.cleaned);
-    const marker = buildMarker(fromBytes.length);
-    const toBytes = utf8Bytes(marker);
-    const hit = replaceFirstBytes(raw, fromBytes, toBytes);
-
-    if (!hit.replaced) {
-      $.log('Target text bytes not found in raw payload, pass through unchanged');
-      return $.done({ bodyBytes: raw.buffer.slice(raw.byteOffset, raw.byteOffset + raw.byteLength) });
+    const translated = await translateLines(targets.map(t => t.cleaned));
+    if (!translated.length) {
+      $.log('Translation returned empty result, pass through unchanged');
+      return $.done({ bodyBytes: sliceBytes(raw) });
     }
 
-    $.log(`Replaced bytes at offset ${hit.index}`);
-    $.log(`Marker: ${marker}`);
+    let replacedCount = 0;
+    for (let i = 0; i < targets.length; i++) {
+      const from = targets[i].cleaned;
+      const toRaw = translated[i] || from;
+      const toDisplay = normalizeTranslated(toRaw, from);
+      if (!toDisplay || toDisplay === from) continue;
 
-    return $.done({ bodyBytes: raw.buffer.slice(raw.byteOffset, raw.byteOffset + raw.byteLength) });
+      const fromBytes = utf8Bytes(from);
+      const toBytes = fitToByteLength(toDisplay, fromBytes.length);
+      const hit = replaceFirstBytes(raw, fromBytes, toBytes);
+      if (hit.replaced) {
+        replacedCount++;
+        $.log(`REPLACED ${replacedCount}: ${from} -> ${safeDecode(toBytes)} @ ${hit.index}`);
+      } else {
+        $.log(`MISS: ${from}`);
+      }
+    }
+
+    $.log(`Total replaced: ${replacedCount}`);
+    return $.done({ bodyBytes: sliceBytes(raw) });
   } catch (e) {
     $.log('Error: ' + String((e && e.stack) || e));
     return $.done({ bodyBytes: $response.bodyBytes });
@@ -107,7 +119,7 @@ function buildProbe(text) {
     const score = scorePairs(cand);
     if (score > bestScore) {
       bestScore = score;
-      bestAnchor = { name, index: idx, start, end, score, candidates: cand };
+      bestAnchor = { name, index: idx, score, count: cand.length };
     }
     for (const pair of cand) {
       if (seen.has(pair.cleaned)) continue;
@@ -146,15 +158,38 @@ function scorePairs(pairs) {
   return score;
 }
 
-function pickReplacementTarget(pairs) {
+function pickTargets(pairs, limit) {
+  const out = [];
   for (const p of pairs) {
     const s = p.cleaned;
-    if (s.length < 6 || s.length > 60) continue;
+    if (s.length < 4 || s.length > 60) continue;
     if (/^[0-9]/.test(s)) continue;
     if (/[^\p{L}\p{N}\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF\s'"(),.!?\-]/u.test(s)) continue;
-    return p;
+    if (/[\u4E00-\u9FFF]/.test(s) && !/[A-Za-z\u3040-\u30FF\uAC00-\uD7AF]/.test(s)) continue; // 跳过纯中文
+    out.push(p);
+    if (out.length >= limit) break;
   }
-  return null;
+  return out;
+}
+
+async function translateLines(lines) {
+  const q = lines.join('\n');
+  const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q=' + encodeURIComponent(q);
+  const resp = await $task.fetch({ url, method: 'GET' });
+  if (!resp || resp.statusCode !== 200) throw new Error('translate http failed');
+  const data = JSON.parse(resp.body);
+  const joined = (data[0] || []).map(x => x[0] || '').join('');
+  const result = joined.split('\n');
+  $.log(`Translation lines returned: ${result.length}`);
+  return result;
+}
+
+function normalizeTranslated(s, original) {
+  let out = String(s || '').trim();
+  if (!out) return '';
+  if (out === original) return out;
+  out = out.replace(/\s{2,}/g, ' ');
+  return out;
 }
 
 function cleanLyricLine(s) {
@@ -187,16 +222,23 @@ function isLyricLine(s) {
   return true;
 }
 
-function buildMarker(byteLen) {
-  const seed = '[V5-TEST]';
-  let out = '';
-  while (utf8Bytes(out).length < byteLen) out += seed;
-  const bytes = utf8Bytes(out).slice(0, byteLen);
-  return safeDecode(bytes);
-}
-
 function utf8Bytes(str) {
   return new TextEncoder().encode(str);
+}
+
+function fitToByteLength(str, byteLen) {
+  let out = str;
+  while (utf8Bytes(out).length > byteLen && out.length > 0) out = out.slice(0, -1);
+  while (utf8Bytes(out).length < byteLen) out += ' ';
+  let bytes = utf8Bytes(out);
+  if (bytes.length > byteLen) bytes = bytes.slice(0, byteLen);
+  if (bytes.length < byteLen) {
+    const pad = new Uint8Array(byteLen);
+    pad.set(bytes, 0);
+    for (let i = bytes.length; i < byteLen; i++) pad[i] = 32;
+    bytes = pad;
+  }
+  return bytes;
 }
 
 function replaceFirstBytes(haystack, needle, repl) {
@@ -229,6 +271,10 @@ function safeDecode(u8) {
 
 function hasAny(text, arr) {
   return arr.some(s => text.includes(s));
+}
+
+function sliceBytes(u8) {
+  return u8.buffer.slice(u8.byteOffset, u8.byteOffset + u8.byteLength);
 }
 
 function Env(name) {

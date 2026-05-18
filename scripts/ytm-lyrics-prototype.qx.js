@@ -1,12 +1,23 @@
-// YouTube Music lyrics panel prototype for Quantumult X
-// Purpose: intercept get_panel, detect lyrics panel, extract readable lyrics snippets, pass through unchanged.
-//
-// Quantumult X example:
-// [mitm]
-// hostname = youtubei.googleapis.com
-//
-// [rewrite_local]
-// ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/scripts/ytm-lyrics-prototype.qx.js
+/*
+
+原型作者：Minis
+参考思路：Spotify 歌词增强类脚本写法
+用途：识别 YouTube Music 歌词面板（get_panel），提取可读歌词片段，当前版本仅输出日志，不改响应。
+
+------------ Quantumult X 配置 ------------
+
+[mitm]
+hostname = youtubei.googleapis.com
+
+[rewrite_local]
+^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/scripts/ytm-lyrics-prototype.qx.js
+
+说明：
+1. 这是一版原型脚本，先验证 YTM 歌词面板链路。
+2. 当前仅识别 lyrics panel / timed lyrics controller，并输出歌词预览日志。
+3. 后续版本再接入外部歌词源，做替换、翻译或双语增强。
+
+*/
 
 const $ = new Env('YTM Lyrics Prototype');
 const isQX = typeof $task !== 'undefined';

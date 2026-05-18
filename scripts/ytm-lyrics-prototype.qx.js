@@ -1,5 +1,12 @@
 // YouTube Music lyrics panel prototype for Quantumult X
 // Purpose: intercept get_panel, detect lyrics panel, extract readable lyrics snippets, pass through unchanged.
+//
+// Quantumult X example:
+// [mitm]
+// hostname = youtubei.googleapis.com
+//
+// [rewrite_local]
+// ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/scripts/ytm-lyrics-prototype.qx.js
 
 const $ = new Env('YTM Lyrics Prototype');
 const isQX = typeof $task !== 'undefined';

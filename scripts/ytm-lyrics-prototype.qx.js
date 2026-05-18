@@ -2,7 +2,7 @@
 
 原型作者：Minis
 参考思路：Spotify 歌词增强类脚本写法
-用途：识别 YouTube Music 歌词面板（get_panel），输出更细的能力探针日志与更干净的歌词块定位信息，当前版本仅输出日志，不改响应。
+用途：识别 YouTube Music 歌词面板（get_panel），并进行第一阶段安全替换实验。
 
 ------------ Quantumult X 配置 ------------
 
@@ -13,14 +13,14 @@ hostname = youtubei.googleapis.com
 ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/scripts/ytm-lyrics-prototype.qx.js
 
 说明：
-1. 这是一版 v3 探针脚本，继续验证 YTM 歌词面板链路。
-2. 当前识别 lyrics panel / timed lyrics / translate / pronunciation / share 等能力。
-3. 当前仅输出歌词预览、raw/cleaned 对照、区块定位日志，不改响应。
-4. 后续版本再接入外部歌词源，做替换、翻译或双语增强。
+1. 这是一版 v5 实验脚本，会尝试替换命中的第一条歌词文本。
+2. 采用“等字节长度替换”，不改 protobuf 结构长度，只做局部文本替换。
+3. 当前目标不是成品增强，而是验证：改动歌词文本后，YTM 客户端是否仍能正常显示。
+4. 若替换失败或未命中可安全替换的歌词行，脚本会原样放行。
 
 */
 
-const $ = new Env('YTM Lyrics Prototype v3');
+const $ = new Env('YTM Lyrics Prototype v5');
 
 (async () => {
   try {
@@ -31,133 +31,50 @@ const $ = new Env('YTM Lyrics Prototype v3');
       return $.done({ bodyBytes: $response.bodyBytes });
     }
 
-    const raw = new Uint8Array($response.bodyBytes);
+    let raw = new Uint8Array($response.bodyBytes);
     const text = safeDecode(raw);
-    const probe = buildProbe(text, raw);
+    const probe = buildProbe(text);
 
     if (!probe.isLyricsPanel) {
       $.log('get_panel hit, but not lyrics panel');
       return $.done({ bodyBytes: $response.bodyBytes });
     }
 
-    $.log('=== YTM lyrics panel detected (v3) ===');
-    $.log(`URL: ${url}`);
+    $.log('=== YTM lyrics panel detected (v5) ===');
     $.log(`rawBytes: ${raw.byteLength}`);
-    $.log(`panel: ${probe.panelType}`);
-    $.log(`source: ${probe.source || 'unknown'}`);
-    $.log(`timedLyrics: ${probe.hasTimedLyrics}`);
-    $.log(`translateHandler: ${probe.hasTranslateHandler}`);
-    $.log(`pronunciationHandler: ${probe.hasPronunciationHandler}`);
-    $.log(`shareHandler: ${probe.hasShareHandler}`);
-    $.log(`longPressHandler: ${probe.hasLongPressHandler}`);
-    $.log(`seekHandler: ${probe.hasSeekHandler}`);
-    $.log(`lyricLineComponent: ${probe.hasLyricLineComponent}`);
-    $.log(`estimatedLyricsLines: ${probe.cleanedLines.length}`);
+    $.log(`bestAnchor: ${probe.bestAnchor ? probe.bestAnchor.name : 'none'}`);
+    $.log(`candidateLines: ${probe.linePairs.length}`);
 
-    if (probe.bestAnchor) {
-      $.log(`bestAnchor: ${probe.bestAnchor.name} @ ${probe.bestAnchor.index}`);
-      $.log(`bestAnchorWindow: [${probe.bestAnchor.start}, ${probe.bestAnchor.end}]`);
-      $.log(`bestAnchorCandidateCount: ${probe.bestAnchor.candidates.length}`);
+    const target = pickReplacementTarget(probe.linePairs);
+    if (!target) {
+      $.log('No safe replacement target found, pass through unchanged');
+      return $.done({ bodyBytes: raw.buffer.slice(raw.byteOffset, raw.byteOffset + raw.byteLength) });
     }
 
-    if (probe.cleanedLines.length) {
-      $.log('Lyrics preview (cleaned):');
-      probe.cleanedLines.slice(0, 16).forEach((line, i) => $.log(`${i + 1}. ${line}`));
-    } else {
-      $.log('No cleaned lyric lines extracted in this pass');
+    $.log(`Target RAW: ${target.raw}`);
+    $.log(`Target CLN: ${target.cleaned}`);
+
+    const fromBytes = utf8Bytes(target.cleaned);
+    const marker = buildMarker(fromBytes.length);
+    const toBytes = utf8Bytes(marker);
+    const hit = replaceFirstBytes(raw, fromBytes, toBytes);
+
+    if (!hit.replaced) {
+      $.log('Target text bytes not found in raw payload, pass through unchanged');
+      return $.done({ bodyBytes: raw.buffer.slice(raw.byteOffset, raw.byteOffset + raw.byteLength) });
     }
 
-    if (probe.linePairs.length) {
-      $.log('Line pairs (raw -> cleaned):');
-      probe.linePairs.slice(0, 12).forEach((pair, i) => {
-        $.log(`${i + 1}. RAW: ${pair.raw}`);
-        $.log(`${i + 1}. CLN: ${pair.cleaned}`);
-      });
-    }
+    $.log(`Replaced bytes at offset ${hit.index}`);
+    $.log(`Marker: ${marker}`);
 
-    if (probe.debugHints.length) {
-      $.log('Hints:');
-      probe.debugHints.forEach((s, i) => $.log(`${i + 1}. ${s}`));
-    }
-
-    return $.done({ bodyBytes: $response.bodyBytes });
+    return $.done({ bodyBytes: raw.buffer.slice(raw.byteOffset, raw.byteOffset + raw.byteLength) });
   } catch (e) {
     $.log('Error: ' + String((e && e.stack) || e));
     return $.done({ bodyBytes: $response.bodyBytes });
   }
 })();
 
-function buildProbe(text, raw) {
-  const source = extractSource(text);
-  const extraction = extractLyricsData(text);
-
-  const hasTimedLyrics = hasAny(text, [
-    'timed_lyrics_controller',
-    'timed_lyrics.eml-js-fe',
-    'createTimedLyricsController'
-  ]);
-  const hasTranslateHandler = hasAny(text, [
-    'TimedLyricsController_handleTranslateButtonTap',
-    'translate_24pt'
-  ]);
-  const hasPronunciationHandler = hasAny(text, [
-    'TimedLyricsController_handlePronunciationButtonTap',
-    'pronunciation'
-  ]);
-  const hasShareHandler = hasAny(text, [
-    'TimedLyricsController_handleShareButtonTap',
-    'share_24pt'
-  ]);
-  const hasLongPressHandler = hasAny(text, [
-    'TimedLyricsController_handleLyricLongPress'
-  ]);
-  const hasSeekHandler = hasAny(text, [
-    'TimedLyricsController_seekTo'
-  ]);
-  const hasLyricLineComponent = hasAny(text, [
-    'lyric_line.eml-fe',
-    'timed_lyrics.eml-js-fe'
-  ]);
-  const isLyricsPanel = hasAny(text, [
-    'music_watch_lyrics_panel',
-    'timed_lyrics_controller',
-    '来源：',
-    'LyricFind',
-    'lyric_line.eml-fe'
-  ]);
-
-  const debugHints = [];
-  if (source) debugHints.push(`歌词源标记：${source}`);
-  if (hasTimedLyrics && hasSeekHandler) debugHints.push('存在 timed lyrics + seek，说明客户端支持同步滚动歌词交互。');
-  if (hasTranslateHandler) debugHints.push('存在 translate handler，说明客户端歌词控制器已内置翻译入口。');
-  if (hasPronunciationHandler) debugHints.push('存在 pronunciation handler，说明客户端歌词控制器已内置发音/音译入口。');
-  if (extraction.bestAnchor) debugHints.push(`当前最密集歌词区块锚点：${extraction.bestAnchor.name}。`);
-  if (!extraction.cleanedLines.length) debugHints.push('本次没提取到可读歌词行，可能是歌曲无歌词、纯音乐、或当前歌词块格式与既有启发式不匹配。');
-
-  let panelType = 'unknown';
-  if (hasTimedLyrics) panelType = 'timed_lyrics_panel';
-  else if (extraction.cleanedLines.length) panelType = 'plain_lyrics_panel';
-
-  return {
-    isLyricsPanel,
-    panelType,
-    source,
-    cleanedLines: extraction.cleanedLines,
-    linePairs: extraction.linePairs,
-    bestAnchor: extraction.bestAnchor,
-    hasTimedLyrics,
-    hasTranslateHandler,
-    hasPronunciationHandler,
-    hasShareHandler,
-    hasLongPressHandler,
-    hasSeekHandler,
-    hasLyricLineComponent,
-    debugHints,
-    rawLength: raw.byteLength
-  };
-}
-
-function extractLyricsData(text) {
+function buildProbe(text) {
   const anchors = [
     ['来源：LyricFind', 1800, 200],
     ['来源：', 1600, 200],
@@ -167,10 +84,18 @@ function extractLyricsData(text) {
     ['music_watch_lyrics_panel', 3600, 800]
   ];
 
+  const isLyricsPanel = hasAny(text, [
+    'music_watch_lyrics_panel',
+    'timed_lyrics_controller',
+    '来源：',
+    'LyricFind',
+    'lyric_line.eml-fe'
+  ]);
+
   let bestAnchor = null;
   let bestScore = -1;
-  const globalSeen = new Set();
-  const globalPairs = [];
+  const seen = new Set();
+  const linePairs = [];
 
   for (const [name, before, after] of anchors) {
     const idx = text.indexOf(name);
@@ -178,42 +103,26 @@ function extractLyricsData(text) {
     const start = Math.max(0, idx - before);
     const end = Math.min(text.length, idx + after);
     const block = text.slice(start, end);
-    const candidates = collectPairs(block);
-
-    for (const pair of candidates) {
-      if (globalSeen.has(pair.cleaned)) continue;
-      globalSeen.add(pair.cleaned);
-      globalPairs.push(pair);
-    }
-
-    const score = candidates.length;
+    const cand = collectPairs(block);
+    const score = scorePairs(cand);
     if (score > bestScore) {
       bestScore = score;
-      bestAnchor = { name, index: idx, start, end, candidates };
+      bestAnchor = { name, index: idx, start, end, score, candidates: cand };
+    }
+    for (const pair of cand) {
+      if (seen.has(pair.cleaned)) continue;
+      seen.add(pair.cleaned);
+      linePairs.push(pair);
     }
   }
 
-  if (globalPairs.length < 4) {
-    const fallback = collectPairs(text.slice(0, 90000));
-    for (const pair of fallback) {
-      if (globalSeen.has(pair.cleaned)) continue;
-      globalSeen.add(pair.cleaned);
-      globalPairs.push(pair);
-    }
-  }
-
-  return {
-    cleanedLines: globalPairs.map(x => x.cleaned).slice(0, 24),
-    linePairs: globalPairs.slice(0, 24),
-    bestAnchor
-  };
+  return { isLyricsPanel, bestAnchor, linePairs };
 }
 
 function collectPairs(block) {
   const out = [];
   const seen = new Set();
   const parts = block.split(/[\n\r\x00]/).map(s => s.trim()).filter(Boolean);
-
   for (const raw of parts) {
     const cleaned = cleanLyricLine(raw);
     if (!isLyricLine(cleaned)) continue;
@@ -225,12 +134,36 @@ function collectPairs(block) {
   return out;
 }
 
+function scorePairs(pairs) {
+  let score = 0;
+  for (const p of pairs) {
+    score += 3;
+    if (/^[A-Za-z]/.test(p.cleaned)) score += 1;
+    if (/[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/.test(p.cleaned)) score += 1;
+    if (/^[0-9]/.test(p.cleaned)) score -= 2;
+    if (/[^\p{L}\p{N}\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF\s'"(),.!?\-]/u.test(p.cleaned)) score -= 2;
+  }
+  return score;
+}
+
+function pickReplacementTarget(pairs) {
+  for (const p of pairs) {
+    const s = p.cleaned;
+    if (s.length < 6 || s.length > 60) continue;
+    if (/^[0-9]/.test(s)) continue;
+    if (/[^\p{L}\p{N}\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF\s'"(),.!?\-]/u.test(s)) continue;
+    return p;
+  }
+  return null;
+}
+
 function cleanLyricLine(s) {
   return s
     .replace(/[\u0001-\u001F]/g, ' ')
     .replace(/[\x7F-\x9F]/g, ' ')
     .replace(/^["'`*%#,+.;:!?，。！？、\-_=|\\/\s]+/g, '')
     .replace(/["'`*%#,+.;:!?，。！？、\-_=|\\/\s]+$/g, '')
+    .replace(/^[0-9](?=[A-Za-z])/g, '')
     .replace(/^[^\p{L}\p{N}\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]+/gu, '')
     .replace(/[^\p{L}\p{N}\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF：:，,。.!?！？'"（）()\-\s]+$/gu, '')
     .replace(/\s{2,}/g, ' ')
@@ -238,11 +171,50 @@ function cleanLyricLine(s) {
 }
 
 function compactRaw(s) {
-  return s
-    .replace(/[\u0000-\u001F]/g, ' ')
-    .replace(/\s{2,}/g, ' ')
-    .trim()
-    .slice(0, 100);
+  return s.replace(/[\u0000-\u001F]/g, ' ').replace(/\s{2,}/g, ' ').trim().slice(0, 120);
+}
+
+function isLyricLine(s) {
+  if (!s) return false;
+  if (s.length < 2 || s.length > 80) return false;
+  if (/music_watch_lyrics_panel|timed_lyrics|LyricFind|controller|button|panel|youtube|eml-fe|eml-js-fe|createTimedLyricsController|destroyTimedLyricsController/i.test(s)) return false;
+  if (/^[A-Za-z0-9_\-|]{10,}$/.test(s)) return false;
+  if (/^[\-–—_=+*/|\\:;,.]+$/.test(s)) return false;
+  if (/^[^A-Za-z\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF0-9]+$/.test(s)) return false;
+  const cjk = /[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/.test(s);
+  const letter = /[A-Za-z]/.test(s);
+  if (!cjk && !letter) return false;
+  return true;
+}
+
+function buildMarker(byteLen) {
+  const seed = '[V5-TEST]';
+  let out = '';
+  while (utf8Bytes(out).length < byteLen) out += seed;
+  const bytes = utf8Bytes(out).slice(0, byteLen);
+  return safeDecode(bytes);
+}
+
+function utf8Bytes(str) {
+  return new TextEncoder().encode(str);
+}
+
+function replaceFirstBytes(haystack, needle, repl) {
+  const idx = indexOfBytes(haystack, needle);
+  if (idx < 0) return { replaced: false, index: -1 };
+  if (needle.length !== repl.length) return { replaced: false, index: -1 };
+  haystack.set(repl, idx);
+  return { replaced: true, index: idx };
+}
+
+function indexOfBytes(haystack, needle) {
+  outer: for (let i = 0; i <= haystack.length - needle.length; i++) {
+    for (let j = 0; j < needle.length; j++) {
+      if (haystack[i + j] !== needle[j]) continue outer;
+    }
+    return i;
+  }
+  return -1;
 }
 
 function safeDecode(u8) {
@@ -257,25 +229,6 @@ function safeDecode(u8) {
 
 function hasAny(text, arr) {
   return arr.some(s => text.includes(s));
-}
-
-function extractSource(text) {
-  const m = text.match(/来源：([^\x00-\x1F]{1,40})/);
-  if (m) return m[1].trim();
-  if (text.includes('LyricFind')) return 'LyricFind';
-  return '';
-}
-
-function isLyricLine(s) {
-  if (!s) return false;
-  if (s.length < 2 || s.length > 80) return false;
-  if (/music_watch_lyrics_panel|timed_lyrics|LyricFind|controller|button|panel|youtube|eml-fe|eml-js-fe|createTimedLyricsController|destroyTimedLyricsController/i.test(s)) return false;
-  if (/^[A-Za-z0-9_\-|]{10,}$/.test(s)) return false;
-  if (/^[\-–—_=+*/|\\:;,.]+$/.test(s)) return false;
-  const cjk = /[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/.test(s);
-  const letter = /[A-Za-z]/.test(s);
-  if (!cjk && !letter) return false;
-  return true;
 }
 
 function Env(name) {

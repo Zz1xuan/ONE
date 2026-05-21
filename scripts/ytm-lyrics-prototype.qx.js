@@ -164,13 +164,17 @@ function cleanLyricLine(s) {
   let x = String(s || '');
   x = x.replace(/[\u0000-\u001F]/g, ' ');
   x = x.replace(/[\x7F-\x9F]/g, ' ');
-  x = x.replace(/^["'`*%#,+.;:!?，。！？、<>=\-_=|\\/\s]+/g, '');
-  x = x.replace(/["'`*%#,+.;:!?，。！？、<>=\-_=|\\/\s]+$/g, '');
+  x = x.replace(/^['"`*%#,+.;:!?，。！？、<>=\-_=|\\/\s]+/g, '');
+  x = x.replace(/['"`*%#,+.;:!?，。！？、<>=\-_=|\\/\s]+$/g, '');
   x = x.replace(/^[0-9](?=[A-Za-z\u4E00-\u9FFF])/g, '');
   x = x.replace(/^[^\p{L}\p{N}\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]+/gu, '');
   x = x.replace(/\s{2,}/g, ' ').trim();
   x = x.replace(/�+/g, '').trim();
-  x = x.replace(/[A-Za-zΑ-Ωα-ωƛǎǐǒǔǚàèìòùáéíóúüńňňḿǹȁȅȉȍȕˇˋˊˉ˙]+$/g, '').trim();
+  x = x.replace(/[ƛƧʱӍ˳ɔҒ]+/g, '').trim();
+  x = x.replace(/[A-Za-zΑ-Ωα-ωǎǐǒǔǚàèìòùáéíóúüńňḿǹȁȅȉȍȕˇˋˊˉ˙]+$/g, function(m) {
+    return /^[A-Za-z]{1,2}$/.test(m) ? '' : m;
+  }).trim();
+  x = x.replace(/[^\u4E00-\u9FFFA-Za-z0-9'".,!?;:()\-\s]+$/g, '').trim();
   x = x.replace(/[\s]+$/g, '').trim();
   return x;
 }
@@ -188,7 +192,7 @@ function isLikelyLyric(s) {
   if (/^[\-–—_=+*/|\\:;,.]+$/.test(s)) return false;
   if (!/[A-Za-z\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/.test(s)) return false;
   const zh = (s.match(/[\u4E00-\u9FFF]/g) || []).length;
-  const bad = (s.match(/[�\[\]{}<>]/g) || []).length;
+  const bad = (s.match(/[�\[\]{}<>ƛƧʱӍ˳ɔҒ]/g) || []).length;
   if (bad >= 2) return false;
   if (zh >= 4) return true;
   if (/\s/.test(s) && /[A-Za-z]/.test(s)) return true;
@@ -202,6 +206,8 @@ function shouldTranslate(s) {
   const latin = (s.match(/[A-Za-z]/g) || []).length;
   if (zh >= 2 && zh >= latin / 2) return false;
   if (s.length < 4 || s.length > 80) return false;
+  if (/[ƛƧʱӍ˳ɔҒ�]/.test(s)) return false;
+  if (/\b(and|the|you|but|that|with|for|from|have|know|when|where)\b/i.test(s) && !/[.!?。！？]$/.test(s) && s.split(/\s+/).length >= 7) return false;
   if (/^[A-Za-z0-9 _\-,'".!?()]+$/.test(s) === false && !/\s/.test(s)) return false;
   return true;
 }

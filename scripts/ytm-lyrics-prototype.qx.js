@@ -70,10 +70,10 @@ const T2S_MAP = {"㑮":"𫝈","㑯":"㑔","㑳":"㑇","㑶":"㐹","㒓":"𠉂","
       if (simp && simp !== from) {
         const fromBytes = utf8Bytes(from);
         const toBytes = fitToByteLength(simp, fromBytes.length);
-        const hit = replaceFirstBytes(raw, fromBytes, toBytes);
+        const hit = replaceAllBytes(raw, fromBytes, toBytes);
         if (hit.replaced) {
-          replaced++;
-          $.log(`SIMPLIFIED ${replaced}: ${from} -> ${safeDecode(toBytes)} @ ${hit.index}`);
+          replaced += hit.count;
+          $.log(`SIMPLIFIED +${hit.count}: ${from} -> ${safeDecode(toBytes)} first@${hit.firstIndex}`);
         }
         continue;
       }
@@ -289,8 +289,24 @@ function replaceFirstBytes(haystack, needle, repl) {
   haystack.set(repl, idx);
   return { replaced:true, index:idx };
 }
-function indexOfBytes(haystack, needle) {
-  outer: for (let i = 0; i <= haystack.length - needle.length; i++) {
+function replaceAllBytes(haystack, needle, repl) {
+  if (!needle || !needle.length || needle.length !== repl.length) return { replaced:false, count:0, firstIndex:-1 };
+  let count = 0;
+  let firstIndex = -1;
+  let start = 0;
+  while (start <= haystack.length - needle.length) {
+    const idx = indexOfBytes(haystack, needle, start);
+    if (idx < 0) break;
+    haystack.set(repl, idx);
+    if (firstIndex < 0) firstIndex = idx;
+    count++;
+    start = idx + needle.length;
+  }
+  return { replaced: count > 0, count, firstIndex };
+}
+function indexOfBytes(haystack, needle, startAt) {
+  const start = Math.max(0, startAt || 0);
+  outer: for (let i = start; i <= haystack.length - needle.length; i++) {
     for (let j = 0; j < needle.length; j++) if (haystack[i+j] !== needle[j]) continue outer;
     return i;
   }

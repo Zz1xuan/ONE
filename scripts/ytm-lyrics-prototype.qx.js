@@ -1,8 +1,7 @@
 /*
 
 原型作者：Minis
-用途：YouTube Music 歌词净化 + 简体优先版。
-目标：先把 get_panel 里真正的歌词行提干净，并优先把繁体歌词转成简体；当前不接外部歌词源。
+用途：YouTube Music 歌词净化 + 简体优先版 + 无歌词入口实验。
 
 ------------ Quantumult X 配置 ------------
 
@@ -10,12 +9,13 @@
 hostname = youtubei.googleapis.com
 
 [rewrite_local]
+^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_watch\?id= url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/scripts/ytm-lyrics-prototype.qx.js
 ^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/scripts/ytm-lyrics-prototype.qx.js
 
 说明：
-1. 这是一版 v12，重点做歌词提取净化。
-2. 优先把命中的中文繁体歌词替换为简体。
-3. 暂不接 LRCLIB / 网易云 / Google 翻译，先把中文显示质量收稳。
+1. 已有歌词入口的歌：走 get_panel，做歌词净化、繁体转简体、尾巴碎片清理。
+2. 没有歌词入口的歌：走 get_watch，尝试做最小字符串级入口注入实验，并输出详细日志。
+3. JS 注释里的配置只是示例，真正要在 QX 里实际添加上述两条 rewrite 才会生效。
 
 */
 

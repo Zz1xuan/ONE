@@ -133,8 +133,29 @@ function buildProbe(text) {
     const extra = collectPairs(text.slice(0, Math.min(text.length, 80000)), 120);
     bestPairs = mergePairs(bestPairs.concat(extra));
   }
-  const cleanPairs = bestPairs.filter(p => isLikelyLyric(p.cleaned)).slice(0, 60);
+  const cleanPairs = bestPairs.filter(p => isLikelyLyric(p.cleaned) || isLikelyDirtyChineseFragment(p.cleaned, p.raw)).slice(0, 80);
   return { bestAnchor, cleanPairs };
+}
+
+function deriveDirtyChineseFragments(raw) {
+  const out = [];
+  const src = String(raw || '').replace(/[\u0000-\u001F]/g, ' ');
+  const m = src.match(/[\u4E00-\u9FFF]{2,}[\u4E00-\u9FFFA-Za-z0-9，。！？、；：“”‘’《》〈〉（）()\-\s]{0,20}/g) || [];
+  for (const part of m) {
+    let x = cleanLyricLine(part);
+    x = x.replace(/[A-Za-z0-9]+$/g, '').trim();
+    x = x.replace(/[，。！？、；：“”‘’《》〈〉（）()\-\s]+$/g, '').trim();
+    if (x) out.push(x);
+  }
+  return out;
+}
+
+function isLikelyDirtyChineseFragment(cleaned, raw) {
+  if (!cleaned) return false;
+  const zh = (String(cleaned).match(/[\u4E00-\u9FFF]/g) || []).length;
+  if (zh < 4) return false;
+  if (String(cleaned).length > 20) return false;
+  return /[�ƛƧʱӍ˳ɔҒA-Za-z0-9]/.test(String(raw || ''));
 }
 
 function collectPairs(block, limit) {
@@ -142,10 +163,13 @@ function collectPairs(block, limit) {
   const seen = new Set();
   const parts = block.split(/[\n\r\x00]/).map(s=>s.trim()).filter(Boolean);
   for (const raw of parts) {
-    const cleaned = cleanLyricLine(raw);
-    if (!cleaned || seen.has(cleaned)) continue;
-    seen.add(cleaned);
-    out.push({ raw: compact(raw), cleaned });
+    const candidates = [cleanLyricLine(raw), ...deriveDirtyChineseFragments(raw)];
+    for (const cleaned of candidates) {
+      if (!cleaned || seen.has(cleaned)) continue;
+      seen.add(cleaned);
+      out.push({ raw: compact(raw), cleaned });
+      if (out.length >= limit) break;
+    }
     if (out.length >= limit) break;
   }
   return out;

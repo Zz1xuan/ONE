@@ -14,6 +14,7 @@ const sj_env = (() => {
   if (typeof $task !== "undefined") return "qx"
   if (typeof $loon !== "undefined") return "loon"
   if (typeof $rocket !== "undefined") return "sr"
+  if (typeof Egern !== "undefined") return "egern"
   if (typeof $environment !== "undefined") {
     if ($environment["surge-version"]) return "surge"
     if ($environment["stash-version"]) return "stash"
@@ -24,13 +25,13 @@ const sj_env = (() => {
 
 const sj_read = (key) => {
   if (sj_env === "qx") return $prefs.valueForKey(key)
-  if (sj_env === "surge" || sj_env === "loon" || sj_env === "stash") return $persistentStore.read(key)
+  if (sj_env === "surge" || sj_env === "loon" || sj_env === "stash" || sj_env === "egern" || sj_env === "sr") return $persistentStore.read(key)
   return null
 }
 
 const sj_write = (key, val) => {
   if (sj_env === "qx") return $prefs.setValueForKey(val, key)
-  if (sj_env === "surge" || sj_env === "loon" || sj_env === "stash") return $persistentStore.write(val, key)
+  if (sj_env === "surge" || sj_env === "loon" || sj_env === "stash" || sj_env === "egern" || sj_env === "sr") return $persistentStore.write(val, key)
   return false
 }
 

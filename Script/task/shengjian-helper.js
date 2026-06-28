@@ -1,6 +1,6 @@
 /**
  * 声荐小助手 — 小红花 + 每日抽奖
- * Quantumult X / Surge / Loon / Shadowrocket
+ * Quantumult X / Surge / Loon / Shadowrocket / Egern
  *
  * [rewrite_local]
  * ^https:\/\/xcx\.myinyun\.com:4438\/napi\/ url script-response-body shengjian-helper.js
@@ -36,7 +36,8 @@ const sj_write = (key, val) => {
 }
 
 const sj_notify = (title, sub, msg) => {
-  if (typeof $notify !== "undefined") $notify(title, sub, msg)
+  if (sj_env === "qx" && typeof $notify !== "undefined") $notify(title, sub, msg)
+  else if (typeof $notification !== "undefined") $notification.post(title, sub, msg)
 }
 
 ;(async () => {
@@ -56,9 +57,19 @@ const sj_notify = (title, sub, msg) => {
 
   // ===== 定时任务 =====
   var raw = sj_read("shengjian_ck")
-  if (!raw) { console.log("❌ 无 Cookie"); if (typeof $done !== "undefined") $done(); return }
+  if (!raw) {
+    console.log("❌ 无 Cookie")
+    sj_notify("声荐小助手", "❌ Cookie 已过期", "请重新打开小程序捕获")
+    if (typeof $done !== "undefined") $done()
+    return
+  }
   var ck = JSON.parse(raw)
-  if (!ck || !ck.cookie) { console.log("❌ Cookie 无效"); if (typeof $done !== "undefined") $done(); return }
+  if (!ck || !ck.cookie) {
+    console.log("❌ Cookie 无效")
+    sj_notify("声荐小助手", "❌ Cookie 无效", "请重新打开小程序捕获")
+    if (typeof $done !== "undefined") $done()
+    return
+  }
 
   var BASE_URL = "https://xcx.myinyun.com:4438"
   var UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 26_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.75(0x18004b2d) NetType/4G Language/zh_CN"
@@ -79,6 +90,8 @@ const sj_notify = (title, sub, msg) => {
   var post = (u, b) => req("POST", u, b)
   var put = (u, b) => req("PUT", u, b)
 
+  var notifyLines = []
+
   console.log("=".repeat(40))
   console.log("🔊 声荐小助手")
   console.log("=".repeat(40))
@@ -92,7 +105,8 @@ const sj_notify = (title, sub, msg) => {
   var ft = await get(BASE_URL + "/napi/flower/time")
   if (ft === true) {
     var fg = await post(BASE_URL + "/napi/flower/get", "{}")
-    console.log(fg === true ? "✅ 领取成功" : "❌ 失败")
+    if (fg === true) { console.log("✅ 领取成功"); notifyLines.push("🌸 小红花 ✅") }
+    else { console.log("❌ 失败"); notifyLines.push("🌸 小红花 ❌") }
   } else {
     console.log("⏳ 冷却中")
   }
@@ -104,14 +118,32 @@ const sj_notify = (title, sub, msg) => {
   var rr = await get(BASE_URL + "/napi/gift/remainGiftNum")
   var n = (rr && rr.data !== undefined) ? rr.data : 0
   console.log("剩余 " + n + " 次")
+
+  var prizes = []
   var ok = 0
   for (var i = 0; i < n; i++) {
     var r = await put(BASE_URL + "/napi/gift", "{}")
-    if (r && r.msg === "ok" && r.data) { console.log("✅ " + (r.data.prizeName || "?")); ok++ }
-    else console.log("❌ " + JSON.stringify(r))
+    if (r && r.msg === "ok" && r.data) {
+      var name = r.data.prizeName || "?"
+      console.log("✅ " + name)
+      prizes.push(name)
+      ok++
+    } else {
+      console.log("❌ " + JSON.stringify(r))
+    }
     if (i < n - 1) await new Promise(f => setTimeout(f, 3000))
   }
-  if (n > 0) console.log("成功 " + ok + "/" + n)
+
+  // 拼通知内容
+  var notifyMsg = ""
+  if (notifyLines.length > 0) notifyMsg += notifyLines.join(" | ")
+  if (ok > 0) {
+    if (notifyMsg) notifyMsg += "\n"
+    notifyMsg += "🎁 " + prizes.join("、")
+  } else if (n === 0) {
+    notifyMsg = "⏳ 今日已无抽奖次数"
+  }
+  if (notifyMsg) sj_notify("声荐小助手", notifyMsg, "")
 
   console.log("\n✅ 完成")
   if (typeof $done !== "undefined") $done()

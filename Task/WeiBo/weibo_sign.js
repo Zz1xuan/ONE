@@ -10,10 +10,10 @@ api.weibo.cn
 m.weibo.cn
 
 [Script]
-获取微博Token = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/\d\/users\/show,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Scripts/weibo_sign.js
-获取微博Cookie = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/2\/logservice\/attach,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Scripts/weibo_sign.js
+获取微博Token = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/\d\/users\/show,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
+获取微博Cookie = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/2\/logservice\/attach,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
 
-新浪微博 = type=cron,cronexp=15 8 * * *,timeout=120,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Scripts/weibo_sign.js,script-update-interval=0
+新浪微博 = type=cron,cronexp=15 8 * * *,timeout=120,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js,script-update-interval=0
 ----------------------------------------------------------------------------------------------------
 配置 (QuanX)
 [MITM]
@@ -21,11 +21,11 @@ api.weibo.cn
 m.weibo.cn
 
 [rewrite_local]
-^https:\/\/api\.weibo\.cn\/\d\/users\/show url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Scripts/weibo_sign.js
-^https:\/\/api\.weibo\.cn\/2\/logservice\/attach url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Scripts/weibo_sign.js
+^https:\/\/api\.weibo\.cn\/\d\/users\/show url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
+^https:\/\/api\.weibo\.cn\/2\/logservice\/attach url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
 
 [task_local]
-15 8 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/main/Scripts/weibo_sign.js, tag=新浪微博, enabled=true
+15 8 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js, tag=新浪微博, enabled=true
 ====================================================================================================
 */
 

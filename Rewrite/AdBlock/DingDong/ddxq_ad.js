@@ -6,6 +6,8 @@ try {
   const obj = JSON.parse(body);
 
   // 纯广告接口：保持服务端通用响应外壳，清空 data，避免 reject-dict 导致客户端空指针。
+  // startUpScreen/getPreloadAd 已由 reject-dict 在请求阶段处理；这里保留兼容逻辑，
+  // 便于单独使用本脚本时仍能清理它们。
   if (/\/advert\/(?:startUpScreen|getAd|getPreloadAd|getAtmosphere)(?:\?|$)/.test(url)) {
     obj.data = /\/advert\/getAd(?:\?|$)/.test(url) ? {} : null;
   }

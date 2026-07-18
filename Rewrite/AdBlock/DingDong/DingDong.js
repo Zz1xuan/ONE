@@ -152,6 +152,8 @@ async function runTasks() {
 async function runAccount(account) {
   const age = Date.now() - Number(account.capturedAt || 0);
   if (age > 36 * 3600 * 1000) console.log(`[warn] ${account.name} 的抓取参数已超过 36 小时，sign 可能过期`);
+  // 鱼塘 API 不依赖积分 sign，必须先执行，避免 user/info 签名过期后提前 return。
+  await runFishpond(account);
   const common = {};
   new URLSearchParams(account.signBody || "").forEach((value, key) => {
     common[key] = value;
@@ -177,8 +179,6 @@ async function runAccount(account) {
   await runFlop(common);
   if ((read("DINGDONG_RAFFLE") || "open").toLowerCase() !== "close") await runRaffle(common);
   else console.log("积分抽奖: 已通过 DINGDONG_RAFFLE=close 关闭");
-  await runFishpond(account);
-
   const flow = await api("GET", `https://maicai.api.ddxq.mobi/point/flow?${account.signBody}&type=0&count=50&page=1`);
   if (ok(flow)) {
     const list = Array.isArray(flow.data?.point_list) ? flow.data.point_list : [];
@@ -209,8 +209,42 @@ async function runFishpond(account) {
   } else console.log(`鱼塘连续签到: ${messageOf(sign)}`);
 
   // 领取所有已完成且待领取的任务奖励，不主动完成下单、邀请等任务。
-  const tasks = await fishGet("/api/v2/task/list", base, {gameId, cityCode, inviteActivityType: "INVITE_ASSIST"});
-  const list = Array.isArray(tasks?.data?.userTasks) ? tasks.data.userTasks : [];
+  let tasks = await fishGet("/api/v2/task/list", base, {gameId, cityCode, inviteActivityType: "INVITE_ASSIST"});
+  let list = Array.isArray(tasks?.data?.userTasks) ? tasks.data.userTasks : [];
+
+  // 每日签到：HAR 证实 task/achieve 会直接发放 30g 饲料。
+  const dailySign = list.find(task => task.taskCode === "DAILY_SIGN" && task.buttonStatus === "TO_ACHIEVE");
+  if (dailySign) {
+    const achieved = await fishGet("/api/v2/task/achieve", base, {gameId, taskCode: "DAILY_SIGN"});
+    console.log(`${dailySign.taskName}: ${ok(achieved) ? `完成，饲料 +${sumReward(achieved.data?.rewards, "FEED")}g` : messageOf(achieved)}`);
+    await wait(500);
+  }
+
+  // 仅自动执行叮咚站内浏览任务；外部 APP 登录、下单、邀请等任务明确跳过。
+  const browseTasks = list.filter(task => /^BROWSE_GOODS\d+$/.test(task.taskCode || "") && task.buttonStatus === "TO_ACHIEVE");
+  for (const task of browseTasks) {
+    const seconds = browseSeconds(task);
+    console.log(`${task.taskName}: 开始浏览，等待 ${seconds} 秒`);
+    await wait(seconds * 1000);
+    const pageUuid = extractUuid(task.cmsLink);
+    const achieveTaskCode = extractTaskCode(task.cmsLink) || task.taskCode;
+    const extra = {
+      gameId,
+      taskCode: achieveTaskCode,
+      env: "PE",
+      native_version: base.get("app_version") || "13.7.1",
+      h5_source: "",
+      page_type: 2
+    };
+    if (pageUuid) extra.pageUuid = pageUuid;
+    const achieved = await fishGet("/api/v2/task/achieve", new URLSearchParams(), extra);
+    console.log(`${task.taskName}: ${ok(achieved) ? "浏览完成" : messageOf(achieved)}`);
+    await wait(500);
+  }
+
+  // 完成签到/浏览后刷新任务状态，再领取所有 TO_REWARD 奖励。
+  tasks = await fishGet("/api/v2/task/list", base, {gameId, cityCode, inviteActivityType: "INVITE_ASSIST"});
+  list = Array.isArray(tasks?.data?.userTasks) ? tasks.data.userTasks : [];
   for (const task of list) {
     if (task.buttonStatus !== "TO_REWARD" || !task.userTaskLogId) continue;
     const reward = await fishGet("/api/v2/task/reward", base, {gameId, userTaskLogId: task.userTaskLogId});
@@ -273,6 +307,24 @@ async function fishGet(path, base, extra) {
 
 function sumReward(rewards, code) {
   return (Array.isArray(rewards) ? rewards : []).filter(x => x.rewardCode === code).reduce((n, x) => n + Number(x.amount || 0), 0);
+}
+
+function browseSeconds(task) {
+  const text = Array.isArray(task?.taskDescription) ? task.taskDescription.join(" ") : String(task?.taskDescription || "");
+  const matched = text.match(/(\d+)\s*秒/);
+  return Math.max(5, Math.min(Number(matched?.[1] || 30), 60));
+}
+
+function extractUuid(url) {
+  if (!url) return "";
+  try { return new URL(url).searchParams.get("uuid") || ""; }
+  catch { return (String(url).match(/[?&]uuid=([^&#]+)/) || [])[1] || ""; }
+}
+
+function extractTaskCode(url) {
+  if (!url) return "";
+  const matched = String(url).match(/[?&#]task_code=([^&#]+)/);
+  return matched ? decodeURIComponent(matched[1]) : "";
 }
 
 async function runPointMissions(common) {

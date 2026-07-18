@@ -23,8 +23,8 @@ hostname = maicai.api.ddxq.mobi, farm.api.ddxq.mobi
 3. QX 持久化键名：DINGDONG。
 
 可选配置：
-DINGDONG_RAFFLE=open        开启积分活动抽奖，默认 close
-DINGDONG_FISH_FEED_COUNT=3  每次运行喂鱼 3 次，默认 0，最大 20
+DINGDONG_RAFFLE=close       可选关闭积分活动抽奖；默认 open
+DINGDONG_FISH_MAX_FEEDS=200 喂鱼异常保护上限；默认 200，正常会在饲料不足或服务端上限时提前停止
 
 Node.js：
 DINGDONG='[{"uid":"...","name":"...","cookie":"...","signBody":"...","userAgent":"...","fishQuery":"..."}]'
@@ -99,7 +99,7 @@ async function captureAccount(req) {
   if (index < 0) accounts.push(captured);
   else accounts[index] = {...accounts[index], ...captured};
   if (!write(JSON.stringify(accounts), STORE_KEY)) throw new Error("写入 QX 持久化存储失败");
-  notify(index < 0 ? "新增账号成功" : changed ? "账号凭据已更新" : "凭据无需更新", captured.name);
+  notify("CK 获取成功", `${captured.name}\n${index < 0 ? "新增账号" : changed ? "Cookie/参数已更新" : "Cookie 有效，无需更新"}`);
 }
 
 async function captureFishpond(req) {
@@ -130,7 +130,7 @@ async function captureFishpond(req) {
   if (index < 0) accounts.push(patch);
   else accounts[index] = {...accounts[index], ...patch};
   if (!write(JSON.stringify(accounts), STORE_KEY)) throw new Error("写入鱼塘参数失败");
-  notify(index < 0 ? "新增鱼塘账号" : "鱼塘参数已更新", patch.name);
+  notify("鱼塘 CK 获取成功", `${patch.name}\n${index < 0 ? "新增账号并保存鱼塘参数" : "Cookie、设备头及鱼塘参数已更新"}`);
 }
 
 async function runTasks() {
@@ -175,7 +175,8 @@ async function runAccount(account) {
 
   await runPointMissions(common);
   await runFlop(common);
-  if ((read("DINGDONG_RAFFLE") || "close").toLowerCase() === "open") await runRaffle(common);
+  if ((read("DINGDONG_RAFFLE") || "open").toLowerCase() !== "close") await runRaffle(common);
+  else console.log("积分抽奖: 已通过 DINGDONG_RAFFLE=close 关闭");
   await runFishpond(account);
 
   const flow = await api("GET", `https://maicai.api.ddxq.mobi/point/flow?${account.signBody}&type=0&count=50&page=1`);
@@ -226,23 +227,33 @@ async function runFishpond(account) {
   const seed = detail.data?.baseSeed;
   console.log(`鱼塘状态: ${seed?.msg || "正常"}，剩余饲料 ${feed?.amount ?? "?"}g`);
 
-  // 默认 0 次，避免未经用户明确配置就消耗饲料。QX 数据 DINGDONG_FISH_FEED_COUNT=3 可喂 3 次。
-  const configured = Math.max(0, Math.min(Number(read("DINGDONG_FISH_FEED_COUNT") || 0), 20));
-  if (!configured || !feed?.propsId || !seed?.seedId) return;
-  const possible = Math.floor(Number(feed.amount || 0) / 10);
-  const count = Math.min(configured, possible);
-  for (let i = 0; i < count; i++) {
+  // 持续喂到饲料不足或服务端返回当日/阶段上限；hardLimit 只用于防止异常死循环。
+  if (!feed?.propsId || !seed?.seedId) {
+    console.log("喂鱼停止: 响应缺少 propsId 或 seedId");
+    return;
+  }
+  let remaining = Number(feed.amount || 0);
+  const hardLimit = Math.max(1, Math.min(Number(read("DINGDONG_FISH_MAX_FEEDS") || 200), 500));
+  let fed = 0;
+  while (remaining >= 10 && fed < hardLimit) {
     const result = await fishGet("/api/v2/props/feed", base, {
       gameId, propsId: feed.propsId, seedId: seed.seedId, cityCode,
       feedPro: 0, triggerMultiFeed: 1
     });
     if (!ok(result)) {
-      console.log(`喂鱼 ${i + 1}: ${messageOf(result)}`);
+      console.log(`喂鱼停止: ${messageOf(result)}`);
       break;
     }
-    console.log(`喂鱼 ${i + 1}/${count}: ${result.data?.msg || "成功"}，余 ${result.data?.feed?.amount ?? "?"}g`);
+    fed++;
+    const next = Number(result.data?.feed?.amount ?? result.data?.props?.amount);
+    if (Number.isFinite(next)) remaining = next;
+    else remaining -= 10;
+    console.log(`喂鱼 ${fed}: ${result.data?.msg || "成功"}，余 ${remaining}g`);
     await wait(800);
   }
+  if (remaining < 10) console.log(`喂鱼完成: 饲料不足 10g，当前 ${remaining}g`);
+  else if (fed >= hardLimit) console.log(`喂鱼停止: 达到异常保护上限 ${hardLimit} 次`);
+  summary.push(`${account.name}: 鱼塘喂食 ${fed} 次，剩余 ${remaining}g`);
 }
 
 async function fishGet(path, base, extra) {
@@ -287,16 +298,66 @@ async function runPointMissions(common) {
 }
 
 async function runFlop(common) {
+  console.log("开始限时翻牌---------");
   let consult = await api("POST", "https://gw.api.ddxq.mobi/promocore-service/client/flop/v3/consult", {...common, h5_source: "", pageId: "PAGE_NEW_FlASHSALE_V3"});
-  if (!ok(consult) || !consult.data) return;
-  await api("POST", "https://gw.api.ddxq.mobi/promocore-service/client/signIn/v1/signIn", {
+  if (!ok(consult) || !consult.data) {
+    console.log(`翻牌查询失败: ${messageOf(consult)}`);
+    return;
+  }
+  const flopSign = await api("POST", "https://gw.api.ddxq.mobi/promocore-service/client/signIn/v1/signIn", {
     ...common, relatedActivityId: consult.data.activityId, activityId: consult.data.signInActivityId,
     pageId: "PAGE_NEW_FlASHSALE_V3", h5_source: ""
   });
+  console.log(`翻牌签到: ${messageOf(flopSign)}`);
+
+  // 参考原脚本：查询翻牌关联任务，完成所有非下单任务，任务可能增加翻牌次数。
+  const missionResult = await api("POST", "https://gw.api.ddxq.mobi/promomission-service/mission/search/v1/searchMissionById", {
+    time: Date.now(),
+    ...common,
+    bizId: consult.data.activityId,
+    h5_source: ""
+  });
+  const missions = Array.isArray(missionResult?.data?.missionList) ? missionResult.data.missionList : [];
+  if (!ok(missionResult)) console.log(`翻牌任务查询失败: ${messageOf(missionResult)}`);
+  for (const mission of missions) {
+    if (Number(mission.status) !== 0 || mission.missionType === "order") continue;
+    const notice = await api("POST", "https://gw.api.ddxq.mobi/promomission-service/mission/notice/v1/notice", {
+      ...common,
+      missionType: mission.missionType,
+      seconds: mission.seconds,
+      pageId: mission.pageId,
+      time: Date.now(),
+      cityCode: common.city_number,
+      s_id: common.station_id,
+      app_client_name: "wechat",
+      serialNo: Date.now() + Math.random()
+    });
+    console.log(`翻牌任务 ${mission.missionType}-${mission.title || ""}: ${messageOf(notice)}`);
+    await wait(1000);
+  }
+
+  // 完成关联任务后必须重新查询，否则仍会使用旧的 curRemainCount/equityFactorDTO。
+  consult = await api("POST", "https://gw.api.ddxq.mobi/promocore-service/client/flop/v3/consult", {
+    time: Date.now(),
+    ...common,
+    h5_source: "",
+    pageId: "PAGE_NEW_FlASHSALE_V3"
+  });
+  if (!ok(consult) || !consult.data) {
+    console.log(`翻牌刷新失败: ${messageOf(consult)}`);
+    return;
+  }
   const count = Math.min(Math.max(Number(consult.data?.flopBaseInfo?.curRemainCount || 0), 0), 20);
+  if (!count) {
+    console.log("翻牌: 当前无可用次数");
+    return;
+  }
   for (let i = 0; i < count; i++) {
     const result = await api("POST", "https://gw.api.ddxq.mobi/promocore-service/client/flop/v3/trigger", {...common, equityFactorDTO: consult.data.equityFactorDTO, isBridge: false});
-    if (!ok(result)) break;
+    if (!ok(result)) {
+      console.log(`翻牌 ${i + 1} 失败: ${messageOf(result)}`);
+      break;
+    }
     const prize = result.data?.triggerPrize;
     console.log(`翻牌 ${i + 1}/${count}: ${prize ? JSON.stringify(prize) : messageOf(result)}`);
     await wait(1000);
@@ -304,12 +365,20 @@ async function runFlop(common) {
 }
 
 async function runRaffle(common) {
+  console.log("开始积分抽奖---------");
   const activityId = "AC201000000001990313316";
   const consult = await api("POST", "https://gw.api.ddxq.mobi/promocore-api/client/wheel/lottery/v1/consult", {...common, env: "PE", activityId});
-  if (!ok(consult)) return;
+  if (!ok(consult)) {
+    console.log(`抽奖查询失败: ${messageOf(consult)}`);
+    return;
+  }
   for (let i = 0; i < 20; i++) {
     const result = await api("POST", "https://gw.api.ddxq.mobi/promocore-api/client/wheel/lottery/v1/trigger", {...common, env: "PE", activityId});
-    if (!ok(result)) break;
+    if (!ok(result)) {
+      console.log(`抽奖停止: ${messageOf(result)}`);
+      if (i === 0) console.log("可能原因：没有抽奖次数、活动 ID 已过期，或抓取的 signBody 已失效");
+      break;
+    }
     const amount = result.data?.userEquityPrize?.prizeEquityTemplateDTO?.pointPrizeDTO?.amount;
     console.log(`抽奖 ${i + 1}: ${amount != null ? `积分 +${amount}` : JSON.stringify(result.data || {})}`);
     await wait(1500);

@@ -142,7 +142,7 @@ async function runTasks() {
     current = account;
     try { await runAccount(account); }
     catch (error) {
-      console.log(`[${account.name || account.uid}] ${error.stack || error}`);
+      console.log(`[${account.name || account.uid}] ${error.message || error}\n${error.stack || ""}`);
       summary.push(`${account.name || account.uid}: 运行失败 ${error.message || error}`);
     }
   }
@@ -152,7 +152,10 @@ async function runTasks() {
 async function runAccount(account) {
   const age = Date.now() - Number(account.capturedAt || 0);
   if (age > 36 * 3600 * 1000) console.log(`[warn] ${account.name} 的抓取参数已超过 36 小时，sign 可能过期`);
-  const common = Object.fromEntries(new URLSearchParams(account.signBody || ""));
+  const common = {};
+  new URLSearchParams(account.signBody || "").forEach((value, key) => {
+    common[key] = value;
+  });
   if (!account.cookie || !common.uid) throw new Error("账号缺少 cookie 或 signBody.uid，请重新抓取");
 
   const userResult = await api("GET", `https://maicai.api.ddxq.mobi/user/info?${account.signBody}`);

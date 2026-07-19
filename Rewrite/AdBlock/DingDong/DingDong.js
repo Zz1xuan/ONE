@@ -216,7 +216,8 @@ async function runFishpond(account) {
   const dailySign = list.find(task => task.taskCode === "DAILY_SIGN" && task.buttonStatus === "TO_ACHIEVE");
   if (dailySign) {
     const achieved = await fishGet("/api/v2/task/achieve", base, {gameId, taskCode: "DAILY_SIGN"});
-    console.log(`${dailySign.taskName}: ${ok(achieved) ? `完成，饲料 +${sumReward(achieved.data?.rewards, "FEED")}g` : messageOf(achieved)}`);
+    const reallyDone = ok(achieved) && achieved.data?.taskStatus === "REWARDED";
+    console.log(`${dailySign.taskName}: ${reallyDone ? `完成，饲料 +${sumReward(achieved.data?.rewards, "FEED")}g` : `未完成，状态=${achieved.data?.taskStatus || "无"}，${messageOf(achieved)}`}`);
     await wait(500);
   }
 
@@ -227,10 +228,10 @@ async function runFishpond(account) {
     console.log(`${task.taskName}: 开始浏览，等待 ${seconds} 秒`);
     await wait(seconds * 1000);
     const pageUuid = extractUuid(task.cmsLink);
-    const achieveTaskCode = extractTaskCode(task.cmsLink) || task.taskCode;
     const extra = {
       gameId,
-      taskCode: achieveTaskCode,
+      // 必须使用 farm task/list 返回的 taskCode。cmsLink 中的 task_code 属于页面任务体系，不能替代。
+      taskCode: task.taskCode,
       env: "PE",
       native_version: base.get("app_version") || "13.7.1",
       h5_source: "",
@@ -238,13 +239,31 @@ async function runFishpond(account) {
     };
     if (pageUuid) extra.pageUuid = pageUuid;
     const achieved = await fishGet("/api/v2/task/achieve", new URLSearchParams(), extra);
-    console.log(`${task.taskName}: ${ok(achieved) ? "浏览完成" : messageOf(achieved)}`);
+    const achievedStatus = achieved.data?.taskStatus;
+    if (!ok(achieved) || !["ACHIEVED", "REWARDED"].includes(achievedStatus)) {
+      console.log(`${task.taskName}: 浏览未生效，状态=${achievedStatus || "无"}，${messageOf(achieved)}`);
+      console.log(`响应摘要: ${safeJson(achieved)}`);
+      continue;
+    }
+    console.log(`${task.taskName}: 浏览已生效，状态=${achievedStatus}`);
+
+    // HAR 中 ACHIEVED 响应直接返回 userTaskLogId；立即领取，避免刷新延迟或状态丢失。
+    if (achievedStatus === "ACHIEVED" && achieved.data?.userTaskLogId) {
+      const reward = await fishGet("/api/v2/task/reward", base, {gameId, userTaskLogId: achieved.data.userTaskLogId});
+      const rewarded = ok(reward) && reward.data?.taskStatus === "REWARDED";
+      console.log(`${task.taskName}: ${rewarded ? `奖励领取成功，饲料 +${sumReward(reward.data?.rewards, "FEED")}g` : `奖励领取失败，状态=${reward.data?.taskStatus || "无"}，${messageOf(reward)}`}`);
+    }
     await wait(500);
   }
 
   // 完成签到/浏览后刷新任务状态，再领取所有 TO_REWARD 奖励。
   tasks = await fishGet("/api/v2/task/list", base, {gameId, cityCode, inviteActivityType: "INVITE_ASSIST"});
   list = Array.isArray(tasks?.data?.userTasks) ? tasks.data.userTasks : [];
+  for (const original of browseTasks) {
+    const latest = list.find(task => task.taskCode === original.taskCode);
+    const verified = latest && latest.buttonStatus !== "TO_ACHIEVE";
+    console.log(`${original.taskName}: ${verified ? `状态验证通过 (${latest.buttonStatus})` : `状态验证失败 (${latest?.buttonStatus || "任务不存在"})`}`);
+  }
   for (const task of list) {
     if (task.buttonStatus !== "TO_REWARD" || !task.userTaskLogId) continue;
     const reward = await fishGet("/api/v2/task/reward", base, {gameId, userTaskLogId: task.userTaskLogId});
@@ -325,6 +344,11 @@ function extractTaskCode(url) {
   if (!url) return "";
   const matched = String(url).match(/[?&#]task_code=([^&#]+)/);
   return matched ? decodeURIComponent(matched[1]) : "";
+}
+
+function safeJson(value) {
+  try { return JSON.stringify(value).slice(0, 500); }
+  catch { return String(value).slice(0, 500); }
 }
 
 async function runPointMissions(common) {

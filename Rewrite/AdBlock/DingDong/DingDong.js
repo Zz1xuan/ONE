@@ -11,6 +11,9 @@
 # 2. 自动获取/更新鱼塘 Cookie、设备头和游戏公共参数
 ^https:\/\/farm\.api\.ddxq\.mobi\/api\/v2\/userguide\/detail(?:\?|$) url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDong.js
 
+# 3. 手动作答后自动保存 questionId 和正确答案，持续扩充本地题库
+^https:\/\/farm\.api\.ddxq\.mobi\/api\/v2\/task\/exam\/(?:info|question\/submit)(?:\?|$) url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDong.js
+
 [mitm]
 hostname = maicai.api.ddxq.mobi, farm.api.ddxq.mobi
 
@@ -35,9 +38,14 @@ DINGDONG='[{"uid":"...","name":"...","cookie":"...","signBody":"...","userAgent"
 
 const NAME = "叮咚买菜";
 const STORE_KEY = "DINGDONG";
+const QUIZ_STORE_KEY = "DINGDONG_QUIZ_BANK";
+const QUIZ_CACHE_KEY = "DINGDONG_QUIZ_REMOTE_CACHE";
+const QUIZ_SESSION_KEY = "DINGDONG_QUIZ_SESSION";
+const QUIZ_BANK_URL = "https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDongQuiz.json";
 const isQX = typeof $task !== "undefined";
 const isNode = typeof process !== "undefined" && process.release?.name === "node";
 const request = typeof $request !== "undefined" ? $request : null;
+const response = typeof $response !== "undefined" ? $response : null;
 const read = key => isQX ? $prefs.valueForKey(key) : process.env[key];
 const write = (value, key) => isQX ? $prefs.setValueForKey(value, key) : false;
 const notify = (sub, body) => isQX ? $notify(NAME, sub, body) : console.log(`[${sub}] ${body}`);
@@ -49,7 +57,9 @@ let current = null;
 let summary = [];
 
 (async () => {
-  if (request) await captureAccount(request);
+  if (response && request && /\/api\/v2\/task\/exam\/info(?:\?|$)/.test(request.url)) await captureQuizInfo(response);
+  else if (response && request && /\/api\/v2\/task\/exam\/question\/submit(?:\?|$)/.test(request.url)) await captureQuizAnswer(response);
+  else if (request) await captureAccount(request);
   else await runTasks();
 })().catch(error => {
   console.log(`[fatal] ${error.stack || error}`);
@@ -70,6 +80,45 @@ function parseAccounts(raw) {
 function header(headers, name) {
   const key = Object.keys(headers || {}).find(k => k.toLowerCase() === name.toLowerCase());
   return key ? headers[key] : "";
+}
+
+async function captureQuizAnswer(resp) {
+  let result;
+  try { result = JSON.parse(resp.body || "{}"); }
+  catch { return; }
+  const questionId = result.data?.questionId;
+  const correctAnswer = result.data?.correctAnswer;
+  if (!questionId || !correctAnswer) return;
+  let session = {};
+  try { session = JSON.parse(read(QUIZ_SESSION_KEY) || "{}"); } catch {}
+  const question = session[String(questionId)] || {};
+  const matched = (question.optionList || []).find(option => String(option.option) === String(correctAnswer));
+  const learned = {
+    answer: String(correctAnswer),
+    answerText: matched?.optionContent || "",
+    question: question.questionContent || ""
+  };
+  let bank = {};
+  try { bank = JSON.parse(read(QUIZ_STORE_KEY) || "{}"); } catch {}
+  const isNew = JSON.stringify(bank[String(questionId)]) !== JSON.stringify(learned);
+  bank[String(questionId)] = learned;
+  if (!write(JSON.stringify(bank), QUIZ_STORE_KEY)) throw new Error("保存答题题库失败");
+  console.log(`答题题库${isNew ? "新增" : "确认"}: ${questionId}=${learned.answerText || correctAnswer}`);
+}
+
+async function captureQuizInfo(resp) {
+  let result;
+  try { result = JSON.parse(resp.body || "{}"); }
+  catch { return; }
+  const questions = Array.isArray(result.data?.questionList) ? result.data.questionList : [];
+  if (!questions.length) return;
+  const session = {};
+  for (const question of questions) session[String(question.questionId)] = {
+    questionContent: question.questionContent || "",
+    optionList: question.optionList || []
+  };
+  if (!write(JSON.stringify(session), QUIZ_SESSION_KEY)) throw new Error("保存答题选项表失败");
+  console.log(`答题选项表已保存 ${questions.length} 道`);
 }
 
 async function captureAccount(req) {
@@ -234,6 +283,10 @@ async function runFishpond(account) {
     console.log(`${mealTask.taskName}: 当前状态 ${mealTask.buttonStatus || "未知"}，本次无需领取`);
   }
 
+  // 答题任务只使用 HAR 已验证题库；遇到新题整组跳过，避免盲猜损失奖励。
+  const quizTask = list.find(task => task.taskCode === "QUIZ1" && ["TO_ACHIEVE", "TO_REWARD"].includes(task.buttonStatus));
+  if (quizTask) await runFishQuiz(quizTask, base, gameId);
+
   // 仅自动执行叮咚站内浏览任务；外部 APP 登录、下单、邀请等任务明确跳过。
   const browseTasks = list.filter(task => /^BROWSE_GOODS\d+$/.test(task.taskCode || "") && task.buttonStatus === "TO_ACHIEVE");
   for (const task of browseTasks) {
@@ -345,6 +398,101 @@ async function fishGet(path, base, extra) {
 
 function sumReward(rewards, code) {
   return (Array.isArray(rewards) ? rewards : []).filter(x => x.rewardCode === code).reduce((n, x) => n + Number(x.amount || 0), 0);
+}
+
+async function runFishQuiz(task, base, gameId) {
+  const answers = await loadQuizAnswers();
+  try { Object.assign(answers, JSON.parse(read(QUIZ_STORE_KEY) || "{}")); }
+  catch { console.log("本地答题题库 JSON 无效，本次仅使用公共题库"); }
+  const missionId = task.missionId;
+  const missionInstanceId = task.missionInstanceId;
+  const uid = base.get("uid") || "";
+  if (!missionId || !missionInstanceId) {
+    console.log(`${task.taskName}: 缺少 missionId/missionInstanceId，跳过`);
+    return;
+  }
+  const info = await fishGet("/api/v2/task/exam/info", base, {
+    missionId, missionInstanceId, taskCode: "QUIZ1", user_id: uid
+  });
+  if (!ok(info) || !info.data?.examSerialNo) {
+    console.log(`${task.taskName}: 获取题目失败，${messageOf(info)}`);
+    return;
+  }
+  const questions = Array.isArray(info.data.questionList) ? info.data.questionList : [];
+  const resolvedAnswers = {};
+  for (const question of questions) resolvedAnswers[String(question.questionId)] = resolveQuizAnswer(question, answers[String(question.questionId)]);
+  const unknown = questions.filter(question => !resolvedAnswers[String(question.questionId)]);
+  if (unknown.length) {
+    console.log(`${task.taskName}: 发现 ${unknown.length} 道新题，为避免答错已跳过`);
+    for (const question of unknown) console.log(`新题 ${question.questionId}: ${question.questionContent || ""}`);
+    return;
+  }
+  const examSerialNo = info.data.examSerialNo;
+  let progress = Number(info.data.progress || 0);
+  for (const question of questions.slice(progress)) {
+    const submitted = await fishGet("/api/v2/task/exam/question/submit", base, {
+      missionId, missionInstanceId, taskCode: "QUIZ1", user_id: uid,
+      examSerialNo, questionId: question.questionId, userAnswer: resolvedAnswers[String(question.questionId)]
+    });
+    if (!ok(submitted) || submitted.data?.isCorrect !== true) {
+      console.log(`${task.taskName}: 第 ${question.sortOrder || progress + 1} 题提交失败或答案已变化，立即停止`);
+      return;
+    }
+    progress = Number(submitted.data?.progress || progress + 1);
+    console.log(`${task.taskName}: 第 ${progress}/${questions.length} 题正确`);
+    await wait(800);
+  }
+  if (progress < questions.length) {
+    console.log(`${task.taskName}: 进度 ${progress}/${questions.length}，暂不领取`);
+    return;
+  }
+  const reward = await fishGet("/api/v2/task/reward", base, {
+    gameId, missionId, missionInstanceId, examSerialNo, taskCode: "QUIZ1"
+  });
+  const rewarded = ok(reward) && reward.data?.taskStatus === "REWARDED";
+  console.log(`${task.taskName}: ${rewarded ? `领取成功，饲料 +${sumReward(reward.data?.rewards, "QUIZ1")}g` : `领取失败，状态=${reward.data?.taskStatus || "无"}，${messageOf(reward)}`}`);
+}
+
+async function loadQuizAnswers() {
+  let source = null;
+  try {
+    source = await fetchPublicJson(QUIZ_BANK_URL);
+    if (source?.questions) write(JSON.stringify(source), QUIZ_CACHE_KEY);
+  } catch (error) {
+    console.log(`公共题库拉取失败，尝试缓存: ${error.message || error}`);
+  }
+  if (!source?.questions) {
+    try { source = JSON.parse(read(QUIZ_CACHE_KEY) || "{}"); } catch { source = {}; }
+  }
+  const answers = {};
+  for (const [id, value] of Object.entries(source.questions || {})) {
+    if (typeof value === "string") answers[id] = value;
+    else if (value?.answer || value?.answerText) answers[id] = value;
+  }
+  console.log(`公共题库已加载 ${Object.keys(answers).length} 道`);
+  return answers;
+}
+
+function resolveQuizAnswer(question, record) {
+  if (!record) return "";
+  if (typeof record === "string") return record; // 兼容旧版仅保存字母的本地题库。
+  if (record.answerText) {
+    const target = normalizeQuizText(record.answerText);
+    const matched = (question.optionList || []).find(option => normalizeQuizText(option.optionContent) === target);
+    return matched?.option || "";
+  }
+  return record.answer || "";
+}
+
+function normalizeQuizText(value) {
+  return String(value || "").replace(/\s+/g, "").trim();
+}
+
+async function fetchPublicJson(url) {
+  const options = {url, method: "GET", headers: {"Accept": "application/json", "User-Agent": "DingDong-QX"}, timeout: 15000};
+  const resp = isQX ? await $task.fetch(options) : await nodeFetch(options);
+  if (Number(resp.statusCode) >= 400) throw new Error(`HTTP ${resp.statusCode}`);
+  return JSON.parse(resp.body || "{}");
 }
 
 function browseSeconds(task) {

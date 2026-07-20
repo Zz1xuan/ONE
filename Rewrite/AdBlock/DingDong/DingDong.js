@@ -15,7 +15,7 @@
 hostname = maicai.api.ddxq.mobi, farm.api.ddxq.mobi
 
 [task_local]
-19 0,9 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDong.js, tag=叮咚买菜, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/ddmc.png, enabled=true
+19 7,10,16 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDong.js, tag=叮咚买菜, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/ddmc.png, enabled=true
 
 使用方法：
 1. 打开一次叮咚买菜“积分”页，自动抓取积分任务账号信息。
@@ -219,6 +219,19 @@ async function runFishpond(account) {
     const reallyDone = ok(achieved) && achieved.data?.taskStatus === "REWARDED";
     console.log(`${dailySign.taskName}: ${reallyDone ? `完成，饲料 +${sumReward(achieved.data?.rewards, "FEED")}g` : `未完成，状态=${achieved.data?.taskStatus || "无"}，${messageOf(achieved)}`}`);
     await wait(500);
+  }
+
+  // 三餐福袋：task/list 给出的开放时段为 7-9、10-12、16-18。
+  // 仅在服务端标记为 TO_ACHIEVE 时尝试，避免非饭点重复请求和误报成功。
+  const mealTask = list.find(task => task.taskCode === "LOTTERY");
+  if (mealTask?.buttonStatus === "TO_ACHIEVE") {
+    const meal = await fishGet("/api/v2/task/achieve", base, {gameId, taskCode: "LOTTERY"});
+    const mealStatus = meal.data?.taskStatus;
+    const mealDone = ok(meal) && ["ACHIEVED", "REWARDED"].includes(mealStatus);
+    console.log(`${mealTask.taskName}: ${mealDone ? `领取成功，状态=${mealStatus}${sumReward(meal.data?.rewards, "FEED") ? `，饲料 +${sumReward(meal.data?.rewards, "FEED")}g` : ""}` : `领取失败，状态=${mealStatus || "无"}，${messageOf(meal)}`}`);
+    await wait(500);
+  } else if (mealTask) {
+    console.log(`${mealTask.taskName}: 当前状态 ${mealTask.buttonStatus || "未知"}，本次无需领取`);
   }
 
   // 仅自动执行叮咚站内浏览任务；外部 APP 登录、下单、邀请等任务明确跳过。

@@ -23,7 +23,7 @@ hostname = maicai.api.ddxq.mobi, farm.api.ddxq.mobi
 3. QX 持久化键名：DINGDONG。
 
 可选配置：
-DINGDONG_RAFFLE=close       可选关闭积分活动抽奖；默认 open
+DINGDONG_RAFFLE=open        可选开启积分活动抽奖；默认 close
 DINGDONG_FISH_MAX_FEEDS=200 喂鱼异常保护上限；默认 200，正常会在饲料不足或服务端上限时提前停止
 
 Node.js：
@@ -177,8 +177,8 @@ async function runAccount(account) {
 
   await runPointMissions(common);
   await runFlop(common);
-  if ((read("DINGDONG_RAFFLE") || "open").toLowerCase() !== "close") await runRaffle(common);
-  else console.log("积分抽奖: 已通过 DINGDONG_RAFFLE=close 关闭");
+  if ((read("DINGDONG_RAFFLE") || "close").toLowerCase() === "open") await runRaffle(common);
+  else console.log("积分抽奖: 已关闭（设置 DINGDONG_RAFFLE=open 可重新开启）");
   const flow = await api("GET", `https://maicai.api.ddxq.mobi/point/flow?${account.signBody}&type=0&count=50&page=1`);
   if (ok(flow)) {
     const list = Array.isArray(flow.data?.point_list) ? flow.data.point_list : [];

@@ -15,7 +15,7 @@
 hostname = maicai.api.ddxq.mobi, farm.api.ddxq.mobi
 
 [task_local]
-19 7,10,16 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDong.js, tag=叮咚买菜, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/ddmc.png, enabled=true
+19 7,10,16,21 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDong.js, tag=叮咚买菜, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/ddmc.png, enabled=true
 
 使用方法：
 1. 打开一次叮咚买菜“积分”页，自动抓取积分任务账号信息。
@@ -274,6 +274,7 @@ async function runFishpond(account) {
   }
 
   // 完成签到/浏览后刷新任务状态，再领取所有 TO_REWARD 奖励。
+  // 这里也会自动领取当天真实下单后产生的 ANY_ORDER / BUY_GOODS 饲料。
   tasks = await fishGet("/api/v2/task/list", base, {gameId, cityCode, inviteActivityType: "INVITE_ASSIST"});
   list = Array.isArray(tasks?.data?.userTasks) ? tasks.data.userTasks : [];
   for (const original of browseTasks) {

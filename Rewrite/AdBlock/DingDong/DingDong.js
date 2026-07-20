@@ -11,7 +11,7 @@
 # 2. 自动获取/更新鱼塘 Cookie、设备头和游戏公共参数
 ^https:\/\/farm\.api\.ddxq\.mobi\/api\/v2\/userguide\/detail(?:\?|$) url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDong.js
 
-# 3. 手动作答后自动保存 questionId 和正确答案，持续扩充本地题库
+# 3. 保存答题选项和服务端正确答案，持续扩充本地题库
 ^https:\/\/farm\.api\.ddxq\.mobi\/api\/v2\/task\/exam\/(?:info|question\/submit)(?:\?|$) url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDong.js
 
 [mitm]
@@ -24,10 +24,6 @@ hostname = maicai.api.ddxq.mobi, farm.api.ddxq.mobi
 1. 打开一次叮咚买菜“积分”页，自动抓取积分任务账号信息。
 2. 再进入一次“叮咚鱼塘”，自动补充鱼塘参数。
 3. QX 持久化键名：DINGDONG。
-
-可选配置：
-DINGDONG_RAFFLE=open        可选开启积分活动抽奖；默认 close
-DINGDONG_FISH_MAX_FEEDS=200 喂鱼异常保护上限；默认 200，正常会在饲料不足或服务端上限时提前停止
 
 Node.js：
 DINGDONG='[{"uid":"...","name":"...","cookie":"...","signBody":"...","userAgent":"...","fishQuery":"..."}]'
@@ -43,7 +39,6 @@ const QUIZ_CACHE_KEY = "DINGDONG_QUIZ_REMOTE_CACHE";
 const QUIZ_SESSION_KEY = "DINGDONG_QUIZ_SESSION";
 const QUIZ_BANK_URL = "https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDongQuiz.json";
 const isQX = typeof $task !== "undefined";
-const isNode = typeof process !== "undefined" && process.release?.name === "node";
 const request = typeof $request !== "undefined" ? $request : null;
 const response = typeof $response !== "undefined" ? $response : null;
 const read = key => isQX ? $prefs.valueForKey(key) : process.env[key];
@@ -92,17 +87,17 @@ async function captureQuizAnswer(resp) {
   let session = {};
   try { session = JSON.parse(read(QUIZ_SESSION_KEY) || "{}"); } catch {}
   const question = session[String(questionId)] || {};
-  const matched = (question.optionList || []).find(option => String(option.option) === String(correctAnswer));
-  const learned = {
-    answer: String(correctAnswer),
-    answerText: matched?.optionContent || "",
-    question: question.questionContent || ""
-  };
+  saveQuizAnswer(questionId, correctAnswer, question);
+}
+
+function saveQuizAnswer(questionId, correctAnswer, question) {
+  const matched = (question?.optionList || []).find(option => String(option.option) === String(correctAnswer));
+  const learned = {answer: String(correctAnswer), answerText: matched?.optionContent || "", question: question?.questionContent || ""};
   let bank = {};
   try { bank = JSON.parse(read(QUIZ_STORE_KEY) || "{}"); } catch {}
   const isNew = JSON.stringify(bank[String(questionId)]) !== JSON.stringify(learned);
   bank[String(questionId)] = learned;
-  if (!write(JSON.stringify(bank), QUIZ_STORE_KEY)) throw new Error("保存答题题库失败");
+  if (isQX && !write(JSON.stringify(bank), QUIZ_STORE_KEY)) throw new Error("保存答题题库失败");
   console.log(`答题题库${isNew ? "新增" : "确认"}: ${questionId}=${learned.answerText || correctAnswer}`);
 }
 
@@ -226,8 +221,6 @@ async function runAccount(account) {
 
   await runPointMissions(common);
   await runFlop(common);
-  if ((read("DINGDONG_RAFFLE") || "close").toLowerCase() === "open") await runRaffle(common);
-  else console.log("积分抽奖: 已关闭（设置 DINGDONG_RAFFLE=open 可重新开启）");
   const flow = await api("GET", `https://maicai.api.ddxq.mobi/point/flow?${account.signBody}&type=0&count=50&page=1`);
   if (ok(flow)) {
     const list = Array.isArray(flow.data?.point_list) ? flow.data.point_list : [];
@@ -283,17 +276,18 @@ async function runFishpond(account) {
     console.log(`${mealTask.taskName}: 当前状态 ${mealTask.buttonStatus || "未知"}，本次无需领取`);
   }
 
-  // 答题任务只使用 HAR 已验证题库；遇到新题整组跳过，避免盲猜损失奖励。
+  // 已知题按答案文本匹配；新题随机提交，并从响应学习正确答案供下次使用。
   const quizTask = list.find(task => task.taskCode === "QUIZ1" && ["TO_ACHIEVE", "TO_REWARD"].includes(task.buttonStatus));
   if (quizTask) await runFishQuiz(quizTask, base, gameId);
 
   // 仅自动执行叮咚站内浏览任务；外部 APP 登录、下单、邀请等任务明确跳过。
   const browseTasks = list.filter(task => /^BROWSE_GOODS\d+$/.test(task.taskCode || "") && task.buttonStatus === "TO_ACHIEVE");
   for (const task of browseTasks) {
-    const seconds = browseSeconds(task);
+    const description = Array.isArray(task.taskDescription) ? task.taskDescription.join(" ") : String(task.taskDescription || "");
+    const seconds = Math.max(5, Math.min(Number(description.match(/(\d+)\s*秒/)?.[1] || 30), 60));
     console.log(`${task.taskName}: 开始浏览，等待 ${seconds} 秒`);
     await wait(seconds * 1000);
-    const pageUuid = extractUuid(task.cmsLink);
+    const pageUuid = (String(task.cmsLink || "").match(/[?&]uuid=([^&#]+)/) || [])[1] || "";
     const extra = {
       gameId,
       // 必须使用 farm task/list 返回的 taskCode。cmsLink 中的 task_code 属于页面任务体系，不能替代。
@@ -312,7 +306,7 @@ async function runFishpond(account) {
     const achievedStatus = achieved.data?.taskStatus;
     if (!ok(achieved) || !["ACHIEVED", "REWARDED"].includes(achievedStatus)) {
       console.log(`${task.taskName}: 浏览未生效，状态=${achievedStatus || "无"}，${messageOf(achieved)}`);
-      console.log(`响应摘要: ${safeJson(achieved)}`);
+      console.log(`响应摘要: ${JSON.stringify(achieved).slice(0, 500)}`);
       continue;
     }
     console.log(`${task.taskName}: 浏览已生效，状态=${achievedStatus}`);
@@ -352,15 +346,14 @@ async function runFishpond(account) {
   const seed = detail.data?.baseSeed;
   console.log(`鱼塘状态: ${seed?.msg || "正常"}，剩余饲料 ${feed?.amount ?? "?"}g`);
 
-  // 持续喂到饲料不足或服务端返回当日/阶段上限；hardLimit 只用于防止异常死循环。
+  // 持续喂到饲料不足、服务端上限或 200 次异常保护上限。
   if (!feed?.propsId || !seed?.seedId) {
     console.log("喂鱼停止: 响应缺少 propsId 或 seedId");
     return;
   }
   let remaining = Number(feed.amount || 0);
-  const hardLimit = Math.max(1, Math.min(Number(read("DINGDONG_FISH_MAX_FEEDS") || 200), 500));
   let fed = 0;
-  while (remaining >= 10 && fed < hardLimit) {
+  while (remaining >= 10 && fed < 200) {
     const result = await fishGet("/api/v2/props/feed", base, {
       gameId, propsId: feed.propsId, seedId: seed.seedId, cityCode,
       feedPro: 0, triggerMultiFeed: 1
@@ -377,7 +370,7 @@ async function runFishpond(account) {
     await wait(800);
   }
   if (remaining < 10) console.log(`喂鱼完成: 饲料不足 10g，当前 ${remaining}g`);
-  else if (fed >= hardLimit) console.log(`喂鱼停止: 达到异常保护上限 ${hardLimit} 次`);
+  else if (fed >= 200) console.log("喂鱼停止: 达到异常保护上限 200 次");
   summary.push(`${account.name}: 鱼塘喂食 ${fed} 次，剩余 ${remaining}g`);
 }
 
@@ -420,26 +413,36 @@ async function runFishQuiz(task, base, gameId) {
   }
   const questions = Array.isArray(info.data.questionList) ? info.data.questionList : [];
   const resolvedAnswers = {};
-  for (const question of questions) resolvedAnswers[String(question.questionId)] = resolveQuizAnswer(question, answers[String(question.questionId)]);
+  for (const question of questions) {
+    const id = String(question.questionId);
+    resolvedAnswers[id] = resolveQuizAnswer(question, answers[id]);
+    if (!resolvedAnswers[id]) {
+      const options = Array.isArray(question.optionList) ? question.optionList : [];
+      resolvedAnswers[id] = options.length ? options[Math.floor(Math.random() * options.length)].option : "";
+    }
+  }
   const unknown = questions.filter(question => !resolvedAnswers[String(question.questionId)]);
   if (unknown.length) {
-    console.log(`${task.taskName}: 发现 ${unknown.length} 道新题，为避免答错已跳过`);
-    for (const question of unknown) console.log(`新题 ${question.questionId}: ${question.questionContent || ""}`);
+    console.log(`${task.taskName}: ${unknown.length} 道题缺少可提交选项，已停止`);
     return;
   }
   const examSerialNo = info.data.examSerialNo;
   let progress = Number(info.data.progress || 0);
   for (const question of questions.slice(progress)) {
+    const id = String(question.questionId);
+    const known = Boolean(resolveQuizAnswer(question, answers[id]));
+    if (!known) console.log(`${task.taskName}: 新题 ${id} 随机选择 ${resolvedAnswers[id]}，提交后学习正确答案`);
     const submitted = await fishGet("/api/v2/task/exam/question/submit", base, {
       missionId, missionInstanceId, taskCode: "QUIZ1", user_id: uid,
-      examSerialNo, questionId: question.questionId, userAnswer: resolvedAnswers[String(question.questionId)]
+      examSerialNo, questionId: question.questionId, userAnswer: resolvedAnswers[id]
     });
-    if (!ok(submitted) || submitted.data?.isCorrect !== true) {
-      console.log(`${task.taskName}: 第 ${question.sortOrder || progress + 1} 题提交失败或答案已变化，立即停止`);
+    if (!ok(submitted)) {
+      console.log(`${task.taskName}: 第 ${question.sortOrder || progress + 1} 题提交失败，${messageOf(submitted)}`);
       return;
     }
+    if (submitted.data?.correctAnswer) saveQuizAnswer(question.questionId, submitted.data.correctAnswer, question);
     progress = Number(submitted.data?.progress || progress + 1);
-    console.log(`${task.taskName}: 第 ${progress}/${questions.length} 题正确`);
+    console.log(`${task.taskName}: 第 ${progress}/${questions.length} 题${submitted.data?.isCorrect === true ? "正确" : `答错，正确答案=${submitted.data?.correctAnswer || "未知"}`}`);
     await wait(800);
   }
   if (progress < questions.length) {
@@ -495,35 +498,12 @@ async function fetchPublicJson(url) {
   return JSON.parse(resp.body || "{}");
 }
 
-function browseSeconds(task) {
-  const text = Array.isArray(task?.taskDescription) ? task.taskDescription.join(" ") : String(task?.taskDescription || "");
-  const matched = text.match(/(\d+)\s*秒/);
-  return Math.max(5, Math.min(Number(matched?.[1] || 30), 60));
-}
-
-function extractUuid(url) {
-  if (!url) return "";
-  try { return new URL(url).searchParams.get("uuid") || ""; }
-  catch { return (String(url).match(/[?&]uuid=([^&#]+)/) || [])[1] || ""; }
-}
-
-function extractTaskCode(url) {
-  if (!url) return "";
-  const matched = String(url).match(/[?&#]task_code=([^&#]+)/);
-  return matched ? decodeURIComponent(matched[1]) : "";
-}
-
-function safeJson(value) {
-  try { return JSON.stringify(value).slice(0, 500); }
-  catch { return String(value).slice(0, 500); }
-}
-
 async function runPointMissions(common) {
   const consult = await api("POST", "https://gw.api.ddxq.mobi/promocore-service/client/welfare/center/v1/consult", {...common, app_client_id: "0"});
   const missions = Array.isArray(consult?.data?.pointMissionModule) ? consult.data.pointMissionModule : [];
   for (const mission of missions) {
     if (!(Number(mission.rewardPoint) > 0 && Number(mission.status) < 1 && mission.missionId)) continue;
-    const bizId = extractParam(mission.link, "welfareActivityId");
+    const bizId = new URL(mission.link).searchParams.get("welfareActivityId") || "";
     console.log(`任务: ${mission.missionTitle || mission.missionId} (+${mission.rewardPoint})`);
     const found = await api("POST", "https://gw.api.ddxq.mobi/promomission-service/mission/search/new/searchMissionById", {...common, missionInstanceId: mission.missionId, bizId});
     const detail = found?.data?.missionList?.[0] || {};
@@ -607,27 +587,6 @@ async function runFlop(common) {
   }
 }
 
-async function runRaffle(common) {
-  console.log("开始积分抽奖---------");
-  const activityId = "AC201000000001990313316";
-  const consult = await api("POST", "https://gw.api.ddxq.mobi/promocore-api/client/wheel/lottery/v1/consult", {...common, env: "PE", activityId});
-  if (!ok(consult)) {
-    console.log(`抽奖查询失败: ${messageOf(consult)}`);
-    return;
-  }
-  for (let i = 0; i < 20; i++) {
-    const result = await api("POST", "https://gw.api.ddxq.mobi/promocore-api/client/wheel/lottery/v1/trigger", {...common, env: "PE", activityId});
-    if (!ok(result)) {
-      console.log(`抽奖停止: ${messageOf(result)}`);
-      if (i === 0) console.log("可能原因：没有抽奖次数、活动 ID 已过期，或抓取的 signBody 已失效");
-      break;
-    }
-    const amount = result.data?.userEquityPrize?.prizeEquityTemplateDTO?.pointPrizeDTO?.amount;
-    console.log(`抽奖 ${i + 1}: ${amount != null ? `积分 +${amount}` : JSON.stringify(result.data || {})}`);
-    await wait(1500);
-  }
-}
-
 async function api(method, url, body, extraHeaders) {
   const options = {
     url,
@@ -676,7 +635,6 @@ function nodeFetch(options) {
 
 function ok(data) { return data && (data.code === 0 || data.success === true); }
 function messageOf(data) { return data?.msg || data?.message || `code=${data?.code ?? "unknown"}`; }
-function extractParam(url, key) { try { return new URL(url).searchParams.get(key) || ""; } catch { return ""; } }
 function sameLocalDay(value) {
   const date = new Date(value);
   const now = new Date();

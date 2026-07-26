@@ -1,7 +1,7 @@
 /*
 
 [rewrite_local]
-^https:\/\/gw\.api\.ddxq\.mobi\/cms-service\/client\/product\/final\/v1\/(?:listProductBySceneId|listProductByUnsold)$ url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDongClearance.js
+^https:\/\/gw\.api\.ddxq\.mobi\/cms-service\/client\/product\/final\/v1\/listProductBySceneId$ url script-request-body https://raw.githubusercontent.com/Zz1xuan/ONE/refs/heads/main/Rewrite/AdBlock/DingDong/DingDongClearance.js
 
 [mitm]
 hostname = gw.api.ddxq.mobi
@@ -22,10 +22,9 @@ const KEY = "DINGDONG_CLEARANCE_REQUESTS";
 
 function capture() {
   const body = JSON.parse($request.body || "{}");
-  const clearance = body.pageUuid === "0550e812a40c448e" && (
-    body.sceneId === 107 && body.sortType === "CMS_DISCOUNT_MODULE" ||
-    body.filterSceneId === 107
-  );
+  const clearance = body.pageUuid === "0550e812a40c448e" &&
+    Number(body.sceneId) === 107 &&
+    body.sortType === "CMS_DISCOUNT_MODULE";
   if (!clearance) return;
 
   const headers = {...$request.headers};
@@ -35,18 +34,18 @@ function capture() {
 
   let saved = JSON.parse($prefs.valueForKey(KEY) || "{}");
   const station = body.station_id;
-  const type = body.filterSceneId === 107 ? "unsold" : "clearance";
   const replaced = Object.keys(saved).length > 0 && !saved[station];
   if (replaced) saved = {};
   saved[station] ||= {};
-  saved[station][type] = {
+  delete saved[station].unsold;
+  saved[station].clearance = {
     url: $request.url,
     headers,
     body: $request.body,
     capturedAt: Date.now()
   };
   $prefs.setValueForKey(JSON.stringify(saved), KEY);
-  $notify(NAME, replaced ? "门店已自动替换" : "请求已保存", `点位：${station}\n类型：${type}`);
+  $notify(NAME, replaced ? "门店已自动替换" : "请求已保存", `点位：${station}\n类型：clearance`);
 }
 
 async function query() {
@@ -59,20 +58,23 @@ async function query() {
 
   for (const [station, requests] of stations) {
     const products = [];
-    for (const request of Object.values(requests)) {
-      const response = await $task.fetch({
-        method: "POST",
-        url: request.url,
-        headers: request.headers,
-        body: request.body
-      });
-      const result = JSON.parse(response.body);
-      if (!result.success) {
-        $notify(NAME, `点位 ${station} 查询失败`, `${result.msg || `code=${result.code}`}\n请打开清仓页面刷新请求`);
-        continue;
-      }
-      products.push(...(result.data?.productList || []));
+    const request = requests.clearance;
+    if (!request) {
+      $notify(NAME, `点位 ${station} 缺少清仓模板`, "请打开一次“清仓折扣”页面刷新请求");
+      continue;
     }
+    const response = await $task.fetch({
+      method: "POST",
+      url: request.url,
+      headers: request.headers,
+      body: request.body
+    });
+    const result = JSON.parse(response.body);
+    if (!result.success) {
+      $notify(NAME, `点位 ${station} 查询失败`, `${result.msg || `code=${result.code}`}\n请打开清仓页面刷新请求`);
+      continue;
+    }
+    products.push(...(result.data?.productList || []));
 
     const unique = [...new Map(products.map(product => [product.id, product])).values()];
     unique.sort((a, b) =>

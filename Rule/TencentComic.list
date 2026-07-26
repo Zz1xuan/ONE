@@ -1,0 +1,9 @@
+DOMAIN-SUFFIX,manhua.acimg.cn,REJECT
+DOMAIN-SUFFIX,gdt.qq.com,REJECT
+DOMAIN,us.l.qq.com,REJECT
+DOMAIN,tangram.e.qq.com,REJECT
+DOMAIN,pgdt.gtimg.cn,REJECT
+DOMAIN,adsmind.gdtimg.com,REJECT
+DOMAIN,p.l.qq.com,REJECT
+DOMAIN,sdkreport.e.qq.com,REJECT
+DOMAIN,rdelivery.qq.com,REJECT

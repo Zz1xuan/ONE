@@ -81,6 +81,7 @@ async function query() {
     );
 
     if (!unique.length) {
+      console.log(`[${NAME}] 点位 ${station}：暂无清仓商品`);
       $notify(NAME, `点位 ${station}`, "暂无清仓商品");
       continue;
     }
@@ -93,6 +94,7 @@ async function query() {
       `临期${product.extMap?.expiring_stock === "1" ? "是" : "否"}`,
       `库存${product.station_stock}`
     ].join("｜")).join("\n");
+    console.log(`[${NAME}] 点位 ${station}：${unique.length} 件\n${body}`);
     $notify(NAME, `点位 ${station}：${unique.length} 件`, body);
   }
 }

@@ -205,6 +205,31 @@ if (path === "/ws/aos/perception/publicTravel/beforeNavi") {
     );
   }
 
+} else if (path === "/ws/faas/amap-navigation/main-page-aiqs") {
+  // 新版首页商业图层、扫街榜浮标
+  const commercialKeys = [
+    "StarbucksStreetSend",
+    "SddTileOffsiteHotel",
+    "OffsiteHotel",
+    "sdd_tile_HotSpring_SKU"
+  ];
+
+  if (obj?.data?.mapBizList?.length > 0) {
+    obj.data.mapBizList = obj.data.mapBizList.filter(
+      (item) => !commercialKeys.includes(item?.dataKey)
+    );
+
+    for (let item of obj.data.mapBizList) {
+      const newIcon = item?.bizData?.newIcon;
+      if (
+        newIcon?.name === "rankingLaunch" ||
+        /(?:saojiebang|rankLanding)/i.test(`${newIcon?.lottieUrl || ""} ${newIcon?.scheme || ""}`)
+      ) {
+        delete item.bizData.newIcon;
+      }
+    }
+  }
+
 } else if (path === "/ws/perception/drive/routeInfo") {
   // 导航详情页
   if (obj?.data?.tbt?.event?.length > 0) {

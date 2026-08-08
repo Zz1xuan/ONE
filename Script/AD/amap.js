@@ -265,9 +265,11 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 } else if (url.includes("/shield/frogserver/aocs/updatable/")) {
   // 整体图层
   const items = [
+    "EndNaviC3AdCard", // 导航结束广告卡片
     "Naviendpage_Searchwords",
     "SplashScreenControl",
     "TipsTaxiButton", // 选路线页面 打车图标
+    "activity_qingke_contry_control", // 运营活动
     "amapCoin",
     "favorites_info", // 收藏页顶部横图推广
     "feedback_banner", // 店主专属通道
@@ -278,6 +280,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "hotel_fillin_opt",
     "hotel_loop",
     // "hotel_portal", // 附近-酒店-页面布局
+    "hotel_portal_shading", // 酒店入口推荐词
     "hotel_tipsicon",
     "hotsaleConfig", // 酒店限时抢购
     "landing_page_info", // 发现吃喝玩乐好去处
@@ -299,6 +302,8 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "search_poi_recommend",
     "search_service_adcode",
     "search_word",
+    "shortcut_popup_frequency", // 添加桌面弹窗
+    "sportsActivityConfig", // 运动活动横幅
     "sportsGroupConfig",
     "sportsHealthConfig",
     "sportsHomeConfig",
@@ -312,8 +317,10 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "small_biz_news",
     "splashscreen",
     "splashview_config",
+    "sug_coupon_opt", // 搜索建议优惠券
     // "sur_bar", // 双十一特惠 会导致无法正常搜索某地附近的内容
     "taxi_activity", // 打车活动
+    "tel_retention_popup", // 汽车销售留资弹窗
     "testflight_adiu",
     "tf_remind", // tf测试版
     "tips_bar_black_list",

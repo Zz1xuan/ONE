@@ -3,7 +3,13 @@
 const url = $request.url;
 if (!$response.body) $done({});
 
-let obj = JSON.parse($response.body);
+const path = url.split("?")[0];
+let obj;
+try {
+  obj = JSON.parse($response.body);
+} catch (e) {
+  $done({ body: $response.body });
+}
 
 /**********************
  * 公交出行 - 导航前页面
@@ -154,14 +160,14 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     obj.data.modules.contentPoster = {}; // 写笔记
   }
 
-} else if (url.includes("/faas/amap-navigation/card-service-plan-home")) {
+} else if (path.endsWith("/faas/amap-navigation/card-service-plan-home")) {
   // 路线规划页
   if (obj?.data?.children?.length > 0) {
     // 带 schema 参数的为推广
     obj.data.children = obj.data.children.filter((i) => !i.hasOwnProperty("schema"));
   }
 
-} else if (url.includes("/faas/amap-navigation/main-page")) {
+} else if (path.endsWith("/faas/amap-navigation/main-page")) {
   // 首页底部卡片
   if (obj?.data?.cardList?.length > 0) {
     obj.data.cardList = obj.data.cardList.filter(
@@ -518,7 +524,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 
 } else if (url.includes("/shield/search_poi/search/sp") || url.includes("/shield/search_poi/mps")) {
 
-  if (obj?.data?.list_data) {
+  if (obj?.data?.list_data?.content?.length > 0) {
     let list = obj.data.list_data.content[0];
 
     // 详情页 底部 房产推广
@@ -542,7 +548,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     if (list?.card?.card_id === "NearbyGroupBuy" && list?.item_type === "toplist") delete list.card;
     if (list?.card?.card_id === "ImageBanner" && list?.item_type === "ImageBanner") delete list.card;
 
-  } else if (obj?.data?.district?.poi_list) {
+  } else if (obj?.data?.district?.poi_list?.length > 0) {
 
     // 搜索列表详情页
     let poi = obj.data.district.poi_list[0];
@@ -551,7 +557,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 
   } else if (obj?.data?.modules) {
 
-    if (obj?.data?.modules?.not_parse_result?.data?.list_data) {
+    if (obj?.data?.modules?.not_parse_result?.data?.list_data?.content?.length > 0) {
       let list = obj.data.modules.not_parse_result.data.list_data.content[0];
 
       if (list?.hookInfo) {
@@ -648,9 +654,13 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
   // 开屏广告
   if (obj?.data?.ad?.length > 0) {
     for (let item of obj.data.ad) {
-      item.set.setting.display_time = 0;
-      item.creative[0].start_time = 3818332800; // Unix 时间戳 2090-12-31 00:00:00
-      item.creative[0].end_time = 3818419199;   // Unix 时间戳 2090-12-31 23:59:59
+      if (item?.set?.setting) {
+        item.set.setting.display_time = 0;
+      }
+      if (item?.creative?.[0]) {
+        item.creative[0].start_time = 3818332800; // Unix 时间戳 2090-12-31 00:00:00
+        item.creative[0].end_time = 3818419199;   // Unix 时间戳 2090-12-31 23:59:59
+      }
     }
   }
 }

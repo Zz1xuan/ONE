@@ -10,7 +10,7 @@
 hostname = youtubei.googleapis.com, translate.googleapis.com
 
 [rewrite_local]
-^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/scripts/ytm-lyrics-prototype.qx.js
+^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/get_panel url script-response-body https://raw.githubusercontent.com/Zz1xuan/ONE/main/Script/ytm-lyrics-prototype.qx.js
 
 说明：
 1. 中文歌词继续走净化 + 简体优先。

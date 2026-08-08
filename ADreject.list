@@ -162,6 +162,7 @@ DOMAIN,ios.video.mpush.qq.com
 # 阿里 / 淘宝 / 广告
 DOMAIN-SUFFIX,apoll.m.taobao.com
 DOMAIN-SUFFIX,h-adashx.ut.taobao.com
+DOMAIN-SUFFIX,tanx.com,REJECT
 DOMAIN,aid.m.taobao.com
 
 # 阿里 / 优酷 / CIBN

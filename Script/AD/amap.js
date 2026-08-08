@@ -3,7 +3,7 @@
 const url = $request.url;
 if (!$response.body) $done({});
 
-const path = url.split("?")[0];
+const path = url.split("?")[0].replace(/^https?:\/\/[^/]+/, "");
 let obj;
 try {
   obj = JSON.parse($response.body);
@@ -11,10 +11,30 @@ try {
   $done({ body: $response.body });
 }
 
+function cleanSearchItem(item) {
+  if (!item || typeof item !== "object" || Array.isArray(item)) return;
+
+  if (item?.hookInfo?.data) {
+    delete item.hookInfo.data.header;
+    delete item.hookInfo.data.house_info;
+  }
+
+  if (item?.map_bottom_bar?.hotel) delete item.map_bottom_bar.hotel;
+  if (item?.poi?.item_info?.tips_bottombar_button?.hotel) {
+    delete item.poi.item_info.tips_bottombar_button.hotel;
+  }
+  if (item?.tips_operation_info) delete item.tips_operation_info;
+  if (item?.bottom?.bottombar_button?.hotel) delete item.bottom.bottombar_button.hotel;
+
+  if (item?.card?.card_id === "SearchCardBrand" && item?.item_type === "brandAdCard") delete item.card;
+  if (item?.card?.card_id === "NearbyGroupBuy" && item?.item_type === "toplist") delete item.card;
+  if (item?.card?.card_id === "ImageBanner" && item?.item_type === "ImageBanner") delete item.card;
+}
+
 /**********************
  * 公交出行 - 导航前页面
  **********************/
-if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
+if (path === "/ws/aos/perception/publicTravel/beforeNavi") {
 
   // 公交出行 底部卡片里程数值
   if (obj?.data?.common_data?.bus_plan_bottom_event?.data?.length > 0) {
@@ -39,7 +59,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 /**********************
  * 打车页面
  **********************/
-} else if (url.includes("/boss/car/order/content_info")) {
+} else if (path === "/ws/boss/car/order/content_info") {
 
   // 优惠弹窗
   if (obj?.data?.lubanData?.popup?.dataList?.length > 0) {
@@ -64,7 +84,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 /**********************
  * 打车友好信息页
  **********************/
-} else if (url.includes("/boss/order_web/friendly_information")) {
+} else if (path === "/ws/boss/order_web/friendly_information") {
 
   const items = [
     "banners",
@@ -85,7 +105,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 /**********************
  * 公交方案列表页
  **********************/
-} else if (url.includes("/bus/plan/integrate")) {
+} else if (path === "/ws/bus/plan/integrate") {
 
   // 公交列表 顶部滚动横图
   if (obj?.data?.banner_lists?.data?.length > 0) {
@@ -104,7 +124,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
 /**********************
  * 酒店 / 民宿 / 景区门票 / 火车 / 飞机 页面
  **********************/
-} else if (url.includes("/c3frontend/af-hotel/page/main")) {
+} else if (path === "/ws/c3frontend/af-hotel/page/main") {
 
   if (obj?.data?.modules) {
 
@@ -145,13 +165,13 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
       }
     }
   }
-} else if (url.includes("/c3frontend/af-launch/page/main")) {
+} else if (path === "/ws/c3frontend/af-launch/page/main") {
   // 步行导航结束推广卡片
   if (obj?.data?.modules?.C1EndNaviEngine?.data) {
     obj.data.modules.C1EndNaviEngine.data = {};
   }
 
-} else if (url.includes("/c3frontend/af-nearby/nearby")) {
+} else if (path === "/ws/c3frontend/af-nearby/nearby") {
   // 附近页面
   if (obj?.data?.modules?.banner) {
     obj.data.modules.banner = {}; // 横版推广图片
@@ -160,14 +180,16 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     obj.data.modules.contentPoster = {}; // 写笔记
   }
 
-} else if (path.endsWith("/faas/amap-navigation/card-service-plan-home")) {
+} else if (path === "/ws/faas/amap-navigation/card-service-plan-home") {
   // 路线规划页
   if (obj?.data?.children?.length > 0) {
     // 带 schema 参数的为推广
-    obj.data.children = obj.data.children.filter((i) => !i.hasOwnProperty("schema"));
+    obj.data.children = obj.data.children.filter(
+      (i) => i && !Object.prototype.hasOwnProperty.call(i, "schema")
+    );
   }
 
-} else if (path.endsWith("/faas/amap-navigation/main-page")) {
+} else if (path === "/ws/faas/amap-navigation/main-page") {
   // 首页底部卡片
   if (obj?.data?.cardList?.length > 0) {
     obj.data.cardList = obj.data.cardList.filter(
@@ -183,7 +205,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     );
   }
 
-} else if (url.includes("/perception/drive/routeInfo")) {
+} else if (path === "/ws/perception/drive/routeInfo") {
   // 导航详情页
   if (obj?.data?.tbt?.event?.length > 0) {
     obj.data.tbt.event = obj.data.tbt.event.filter((i) => !/ads-\d+/.test(i?.dynamic_id_s));
@@ -202,7 +224,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     }
   }
 
-} else if (url.includes("/perception/drive/routePlan")) {
+} else if (path === "/ws/perception/drive/routePlan") {
   // 路线规划页
   const items = [
     "assistant", // 左上角悬浮动图
@@ -224,7 +246,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     obj.data.front_end.download = obj.data.front_end.download.filter((i) => !/ads-\d+/.test(i?.dynamic_id_s));
   }
 
-} else if (url.includes("/promotion-web/resource")) {
+} else if (["/ws/promotion-web/resource", "/ws/promotion-web/resource/home"].includes(path)) {
   // 打车页面
   const items = [
     "alpha", // 出行优惠套餐
@@ -244,7 +266,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     }
   }
 
-} else if (url.includes("/shield/dsp/profile/index/nodefaasv3")) {
+} else if (path === "/ws/shield/dsp/profile/index/nodefaasv3") {
   // 我的页面
   if (obj?.data) {
     if (obj?.data?.tipData) {
@@ -262,7 +284,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     }
   }
 
-} else if (url.includes("/shield/frogserver/aocs/updatable/")) {
+} else if (path === "/ws/shield/frogserver/aocs/updatable/1") {
   // 整体图层
   const items = [
     "EndNaviC3AdCard", // 导航结束广告卡片
@@ -328,26 +350,24 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
   ];
   if (obj?.data) {
     for (let i of items) {
-      if (obj?.data?.[i]) {
+      if (Object.prototype.hasOwnProperty.call(obj.data, i)) {
         obj.data[i] = { status: 1, version: "", value: "" };
       }
     }
   }
-} else if (url.includes("/shield/search/common/coupon/info")) {
+} else if (path === "/ws/shield/search/common/coupon/info") {
   if (obj?.data) {
     obj.data = {};
   }
 
-} else if (url.includes("/shield/search/nearbyrec_smart")) {
+} else if (path === "/ws/shield/search/nearbyrec_smart") {
   // 附近页面
   const items = ["head", "search_hot_words", "feed_rec"];
   if (obj?.data?.modules?.length > 0) {
-    if (obj?.data?.modules?.length > 0) {
-      obj.data.modules = obj.data.modules.filter((i) => items?.includes(i));
-    }
+    obj.data.modules = obj.data.modules.filter((i) => items.includes(i));
   }
 
-} else if (url.includes("/shield/search/poi/detail")) {
+} else if (path === "/ws/shield/search/poi/detail") {
   // 搜索结果 模块详情
   const items = [
     "CouponBanner", // 高德红包
@@ -523,63 +543,33 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     }
   }
 
-} else if (url.includes("/shield/search_bff/hotword")) {
+} else if (path === "/ws/shield/search_bff/hotword") {
   // 搜索框 热搜 logo
   if (obj?.data?.headerHotWord?.length > 0) {
     obj.data.headerHotWord = [];
   }
 
-} else if (url.includes("/shield/search_poi/search/sp") || url.includes("/shield/search_poi/mps")) {
+} else if (["/ws/shield/search_poi/search/sp", "/ws/shield/search_poi/mps"].includes(path)) {
 
   if (obj?.data?.list_data?.content?.length > 0) {
-    let list = obj.data.list_data.content[0];
-
-    // 详情页 底部 房产推广
-    if (list?.hookInfo) {
-      let hookData = list.hookInfo.data;
-      if (hookData?.header) delete hookData.header;
-      if (hookData?.house_info) delete hookData.house_info;
+    for (let item of obj.data.list_data.content) {
+      cleanSearchItem(item);
     }
-
-    // 详情页 底部 订酒店
-    if (list?.map_bottom_bar?.hotel) delete list.map_bottom_bar.hotel;
-    if (list?.poi?.item_info?.tips_bottombar_button?.hotel) {
-      delete list.poi.item_info.tips_bottombar_button.hotel;
-    }
-
-    if (list?.tips_operation_info) delete list.tips_operation_info;
-    if (list?.bottom?.bottombar_button?.hotel) delete list.bottom.bottombar_button.hotel;
-
-    // 搜索页 顶部卡片
-    if (list?.card?.card_id === "SearchCardBrand" && list?.item_type === "brandAdCard") delete list.card;
-    if (list?.card?.card_id === "NearbyGroupBuy" && list?.item_type === "toplist") delete list.card;
-    if (list?.card?.card_id === "ImageBanner" && list?.item_type === "ImageBanner") delete list.card;
 
   } else if (obj?.data?.district?.poi_list?.length > 0) {
 
     // 搜索列表详情页
-    let poi = obj.data.district.poi_list[0];
-    if (poi?.transportation) delete poi.transportation; // 订票横幅
-    if (poi?.feed_rec_tab) delete poi.feed_rec_tab; // 景点门票 酒店特惠 特色美食 休闲娱乐
+    for (let poi of obj.data.district.poi_list) {
+      if (poi?.transportation) delete poi.transportation; // 订票横幅
+      if (poi?.feed_rec_tab) delete poi.feed_rec_tab; // 景点门票 酒店特惠 特色美食 休闲娱乐
+    }
 
   } else if (obj?.data?.modules) {
 
     if (obj?.data?.modules?.not_parse_result?.data?.list_data?.content?.length > 0) {
-      let list = obj.data.modules.not_parse_result.data.list_data.content[0];
-
-      if (list?.hookInfo) {
-        let hookData = list.hookInfo.data;
-        if (hookData?.header) delete hookData.header;
-        if (hookData?.house_info) delete hookData.house_info;
+      for (let item of obj.data.modules.not_parse_result.data.list_data.content) {
+        cleanSearchItem(item);
       }
-
-      if (list?.map_bottom_bar?.hotel) delete list.map_bottom_bar.hotel;
-      if (list?.poi?.item_info?.tips_bottombar_button?.hotel) {
-        delete list.poi.item_info.tips_bottombar_button.hotel;
-      }
-
-      if (list?.tips_operation_info) delete list.tips_operation_info;
-      if (list?.bottom?.bottombar_button?.hotel) delete list.bottom.bottombar_button.hotel;
     }
 
     if (obj?.data?.modules?.list_data?.data) {
@@ -594,7 +584,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     }
   }
 
-} else if (url.includes("/shield/search_poi/sug")) {
+} else if (path === "/ws/shield/search_poi/sug") {
 
   if (obj?.tip_list) {
     let newLists = [];
@@ -631,7 +621,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     }
   }
 
-} else if (url.includes("/shield/search_poi/tips_operation_location")) {
+} else if (path === "/ws/shield/search_poi/tips_operation_location") {
   // 搜索页面 底部结果上方横幅
   if (obj?.data?.coupon) {
     delete obj.data.coupon;
@@ -657,7 +647,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     }
   }
 
-} else if (url.includes("/valueadded/alimama/splash_screen")) {
+} else if (path === "/ws/valueadded/alimama/splash_screen") {
   // 开屏广告
   if (obj?.data?.ad?.length > 0) {
     for (let item of obj.data.ad) {

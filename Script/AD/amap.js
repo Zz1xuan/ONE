@@ -317,6 +317,7 @@ if (path === "/ws/aos/perception/publicTravel/beforeNavi") {
     "SplashScreenControl",
     "TipsTaxiButton", // 选路线页面 打车图标
     "activity_qingke_contry_control", // 运营活动
+    "ai_scenes", // 搜索栏语音 AI 问答
     "amapCoin",
     "favorites_info", // 收藏页顶部横图推广
     "feedback_banner", // 店主专属通道
@@ -378,6 +379,18 @@ if (path === "/ws/aos/perception/publicTravel/beforeNavi") {
       if (Object.prototype.hasOwnProperty.call(obj.data, i)) {
         obj.data[i] = { status: 1, version: "", value: "" };
       }
+    }
+
+    // 关闭搜索栏 AI 头像，保留其他地图基础配置
+    const basemapConfig = obj.data.amap_basemap_config;
+    if (typeof basemapConfig?.value === "string" && basemapConfig.value) {
+      try {
+        const value = JSON.parse(basemapConfig.value);
+        if (Object.prototype.hasOwnProperty.call(value, "is_show_AI_avatar")) {
+          value.is_show_AI_avatar = 0;
+          basemapConfig.value = JSON.stringify(value);
+        }
+      } catch (e) {}
     }
   }
 } else if (path === "/ws/shield/search/common/coupon/info") {

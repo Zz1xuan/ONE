@@ -22,6 +22,16 @@ const isObj = (v) => v && typeof v === 'object' && !Array.isArray(v);
 const arr = (v) => Array.isArray(v) ? v : [];
 const keyOf = (x) => String(x?.file_id || x?.trace_id || x?.live_photo_file_id || x?.url || JSON.stringify(x));
 
+function noWatermark(m) {
+  if (!isObj(m)) return;
+  // 9.42+ reports the effective client switch as `water_mask`.
+  // Keep the legacy server switch too for older app versions.
+  m.disable_watermark = true;
+  m.water_mask = false;
+  m.watermark = false;
+  m.water_mark = false;
+}
+
 function listFrom(data) {
   if (Array.isArray(data)) return data;
   if (isObj(data) && Array.isArray(data.items)) return data.items;
@@ -36,7 +46,13 @@ function stripGoods(m) {
 
 function unlockSave(m) {
   if (!isObj(m)) return;
-  m.media_save_config = { disable_save: false, disable_watermark: true, disable_weibo_cover: true };
+  const config = isObj(m.media_save_config) ? m.media_save_config : {};
+  config.disable_save = false;
+  config.disable_weibo_cover = true;
+  noWatermark(config);
+  m.media_save_config = config;
+  // New clients may read the save flags from the note/image object itself.
+  noWatermark(m);
 }
 
 function forceShare(m) {
@@ -100,6 +116,12 @@ function patchMediaSaveDeep(node) {
     patchFunctionSwitch(node);
     patchLongPress(node);
     enableEntriesByShare(node.share_info);
+  }
+  // Image/live-photo objects can carry an independent watermark switch.
+  if ('url' in node || 'url_size_large' in node || 'file_id' in node ||
+      'live_photo_file_id' in node || 'water_mask' in node ||
+      'watermark' in node || 'water_mark' in node) {
+    noWatermark(node);
   }
   Object.keys(node).forEach((k) => patchMediaSaveDeep(node[k]));
 }

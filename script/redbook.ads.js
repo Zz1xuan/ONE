@@ -111,6 +111,8 @@ function patchMediaSaveDeep(node) {
     return;
   }
   if (!isObj(node)) return;
+  // Watermark switches can live on any object — clean them unconditionally.
+  noWatermark(node);
   if (looksLikeNote(node)) {
     unlockSave(node);
     patchFunctionSwitch(node);
@@ -119,8 +121,7 @@ function patchMediaSaveDeep(node) {
   }
   // Image/live-photo objects can carry an independent watermark switch.
   if ('url' in node || 'url_size_large' in node || 'file_id' in node ||
-      'live_photo_file_id' in node || 'water_mask' in node ||
-      'watermark' in node || 'water_mark' in node) {
+      'live_photo_file_id' in node) {
     noWatermark(node);
   }
   Object.keys(node).forEach((k) => patchMediaSaveDeep(node[k]));

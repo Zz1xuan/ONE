@@ -1,0 +1,11 @@
+#!name = 腾讯动漫
+#!desc = 过滤腾讯动漫开屏广告
+#!author = Zz1xuan
+
+[Rewrite]
+# 开屏广告主素材：请求直接失败，避免透明图仍触发开屏容器
+# 仅匹配 operation 目录下使用 Sharp 格式的 JPG
+^https:\/\/manhua\.acimg\.cn\/operation\/0\/[^/?]+\.jpg\/0\?tp=sharp(?:&.*)?$ - reject
+
+[MITM]
+hostname = manhua.acimg.cn

@@ -7,3 +7,10 @@ DOMAIN,adsmind.gdtimg.com,REJECT
 DOMAIN,p.l.qq.com,REJECT
 DOMAIN,sdkreport.e.qq.com,REJECT
 DOMAIN,rdelivery.qq.com,REJECT
+DOMAIN,api-access.pangolin-sdk-toutiao.com,REJECT
+DOMAIN,api-access.pangolin-sdk-toutiao1.com,REJECT
+DOMAIN,sf3-fe-tos.pglstatp-toutiao.com,REJECT
+DOMAIN-SUFFIX,beacon.qq.com,REJECT
+DOMAIN-SUFFIX,mdt.qq.com,REJECT
+DOMAIN-SUFFIX,rqd.qq.com,REJECT
+DOMAIN-SUFFIX,tpns.tencent.com,REJECT

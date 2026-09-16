@@ -66,6 +66,27 @@ if (typeof $request !== 'undefined') {
                     if (wbtoken[i]) tokenArr.push(wbtoken[i]);
                     cookieArr.push(cookies[i] || '');
                 }
+                
+                // 清理：按 uid 去重 token（保留最后抓取的），cookie 与 token 对齐
+                // 解决「token 过期后重抓不断新增、旧数据残留」的问题
+                let seen = new Map();
+                for (let t of tokenArr) {
+                    if (!t) continue;
+                    let u = (t.match(/uid=(\d+)/) || [])[1] || t;
+                    seen.set(u, t);
+                }
+                let cleanTokens = Array.from(seen.values());
+                let cleanCookies = [];
+                for (let i = 0; i < cleanTokens.length; i++) {
+                    cleanCookies.push(cookieArr[i] || '');
+                }
+                tokenArr = cleanTokens;
+                cookieArr = cleanCookies;
+                // 仅 QuanX/Surge 回写持久化存储（Node 环境变量由用户自行管理）
+                if (!$.isNode()) {
+                    $.setdata(tokenArr.join('#'), 'sy_token_wb');
+                    $.setdata(cookieArr.join('#'), 'wb_cookie');
+                }
             }
 
             if (!tokenArr[0]) {
@@ -500,16 +521,20 @@ function GetCookie() {
         
         let existingTokens = $.getdata('sy_token_wb') || '';
         
-        // 精确匹配 uid，避免子串误判
-        let uidPattern = new RegExp(`uid=${uid}(?:&|$)`);
-        if (existingTokens && uidPattern.test(existingTokens)) {
-            $.log(`⏭️ 账号 ${uid} Token 已存在，跳过`);
+        // 按 uid 去重覆盖：同一账号重新抓取时用新 token 覆盖旧 token（旧 gsid 可能已过期）
+        let parts = existingTokens ? existingTokens.split('#').filter(Boolean) : [];
+        let uidPattern = new RegExp(`(?:^|&)uid=${uid}(?:&|$)`);
+        let idx = parts.findIndex(p => uidPattern.test(p));
+        if (idx >= 0) {
+            parts[idx] = token;
+            $.log(`🔄 账号 ${uid} Token 已更新（覆盖过期）`);
         } else {
-            let newTokens = existingTokens ? existingTokens + "#" + token : token;
-            $.setdata(newTokens, 'sy_token_wb');
+            parts.push(token);
             $.log(`✅ 账号 ${uid} Token 捕获成功`);
-            $.msg($.name, `获取微博Token: 成功`, `账号 ${uid}`);
         }
+        $.setdata(parts.join('#'), 'sy_token_wb');
+        $.setdata(uid, 'wb_last_uid');
+        $.msg($.name, `获取微博Token: 成功`, `账号 ${uid}`);
     }
     
     // --- 从 m.weibo.cn 捕获完整 Cookie（必须同时含 SUB 与 XSRF-TOKEN） ---
@@ -522,17 +547,30 @@ function GetCookie() {
         if (subMatch && xsrfMatch) {
             let subVal = subMatch[1];
             let existingCookies = $.getdata('wb_cookie') || '';
+            let ckParts = existingCookies ? existingCookies.split('#').filter(Boolean) : [];
             
-            if (existingCookies && existingCookies.includes(subVal)) {
-                $.log(`⏭️ 账号 Cookie 已存在，跳过`);
+            // 用最近活跃 uid 对齐 token 位置，实现「同账号覆盖」
+            let lastUid = $.getdata('wb_last_uid') || '';
+            let tokens = ($.getdata('sy_token_wb') || '').split('#').filter(Boolean);
+            let uidIdx = lastUid ? tokens.findIndex(t => new RegExp(`(?:^|&)uid=${lastUid}(?:&|$)`).test(t)) : -1;
+            
+            if (uidIdx >= 0) {
+                while (ckParts.length <= uidIdx) ckParts.push('');
+                ckParts[uidIdx] = cookieHeader;
+                $.log(`🔄 账号 ${lastUid} Cookie 已更新（覆盖过期）`);
             } else {
-                // 保存完整 Cookie Header，保证 H5 接口可用
-                let newCookies = existingCookies ? existingCookies + "#" + cookieHeader : cookieHeader;
-                $.setdata(newCookies, 'wb_cookie');
-                let count = newCookies.split('#').length;
-                $.log(`✅ 账号 Cookie ${count} 捕获成功`);
-                $.msg($.name, `获取微博Cookie: 成功`, `共 ${count} 个账号`);
+                // 退化为 SUB 去重覆盖
+                let subIdx = ckParts.findIndex(c => c.includes(subVal));
+                if (subIdx >= 0) {
+                    ckParts[subIdx] = cookieHeader;
+                    $.log(`🔄 Cookie 已更新`);
+                } else {
+                    ckParts.push(cookieHeader);
+                    $.log(`✅ Cookie 捕获成功`);
+                }
             }
+            $.setdata(ckParts.join('#'), 'wb_cookie');
+            $.msg($.name, `获取微博Cookie: 成功`, `共 ${ckParts.length} 个账号`);
         }
     }
 }

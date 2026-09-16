@@ -2,7 +2,7 @@
 脚本名称：微博签到 - 完整任务版
 脚本说明：微博每日签到 + 自动完成可执行任务，支持多账号
 环境变量：WB_TOKEN、WB_COOKIE（青龙）
-更新时间：2026-06-28
+更新时间：2026-09-16（修复 Cookie 捕获 & aid）
 ====================================================================================================
 配置 (Surge)
 [MITM]
@@ -10,8 +10,8 @@ api.weibo.cn
 m.weibo.cn
 
 [Script]
-获取微博Token = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/\d\/users\/show,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
-获取微博Cookie = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/2\/logservice\/attach,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
+获取微博Token = type=http-request,pattern=^https:\/\/api\.weibo\.cn\/\d+\/users\/show,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
+获取微博Cookie = type=http-request,pattern=^https:\/\/m\.weibo\.cn\/c\/checkin,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
 
 新浪微博 = type=cron,cronexp=15 8 * * *,timeout=120,script-path=https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js,script-update-interval=0
 ----------------------------------------------------------------------------------------------------
@@ -21,8 +21,8 @@ api.weibo.cn
 m.weibo.cn
 
 [rewrite_local]
-^https:\/\/api\.weibo\.cn\/\d\/users\/show url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
-^https:\/\/api\.weibo\.cn\/2\/logservice\/attach url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
+^https:\/\/api\.weibo\.cn\/\d+\/users\/show url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
+^https:\/\/m\.weibo\.cn\/c\/checkin url script-request-header https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js
 
 [task_local]
 15 8 * * * https://raw.githubusercontent.com/Zz1xuan/ONE/main/Task/WeiBo/weibo_sign.js, tag=新浪微博, enabled=true
@@ -482,12 +482,15 @@ function sysNotice(cookie, st) {
     });
 }
 
-// ==================== Cookie/Token 获取（修复去重） ====================
+// ==================== Cookie/Token 获取（修复 2026-09） ====================
 function GetCookie() {
-    // --- 从 URL 捕获 Token (gsid) ---
+    // --- 从 URL 捕获 Token (gsid + aid) ---
     if ($request && $request.method != 'OPTIONS' && $request.url.indexOf("gsid=") > -1) {
         const url = $request.url;
         let token = url.match(/from=\w+/) + url.match(/&uid=\d+/) + url.match(/&gsid=[_a-zA-Z0-9-]+/) + url.match(/&s=\w+/);
+        // 新增：捕获 aid（H5 任务/签到信息接口必需）
+        let aidMatch = url.match(/[?&]aid=([^&]+)/);
+        if (aidMatch) token += '&aid=' + aidMatch[1];
         let uid = (token.match(/uid=(\d+)/) || [])[1];
         
         if (!uid) {
@@ -497,7 +500,7 @@ function GetCookie() {
         
         let existingTokens = $.getdata('sy_token_wb') || '';
         
-        // 修复：精确匹配 uid，避免子串误判
+        // 精确匹配 uid，避免子串误判
         let uidPattern = new RegExp(`uid=${uid}(?:&|$)`);
         if (existingTokens && uidPattern.test(existingTokens)) {
             $.log(`⏭️ 账号 ${uid} Token 已存在，跳过`);
@@ -509,31 +512,22 @@ function GetCookie() {
         }
     }
     
-    // --- 从 Header Cookie 捕获 SUB ---
+    // --- 从 m.weibo.cn 捕获完整 Cookie（必须同时含 SUB 与 XSRF-TOKEN） ---
     if ($request && $request.method != 'OPTIONS' && $request.headers && $request.headers.Cookie) {
         let cookieHeader = $request.headers.Cookie;
-        let subMatch = cookieHeader.match(/SUB=([^;]+)/);
-        let subpMatch = cookieHeader.match(/SUBP=([^;]+)/);
-        let scfMatch = cookieHeader.match(/SCF=([^;]+)/);
-        let xsrfMatch = cookieHeader.match(/XSRF-TOKEN=([^;]+)/);
+        let subMatch = cookieHeader.match(/(?:^|;\s*)SUB=([^;]+)/);
+        let xsrfMatch = cookieHeader.match(/(?:^|;\s*)XSRF-TOKEN=([^;]+)/);
         
-        if (subMatch) {
-            // 保存完整的 Cookie（SUB + SCF + SUBP + XSRF-TOKEN）
-            let importantCookies = [];
-            if (subMatch) importantCookies.push(`SUB=${subMatch[1]}`);
-            if (subpMatch) importantCookies.push(`SUBP=${subpMatch[1]}`);
-            if (scfMatch) importantCookies.push(`SCF=${scfMatch[1]}`);
-            if (xsrfMatch) importantCookies.push(`XSRF-TOKEN=${xsrfMatch[1]}`);
-            
-            let fullCookie = importantCookies.join('; ');
+        // 旧接口 logservice/attach 已不再携带 SUB，改从 m.weibo.cn 捕获
+        if (subMatch && xsrfMatch) {
+            let subVal = subMatch[1];
             let existingCookies = $.getdata('wb_cookie') || '';
             
-            // 修复：精确匹配 SUB 值
-            let subVal = subMatch[1];
             if (existingCookies && existingCookies.includes(subVal)) {
                 $.log(`⏭️ 账号 Cookie 已存在，跳过`);
             } else {
-                let newCookies = existingCookies ? existingCookies + "#" + fullCookie : fullCookie;
+                // 保存完整 Cookie Header，保证 H5 接口可用
+                let newCookies = existingCookies ? existingCookies + "#" + cookieHeader : cookieHeader;
                 $.setdata(newCookies, 'wb_cookie');
                 let count = newCookies.split('#').length;
                 $.log(`✅ 账号 Cookie ${count} 捕获成功`);

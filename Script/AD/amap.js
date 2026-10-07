@@ -292,20 +292,24 @@ if (path === "/ws/aos/perception/publicTravel/beforeNavi") {
   }
 
 } else if (path === "/ws/shield/dsp/profile/index/nodefaasv3") {
-  // 我的页面
+  // 我的页面：保留足迹和基础功能入口，移除活动推广及内容流
   if (obj?.data) {
     if (obj?.data?.tipData) {
       delete obj.data.tipData;
     }
-    // delete obj.data.footPrintV2; // 足迹
     if (obj?.data?.memberInfo) {
-      delete obj.data.memberInfo; // 成就勋章 lv1见习达人
+      delete obj.data.memberInfo; // 成就勋章及会员运营信息
     }
     if (obj?.data?.topMixedCard) {
-      delete obj.data.topMixedCard; // 顶部足迹、贡献卡片
+      delete obj.data.topMixedCard; // 顶部运营卡片
     }
     if (obj?.data?.cardList?.length > 0) {
-      obj.data.cardList = obj.data.cardList.filter((i) => i?.dataKey === "MyOrderCard");
+      const keepCards = new Set([
+        "MineNewFootprintCard", // 足迹
+        "MineNewBEntranceCardV3", // 订单、收藏、待评价
+        "MineNewBEntranceCardV4" // 订单、收藏、待评价
+      ]);
+      obj.data.cardList = obj.data.cardList.filter((i) => keepCards.has(i?.dataKey));
     }
   }
 
@@ -320,7 +324,7 @@ if (path === "/ws/aos/perception/publicTravel/beforeNavi") {
     "amapCoin",
     "favorites_info", // 收藏页顶部横图推广
     "feedback_banner", // 店主专属通道
-    "footprint", // 足迹
+    // "footprint", // 足迹配置需保留，否则可能影响足迹页面
     "his_input_tip",
     "home_business_position_config", // 首页右上角动图
     "hotel_activity",

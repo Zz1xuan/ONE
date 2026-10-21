@@ -1,5 +1,5 @@
 # 通用广告关键词
-DOMAIN-KEYWORD,adservice
+# DOMAIN-KEYWORD,adservice  # 暂停：可能影响广告落地页跳转
 
 # 360 / 系统组件 / 上报
 DOMAIN,cmt.comp.360os.com

@@ -1,5 +1,5 @@
 /**
- * AI 节点检测 v1.0.0 — Quantumult X event-interaction
+ * AI 节点检测 v1.0.1 — Quantumult X event-interaction
  * 原创实现；交互形式参考 KOP-XIAO/QuantumultX streaming-ui-check.js。
  * 不读取或捕获账号、Cookie 或真实 API Key，不发送推理请求，不查询第三方 IP 库。
  * 建议 QX build 934+：显式关闭自动 Cookie；更旧版本可能忽略该选项。
@@ -30,7 +30,7 @@
     if (finished) return;
     finished = true;
     if (deadline) clearTimeout(deadline);
-    $done({ title: TITLE, htmlMessage: '<div style="font-family:-apple-system;font-size:15px;line-height:1.65">' + html + '</div>' });
+    $done({ title: TITLE, htmlMessage: '<p style="text-align:center;font-family:-apple-system;font-size:14px;line-height:1.5;margin:0;padding:8px 0">' + html + '</p>' });
   }
   function limited(promise, ms) {
     return new Promise(function (resolve, reject) {
@@ -98,9 +98,20 @@
     return m ? m[1] : '';
   }
   function format(r) {
-    const styles = { edge: ['#16803c', '🟢'], web: ['#16803c', '🟢'], blocked: ['#c0392b', '🚫'], warn: ['#a86b00', '⚠️'], unknown: ['#777777', '❔'] };
-    const s = styles[r.type] || styles.unknown;
-    return '<font color="' + s[0] + '">' + s[1] + ' ' + esc(r.text) + '</font><br/><font color="#888888" size="2">' + (r.code ? 'HTTP ' + r.code + ' · ' : '') + r.ms + ' ms</font>';
+    const colors = { edge: '#16803c', web: '#16803c', blocked: '#c0392b', warn: '#a86b00', unknown: '#777777' };
+    let label = '待确认';
+    if (r.type === 'edge') label = '鉴权可达';
+    else if (r.type === 'web') label = '有响应';
+    else if (r.type === 'blocked') label = '地区受限';
+    else if (/安全验证/.test(r.text)) label = '需验证';
+    else if (/重定向/.test(r.text)) label = '跳转';
+    else if (/限流/.test(r.text)) label = '限流';
+    else if (/超时/.test(r.text)) label = '超时';
+    else if (/网络/.test(r.text)) label = '网络异常';
+    else if (r.code === 403) label = '拒绝访问';
+    else if (r.code >= 500) label = '服务异常';
+    else if (/地区|限制页面/.test(r.text)) label = '疑似限制';
+    return '<font color="' + (colors[r.type] || colors.unknown) + '">' + label + '</font>';
   }
   async function runProvider(p, policy) {
     const responses = await Promise.all([
@@ -131,10 +142,10 @@
     const start = Date.now();
     const all = await Promise.all([Promise.all(providers.map(function (p) { return runProvider(p, policy); })), chain(policy)]);
     const rows = all[0];
-    const reached = rows.filter(function (r) { return r.api.type === 'edge'; }).length;
-    const html = '<b>🤖 AI 入口检测 · v1.0.0</b><br/><font color="#888888" size="2">选定策略：' + esc(all[1]) + '</font><hr/>' + rows.map(function (r) {
-      return '<b>' + esc(r.name) + '</b>' + (r.region ? ' <font color="#888888">[' + esc(r.region) + ']</font>' : '') + '<br/>网页：' + format(r.web) + '<br/>API：' + format(r.api);
-    }).join('<hr/>') + '<hr/><b>鉴权 / 列表入口可达：' + reached + '/4</b><br/><font color="#888888" size="2">' + esc(new Date().toISOString()) + ' · 总耗时 ' + (Date.now() - start) + ' ms<br/>地区仅来自对应域名的 CDN Trace，不代表支持资格。<br/>无需账号或密钥；未验证真实登录、对话、模型权限。网页与 API 结果独立，401/无效密钥不等于已解锁。策略组可能多出口；分流/DNS/重写仍可能影响结果。建议 QX build 934+（关闭自动 Cookie）。</font>';
+    const html = rows.map(function (r) {
+      const name = r.name.split(' / ')[0];
+      return '<b>' + esc(name) + '</b>' + (r.region ? ' [' + esc(r.region) + ']' : '') + '：网页 ' + format(r.web) + ' · API ' + format(r.api);
+    }).join('<br/><br/>') + '<br/><br/><font color="#6959CD">节点 ➟ ' + esc(all[1]) + '</font><br/><font color="#888888" size="2">可达 ≠ 解锁；[地区]仅指网页域名出口。<br/>v1.0.1 · ' + ((Date.now() - start) / 1000).toFixed(1) + ' 秒</font>';
     end(html);
   }
   // 仅供离线回归测试；QX 环境不设置此变量。

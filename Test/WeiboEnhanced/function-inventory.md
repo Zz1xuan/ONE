@@ -9,7 +9,7 @@
 | 配置键 | 匹配路径/范围 | 默认 | 关闭后的含义 |
 |---|---|---:|---|
 | enabled | 全部请求 | true | 所有请求放行 |
-| injectSettingsEntry | 合格的 `/2/profile/me` 主页面网格 | false | 不注入实验网页格；与 `profileMe` 独立 |
+| injectSettingsEntry | 合格的 `/2/profile/me` 主页面网格 | true | 不注入实验网页格；与 `profileMe` 独立，已有显式 false 仍优先 |
 | avatarCleanup | 原脚本所有 `removeAvatar` 调用点 | true | 保留头像扩展/挂件、用户 icons/mbtype、按钮/cardid 等整组字段 |
 | feedCleanup | 原脚本 `removeFeedAd` 调用点 | true | 保留商品橱窗/关注按钮等辅助字段；不影响外层 item 筛选 |
 | voteCleanup | `removeVoteInfo` 调用点 | true | 保留常规 page_info.media_info.vote_info；其它直接写入的特殊投票字段仍由所在接口分组控制 |

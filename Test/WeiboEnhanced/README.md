@@ -13,7 +13,7 @@
 4. **我的页入口默认开启**（`injectSettingsEntry=true`）：没有持久配置或配置缺少该键时，刷新微博“我的”页即可尝试显示，同时保持总开关开启。**已有持久配置中显式 `false` 会继续优先生效，不自动迁移、不强制重开**；请到上述虚拟网页开启“设置入口”并点“保存”，或确认后“恢复默认”（会同时重置其它开关）。仅在返回结构有已知网格及公共图标时追加“增强设置·实验”，不保证所有微博版本都有该结构。
 5. 设置入口使用 `sinaweibo://browser?url=` 网页跳转，不依赖或猜测原生 JS Bridge。`profileMe=false` 时仍可独立注入入口；`enabled=false` 则整个包装脚本放行，也不注入入口。无入口时仍可回到 Safari 的上述虚拟地址设置。
 
-虚拟配置 API：`https://api.weibo.cn/minis-enhanced-v2/config`，GET/POST；存储键：`minis.weibo.enhanced.config.v2`，与 V1 隔离，不自动迁移。不要给虚拟地址追加查询参数，路由严格比较完整 URL。
+虚拟配置 API：`https://api.weibo.cn/minis-enhanced-v2/config`，GET/POST；存储键：`minis.weibo.enhanced.config.v2`，与 V1 隔离，不自动迁移。**配置 API 必须使用不带 query 的完整地址**，仍精确匹配。设置页地址本身可由微博内置浏览器经 `weibo.cn/sinaurl` 自动追加 `ua`/`from` query：订阅规则允许 query 进入设置脚本，脚本只接受这两个参数名，不记录或保存参数值，未知或格式错误的参数返回 400。页面请求配置 API 时使用固定无 query 地址，不继承设置页 query。Safari 可直接输入无 query 的设置地址。
 
 直接打开 raw `settings.html`、GitHub 页面或下载到本地的 HTML **不能代替虚拟设置页**，因为 API 依赖同设备 QX 回显和本机 `$prefs`。API 没有对外身份认证，只适用于受控本地规则实验，不可作为公网配置服务部署；不上传账号、Cookie 或配置值。
 
@@ -29,7 +29,7 @@
 
 ## 文件与可复现构建
 
-- `WeiBo.conf`：实验版订阅；19 处原脚本引用（含原有 1 条注释规则）全部指向本目录增强脚本；额外两条精确虚拟网页/API 回显规则。
+- `WeiBo.conf`：实验版订阅；19 处原脚本引用（含原有 1 条注释规则）全部指向本目录增强脚本；设置页虚拟路由允许微博浏览器追加 query 并由脚本验证，配置 API 虚拟路由仍严格无 query。
 - `wb-enhanced-v2.js`、`settings-api-v2.js`：运行产物。
 - `settings.html`、`common.js`、`settings-entry.js`、`settings-api.template.js`：页面、67 键契约、入口、API 源码。
 - `source/wb.original.js`、`source/WeiBo.original.conf`：原始基线副本，仅用于复现；**不要单独启用基线配置**。
@@ -49,7 +49,7 @@ node release-tests.js
 
 构建检查 5 个唯一字面锚点。VM 测试覆盖 36 接口关闭路径、26 菜单默认对照与开关、67 键契约、精确 API 网页/配置、损坏配置、入口与精简解耦、分页安全和 single-done。发布测试另检查链接、路由匹配、页面键、恢复默认、构建可复现性。测试成功不等同于真机验证或所有 endpoint 字段正反样本全覆盖。
 
-首次发布（入口默认关闭时）还运行了私有 HAR 内存测试：4 个相关响应，2 个主页面结果与原脚本一致，2 个分页保留，2 个主页面显式开启后成功追加入口。本次仅将入口默认改为开启，未重新读取 HAR；合成测试中与原脚本对照时显式关闭入口，另验证默认注入、已有显式关闭优先及无写入行为。目录**不包含 HAR、真实响应 fixtures、个人路径、带私有 URL/query 的报告或 ZIP**；HAR 测试脚本本身不作为发布文件提供。
+本次设置页空白修复在本地用新 HAR **仅内存回放**验证：原 `settings$` 不匹配微博内置浏览器追加 `ua/from` 后的设置请求，修复后本地 VM 对应请求返回 HTML；HAR 文件、真实响应、查询值和带个人路径的回放脚本均不发布。此前还曾运行私有 HAR 内存测试：4 个相关响应，2 个主页面结果与原脚本一致，2 个分页保留，2 个主页面显式开启后成功追加入口。目录**不包含 HAR、真实响应 fixtures、个人路径、带私有 URL/query 的报告或 ZIP**。
 
 ## 已知限制与退出实验
 

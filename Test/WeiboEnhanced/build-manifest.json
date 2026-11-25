@@ -16,8 +16,8 @@
   },
   "artifacts": {
     "wb-enhanced-v2.js": {
-      "bytes": 62993,
-      "sha256": "ca237742abe6d70da91ef8ecc430f7483390fd4deb37dd51b2292e4d1b144d1c"
+      "bytes": 64513,
+      "sha256": "1341d93c0b51f7594b7b2838a7a3e69460ab9facc506ac6c11c69ee29aaa7248"
     },
     "settings-api-v2.js": {
       "bytes": 19633,

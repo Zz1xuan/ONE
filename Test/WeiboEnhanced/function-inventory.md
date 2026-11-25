@@ -9,7 +9,7 @@
 | 配置键 | 匹配路径/范围 | 默认 | 关闭后的含义 |
 |---|---|---:|---|
 | enabled | 全部请求 | true | 所有请求放行 |
-| injectSettingsEntry | 合格的 `/2/profile/me` 主页面网格 | true | 不注入实验网页格；与 `profileMe` 独立，已有显式 false 仍优先 |
+| injectSettingsEntry | 合格的 `/2/profile/me` 主页面网格 + manage 模板 | true | 不注入独立原生设置行；与 `profileMe` 独立，已有显式 false 仍优先 |
 | avatarCleanup | 原脚本所有 `removeAvatar` 调用点 | true | 保留头像扩展/挂件、用户 icons/mbtype、按钮/cardid 等整组字段 |
 | feedCleanup | 原脚本 `removeFeedAd` 调用点 | true | 保留商品橱窗/关注按钮等辅助字段；不影响外层 item 筛选 |
 | voteCleanup | `removeVoteInfo` 调用点 | true | 保留常规 page_info.media_info.vote_info；其它直接写入的特殊投票字段仍由所在接口分组控制 |
@@ -87,4 +87,4 @@
 
 接口开关按原脚本的顶层 URL 分支成组，不是将每个 `delete`、每个字段或过滤谓词各做一个开关。例如 `/2/push/active` 内各弹窗字段同属一组，`/2/statuses/extend` 中扩展字段和菜单分别由接口组及 26 个菜单键控制。接口关闭是整条对应 URL 分支原样放行。`removeAvatar`/`removeFeedAd`/`removeVoteInfo` 是跨分支共享字段组；vote 的特殊直接写入代码仍归对应 endpoint 组。若要做到每个内联删除目的独立控制，尚需更多配置键、逐点锚点与每项样本测试；本版本不宣称已对所有内联删改实现单项开关。
 
-HAR 验证已针对已知 profile/me 关注分页修正：只有 `items` 存在且命中 `profileme_mine`、`100505_-_top8`、`100505_-_manage`、`100505_-_manage2` 任一结构标记才运行主页面原处理；分页/未知结构原样放行。该判断是安全启发式，不保证未来字段变更。入口开关仍可独立于精简开关，在有 `100505_-_top8` 网格和公共无 query 图标时追加。
+HAR 验证已针对已知 profile/me 关注分页修正：只有 `items` 存在且命中 `profileme_mine`、`100505_-_top8`、`100505_-_manage`、`100505_-_manage2` 任一结构标记才运行主页面原处理；分页/未知结构原样放行。该判断是安全启发式，不保证未来字段变更。入口开关独立于精简开关；仅在唯一 `100505_-_top8` 网格与唯一 `100505_-_manage` / `cardEditor` 安全模板齐全时，在网格后插入独立“增强设置”行，保留安全箭头。只复制白名单标量及有限展示字段；不复制业务 click、actionlog、顶层 style/images 或用户资料。仅移除本入口唯一 ID 的旧第五格/重复顶层行，其它项不动；结构缺失或歧义不注入。

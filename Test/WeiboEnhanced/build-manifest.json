@@ -16,12 +16,12 @@
   },
   "artifacts": {
     "wb-enhanced-v2.js": {
-      "bytes": 64513,
-      "sha256": "1341d93c0b51f7594b7b2838a7a3e69460ab9facc506ac6c11c69ee29aaa7248"
+      "bytes": 176879,
+      "sha256": "869a27e05ddc6ced130580b6d0e92170df86ad3d18218f85fb995040ba0eacfd"
     },
     "settings-api-v2.js": {
-      "bytes": 19633,
-      "sha256": "727b903d931bba3532c157afb6e408d783a667073a369943a48d8b4ab378925f"
+      "bytes": 219098,
+      "sha256": "a91fd5f9315f71349c2e05578d9d004302191750e40279eb6bce5c5780cba1c8"
     }
   }
 }

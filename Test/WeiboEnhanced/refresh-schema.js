@@ -1,0 +1,14 @@
+'use strict';const fs=require('fs'),p=require('path'),vm=require('vm'),root=__dirname,read=n=>fs.readFileSync(p.join(root,n),'utf8');
+const {transform}=require('./transform'),fields=transform(read('source/wb.original.js')).fields,typed=read('typed-schema.js');const extras=vm.runInNewContext(typed+';EXTRA_BOOLEANS');for(const [key,description,scope,candidate]of extras)fields.push({key,type:'boolean',default:false,kind:'explicit',target:description,scope,line:0,operation:'applyFineCustom',evidence:'HAR-structure',candidate,description});
+const exercised=new Set(JSON.parse(read('observable-required.json')));for(const f of fields)if(exercised.has(f.key))f.evidence='HAR-replayed-change';
+fs.writeFileSync(p.join(root,'custom-fields.json'),JSON.stringify(fields,null,2)+'\n');
+const target=p.join(root,'common.js'),s=read('common.js'),start=s.indexOf('const CUSTOM_FIELDS='),end=s.indexOf('\nconst MAX_BYTES=',start);if(start<0||end<0)throw Error('schema anchors');
+const prefix=s.slice(0,start)+'const CUSTOM_FIELDS='+JSON.stringify(fields)+';\n'+typed+'\nconst CUSTOM_DEFAULTS=Object.freeze({...Object.fromEntries(CUSTOM_FIELDS.map(x=>[x.key,x.default])),...typedDefaults()});\nconst DEFAULTS=Object.freeze({...LEGACY_DEFAULTS,custom:CUSTOM_DEFAULTS});';
+let tail=s.slice(end);tail=tail.slice(0,tail.indexOf('function validateConfig'))+`function validateConfig(v,legacy=false){if(!plain(v))throw Error('object');for(const k of Object.keys(v)){if(k==='custom'&&!legacy){if(!plain(v.custom))throw Error('custom object');for(const n of Object.keys(v.custom)){if(Object.prototype.hasOwnProperty.call(TYPED_SCHEMA,n))validateTyped(n,v.custom[n]);else if(!Object.prototype.hasOwnProperty.call(CUSTOM_DEFAULTS,n)||typeof v.custom[n]!=='boolean')throw Error('custom bool');}}else if(!Object.prototype.hasOwnProperty.call(LEGACY_DEFAULTS,k)||typeof v[k]!=='boolean')throw Error('legacy bool');}return v}
+function parseConfig(t,legacy=false){if(typeof t!=='string'||byteLength(t)>MAX_BYTES)throw Error('invalid size');return validateConfig(JSON.parse(t),legacy)}
+function normalize(v){return {...LEGACY_DEFAULTS,...v,custom:{...CUSTOM_DEFAULTS,...v.custom}}}
+function missing(v){return v===null||v===undefined||v===''}
+function readConfig(){const v=$prefs.valueForKey(STORE_KEY);if(!missing(v))return normalize(parseConfig(v));const old=$prefs.valueForKey(LEGACY_STORE_KEY);return normalize(missing(old)?{}:parseConfig(old,true))}
+function mergeConfig(base,patch){validateConfig(patch);const out=normalize({...base,...patch,custom:{...base.custom,...patch.custom}});if(byteLength(JSON.stringify(out))>MAX_BYTES)throw Error('merged size');return out}
+`;
+fs.writeFileSync(target,prefix+tail);console.log('refreshed',fields.length,'bool +',Object.keys(vm.runInNewContext(typed+';TYPED_SCHEMA')).length,'typed');

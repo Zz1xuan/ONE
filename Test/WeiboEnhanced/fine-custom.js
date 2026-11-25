@@ -1,0 +1,40 @@
+/* Explicit fine mode reads original arrays; never reconstructs deleted business actions. */
+function applyFineCustom(input,original,url,c){
+ const x=c.custom||{};let out;try{out=JSON.parse(input.body);original=JSON.parse(original)}catch(_){return input}
+ const clone=v=>JSON.parse(JSON.stringify(v)),has=(o,k)=>Object.prototype.hasOwnProperty.call(o||{},k);
+ function ordered(list,ids,key){if(!Array.isArray(list))return list;const ranks=new Map((ids||[]).map((id,i)=>[id,i]));return list.map((v,i)=>({v,i})).sort((a,b)=>(ranks.has(key(a.v))?ranks.get(key(a.v)):1e6)-(ranks.has(key(b.v))?ranks.get(key(b.v)):1e6)||a.i-b.i).map(x=>x.v)}
+ function visible(list,map,key){return Array.isArray(list)?list.filter(v=>!(v&&has(map,key(v))&&map[key(v)]===false)):list}
+ function textSlot(item,label,grid=false){if(typeof label!=='string')return;if(grid&&item.content&&typeof item.content.content==='string')item.content.content=label;else if(item.title&&typeof item.title.content==='string')item.title.content=label;}
+ function mergeItems(raw,processed,known,key){const by=new Map((processed||[]).map(v=>[key(v),v]));return raw.map(v=>known.includes(key(v))&&by.has(key(v))?clone(by.get(key(v))):clone(v))}
+ if(/\/2\/profile\/me(?:\?|$)/.test(url)&&c.profileMe&&Array.isArray(original.items)){
+  if(x.fineProfile&&original.items.filter(v=>v&&v.itemId==='100505_-_top8').length===1){
+   let list=mergeItems(original.items,out.items,MODULE_IDS,v=>v&&v.itemId);const grid=list.find(v=>v.itemId==='100505_-_top8'),rawGrid=original.items.find(v=>v&&v.itemId==='100505_-_top8');
+   if(grid&&Array.isArray(rawGrid.items)){grid.items=visible(clone(rawGrid.items),x.gridVisible,v=>v&&v.itemId);grid.items=ordered(grid.items,x.gridOrder,v=>v&&v.itemId);for(const cell of grid.items)if(GRID_IDS.includes(cell.itemId))textSlot(cell,(x.gridLabels||{})[cell.itemId],true)}
+   list=visible(list,x.moduleVisible,v=>v&&v.itemId);list=ordered(list,x.moduleOrder,v=>v&&v.itemId);for(const item of list)if(MODULE_IDS.includes(item.itemId)&&item.itemId!=='profileme_mine')textSlot(item,(x.moduleLabels||{})[item.itemId]);if(list.length)out.items=list;
+  }
+  if(x.hideProfileBadges&&Array.isArray(out.items))for(const module of out.items)if(module&&module.itemId==='100505_-_top8'&&Array.isArray(module.items))for(const item of module.items)if(item&&GRID_IDS.includes(item.itemId)){if(item.dot&&typeof item.dot.active==='boolean')item.dot.active=false;if(item.titleDot&&typeof item.titleDot.active==='boolean')item.titleDot.active=false;delete item.bottomRightBadge;}
+ }
+ if(/\/2\/groups\/allgroups\/v2(?:\?|$)/.test(url)&&c.tabs&&x.fineTabs&&Array.isArray(original.pageDatas)){
+  let tabs=clone(original.pageDatas);tabs=visible(tabs,x.tabVisible,v=>v&&v.pageDataType);if(!tabs.length)tabs=clone(original.pageDatas);tabs=ordered(tabs,x.tabOrder,v=>v&&v.pageDataType);
+  for(const tab of tabs){if(TAB_IDS.includes(tab.pageDataType)&&typeof (x.tabLabels||{})[tab.pageDataType]==='string'&&typeof tab.pageDataTitle==='string')tab.pageDataTitle=x.tabLabels[tab.pageDataType];if(Array.isArray(tab.categories))for(const cat of tab.categories)if(cat&&cat.title==='默认分组'&&Array.isArray(cat.pageDatas)){
+   let list=visible(cat.pageDatas,x.subtabVisible,v=>v&&v.title);if(!list.length)list=cat.pageDatas;list=ordered(list,x.subtabOrder,v=>v&&v.title);for(const v of list)if(SUBTAB_IDS.includes(v.title)&&typeof (x.subtabLabels||{})[v.title]==='string')v.title=x.subtabLabels[v.title];cat.pageDatas=list;
+  }}out.pageDatas=tabs;
+ }
+ function menuList(raw,modern=false){if(!Array.isArray(raw))return raw;let list=clone(raw).filter(v=>{if(!v)return true;if(has(x.menuVisible,v.type))return x.menuVisible[v.type];if(modern&&has(LEGACY_DEFAULTS,'menu_'+v.type))return c['menu_'+v.type];return true});list=ordered(list,x.menuOrder,v=>v&&v.type);for(const v of list)if(v&&Array.isArray(v.state_config))for(const state of v.state_config){const label=(x.menuLabels||{})[state&&state.type];if(typeof label==='string'&&typeof state.name==='string')state.name=label;}return list}
+ if(/\/2\/statuses\/container_detail(?:\?|$)/.test(url)&&c.detail&&x.fineMenus&&out.detailInfo&&out.detailInfo.extend&&original.detailInfo&&original.detailInfo.extend)out.detailInfo.extend.custom_action_list=menuList(original.detailInfo.extend.custom_action_list,true);
+ if(/\/2\/statuses\/extend(?:\?|$)/.test(url)&&c.extend&&(Object.keys(x.menuVisible||{}).length||(x.menuOrder||[]).length||Object.keys(x.menuLabels||{}).length))out.custom_action_list=menuList(original.custom_action_list,true);
+ if(/\/2\/search\/finder(?:\?|$)/.test(url)&&c.search&&x.preserveFinderHeader&&original.header&&original.header.data&&Array.isArray(original.header.data.items)){if(!out.header)out.header={};if(!out.header.data)out.header.data={};out.header.data.items=clone(original.header.data.items)}
+ if(/\/2\/flowpage(?:\?|$)/.test(url)&&c.flowpage&&x.hideFlowBanners&&out.pageHeader&&out.pageHeader.data)for(const k of ['banners','banners_fold','banners_large'])if(Array.isArray(out.pageHeader.data[k]))out.pageHeader.data[k]=[];
+ if(/\/2\/push\/active(?:\?|$)/.test(url)&&c.pushActive){if(x.hideFeedRedpacket)delete out.feed_redpacket;if(Array.isArray(original.feed_common_negative)){let list=visible(clone(original.feed_common_negative),x.negativeVisible,v=>v&&v.type);out.feed_common_negative=ordered(list,x.negativeOrder,v=>v&&v.type)}}
+ if(/\/2\/client\/publisher_list(?:\?|$)/.test(url)&&c.publisher&&Array.isArray(original.elements)&&Object.keys(x.publisherVisible||{}).length){const list=visible(clone(original.elements),x.publisherVisible,v=>v&&v.app_name);if(list.length)out.elements=list;}
+ if(/\/2\/messageflow\/notice(?:\?|$)/.test(url)&&c.notice&&x.hideNoticeMaterials&&out.notice_settings&&Array.isArray(out.notice_settings.remind_materiels))out.notice_settings.remind_materiels=[];
+ if(/\/2\/direct_messages\/user_list(?:\?|$)/.test(url)&&c.directMessages){if(x.hideClearTrashButton&&typeof out.show_clear_trash_button==='number')out.show_clear_trash_button=0;if(x.hidePublicReminderTab&&typeof out.public_messge_remind_tab==='number')out.public_messge_remind_tab=0;}
+ if(/\/2\/flowpage(?:\?|$)/.test(url)&&c.flowpage&&x.hideFlowTools){if(out.pageTabBar&&out.pageTabBar.data&&typeof out.pageTabBar.data.show_menu==='number')out.pageTabBar.data.show_menu=0;if(out.pageTitle&&out.pageTitle.data&&Array.isArray(out.pageTitle.data.custom_buttons))out.pageTitle.data.custom_buttons=[];}
+ if(/\/2\/search\/hot_word(?:\?|$)/.test(url)&&c.search&&x.hideHotWords&&Array.isArray(out.data))out.data=[];
+ if(/\/2\/push\/active(?:\?|$)/.test(url)&&c.pushActive&&x.hideComposerEntry&&out.publisher_button_conf&&typeof out.publisher_button_conf.show_composer_enter_in_feed==='number')out.publisher_button_conf.show_composer_enter_in_feed=0;
+ if(/\/2\/statuses\/(?:container_timeline_hot|unread_hot_timeline)(?:\?|$)/.test(url)&&c.hotTimeline&&Array.isArray(out.items))for(const item of out.items)if(item&&item.category==='feed'&&item.data){if(x.hideHotExtraButton)delete item.data.extra_button_info;if(x.hideHotContinueTag)delete item.data.continue_tag;}
+ if(/\/2\/search\/finder(?:\?|$)/.test(url)&&c.search&&(x.preserveFinderMoreChannels||x.preserve__2_search_finder_750||x.preserve__2_search_finder_856)&&original.channelInfo&&has(original.channelInfo,'moreChannels')){if(!out.channelInfo)out.channelInfo={};out.channelInfo.moreChannels=clone(original.channelInfo.moreChannels);if(has(original.channelInfo,'channelConfig'))out.channelInfo.channelConfig=clone(original.channelInfo.channelConfig)}
+ if(/\/2\/push\/active(?:\?|$)/.test(url)&&c.pushActive&&x.hideIconShortcuts&&Array.isArray(out.icon_shortcuts))out.icon_shortcuts=[];
+ if(/\/2\/messageflow\/notice(?:\?|$)/.test(url)&&c.notice&&Array.isArray(out.messages)&&Object.keys(x.noticeMenuVisible||{}).length)for(const message of out.messages){const button=message&&message.msg_card&&message.msg_card.button;if(button&&Array.isArray(button.mblog_menus_new))button.mblog_menus_new=visible(button.mblog_menus_new,x.noticeMenuVisible,v=>v&&v.type)}
+ return {...input,body:JSON.stringify(out)};
+}

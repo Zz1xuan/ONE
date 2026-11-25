@@ -1,0 +1,684 @@
+[
+  {
+    "id": "M01",
+    "area": "我的：顶层模块",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.items",
+      "$.items[].itemId",
+      "$.items[].display"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "fineProfile + moduleVisible/moduleOrder; protected mine/manage; unknown retained",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "M02",
+    "area": "我的：网格入口",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.items[].items",
+      "$.items[].items[].itemId"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "fineProfile + gridVisible/gridOrder; raw unique top8",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "M03",
+    "area": "我的：入口文字",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.items[].items[].content.content",
+      "$.items[].title.content",
+      "$.items[].header.title.content"
+    ],
+    "priority": "P0",
+    "status": "partial",
+    "implementation": "moduleLabels title.content and gridLabels content.content; username/header user text excluded",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "M04",
+    "area": "我的：入口图标",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.items[].items[].image.iconUrl",
+      "$.items[].rightIcon.iconUrl"
+    ],
+    "priority": "P1",
+    "status": "deferred",
+    "implementation": "arbitrary icon URLs not allowed",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "M05",
+    "area": "我的：入口跳转",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.items[].items[].click.modules[].scheme",
+      "$.items[].click.modules[].scheme"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "source fixed friends rewrite can be independently preserved; no target editor",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "M06",
+    "area": "我的：红点",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.items[].items[].dot.active",
+      "$.items[].items[].titleDot.active",
+      "$.items[].items[].bottomRightBadge"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "hideProfileBadges fixed grid dot/titleDot/bottomRightBadge",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "M07",
+    "area": "我的：会员装饰",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.vipHeaderBgImage",
+      "$.items[].header.vipView"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "per-field source preserve toggles VIP header/vipView/vipCenter/vipIcon",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "M08",
+    "area": "我的：布局样式",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.items[].style.column",
+      "$.items[].style.margin",
+      "$.items[].style.padding",
+      "$.items[].style.background"
+    ],
+    "priority": "P2",
+    "status": "partial",
+    "implementation": "manage style may be preserved; no arbitrary layout values",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "M09",
+    "area": "我的：管理行装饰",
+    "endpoint": "/2/profile/me",
+    "safe_field_paths": [
+      "$.items[].images",
+      "$.items[].style"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "independent preserve manage style/images",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "T01",
+    "area": "首页：顶部导航",
+    "endpoint": "/2/groups/allgroups/v2",
+    "safe_field_paths": [
+      "$.pageDatas",
+      "$.pageDatas[].pageDataType",
+      "$.pageDatas[].pageDataTitle"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "fineTabs + tabVisible/tabOrder/tabLabels fixed homeHot/homeFeed; empty fallback",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "T02",
+    "area": "首页：关注子分组",
+    "endpoint": "/2/groups/allgroups/v2",
+    "safe_field_paths": [
+      "$.pageDatas[].categories[].pageDatas",
+      "$.pageDatas[].categories[].pageDatas[].title"
+    ],
+    "priority": "P0",
+    "status": "partial",
+    "implementation": "fineTabs + fixed source-title subtab maps/order/labels, unknown user groups retained; stable subtype IDs not confirmed",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "T03",
+    "area": "首页：推荐频道管理",
+    "endpoint": "/2/groups/allgroups/v2",
+    "safe_field_paths": [
+      "$.pageDatas[].myCategory.pageDatas",
+      "$.pageDatas[].recommendCategory.pageDatas"
+    ],
+    "priority": "P1",
+    "status": "deferred",
+    "implementation": "myCategory/recommendCategory untouched; user channel IDs not accepted",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "T04",
+    "area": "首页：默认落地页",
+    "endpoint": "/2/groups/allgroups/v2",
+    "safe_field_paths": [
+      "$.defaultPageId",
+      "$.feed_default"
+    ],
+    "priority": "P2",
+    "status": "deferred",
+    "implementation": "default page ID not modified",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "F01",
+    "area": "发现：频道导航",
+    "endpoint": "/2/search/finder",
+    "safe_field_paths": [
+      "$.channelInfo.channels",
+      "$.channelInfo.channels[].title",
+      "$.channelInfo.channels[].scheme"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "source title/titleInfo/search background per-field preserve only; no channel editor",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "F02",
+    "area": "发现：头部卡片",
+    "endpoint": "/2/search/finder",
+    "safe_field_paths": [
+      "$.header.data.items",
+      "$.header.data.items[].items[].data.card_type"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "preserveFinderHeader restores original header items before destructive source stages",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "F03",
+    "area": "发现：更多频道入口",
+    "endpoint": "/2/search/finder",
+    "safe_field_paths": [
+      "$.channelInfo.moreChannels.payload.items"
+    ],
+    "priority": "P1",
+    "status": "implemented",
+    "implementation": "preserveFinderMoreChannels restores original moreChannels + channelConfig after both source deletion stages; either old preserve alias also restores both",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "H01",
+    "area": "热搜：导航频道",
+    "endpoint": "/2/flowpage",
+    "safe_field_paths": [
+      "$.channelInfo.channels",
+      "$.channelInfo.channels[].title",
+      "$.channelInfo.channels[].titleInfo.icon",
+      "$.channelInfo.channels[].scheme"
+    ],
+    "priority": "P1",
+    "status": "deferred",
+    "implementation": "no heat-search navigation editor",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "H02",
+    "area": "热搜：背景横幅",
+    "endpoint": "/2/flowpage",
+    "safe_field_paths": [
+      "$.pageHeader.data.banners",
+      "$.pageHeader.data.banners_fold",
+      "$.pageHeader.data.banners_large"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "hideFlowBanners atomic three-size arrays",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "H03",
+    "area": "热搜：卡片装饰/入口",
+    "endpoint": "/2/flowpage",
+    "safe_field_paths": [
+      "$.items[].items[].data.card_type",
+      "$.items[].items[].data.icon",
+      "$.items[].items[].data.display_arrow"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "source promotion/stick filtering toggles; icon/arrow editing absent",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "H04",
+    "area": "热搜：页级工具菜单",
+    "endpoint": "/2/flowpage",
+    "safe_field_paths": [
+      "$.pageTabBar.data.show_menu",
+      "$.pageTabBar.data.menu_scheme",
+      "$.pageTitle.data.custom_buttons"
+    ],
+    "priority": "P1",
+    "status": "implemented",
+    "implementation": "hideFlowTools sets only show_menu=0 and custom_buttons=[]; schemes retained",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "H05",
+    "area": "热搜：搜索建议",
+    "endpoint": "/2/!/was/finder/searchbarchange",
+    "safe_field_paths": [
+      "$.suggestions",
+      "$.suggestions[].scheme",
+      "$.suggestions[].searchbar_bigday_ad"
+    ],
+    "priority": "P1",
+    "status": "deferred",
+    "implementation": "suggestions untouched and static reject may intercept",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "H06",
+    "area": "热搜：热词数据",
+    "endpoint": "/2/search/hot_word",
+    "safe_field_paths": [
+      "$.data"
+    ],
+    "priority": "P2",
+    "status": "implemented",
+    "implementation": "hideHotWords clears whole data block; never edits rank/content",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "N01",
+    "area": "消息：提醒素材展示",
+    "endpoint": "/2/messageflow/notice",
+    "safe_field_paths": [
+      "$.notice_settings.remind_materiels",
+      "$.notice_settings.remind_materiels[].icon",
+      "$.notice_settings.remind_materiels[].text"
+    ],
+    "priority": "P1",
+    "status": "implemented",
+    "implementation": "hideNoticeMaterials empties only decoration array",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "N02",
+    "area": "消息：消息卡反馈菜单",
+    "endpoint": "/2/messageflow/notice",
+    "safe_field_paths": [
+      "$.messages[].msg_card.button.mblog_menus_new"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "noticeMenuVisible controls three observed parent types in messages.msg_card.button.mblog_menus_new; duplicate types grouped; unknown/actions/states retained; no label/icon/order editor",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "N03",
+    "area": "私信：清理按钮显示",
+    "endpoint": "/2/direct_messages/user_list",
+    "safe_field_paths": [
+      "$.show_clear_trash_button"
+    ],
+    "priority": "P1",
+    "status": "implemented",
+    "implementation": "hideClearTrashButton only sets display number0; no cleanup request",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "N04",
+    "area": "私信：提醒 tab 展示",
+    "endpoint": "/2/direct_messages/user_list",
+    "safe_field_paths": [
+      "$.public_messge_remind_tab"
+    ],
+    "priority": "P2",
+    "status": "partial",
+    "implementation": "hidePublicReminderTab sets numeric display flag0; semantics need native verification, unread untouched",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "D01",
+    "area": "详情：新版操作菜单",
+    "endpoint": "/2/statuses/container_detail",
+    "safe_field_paths": [
+      "$.detailInfo.extend.custom_action_list",
+      "$.detailInfo.extend.custom_action_list[].type"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "fineMenus nested list; old26 bool + audio/remark visibility and whitelist order; unknown retained",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "D02",
+    "area": "详情：状态化菜单文字图标",
+    "endpoint": "/2/statuses/container_detail",
+    "safe_field_paths": [
+      "$.detailInfo.extend.custom_action_list[].state_config",
+      "$.detailInfo.extend.custom_action_list[].state_config[].name",
+      "$.detailInfo.extend.custom_action_list[].state_config[].pic",
+      "$.detailInfo.extend.custom_action_list[].state_config[].scheme"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "8 confirmed state type names individually editable; other states/icons/schemes untouched",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "D03",
+    "area": "详情：转评赞频道",
+    "endpoint": "/2/statuses/container_detail",
+    "safe_field_paths": [
+      "$.channelInfo.channels",
+      "$.channelInfo.channels[].title"
+    ],
+    "priority": "P1",
+    "status": "deferred",
+    "implementation": "not implemented; source-only related fields do not establish this candidate",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "D04",
+    "area": "详情：头部卡片",
+    "endpoint": "/2/statuses/container_detail",
+    "safe_field_paths": [
+      "$.pageHeader.data.items",
+      "$.pageHeader.data.items[].data.card_type"
+    ],
+    "priority": "P2",
+    "status": "partial",
+    "implementation": "source card236 predicate preservation only; observed248/143/10 intentionally untouched",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "D05",
+    "area": "详情：赞赏展示",
+    "endpoint": "/2/statuses/container_detail",
+    "safe_field_paths": [
+      "$.detailInfo.status.reward_info"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "source reward_info preservation implemented; exact HAR path missing so source-only",
+    "evidence": "HAR-partial",
+    "device_verified": false
+  },
+  {
+    "id": "C01",
+    "area": "评论：会员气泡",
+    "endpoint": "/2/statuses/container_detail_comment",
+    "safe_field_paths": [
+      "$.items[].data.vip_button"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "preserve__2_statuses_container_detail_comment_1079; per-field vip_button",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "C02",
+    "area": "评论：头像装饰",
+    "endpoint": "/2/statuses/container_detail_comment",
+    "safe_field_paths": [
+      "$.items[].data.user.icons"
+    ],
+    "priority": "P1",
+    "status": "implemented",
+    "implementation": "removeAvatar user.icons has independent preserve switch; identity data never overwritten",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "C03",
+    "area": "评论：气泡/弹幕/热评标记",
+    "endpoint": "/2/statuses/container_detail_comment",
+    "safe_field_paths": [
+      "$.items[].data.comment_bubble",
+      "$.items[].data.comment_bullet_screens_message",
+      "$.items[].data.hot_icon"
+    ],
+    "priority": "P2",
+    "status": "partial",
+    "implementation": "three independent source preservation fields; bullet screen field not observed in HAR",
+    "evidence": "HAR-partial",
+    "device_verified": false
+  },
+  {
+    "id": "B01",
+    "area": "首页：关注流展示字段",
+    "endpoint": "/2/statuses/container_timeline",
+    "safe_field_paths": [
+      "$.items[].data.mblog_feed_back_menus",
+      "$.items[].data.buttons",
+      "$.items[].data.user.icons"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "buttons/user.icons independent preservation; feedback menu editor absent",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "B02",
+    "area": "首页：推荐流展示字段",
+    "endpoint": "/2/statuses/container_timeline_hot",
+    "safe_field_paths": [
+      "$.items[].data.mblog_feed_back_menus",
+      "$.items[].data.extra_button_info",
+      "$.items[].data.continue_tag"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "hideHotExtraButton and hideHotContinueTag implemented; feedback menu editor absent",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S01",
+    "area": "启动：悬浮窗",
+    "endpoint": "/2/push/active",
+    "safe_field_paths": [
+      "$.floating_windows",
+      "$.floating_windows_force_show",
+      "$.floating_window_for_live_streaming",
+      "$.floating_window_show_interval"
+    ],
+    "priority": "P0",
+    "status": "partial",
+    "implementation": "source each floating field/filter independent; no per-scene interval numeric editor",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S02",
+    "area": "启动：首页红包入口",
+    "endpoint": "/2/push/active",
+    "safe_field_paths": [
+      "$.feed_redpacket",
+      "$.feed_redpacket.icon",
+      "$.feed_redpacket.scheme"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "hideFeedRedpacket no action execution",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S03",
+    "area": "启动：发布入口显示",
+    "endpoint": "/2/push/active",
+    "safe_field_paths": [
+      "$.publisher_button_conf.show_composer_enter_in_feed"
+    ],
+    "priority": "P1",
+    "status": "implemented",
+    "implementation": "hideComposerEntry sets show_composer_enter_in_feed display flag0; other shortcuts untouched",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S04",
+    "area": "启动：快捷操作",
+    "endpoint": "/2/push/active",
+    "safe_field_paths": [
+      "$.icon_shortcuts",
+      "$.icon_shortcuts[].title.zh",
+      "$.icon_shortcuts[].icon",
+      "$.icon_shortcuts[].scheme"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "hideIconShortcuts hides whole icon_shortcuts array; no stable per-item ID observed, no title guessing or jump edits",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S05",
+    "area": "启动：全局反馈菜单",
+    "endpoint": "/2/push/active",
+    "safe_field_paths": [
+      "$.feed_common_negative",
+      "$.feed_common_negative[].type",
+      "$.feed_common_negative[].state_config"
+    ],
+    "priority": "P0",
+    "status": "implemented",
+    "implementation": "negativeVisible/negativeOrder 25 observed parent types; state_config untouched",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S06",
+    "area": "发布器：入口项目",
+    "endpoint": "/2/client/publisher_list",
+    "safe_field_paths": [
+      "$.elements",
+      "$.elements[].app_name",
+      "$.elements[].logo_120_url",
+      "$.elements[].scheme"
+    ],
+    "priority": "P0",
+    "status": "partial",
+    "implementation": "publisherVisible standard name groups only; duplicate variants grouped; writing entry protected; no order/label/icon/target",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S07",
+    "area": "视频：频道导航",
+    "endpoint": "/2/video/home_channels",
+    "safe_field_paths": [
+      "$.channelInfo.channels",
+      "$.channelInfo.channels[].title",
+      "$.channelInfo.channels[].scheme"
+    ],
+    "priority": "P1",
+    "status": "deferred",
+    "implementation": "video home channels untouched; source videoList independent fields only",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S08",
+    "area": "启动：开屏预加载展示",
+    "endpoint": "/v2/ad/preload",
+    "safe_field_paths": [
+      "$.ads",
+      "$.ads[].daily_display_cnt",
+      "$.ads[].display_duration",
+      "$.ads[].creatives[].skip_button_type"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "independent outer ads timing/count/duration source writes; creatives original bug unchanged; static reject remains",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "S09",
+    "area": "启动：缓存广告展示",
+    "endpoint": "/wbapplua/wbpullad.lua",
+    "safe_field_paths": [
+      "$.cached_ad.ads",
+      "$.cached_ad.ads[].duration",
+      "$.cached_ad.ads[].extra.close_rect_height",
+      "$.cached_ad.ads[].extra.close_rect_width"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "independent cached-ad duration/count/time source writes; close-rectangle untouched; static reject remains",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "H07",
+    "area": "热搜：推广标记与置顶装饰",
+    "endpoint": "/2/flowpage",
+    "safe_field_paths": [
+      "$.items[].items[].data.promotion",
+      "$.items[].items[].data.pic"
+    ],
+    "priority": "P1",
+    "status": "implemented",
+    "implementation": "promotion and manual sticky-row predicates have separate retain bools",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  },
+  {
+    "id": "B03",
+    "area": "首页：赞赏与关注辅助展示",
+    "endpoint": "/2/statuses/container_timeline",
+    "safe_field_paths": [
+      "$.items[].data.buttons",
+      "$.items[].data.screen_name_suffix_new",
+      "$.items[].data.user.icons"
+    ],
+    "priority": "P1",
+    "status": "partial",
+    "implementation": "buttons/icons preservation and quick-repost filter independent; no arbitrary name edits",
+    "evidence": "HAR-structure",
+    "device_verified": false
+  }
+]

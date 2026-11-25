@@ -1,60 +1,66 @@
-# 微博增强 V2（实验版）
+# 微博增强 V3 自定义测试版
 
-独立测试目录：`Test/WeiboEnhanced/`。本配置使用真实发布地址，可作为 Quantumult X 重写资源添加；**尚未完成 QX / 微博真机验证，不是稳定版。** 原作者 rucu6 的署名和原脚本注释保留，增强包装与原始副本分开存放。
+此目录为 Quantumult X 测试订阅，源基线为 `8b1d7d32ded37d19fd73904ec9c9b09af32cd4db`。原作者 rucu6 署名和 source 原文件保留。仅测试目录持续开发，正式订阅不变。**这是已发布的本地模拟通过候选，尚未完成 QX / 微博实机验收，不代表全部功能覆盖。**
 
-## 安装和首次打开设置
+## 安装与首次配置
 
-1. **先停用正式微博重写资源**，再在 QX 的重写资源中添加下面订阅，启用重写并刷新资源。不要与正式微博重写同时启用，也要排查其它微博规则的冲突。
+1. 在 QX 添加或更新测试重写订阅：
    `https://raw.githubusercontent.com/Zz1xuan/ONE/main/Test/WeiboEnhanced/WeiBo.conf`
-2. 按 QX 的要求启用 HTTPS 解密/MITM、安装并信任证书，确认配置列出的微博 hostname 生效。此处不修改你的 QX 现有设置。
-3. QX 规则生效且设备流量经 QX 后，用 **Safari 输入完整虚拟地址**打开：
-   `https://api.weibo.cn/minis-enhanced-v2/settings`
-   也可从 QX 提供的网页打开能力打开该完整地址；不同版本入口不一致，不假设存在特定按钮。这不是 GitHub 网页，而是由本机 QX `script-echo-response` 回显的设置页。若出现真实站点错误/空白，应先检查规则命中、解密、脚本下载，不要把真实服务响应当成本设置页。
-4. **我的页入口默认开启**（`injectSettingsEntry=true`）：没有持久配置或配置缺少该键时，刷新微博“我的”页即可尝试显示，同时保持总开关开启。**已有持久配置中显式 `false` 会继续优先生效，不自动迁移、不强制重开**；请到上述虚拟网页开启“设置入口”并点“保存”，或确认后“恢复默认”（会同时重置其它开关）。仅在已知 top8 网格和 manage/cardEditor 模板都完整时，在网格后插入独立原生“增强设置”功能行（保留右箭头），不再追加第五个网格项；缺失或歧义结构不注入，不保证所有微博版本兼容。
-5. 设置入口使用 `sinaweibo://browser?url=` 网页跳转，不依赖或猜测原生 JS Bridge。`profileMe=false` 时仍可独立注入入口；`enabled=false` 则整个包装脚本放行，也不注入入口。无入口时仍可回到 Safari 的上述虚拟地址设置。
+2. 停用其它微博重写，确认 QX 重写与本订阅要求的 MITM 主机生效，再重新进入微博。不要同时启用正式微博订阅和测试订阅。
+3. 从微博“我”页面的原生管理入口进入“微博增强设置”；该 cardEditor 注入入口未改。也可在 QX 接管网络的浏览器打开 `https://api.weibo.cn/minis-enhanced-v2/settings`。该地址是本地重写虚拟页，不是公网网站。
+4. 默认沿用旧清理策略，精细模式默认关闭。先开启需要的“我的 / 首页 / 菜单”精细模式，再逐项修改显示、排序或文字，点击保存并重新进入对应页面。一次只调整少量项目，便于确认效果。
+5. 原始源字段控制与兼容开关大多在默认折叠的高级区，可搜索展开。保留项开启表示恢复原字段，hide 项开启表示隐藏；字段仍可能受父级过滤影响。
 
-虚拟配置 API：`https://api.weibo.cn/minis-enhanced-v2/config`，GET/POST；存储键：`minis.weibo.enhanced.config.v2`，与 V1 隔离，不自动迁移。**配置 API 必须使用不带 query 的完整地址**，仍精确匹配。设置页地址本身可由微博内置浏览器经 `weibo.cn/sinaurl` 自动追加 `ua`/`from` query：订阅规则允许 query 进入设置脚本，脚本只接受这两个参数名，不记录或保存参数值，未知或格式错误的参数返回 400。页面请求配置 API 时使用固定无 query 地址，不继承设置页 query。Safari 可直接输入无 query 的设置地址。
+虚拟入口仍为 `minis-enhanced-v2/settings` 与 `minis-enhanced-v2/config`，未改旧入口。settings 允许 ua/from 参数；config 无 query，使用 `script-analyze-echo-response` 等待 POST 正文。脚本引用为同一测试目录的 `wb-enhanced-v3.js` 和 `settings-api-v3.js`；旧 V2 文件名保留为内容相同的兼容别名，已有测试订阅 URL 不变。
 
-直接打开 raw `settings.html`、GitHub 页面或下载到本地的 HTML **不能代替虚拟设置页**，因为 API 依赖同设备 QX 回显和本机 `$prefs`。API 没有对外身份认证，只适用于受控本地规则实验，不可作为公网配置服务部署；不上传账号、Cookie 或配置值。
+## 能力与限制
 
-## 67 个开关与边界
+共 320 个 bool（旧 67 + custom 253）及 19 个 typed 白名单字段；页面按分组提供 129 个 typed 控件。253 个新增 bool 包含 236 个源操作/谓词保留点和 17 个显式功能。控制点数量不等于客户端可见覆盖率。
 
-共 67 个白名单布尔键：总控 1、入口 1、共享清理辅助 3、接口分组 36、详情菜单 26。默认入口开启，其它功能/菜单按原逻辑默认；完整键名、默认值和范围见 `function-inventory.md`。页面提供读取、保存及确认后恢复默认；只有保存成功才表示持久化成功。
+47 个候选状态为 **20 implemented / 20 partial / 7 deferred**，详见 coverage.md 与 candidate-coverage.json。implemented 表示本地实现状态，不表示已在真机验收。
 
-**不是每个字段删除点各有一个开关。** 接口开关以顶层分支成组，菜单和三个共享辅助可单独控制；某些特殊投票、计数字段仍归接口组。原脚本 URL 匹配和既有规则覆盖边界保留，部分开关/变体可能未被订阅捕获，不宣称所有接口和响应结构全覆盖。
+- “我的”：固定 11 模块、8 网格的显示/排序/文字，保护主资料和管理入口，保留未知模块；红点、会员样式字段等逐项控制。
+- 首页：homeHot/homeFeed 顶部导航与固定子分组模板；自建分组保留，至少一页回退。
+- 详情：fineMenus 开启后兼容嵌套菜单，保留未知操作；固定菜单排序、8 个已观测状态文字可改，不改变状态动作和 scheme。
+- 搜索/热搜：发现头部恢复、横幅/工具菜单/整块热词隐藏；不编辑真实热词或排名。更多频道恢复同时恢复 moreChannels/channelConfig，旧两保留键按此目的兼容。
+- 消息：素材和清理按钮隐藏，不发清理请求；提醒 tab 数字展示标志归零，未读不改，显示语义待真机。
+- 启动：已捕获悬浮窗字段、红包/发布入口隐藏；全局反馈父菜单按固定类型显示/排序，保留动作。
+- 发布器：按 10 个已观测标准 app_name 分组显示，同名变体一起变化，保护写微博入口；并非 68 个元素的逐项编辑器。快捷操作只支持整块隐藏。
+- 推荐流：附加按钮、continue_tag 分别隐藏；头像、商品、热评、投票等逐字段保留。
 
-**独立 DOMAIN / DOMAIN-SUFFIX / reject-dict 拦截不受任何网页开关控制，包括总开关。** 关闭脚本功能不能恢复这些被直接拒绝的请求。需要完全停用实验规则时，在 QX 中停用整个测试资源。
+暂缓的 7 项：M04 任意图标、T03 个性频道管理、T04 默认落地页、H01 热搜导航、H05 搜索建议、D03 转评赞频道、S07 视频频道。没有可靠键的不按标题猜 ID；任意跳转、底部导航空数组、未捕获个人主页、发布器逐元素排序/图标/跳转均未开放。其余 20 项 partial 的边界逐项见 coverage.md。
 
-我的页仅对已知主页面结构调用原精简；关注分页及未知结构安全放行。该结构判断为启发式，不保证未来客户端兼容。
+**静态 DOMAIN / reject 规则不受网页开关或总控控制。** 路由关闭整条放行，profileMe 与独立设置入口保持原例外。未知 HTTPS host/path 放行，query 不参与分支判定。源 page 正向 filter、preload creatives 层级等已知问题见 known-source-bugs.md，未借本次发布静默改变。
 
-## 文件与可复现构建
+## 保存、兼容与降级
 
-- `WeiBo.conf`：实验版订阅；19 处原脚本引用（含原有 1 条注释规则）全部指向本目录增强脚本；设置页虚拟路由允许微博浏览器追加 query 并由脚本验证，配置 API 虚拟路由仍严格无 query。
-- `wb-enhanced-v2.js`、`settings-api-v2.js`：运行产物。
-- `settings.html`、`common.js`、`settings-entry.js`、`settings-api.template.js`：页面、67 键契约、入口、API 源码。
-- `source/wb.original.js`、`source/WeiBo.original.conf`：原始基线副本，仅用于复现；**不要单独启用基线配置**。
-- `build.js`、`build-manifest.json`：构建器、基线哈希/字节数及两份运行产物的 SHA-256/字节数，构建不访问网络，不依赖目录外文件。
-- `tests.js`、`release-tests.js`：仅合成样本的 Node VM 测试及发布路径/可复现检查。
-- `function-inventory.md`：功能清单及未细分边界。
+固定存储键 `minis.weibo.enhanced.config.v3`；V3 缺失时只读 V2 键，显式 false 保留。GET 与脚本运行不写偏好，保存只写 V3。请求/合并/存储/UI 统一 UTF-8 32KB 上限；该上限有本地边界测试，不能作为 QX 实际可持久化容量保证。损坏配置不会静默覆盖，需人工恢复有效备份。
 
-在本目录执行（需要现代 Node.js，无第三方包）：
+降级到旧 V2 时读取原 V2 配置，**不会携带 V3 新配置**。先保留自己的有效备份，再切回旧版订阅并停用 V3；不要同时启用。测试版内 V2 文件名是 V3 内容别名，不是降级包。
+
+## 可复现构建与测试
+
+需 Node.js 与本目录全部构建输入。先进入本目录运行：
 
 ```sh
-node build.js
-node --check wb-enhanced-v2.js
-node --check settings-api-v2.js
+node refresh-schema.js
+node build.js --release
 node tests.js
+node custom-tests.js
+node endpoint-tests.js
+node route-tests.js
+node observable-endpoint-tests.js
+node v3-tests.js
+node config-boundary-tests.js
 node release-tests.js
 ```
 
-构建检查 5 个唯一字面锚点。VM 测试覆盖 36 接口关闭路径、26 菜单默认对照与开关、67 键契约、精确 API 网页/配置、损坏配置、入口与精简解耦、分页安全和 single-done。发布测试另检查链接、路由匹配、页面键、恢复默认、构建可复现性。测试成功不等同于真机验证或所有 endpoint 字段正反样本全覆盖。
+不加 `--release` 的 `node build.js` 输出本地脚本名，供手动复制 QX Scripts 使用；`--release` 明确输出上述真实远程地址。release-tests 同时校验两模式、V3 真实地址、config analyze、settings query、固定基线与重复构建。source/入口 SHA 固定于 release-baseline.json，构建原脚本 SHA 固定于 baseline-manifest.json。
 
-本次入口布局修复：保留原精简后的 top8 四格及 manage 行，设置行采用 manage 的 `cardEditor` / `mine` 结构与短标题“增强设置”。只重建白名单字段：标题的文本类型、有限颜色/字号/边距，以及公共无 query 箭头地址和有限尺寸；不复制卡片顶层 style、images、业务 actionlog、业务 click、用户资料或任意对象。保留的标题/箭头 style 逐字段验证：数字有界、颜色为十六进制、枚举仅固定值，不可能带动态业务 URL。click 整体替换为单个 `type:scheme`。仅按本入口唯一 ID 迁移旧第五格并合并重复顶层入口，不删除他人入口。`profileMe=false` 时不改变其它网格内容，仍可注入；缺 manage/top8 或模板不合格时整段不变，不猜测。
+构建依赖 tools/acorn.js 为 Acorn 8.14.1，已与 npm 官方包逐字一致并校验包完整性；MIT 许可全文见 tools/acorn-LICENSE，原源码中的授权注释保留。来源：https://www.npmjs.com/package/acorn/v/8.14.1 。无需联网安装构建依赖。
 
-本地私有 HAR 仅内存回放：2 份主页面与 2 份分页；核验原精简后四格逐字段不变、入口唯一、箭头/点击正确、行无隐私字段、原管理项和其它项目不变、旧版重复迁移、关闭精简仍可注入和缺模板安全放行。此前 settings `ua/from` 参数白名单修复、固定无 query 配置 API 与订阅规则保持原样并继续回归。HAR、真实响应 fixture、查询值、账号及带个人路径的回放脚本均不发布。目录**不包含 HAR、真实响应 fixtures、个人路径、带私有 URL/query 的报告或 ZIP**。
+本地测试：115 基本回归、236 隔离源操作、8 端点组、311 路由断言、67 可观测端点断言、41 V3、6 配置边界、11 发布检查全部通过。236 隔离测试不等于 236 项完整端点覆盖。
 
-## 已知限制与退出实验
+发布前额外本地验证：122 个 HAR API JSON 响应回放 0 失败，24 个准确支持路由默认输出与旧版逐字一致，98 个未支持路径语义不变；11 接口 19 响应有定制断言。40/236 源 bool 在现有捕获中改变输出，196 项未命中或无可观测变化。首次逐键探测曾超时，原样重试通过。HAR、账户内容、真实 fixture、本地回放工具及报告不发布；observable-required.json 仅包含 40 个脱敏控制键。
 
-QX 的实际回显格式、MITM、规则优先级、`$prefs` 持久化、Safari/微博网页容器访问、原生功能行布局点击以及各接口实际效果仍待真机验证。同步 `$done` 假设沿用原脚本，若上游变异步需重新评审。
-
-出现问题可停用整个测试资源，再单独恢复正式微博重写。配置键仍留在本机；本次发布不删除任何现有文件，不覆盖正式规则，不自动清理测试目录。稳定后转正式/删除测试属于未来另行操作。
+本地 UI DOM mock 6 项通过（320 bool / 129 typed、保存回绘、搜索高级项、恢复默认、最大合法保存、错误零更改）；该工具依赖本机 mock，未收入发布包。本轮浏览器视觉预览超时，未确认渲染。真实 QX POST 持久化、32KB 容量、原生入口点击/布局、缓存与状态联动、微博实际展示仍待实机验收。

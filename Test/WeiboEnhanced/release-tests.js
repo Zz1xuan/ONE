@@ -8,7 +8,7 @@ t('script references match selected build mode and V3 names',()=>{const refs=[..
 t('legacy67 + fixed V3 schema and 32KB storage',()=>{a.equal(Object.keys(C.LEGACY_DEFAULTS).length,67);a.equal(C.CUSTOM_FIELDS.length,259);a.equal(Object.keys(C.TYPED_SCHEMA).length,21);a.ok(Buffer.byteLength(JSON.stringify(C.DEFAULTS))<32768);a.ok(common.includes('minis.weibo.enhanced.config.v3'));a.ok(common.includes('minis.weibo.enhanced.config.v2'));});
 t('built page injects same schema without markers',()=>{const html=r('settings-built.html');a.ok(html.includes(common));a.ok(!html.includes('/*__COMMON__*/'));a.ok(!html.includes('/*__TYPED_UI__*/'));a.ok(html.includes('collectTyped(next)'));});
 const pins=JSON.parse(r('release-baseline.json'));
-t('native entry unchanged from authorized baseline',()=>a.equal(sha(r('settings-entry.js')),pins['settings-entry.js']));
+t('native entry matches authorized grid-independent baseline',()=>a.equal(sha(r('settings-entry.js')),pins['settings-entry.js']));
 t('source and config unchanged from authorized baseline',()=>{for(const name of ['source/wb.original.js','source/WeiBo.original.conf'])a.equal(sha(r(name)),pins[name]);});
 t('static reject rules unchanged and outside UI',()=>{const f=s=>s.split('\n').filter(x=>/^(DOMAIN|\^.* url reject)/.test(x));a.deepEqual(f(conf),f(r('source/WeiBo.original.conf')));});
 t('manifest artifacts hashes',()=>{const m=JSON.parse(r('build-manifest.json'));for(const [name,v]of Object.entries(m.artifacts)){const d=fs.readFileSync(name);a.equal(d.length,v.bytes);a.equal(sha(d),v.sha256);}});

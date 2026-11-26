@@ -4,12 +4,16 @@ function injectSettingsEntry(result){
   if(!result||typeof result.body!=='string')return result;
   const d=JSON.parse(result.body);
   if(!d||!Array.isArray(d.items))return result;
+  // Main-page identity is independent of the optional shortcuts module.
+  const profiles=d.items.filter(x=>x&&x.itemId==='profileme_mine');
+  if(profiles.length!==1||profiles[0].type!=='grid'||profiles[0].category!=='group'||!Array.isArray(profiles[0].items))return result;
   const grids=d.items.filter(x=>x&&x.itemId==='100505_-_top8');
   const templates=d.items.filter(x=>x&&x.itemId==='100505_-_manage');
-  if(grids.length!==1||templates.length!==1)return result;
-  const g=grids[0],m=templates[0],a=m.rightIcon;
+  if(templates.length!==1)return result;
+  const g=grids.length===1&&grids[0].type==='grid'&&Array.isArray(grids[0].items)?grids[0]:null;
+  const m=templates[0],a=m.rightIcon;
   // Only known native shapes and public, query-free image paths are accepted.
-  if(g.type!=='grid'||!Array.isArray(g.items)||!g.items.length||m.type!=='cardEditor'||m.category!=='mine'||!m.title||m.title.type!=='text'||!a||a.type!=='icon'||typeof a.iconUrl!=='string'||!/^https:\/\/(?:h5|d)\.sinaimg\.cn\/[A-Za-z0-9_./%+-]+$/.test(a.iconUrl))return result;
+  if(m.type!=='cardEditor'||m.category!=='mine'||!m.title||m.title.type!=='text'||!a||a.type!=='icon'||typeof a.iconUrl!=='string'||!/^https:\/\/(?:h5|d)\.sinaimg\.cn\/[A-Za-z0-9_./%+-]+$/.test(a.iconUrl))return result;
   const title={type:'text',content:'增强设置'},rightIcon={type:'icon',iconUrl:a.iconUrl};
   // Reconstruct presentation from bounded scalar fields; never copy a style object.
   const s=m.title.style;
@@ -32,8 +36,8 @@ function injectSettingsEntry(result){
   }
   const row={itemId:SETTINGS_ITEM_ID,type:m.type,category:m.category,title,rightIcon,click:{type:'scheme',scheme:'sinaweibo://browser?url='+encodeURIComponent('https://api.weibo.cn/minis-enhanced-v2/settings')}};
   // Migrate only our own old fifth grid item / duplicate top-level rows.
-  g.items=g.items.filter(x=>!x||x.itemId!==SETTINGS_ITEM_ID);
+  if(g)g.items=g.items.filter(x=>!x||x.itemId!==SETTINGS_ITEM_ID);
   d.items=d.items.filter(x=>!x||x.itemId!==SETTINGS_ITEM_ID);
-  d.items.splice(d.items.indexOf(g)+1,0,row);
+  d.items.splice(g&&g.items.length?d.items.indexOf(g)+1:d.items.indexOf(m),0,row);
   return {...result,body:JSON.stringify(d)};
 }

@@ -1,6 +1,14 @@
 # 微博增强 V5 紧凑模块设置测试版
 
-**已实现功能完整分类版，非全App所有组件完整支持。** 本地隔离自 V3 `4192ad47d1e33a4d6f8674328be424bca3525dd4`；只开发和发布 `Test/WeiboEnhanced/`，正式文件、原作者 rucu6 署名、source 基线及原生 cardEditor 设置入口不变。不代表已完成微博 / Quantumult X 实机验收。
+**已实现功能完整分类版，非全App所有组件完整支持。** 本地隔离自 V3 `4192ad47d1e33a4d6f8674328be424bca3525dd4`；只开发和发布 `Test/WeiboEnhanced/`，正式文件、原作者 rucu6 署名及 source 基线不变。原生 cardEditor 设置入口现与可隐藏快捷网格解耦（下述规则）。不代表已完成微博 / Quantumult X 实机验收。
+
+## 快捷网格关闭后的设置入口修复
+
+入口不再要求 `100505_-_top8` 存在或非空：主页面须有唯一已知 `profileme_mine`（grid/group/items 数组），以及唯一有效 `100505_-_manage` cardEditor 安全模板。唯一有效且非空快捷网格优先在其后插入；网格隐藏、八格全关、空网格或歧义网格时回退 manage 之前。未知/歧义网格不改写；无模板、歧义模板或关注分页不注入，不凭空生成模板或从用户资料重建。公共图标、展示字段白名单及 browser scheme 保持不变。
+
+`profileMe=false` 仍可独立显示入口；增强总控 `enabled=false` 或 `injectSettingsEntry=false` 仍关闭入口。精细模式只剩受保护资料及 manage 时入口可用，不恢复快捷网格、不恢复已隐藏推广、不改写保存配置。QX 需刷新测试运行脚本 `wb-enhanced-v3.js`（旧兼容名 `wb-enhanced-v2.js` 同步），重新进入微博“我”页；设置页/API/UI 无变动。
+
+新增 `node entry-independence-tests.js` 运行时 18 组；设置 `WEIBO_HAR=/path/to/capture.har` 后再增加真实 HAR 内存回放 18 组，共 36 组。覆盖网格隐藏/空/八项全关/全部模块关闭、仅资料 manage、route false、无/歧义 manage、分页/异常资料、重复迁移幂等及显式 false；完整响应比较保护账户、动作与相邻字段。HAR 不写入 fixture、不输出 body/query，不代表真机布局与点击已验收。
 
 ## 安装与配置
 

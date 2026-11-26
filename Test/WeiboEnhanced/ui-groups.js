@@ -1,5 +1,5 @@
 // Each editor has exactly one purpose owner; technical keys remain searchable metadata.
-const PURPOSE_SECTIONS=['总览与运行状态','我的页面','首页与关注流','发现搜索与热搜','博文详情与操作菜单','评论','消息私信','视频','发布与启动','开屏广告','共享外观与内容清理','高级兼容'];
+const PURPOSE_SECTIONS=['总览','我的','首页与关注','发现与搜索','详情与菜单','评论','消息私信','视频','发布与启动','开屏广告','共享清理','高级兼容'];
 function purposeFor(scope,key=''){
  if(['enabled','injectSettingsEntry'].includes(key))return PURPOSE_SECTIONS[0];
  if(key.startsWith('menu_')||/^(menuVisible|menuOrder|menuLabels|fineMenus|hideDetail)/.test(key))return PURPOSE_SECTIONS[4];
@@ -19,8 +19,8 @@ function purposeFor(scope,key=''){
  if(/container_detail|statuses\/(extend|show|repost)/.test(scope))return PURPOSE_SECTIONS[4];return PURPOSE_SECTIONS[11];
 }
 const purposeSections=new Map(),purposeAdvanced=new Map();
-for(const name of PURPOSE_SECTIONS){const d=section(name);d.dataset.purpose=name;d.open=name==='总览与运行状态';purposeSections.set(name,d);const a=document.createElement('details'),s=document.createElement('summary');a.className='source-advanced';s.textContent='高级：本区源字段保留与兼容细项';a.append(s);a.open=false;d.append(a);purposeAdvanced.set(name,a);}
+for(const name of PURPOSE_SECTIONS){const d=section(name);d.dataset.purpose=name;d.open=name==='总览';purposeSections.set(name,d);const a=document.createElement('details'),s=document.createElement('summary');a.className='source-advanced';s.textContent='高级选项';a.append(s);a.open=false;d.append(a);purposeAdvanced.set(name,a);}
 function editorBox(scope,key,advanced=false){return (advanced?purposeAdvanced:purposeSections).get(purposeFor(scope,key));}
-function updateDependencies(){for(const row of document.querySelectorAll('.row[data-dependency]')){const names=row.dataset.dependency.split(',').filter(Boolean),off=names.filter(k=>k.startsWith('custom.')?!cfg.custom[k.slice(7)]:!cfg[k]);row.dataset.inactive=String(off.length>0);const hint=row.querySelector('.dependency');if(hint)hint.textContent=off.length?'当前依赖未开启：'+off.map(k=>legacyLabel(k.replace('custom.',''))).join('、')+'（可先编辑，保存后按依赖生效）':'依赖已满足；保留项仍可能受父级筛选影响';}}
+function updateDependencies(){for(const row of document.querySelectorAll('.row[data-dependency]')){const names=row.dataset.dependency.split(',').filter(Boolean),off=names.filter(k=>k.startsWith('custom.')?!cfg.custom[k.slice(7)]:!cfg[k]);row.dataset.inactive=String(off.length>0);const hint=row.querySelector('.dependency');if(hint)hint.textContent=off.length?'当前依赖未开启：'+off.map(k=>legacyLabel(k.replace('custom.',''))).join('、')+'（可先编辑，保存后按依赖生效）':'';}}
 
 function routeDependency(scope){const m={'/2/profile/me':'profileMe','/2/groups/allgroups/v2':'tabs','/2/flowpage':'flowpage','/2/search/finder':'search','/2/search/hot_word':'search','/2/statuses/container_detail':'detail','/2/statuses/container_timeline_hot':'hotTimeline','/2/push/active':'pushActive','/2/client/publisher_list':'publisher','/2/messageflow/notice':'notice','/2/direct_messages/user_list':'directMessages'};return m[scope]||''}

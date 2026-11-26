@@ -1,46 +1,61 @@
-# 微博增强 V3 自定义测试版
+# 微博增强 V4 功能分类测试版
 
-此目录为 Quantumult X 测试订阅，源基线为 `8b1d7d32ded37d19fd73904ec9c9b09af32cd4db`。原作者 rucu6 署名和 source 原文件保留。仅测试目录持续开发，正式订阅不变。**这是已发布的本地模拟通过候选，尚未完成 QX / 微博实机验收，不代表全部功能覆盖。**
+**已实现功能完整分类版，非全App所有组件完整支持。** 本地隔离自 V3 `4192ad47d1e33a4d6f8674328be424bca3525dd4`；只开发和发布 `Test/WeiboEnhanced/`，正式文件、原作者 rucu6 署名、source 基线及原生 cardEditor 设置入口不变。不代表已完成微博 / Quantumult X 实机验收。
 
-## 安装与首次配置
+## 安装与配置
 
-1. 在 QX 添加或更新测试重写订阅：
-   `https://raw.githubusercontent.com/Zz1xuan/ONE/main/Test/WeiboEnhanced/WeiBo.conf`
-2. 停用其它微博重写，确认 QX 重写与本订阅要求的 MITM 主机生效，再重新进入微博。不要同时启用正式微博订阅和测试订阅。
-3. 从微博“我”页面的原生管理入口进入“微博增强设置”；该 cardEditor 注入入口未改。也可在 QX 接管网络的浏览器打开 `https://api.weibo.cn/minis-enhanced-v2/settings`。该地址是本地重写虚拟页，不是公网网站。
-4. 默认沿用旧清理策略，精细模式默认关闭。先开启需要的“我的 / 首页 / 菜单”精细模式，再逐项修改显示、排序或文字，点击保存并重新进入对应页面。一次只调整少量项目，便于确认效果。
-5. 原始源字段控制与兼容开关大多在默认折叠的高级区，可搜索展开。保留项开启表示恢复原字段，hide 项开启表示隐藏；字段仍可能受父级过滤影响。
+测试订阅 URL 保持不变：
 
-虚拟入口仍为 `minis-enhanced-v2/settings` 与 `minis-enhanced-v2/config`，未改旧入口。settings 允许 ua/from 参数；config 无 query，使用 `script-analyze-echo-response` 等待 POST 正文。脚本引用为同一测试目录的 `wb-enhanced-v3.js` 和 `settings-api-v3.js`；旧 V2 文件名保留为内容相同的兼容别名，已有测试订阅 URL 不变。
+`https://raw.githubusercontent.com/Zz1xuan/ONE/main/Test/WeiboEnhanced/WeiBo.conf`
 
-## 能力与限制
+在 QX 更新测试重写，停用其它微博重写，不要同时启用正式与测试订阅。确认重写、MITM 主机生效，从微博“我”页面原生管理入口进入“微博增强设置”。也可在 QX 接管的浏览器打开 `https://api.weibo.cn/minis-enhanced-v2/settings`。这是本地重写虚拟页面，不是公网网站。
 
-共 320 个 bool（旧 67 + custom 253）及 19 个 typed 白名单字段；页面按分组提供 129 个 typed 控件。253 个新增 bool 包含 236 个源操作/谓词保留点和 17 个显式功能。控制点数量不等于客户端可见覆盖率。
+运行文件名仍使用 `wb-enhanced-v3.js` / `settings-api-v3.js`，V2 文件名为相同内容兼容别名；页面是 V4。保留现有订阅地址、虚拟入口、存储键与 schemaVersion=3，避免旧用户配置丢失。
 
-47 个候选状态为 **20 implemented / 20 partial / 7 deferred**，详见 coverage.md 与 candidate-coverage.json。implemented 表示本地实现状态，不表示已在真机验收。
+## 按用途分类
 
-- “我的”：固定 11 模块、8 网格的显示/排序/文字，保护主资料和管理入口，保留未知模块；红点、会员样式字段等逐项控制。
-- 首页：homeHot/homeFeed 顶部导航与固定子分组模板；自建分组保留，至少一页回退。
-- 详情：fineMenus 开启后兼容嵌套菜单，保留未知操作；固定菜单排序、8 个已观测状态文字可改，不改变状态动作和 scheme。
-- 搜索/热搜：发现头部恢复、横幅/工具菜单/整块热词隐藏；不编辑真实热词或排名。更多频道恢复同时恢复 moreChannels/channelConfig，旧两保留键按此目的兼容。
-- 消息：素材和清理按钮隐藏，不发清理请求；提醒 tab 数字展示标志归零，未读不改，显示语义待真机。
-- 启动：已捕获悬浮窗字段、红包/发布入口隐藏；全局反馈父菜单按固定类型显示/排序，保留动作。
-- 发布器：按 10 个已观测标准 app_name 分组显示，同名变体一起变化，保护写微博入口；并非 68 个元素的逐项编辑器。快捷操作只支持整块隐藏。
-- 推荐流：附加按钮、continue_tag 分别隐藏；头像、商品、热评、投票等逐字段保留。
+1. 总览与运行状态：增强总控、原生设置入口、读取及保存状态。
+2. 我的页面：精细模式、模块/网格显示排序文字、红点、实验图标隐藏。
+3. 首页与关注流：导航精细模式、导航/子分组、推荐频道整块隐藏、实验默认关注页、推荐/关注流展示。
+4. 发现搜索与热搜：头部、更多频道、横幅、工具、热词、导航图标和卡片装饰。
+5. 博文详情与操作菜单：新旧菜单、各状态文字、详情频道装饰。
+6. 评论：旧/新评论总控、源字段保留。
+7. 消息私信：素材、清理按钮显示、提醒展示、消息反馈菜单。
+8. 视频：现有全屏、详情、连播处理；不假装提供未支持视频首页编辑。
+9. 发布与启动：发布器分组、首页发布/红包入口、快捷操作整块、反馈菜单。
+10. 开屏广告：SDK、预加载、缓存开屏字段。
+11. 共享外观与内容清理：头像/装饰、商品/热评、投票，标明跨首页/详情/评论等范围。
+12. 高级兼容：通用页面、个人主页相关旧兼容控制；不冒充未观测个人主页编辑器。
 
-暂缓的 7 项：M04 任意图标、T03 个性频道管理、T04 默认落地页、H01 热搜导航、H05 搜索建议、D03 转评赞频道、S07 视频频道。没有可靠键的不按标题猜 ID；任意跳转、底部导航空数组、未捕获个人主页、发布器逐元素排序/图标/跳转均未开放。其余 20 项 partial 的边界逐项见 coverage.md。
+每区基础可用控制在前，源语句保留点归属对应功能区并默认折叠“高级”。只有一个统一搜索和底部保存条。原键为辅助元数据，可搜索；开启“隐藏”表示隐藏，开启“保留”表示保留原字段。字段保留仍可能受父级过滤影响，依赖需同时开启。
 
-**静态 DOMAIN / reject 规则不受网页开关或总控控制。** 路由关闭整条放行，profileMe 与独立设置入口保持原例外。未知 HTTPS host/path 放行，query 不参与分支判定。源 page 正向 filter、preload creatives 层级等已知问题见 known-source-bugs.md，未借本次发布静默改变。
+326 个 bool（原 320 + 6）和 21 个 typed 字段（原 19 + 2），提供 133 个 typed 控件（原129 +4）。每键只有一个编辑归属，没有重复配置表单。详情 `menuVisible` 显式值优先于旧菜单开关，选择“继承”才按旧开关；这是优先级，不是双写冲突。
 
-## 保存、兼容与降级
+## V4 新增与修复
 
-固定存储键 `minis.weibo.enhanced.config.v3`；V3 缺失时只读 V2 键，显式 false 保留。GET 与脚本运行不写偏好，保存只写 V3。请求/合并/存储/UI 统一 UTF-8 32KB 上限；该上限有本地边界测试，不能作为 QX 实际可持久化容量保证。损坏配置不会静默覆盖，需人工恢复有效备份。
+- M03：模块文字补到已观测 `header.title.content`，不改主资料用户名/身份。
+- M04：已知网格 `image.iconUrl` 可整槽隐藏；原图默认，实验外观，不接收任何 URL。任意图标替换/预置替换尚未开放。
+- T03：隐藏 `homeHot.recommendCategory.pageDatas` 推荐频道管理整块，保留我的频道。不按个性化 ID/标题做逐项编辑。
+- T04：实验“优先关注默认页”，仅当剩余导航确有 `pageDataType=homeFeed` 且 `pageId=homeFeed` 时，将 `defaultPageId` 引到该页；不存在则不改。不修改语义未确认的 `feed_default`，实际落地效果待真机，仍为 partial。
+- H01 / D03：热搜与详情频道装饰图标显示控制，只删已观测 `titleInfo.icon/iconDark`，不删除频道、不改选择引用/转评赞内容。
+- H03：热搜 card_type 4/6 的图标/箭头展示隐藏，保留榜单项目顺序和内容；源清理过滤开关仍独立。
+- N02：三种已观测消息父菜单类型补排序和文字（`noticeMenuOrder` / `noticeMenuLabels`），同类型变体共同变化，未知项稳定保留，scheme/action/state 不变。**本 HAR 的这些菜单位于被旧清理移除的推广父卡片内；须显式开启本区高级 `retain__2_messageflow_notice_393` 才能显示，不自动恢复推广消息。**
 
-降级到旧 V2 时读取原 V2 配置，**不会携带 V3 新配置**。先保留自己的有效备份，再切回旧版订阅并停用 V3；不要同时启用。测试版内 V2 文件名是 V3 内容别名，不是降级包。
+47 候选现为 **20 implemented / 25 partial / 2 deferred**。详见 coverage.md / candidate-coverage.json；所有47项均复核，partial 未支持部分逐项保留，不改称 complete。
 
-## 可复现构建与测试
+仍 deferred：H05 搜索建议（HAR有数组，但静态reject先拦且无严格运行路由，不新增无效控件）；S07 视频首页频道（虽有3频道，但同为video类型，flowId缺确认语义，不按标题猜）。M04/T03/T04/H01/D03由deferred扩为有限partial，不表示完整频道管理、任意图标或默认页全支持。底栏只有空模板、个人主页缺捕获，均不开放假控件。未开放任意 URL/scheme、真实权益身份改写、业务动作自动化、榜单内容或排序。
 
-需 Node.js 与本目录全部构建输入。先进入本目录运行：
+## 保存与兼容
+
+精细模式默认关闭，默认输出与 V3 相容。固定存储键 `minis.weibo.enhanced.config.v3`；缺失时只读原 V2 配置，显式 false/order/labels 无损，新字段仅补默认，不删除旧键。GET/运行不写偏好，保存只写 V3。损坏配置不静默覆盖。
+
+请求、合并、持久化与 UI 统一 UTF-8 32768 字节上限；本地最大合法 schema（每个 typed map/order 全填、24 emoji文字）21366字节。32768精确边界成功，32769拒绝且零写。**这是软件边界验证，不保证 QX 真机容量。** reset 走完整保存及服务端确认回绘路径。
+
+settings 允许 ua/from 参数，config 无query并保留 `script-analyze-echo-response`，严格HTTPS host/path统一门控。未知路径不处理。静态 DOMAIN/reject 不受页面开关/总控控制；source 已知问题见 known-source-bugs.md，未借本次功能扩展静默改变。
+
+## 可复现验证
+
+Node.js 构建输入与 Acorn 8.14.1/MIT副本在本目录：
 
 ```sh
 node refresh-schema.js
@@ -51,16 +66,23 @@ node endpoint-tests.js
 node route-tests.js
 node observable-endpoint-tests.js
 node v3-tests.js
+node v4-tests.js
 node config-boundary-tests.js
 node release-tests.js
 ```
 
-不加 `--release` 的 `node build.js` 输出本地脚本名，供手动复制 QX Scripts 使用；`--release` 明确输出上述真实远程地址。release-tests 同时校验两模式、V3 真实地址、config analyze、settings query、固定基线与重复构建。source/入口 SHA 固定于 release-baseline.json，构建原脚本 SHA 固定于 baseline-manifest.json。
+本地额外 HAR 测试（不发布 HAR/fixture/真实响应）：
 
-构建依赖 tools/acorn.js 为 Acorn 8.14.1，已与 npm 官方包逐字一致并校验包完整性；MIT 许可全文见 tools/acorn-LICENSE，原源码中的授权注释保留。来源：https://www.npmjs.com/package/acorn/v/8.14.1 。无需联网安装构建依赖。
+```sh
+WEIBO_HAR=/path/to/capture.har node v4-har-tests.js
+```
 
-本地测试：115 基本回归、236 隔离源操作、8 端点组、311 路由断言、67 可观测端点断言、41 V3、6 配置边界、11 发布检查全部通过。236 隔离测试不等于 236 项完整端点覆盖。
+基础115、隔离源操作236、端点8组、路由311、可观测端点67、V3 41、V4 14、配置边界6、发布11均通过。236隔离测试不是236全端点覆盖；196源细项仍缺真实HAR可观测变化证据。
 
-发布前额外本地验证：122 个 HAR API JSON 响应回放 0 失败，24 个准确支持路由默认输出与旧版逐字一致，98 个未支持路径语义不变；11 接口 19 响应有定制断言。40/236 源 bool 在现有捕获中改变输出，196 项未命中或无可观测变化。首次逐键探测曾超时，原样重试通过。HAR、账户内容、真实 fixture、本地回放工具及报告不发布；observable-required.json 仅包含 40 个脱敏控制键。
+HAR仅内存：122 API JSON响应默认回放0失败，11接口19响应原定制断言；新增10项控制/依赖断言实际改变111展示槽，完整响应与期望比较验证相邻字段未变。消息菜单特意测试父卡片保留依赖，防止被过滤吞掉后误判。
 
-本地 UI DOM mock 6 项通过（320 bool / 129 typed、保存回绘、搜索高级项、恢复默认、最大合法保存、错误零更改）；该工具依赖本机 mock，未收入发布包。本轮浏览器视觉预览超时，未确认渲染。真实 QX POST 持久化、32KB 容量、原生入口点击/布局、缓存与状态联动、微博实际展示仍待实机验收。
+DOM mock 7组通过：326bool/133typed、12用途区块、唯一归属、默认高级折叠、搜索展开、保存回绘、reset、最大合法schema、非法order零更改。DOM测试依赖本地linkedom，未作为可独立运行发布工具。开发中浏览器首次载入与390px移动端首屏截图成功；最终小幅文案/空折叠区修正后刷新遇300秒超时，未重复消耗时间。最终产物以DOM验证为准，不能宣称全页最终视觉验收，更无真机视觉通过声明。
+
+## 仍须真机验收
+
+QX POST持久化及32KB容量、原生cardEditor入口点击/布局、页面视觉、缓存与重新进入页面联动、实验图标隐藏布局、默认页与feed_default关系、提醒tab数值的真实语义。implemented只表示本地能力范围，不代表这些限制已解除。

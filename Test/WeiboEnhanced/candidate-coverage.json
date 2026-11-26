@@ -12,7 +12,8 @@
     "status": "implemented",
     "implementation": "fineProfile + moduleVisible/moduleOrder; protected mine/manage; unknown retained",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. fineProfile + moduleVisible/moduleOrder; protected mine/manage; unknown retained"
   },
   {
     "id": "M02",
@@ -26,7 +27,8 @@
     "status": "implemented",
     "implementation": "fineProfile + gridVisible/gridOrder; raw unique top8",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. fineProfile + gridVisible/gridOrder; raw unique top8"
   },
   {
     "id": "M03",
@@ -39,9 +41,10 @@
     ],
     "priority": "P0",
     "status": "partial",
-    "implementation": "moduleLabels title.content and gridLabels content.content; username/header user text excluded",
+    "implementation": "moduleLabels now also targets observed header.title.content, besides title.content; grid content.content; excludes profileme_mine identity; no arbitrary header text",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. moduleLabels now also targets observed header.title.content, besides title.content; grid content.content; excludes profileme_mine identity; no arbitrary header text"
   },
   {
     "id": "M04",
@@ -52,10 +55,11 @@
       "$.items[].rightIcon.iconUrl"
     ],
     "priority": "P1",
-    "status": "deferred",
-    "implementation": "arbitrary icon URLs not allowed",
+    "status": "partial",
+    "implementation": "hideProfileGridIcons display-only fixed known grid image.iconUrl deletion; experimental native layout; arbitrary URL/preset replacement still unsupported",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideProfileGridIcons display-only fixed known grid image.iconUrl deletion; experimental native layout; arbitrary URL/preset replacement still unsupported"
   },
   {
     "id": "M05",
@@ -69,7 +73,8 @@
     "status": "partial",
     "implementation": "source fixed friends rewrite can be independently preserved; no target editor",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. source fixed friends rewrite can be independently preserved; no target editor"
   },
   {
     "id": "M06",
@@ -84,7 +89,8 @@
     "status": "implemented",
     "implementation": "hideProfileBadges fixed grid dot/titleDot/bottomRightBadge",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideProfileBadges fixed grid dot/titleDot/bottomRightBadge"
   },
   {
     "id": "M07",
@@ -98,7 +104,8 @@
     "status": "implemented",
     "implementation": "per-field source preserve toggles VIP header/vipView/vipCenter/vipIcon",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. per-field source preserve toggles VIP header/vipView/vipCenter/vipIcon"
   },
   {
     "id": "M08",
@@ -114,7 +121,8 @@
     "status": "partial",
     "implementation": "manage style may be preserved; no arbitrary layout values",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. manage style may be preserved; no arbitrary layout values"
   },
   {
     "id": "M09",
@@ -128,7 +136,8 @@
     "status": "implemented",
     "implementation": "independent preserve manage style/images",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. independent preserve manage style/images"
   },
   {
     "id": "T01",
@@ -143,7 +152,8 @@
     "status": "implemented",
     "implementation": "fineTabs + tabVisible/tabOrder/tabLabels fixed homeHot/homeFeed; empty fallback",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. fineTabs + tabVisible/tabOrder/tabLabels fixed homeHot/homeFeed; empty fallback"
   },
   {
     "id": "T02",
@@ -157,7 +167,8 @@
     "status": "partial",
     "implementation": "fineTabs + fixed source-title subtab maps/order/labels, unknown user groups retained; stable subtype IDs not confirmed",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. fineTabs + fixed source-title subtab maps/order/labels, unknown user groups retained; stable subtype IDs not confirmed"
   },
   {
     "id": "T03",
@@ -168,10 +179,11 @@
       "$.pageDatas[].recommendCategory.pageDatas"
     ],
     "priority": "P1",
-    "status": "deferred",
-    "implementation": "myCategory/recommendCategory untouched; user channel IDs not accepted",
+    "status": "partial",
+    "implementation": "hideRecommendedChannels clears homeHot.recommendCategory.pageDatas as one documented recommendation-management block; myCategory retained; no personalized IDs/order/labels",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideRecommendedChannels clears homeHot.recommendCategory.pageDatas as one documented recommendation-management block; myCategory retained; no personalized IDs/order/labels"
   },
   {
     "id": "T04",
@@ -182,10 +194,11 @@
       "$.feed_default"
     ],
     "priority": "P2",
-    "status": "deferred",
-    "implementation": "default page ID not modified",
+    "status": "partial",
+    "implementation": "preferFollowingPage sets defaultPageId=homeFeed only when remaining pageDatas contains pageDataType and pageId homeFeed; never fabricates navigation; feed_default mapping unproven and untouched; experimental effect",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. preferFollowingPage sets defaultPageId=homeFeed only when remaining pageDatas contains pageDataType and pageId homeFeed; never fabricates navigation; feed_default mapping unproven and untouched; experimental effect"
   },
   {
     "id": "F01",
@@ -200,7 +213,8 @@
     "status": "partial",
     "implementation": "source title/titleInfo/search background per-field preserve only; no channel editor",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. source title/titleInfo/search background per-field preserve only; no channel editor"
   },
   {
     "id": "F02",
@@ -214,7 +228,8 @@
     "status": "implemented",
     "implementation": "preserveFinderHeader restores original header items before destructive source stages",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. preserveFinderHeader restores original header items before destructive source stages"
   },
   {
     "id": "F03",
@@ -227,7 +242,8 @@
     "status": "implemented",
     "implementation": "preserveFinderMoreChannels restores original moreChannels + channelConfig after both source deletion stages; either old preserve alias also restores both",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. preserveFinderMoreChannels restores original moreChannels + channelConfig after both source deletion stages; either old preserve alias also restores both"
   },
   {
     "id": "H01",
@@ -240,10 +256,11 @@
       "$.channelInfo.channels[].scheme"
     ],
     "priority": "P1",
-    "status": "deferred",
-    "implementation": "no heat-search navigation editor",
+    "status": "partial",
+    "implementation": "hideFlowNavIcons deletes observed channelInfo.channels[].titleInfo.icon/iconDark only; no channel list filtering/reordering/labels or selectInfo mutation",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideFlowNavIcons deletes observed channelInfo.channels[].titleInfo.icon/iconDark only; no channel list filtering/reordering/labels or selectInfo mutation"
   },
   {
     "id": "H02",
@@ -258,7 +275,8 @@
     "status": "implemented",
     "implementation": "hideFlowBanners atomic three-size arrays",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideFlowBanners atomic three-size arrays"
   },
   {
     "id": "H03",
@@ -271,9 +289,10 @@
     ],
     "priority": "P1",
     "status": "partial",
-    "implementation": "source promotion/stick filtering toggles; icon/arrow editing absent",
+    "implementation": "hideFlowCardIcons deletes icon and zeroes numeric display_arrow on card_type 4/6 only; no ranking/content edits; source filtering preservation remains independent",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideFlowCardIcons deletes icon and zeroes numeric display_arrow on card_type 4/6 only; no ranking/content edits; source filtering preservation remains independent"
   },
   {
     "id": "H04",
@@ -288,7 +307,8 @@
     "status": "implemented",
     "implementation": "hideFlowTools sets only show_menu=0 and custom_buttons=[]; schemes retained",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideFlowTools sets only show_menu=0 and custom_buttons=[]; schemes retained"
   },
   {
     "id": "H05",
@@ -301,9 +321,10 @@
     ],
     "priority": "P1",
     "status": "deferred",
-    "implementation": "suggestions untouched and static reject may intercept",
+    "implementation": "HAR suggestions array exists but current static reject intercepts endpoint and no strict runtime route; no inert control added; request rewrite/static policy outside this release",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. HAR suggestions array exists but current static reject intercepts endpoint and no strict runtime route; no inert control added; request rewrite/static policy outside this release"
   },
   {
     "id": "H06",
@@ -316,7 +337,8 @@
     "status": "implemented",
     "implementation": "hideHotWords clears whole data block; never edits rank/content",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideHotWords clears whole data block; never edits rank/content"
   },
   {
     "id": "N01",
@@ -331,7 +353,8 @@
     "status": "implemented",
     "implementation": "hideNoticeMaterials empties only decoration array",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideNoticeMaterials empties only decoration array"
   },
   {
     "id": "N02",
@@ -342,9 +365,10 @@
     ],
     "priority": "P1",
     "status": "partial",
-    "implementation": "noticeMenuVisible controls three observed parent types in messages.msg_card.button.mblog_menus_new; duplicate types grouped; unknown/actions/states retained; no label/icon/order editor",
+    "implementation": "noticeMenuVisible + noticeMenuOrder + noticeMenuLabels use only 3 observed parent types; preserve actions/schemes/state/unknowns; observed menus require retain__2_messageflow_notice_393 parent retention; never automatically restores removed messages",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. noticeMenuVisible + noticeMenuOrder + noticeMenuLabels use only 3 observed parent types; preserve actions/schemes/state/unknowns; observed menus require retain__2_messageflow_notice_393 parent retention; never automatically restores removed messages"
   },
   {
     "id": "N03",
@@ -357,7 +381,8 @@
     "status": "implemented",
     "implementation": "hideClearTrashButton only sets display number0; no cleanup request",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideClearTrashButton only sets display number0; no cleanup request"
   },
   {
     "id": "N04",
@@ -370,7 +395,8 @@
     "status": "partial",
     "implementation": "hidePublicReminderTab sets numeric display flag0; semantics need native verification, unread untouched",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hidePublicReminderTab sets numeric display flag0; semantics need native verification, unread untouched"
   },
   {
     "id": "D01",
@@ -384,7 +410,8 @@
     "status": "implemented",
     "implementation": "fineMenus nested list; old26 bool + audio/remark visibility and whitelist order; unknown retained",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. fineMenus nested list; old26 bool + audio/remark visibility and whitelist order; unknown retained"
   },
   {
     "id": "D02",
@@ -400,7 +427,8 @@
     "status": "partial",
     "implementation": "8 confirmed state type names individually editable; other states/icons/schemes untouched",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. 8 confirmed state type names individually editable; other states/icons/schemes untouched"
   },
   {
     "id": "D03",
@@ -411,10 +439,11 @@
       "$.channelInfo.channels[].title"
     ],
     "priority": "P1",
-    "status": "deferred",
-    "implementation": "not implemented; source-only related fields do not establish this candidate",
+    "status": "partial",
+    "implementation": "hideDetailNavIcons deletes only observed titleInfo.icon/iconDark; leaves transfer/comment/like channel order/IDs/counters/content unchanged; channel editing unsupported",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideDetailNavIcons deletes only observed titleInfo.icon/iconDark; leaves transfer/comment/like channel order/IDs/counters/content unchanged; channel editing unsupported"
   },
   {
     "id": "D04",
@@ -428,7 +457,8 @@
     "status": "partial",
     "implementation": "source card236 predicate preservation only; observed248/143/10 intentionally untouched",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. source card236 predicate preservation only; observed248/143/10 intentionally untouched"
   },
   {
     "id": "D05",
@@ -441,7 +471,8 @@
     "status": "partial",
     "implementation": "source reward_info preservation implemented; exact HAR path missing so source-only",
     "evidence": "HAR-partial",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. source reward_info preservation implemented; exact HAR path missing so source-only"
   },
   {
     "id": "C01",
@@ -454,7 +485,8 @@
     "status": "implemented",
     "implementation": "preserve__2_statuses_container_detail_comment_1079; per-field vip_button",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. preserve__2_statuses_container_detail_comment_1079; per-field vip_button"
   },
   {
     "id": "C02",
@@ -467,7 +499,8 @@
     "status": "implemented",
     "implementation": "removeAvatar user.icons has independent preserve switch; identity data never overwritten",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. removeAvatar user.icons has independent preserve switch; identity data never overwritten"
   },
   {
     "id": "C03",
@@ -482,7 +515,8 @@
     "status": "partial",
     "implementation": "three independent source preservation fields; bullet screen field not observed in HAR",
     "evidence": "HAR-partial",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. three independent source preservation fields; bullet screen field not observed in HAR"
   },
   {
     "id": "B01",
@@ -497,7 +531,8 @@
     "status": "partial",
     "implementation": "buttons/user.icons independent preservation; feedback menu editor absent",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. buttons/user.icons independent preservation; feedback menu editor absent"
   },
   {
     "id": "B02",
@@ -512,7 +547,8 @@
     "status": "partial",
     "implementation": "hideHotExtraButton and hideHotContinueTag implemented; feedback menu editor absent",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideHotExtraButton and hideHotContinueTag implemented; feedback menu editor absent"
   },
   {
     "id": "S01",
@@ -528,7 +564,8 @@
     "status": "partial",
     "implementation": "source each floating field/filter independent; no per-scene interval numeric editor",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. source each floating field/filter independent; no per-scene interval numeric editor"
   },
   {
     "id": "S02",
@@ -543,7 +580,8 @@
     "status": "implemented",
     "implementation": "hideFeedRedpacket no action execution",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideFeedRedpacket no action execution"
   },
   {
     "id": "S03",
@@ -556,7 +594,8 @@
     "status": "implemented",
     "implementation": "hideComposerEntry sets show_composer_enter_in_feed display flag0; other shortcuts untouched",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideComposerEntry sets show_composer_enter_in_feed display flag0; other shortcuts untouched"
   },
   {
     "id": "S04",
@@ -572,7 +611,8 @@
     "status": "partial",
     "implementation": "hideIconShortcuts hides whole icon_shortcuts array; no stable per-item ID observed, no title guessing or jump edits",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. hideIconShortcuts hides whole icon_shortcuts array; no stable per-item ID observed, no title guessing or jump edits"
   },
   {
     "id": "S05",
@@ -587,7 +627,8 @@
     "status": "implemented",
     "implementation": "negativeVisible/negativeOrder 25 observed parent types; state_config untouched",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. negativeVisible/negativeOrder 25 observed parent types; state_config untouched"
   },
   {
     "id": "S06",
@@ -603,7 +644,8 @@
     "status": "partial",
     "implementation": "publisherVisible standard name groups only; duplicate variants grouped; writing entry protected; no order/label/icon/target",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. publisherVisible standard name groups only; duplicate variants grouped; writing entry protected; no order/label/icon/target"
   },
   {
     "id": "S07",
@@ -616,9 +658,10 @@
     ],
     "priority": "P1",
     "status": "deferred",
-    "implementation": "video home channels untouched; source videoList independent fields only",
+    "implementation": "three observed video channels all use pageDataType video; flowId alone lacks confirmed semantic names; title guessing prohibited; no inert video-home editor",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. three observed video channels all use pageDataType video; flowId alone lacks confirmed semantic names; title guessing prohibited; no inert video-home editor"
   },
   {
     "id": "S08",
@@ -634,7 +677,8 @@
     "status": "partial",
     "implementation": "independent outer ads timing/count/duration source writes; creatives original bug unchanged; static reject remains",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. independent outer ads timing/count/duration source writes; creatives original bug unchanged; static reject remains"
   },
   {
     "id": "S09",
@@ -650,7 +694,8 @@
     "status": "partial",
     "implementation": "independent cached-ad duration/count/time source writes; close-rectangle untouched; static reject remains",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. independent cached-ad duration/count/time source writes; close-rectangle untouched; static reject remains"
   },
   {
     "id": "H07",
@@ -664,7 +709,8 @@
     "status": "implemented",
     "implementation": "promotion and manual sticky-row predicates have separate retain bools",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. promotion and manual sticky-row predicates have separate retain bools"
   },
   {
     "id": "B03",
@@ -679,6 +725,7 @@
     "status": "partial",
     "implementation": "buttons/icons preservation and quick-repost filter independent; no arbitrary name edits",
     "evidence": "HAR-structure",
-    "device_verified": false
+    "device_verified": false,
+    "v4_review": "Rechecked for display-only safe scope. buttons/icons preservation and quick-repost filter independent; no arbitrary name edits"
   }
 ]

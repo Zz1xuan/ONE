@@ -4,7 +4,7 @@ function applyFineCustom(input,original,url,c){
  const clone=v=>JSON.parse(JSON.stringify(v)),has=(o,k)=>Object.prototype.hasOwnProperty.call(o||{},k);
  function ordered(list,ids,key){if(!Array.isArray(list))return list;const ranks=new Map((ids||[]).map((id,i)=>[id,i]));return list.map((v,i)=>({v,i})).sort((a,b)=>(ranks.has(key(a.v))?ranks.get(key(a.v)):1e6)-(ranks.has(key(b.v))?ranks.get(key(b.v)):1e6)||a.i-b.i).map(x=>x.v)}
  function visible(list,map,key){return Array.isArray(list)?list.filter(v=>!(v&&has(map,key(v))&&map[key(v)]===false)):list}
- function textSlot(item,label,grid=false){if(typeof label!=='string')return;if(grid&&item.content&&typeof item.content.content==='string')item.content.content=label;else if(item.title&&typeof item.title.content==='string')item.title.content=label;}
+ function textSlot(item,label,grid=false){if(typeof label!=='string')return;if(grid&&item.content&&typeof item.content.content==='string')item.content.content=label;else if(item.title&&typeof item.title.content==='string')item.title.content=label;else if(item.header&&item.header.title&&typeof item.header.title.content==='string')item.header.title.content=label;}
  function mergeItems(raw,processed,known,key){const by=new Map((processed||[]).map(v=>[key(v),v]));return raw.map(v=>known.includes(key(v))&&by.has(key(v))?clone(by.get(key(v))):clone(v))}
  if(/\/2\/profile\/me(?:\?|$)/.test(url)&&c.profileMe&&Array.isArray(original.items)){
   if(x.fineProfile&&original.items.filter(v=>v&&v.itemId==='100505_-_top8').length===1){
@@ -36,5 +36,14 @@ function applyFineCustom(input,original,url,c){
  if(/\/2\/search\/finder(?:\?|$)/.test(url)&&c.search&&(x.preserveFinderMoreChannels||x.preserve__2_search_finder_750||x.preserve__2_search_finder_856)&&original.channelInfo&&has(original.channelInfo,'moreChannels')){if(!out.channelInfo)out.channelInfo={};out.channelInfo.moreChannels=clone(original.channelInfo.moreChannels);if(has(original.channelInfo,'channelConfig'))out.channelInfo.channelConfig=clone(original.channelInfo.channelConfig)}
  if(/\/2\/push\/active(?:\?|$)/.test(url)&&c.pushActive&&x.hideIconShortcuts&&Array.isArray(out.icon_shortcuts))out.icon_shortcuts=[];
  if(/\/2\/messageflow\/notice(?:\?|$)/.test(url)&&c.notice&&Array.isArray(out.messages)&&Object.keys(x.noticeMenuVisible||{}).length)for(const message of out.messages){const button=message&&message.msg_card&&message.msg_card.button;if(button&&Array.isArray(button.mblog_menus_new))button.mblog_menus_new=visible(button.mblog_menus_new,x.noticeMenuVisible,v=>v&&v.type)}
+
+ if(/\/2\/groups\/allgroups\/v2(?:\?|$)/.test(url)&&c.tabs&&x.preferFollowingPage&&typeof out.defaultPageId==='string'&&Array.isArray(out.pageDatas)&&out.pageDatas.some(t=>t&&t.pageDataType==='homeFeed'&&t.pageId==='homeFeed'))out.defaultPageId='homeFeed';
+ // V4 additions are post-source and target display-only fields. No arbitrary targets or content edits.
+ if(/\/2\/groups\/allgroups\/v2(?:\?|$)/.test(url)&&c.tabs&&x.hideRecommendedChannels&&Array.isArray(out.pageDatas))for(const tab of out.pageDatas)if(tab&&tab.pageDataType==='homeHot'&&tab.recommendCategory&&Array.isArray(tab.recommendCategory.pageDatas))tab.recommendCategory.pageDatas=[];
+ function hideNavIcons(){if(out.channelInfo&&Array.isArray(out.channelInfo.channels))for(const ch of out.channelInfo.channels)if(ch&&ch.titleInfo)for(const k of ['icon','iconDark'])delete ch.titleInfo[k];}
+ if(/\/2\/flowpage(?:\?|$)/.test(url)&&c.flowpage){if(x.hideFlowNavIcons)hideNavIcons();if(x.hideFlowCardIcons&&Array.isArray(out.items))for(const group of out.items)if(group&&Array.isArray(group.items))for(const item of group.items)if(item&&item.data&&[4,6].includes(item.data.card_type)){delete item.data.icon;if(typeof item.data.display_arrow==='number')item.data.display_arrow=0;}}
+ if(/\/2\/statuses\/container_detail(?:\?|$)/.test(url)&&c.detail&&x.hideDetailNavIcons)hideNavIcons();
+ if(/\/2\/profile\/me(?:\?|$)/.test(url)&&c.profileMe&&x.hideProfileGridIcons&&Array.isArray(out.items))for(const m of out.items)if(m&&m.itemId==='100505_-_top8'&&Array.isArray(m.items))for(const v of m.items)if(v&&GRID_IDS.includes(v.itemId)&&v.image)delete v.image.iconUrl;
+ if(/\/2\/messageflow\/notice(?:\?|$)/.test(url)&&c.notice&&Array.isArray(out.messages)&&((x.noticeMenuOrder||[]).length||Object.keys(x.noticeMenuLabels||{}).length))for(const m of out.messages){const b=m&&m.msg_card&&m.msg_card.button;if(b&&Array.isArray(b.mblog_menus_new)){b.mblog_menus_new=ordered(b.mblog_menus_new,x.noticeMenuOrder,v=>v&&v.type);for(const v of b.mblog_menus_new)if(v&&typeof v.name==='string'&&typeof (x.noticeMenuLabels||{})[v.type]==='string')v.name=x.noticeMenuLabels[v.type];}}
  return {...input,body:JSON.stringify(out)};
 }

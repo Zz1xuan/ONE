@@ -1,4 +1,9 @@
 /* Explicit fine mode reads original arrays; never reconstructs deleted business actions. */
+// Observed profile WBox template, not a fabricated itemId. Other 236 cards stay unknown.
+function isProfileTaskServices(item){
+ const d=item&&item.data,p=d&&d.wboxParam;
+ return !!(item&&!Object.prototype.hasOwnProperty.call(item,'itemId')&&item.category==='card'&&d&&d.card_type===236&&d.wboxScheme==='sinaweibo://wbox?id=wj235ay385&page=pages/index/index'&&p&&Array.isArray(p.channels)&&p.channels.length>0&&p.channels.every(v=>v&&typeof v==='object'&&!Array.isArray(v)&&typeof v.tab_nam==='string'&&typeof v.url==='string')&&Array.isArray(p.card_list)&&p.card_list.length===p.channels.length&&p.card_list.every(v=>v&&typeof v==='object'&&!Array.isArray(v)&&Array.isArray(v.cards)));
+}
 function applyFineCustom(input,original,url,c){
  const x=c.custom||{};let out;try{out=JSON.parse(input.body);original=JSON.parse(original)}catch(_){return input}
  const clone=v=>JSON.parse(JSON.stringify(v)),has=(o,k)=>Object.prototype.hasOwnProperty.call(o||{},k);
@@ -8,7 +13,7 @@ function applyFineCustom(input,original,url,c){
  function mergeItems(raw,processed,known,key){const by=new Map((processed||[]).map(v=>[key(v),v]));return raw.map(v=>known.includes(key(v))&&by.has(key(v))?clone(by.get(key(v))):clone(v))}
  if(/\/2\/profile\/me(?:\?|$)/.test(url)&&c.profileMe&&Array.isArray(original.items)){
   if(x.fineProfile&&original.items.filter(v=>v&&v.itemId==='100505_-_top8').length<=1){
-   let list=mergeItems(original.items,out.items,MODULE_IDS,v=>v&&v.itemId);const grid=list.find(v=>v.itemId==='100505_-_top8'),rawGrid=original.items.find(v=>v&&v.itemId==='100505_-_top8');
+   let list=mergeItems(original.items,out.items,MODULE_IDS,v=>v&&v.itemId).filter(v=>!isProfileTaskServices(v)||x.showProfileTaskServices===true);const grid=list.find(v=>v.itemId==='100505_-_top8'),rawGrid=original.items.find(v=>v&&v.itemId==='100505_-_top8');
    if(grid&&Array.isArray(rawGrid.items)){grid.items=visible(clone(rawGrid.items),x.gridVisible,v=>v&&v.itemId);grid.items=ordered(grid.items,x.gridOrder,v=>v&&v.itemId);for(const cell of grid.items)if(GRID_IDS.includes(cell.itemId))textSlot(cell,(x.gridLabels||{})[cell.itemId],true)}
    list=visible(list,x.moduleVisible,v=>v&&v.itemId);list=ordered(list,x.moduleOrder,v=>v&&v.itemId);for(const item of list)if(MODULE_IDS.includes(item.itemId)&&item.itemId!=='profileme_mine')textSlot(item,(x.moduleLabels||{})[item.itemId]);if(list.length)out.items=list;
   }

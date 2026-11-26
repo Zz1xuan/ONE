@@ -2912,6 +2912,19 @@
     "description": "保留由原 isAd 判据识别的广告/热推"
   },
   {
+    "key": "showProfileTaskServices",
+    "type": "boolean",
+    "default": false,
+    "kind": "explicit",
+    "target": "用户任务与服务",
+    "scope": "/2/profile/me",
+    "line": 0,
+    "operation": "applyFineCustom",
+    "evidence": "HAR-structure",
+    "candidate": "M07",
+    "description": "用户任务与服务"
+  },
+  {
     "key": "preferFollowingPage",
     "type": "boolean",
     "default": false,

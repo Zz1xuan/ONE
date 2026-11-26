@@ -19,8 +19,13 @@ function purposeFor(scope,key=''){
  if(/container_detail|statuses\/(extend|show|repost)/.test(scope))return PURPOSE_SECTIONS[4];return PURPOSE_SECTIONS[11];
 }
 const purposeSections=new Map(),purposeAdvanced=new Map();
-for(const name of PURPOSE_SECTIONS){const d=section(name);d.dataset.purpose=name;d.open=name==='总览';purposeSections.set(name,d);const a=document.createElement('details'),s=document.createElement('summary');a.className='source-advanced';s.textContent='高级选项';a.append(s);a.open=false;d.append(a);purposeAdvanced.set(name,a);}
-function editorBox(scope,key,advanced=false){return (advanced?purposeAdvanced:purposeSections).get(purposeFor(scope,key));}
-function updateDependencies(){for(const row of document.querySelectorAll('.row[data-dependency]')){const names=row.dataset.dependency.split(',').filter(Boolean),off=names.filter(k=>k.startsWith('custom.')?!cfg.custom[k.slice(7)]:!cfg[k]);row.dataset.inactive=String(off.length>0);const hint=row.querySelector('.dependency');if(hint)hint.textContent=off.length?'当前依赖未开启：'+off.map(k=>legacyLabel(k.replace('custom.',''))).join('、')+'（可先编辑，保存后按依赖生效）':'';}}
+for(const name of PURPOSE_SECTIONS){const d=section(name);d.dataset.purpose=name;d.open=['总览','我的'].includes(name);purposeSections.set(name,d);purposeAdvanced.set(name,purposeSections.get('高级兼容')||d);}
+const advancedRoot=purposeSections.get('高级兼容');advancedRoot.className='source-advanced';
+for(const name of PURPOSE_SECTIONS)purposeAdvanced.set(name,advancedRoot);
+function editorBox(scope,key,advanced=false){return advanced?advancedRoot:purposeSections.get(purposeFor(scope,key));}
+function inactiveRoutes(c){return Object.keys(LEGACY_NAMES).filter(k=>!['enabled','injectSettingsEntry','avatarCleanup','feedCleanup','voteCleanup'].includes(k)&&c[k]===false)}
+function dependencySummary(c){const off=[];if(!c.enabled)off.push('增强总开关关闭');for(const k of inactiveRoutes(c))off.push(legacyLabel(k)+'关闭');if(!c.custom.retain__2_messageflow_notice_393)off.push('消息反馈菜单需在高级兼容保留推广父卡片');return off.length?'生效提示：'+off.join('；'):'';}
+function draftConfig(){const c={...cfg,custom:{...cfg.custom}};for(const x of widgets())if(x.dataset.custom==='true')c.custom[x.dataset.k]=x.checked;else c[x.dataset.k]=x.checked;return c;}
+function updateDependencies(){if(!loaded)return;const c=draftConfig(),note=$('#dependency-help');note.replaceChildren();const text=dependencySummary(c);note.hidden=!text;if(text){const span=document.createElement('span');span.textContent=text+'。';const b=document.createElement('button');b.textContent='启用所需处理';b.onclick=()=>{for(const k of ['enabled',...inactiveRoutes(c)]){const x=document.querySelector('[data-k="'+k+'"]');if(x)x.checked=true;}changed()};note.append(span,b);}}
 
 function routeDependency(scope){const m={'/2/profile/me':'profileMe','/2/groups/allgroups/v2':'tabs','/2/flowpage':'flowpage','/2/search/finder':'search','/2/search/hot_word':'search','/2/statuses/container_detail':'detail','/2/statuses/container_timeline_hot':'hotTimeline','/2/push/active':'pushActive','/2/client/publisher_list':'publisher','/2/messageflow/notice':'notice','/2/direct_messages/user_list':'directMessages'};return m[scope]||''}

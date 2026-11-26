@@ -7,7 +7,7 @@ function applyFineCustom(input,original,url,c){
  function textSlot(item,label,grid=false){if(typeof label!=='string')return;if(grid&&item.content&&typeof item.content.content==='string')item.content.content=label;else if(item.title&&typeof item.title.content==='string')item.title.content=label;else if(item.header&&item.header.title&&typeof item.header.title.content==='string')item.header.title.content=label;}
  function mergeItems(raw,processed,known,key){const by=new Map((processed||[]).map(v=>[key(v),v]));return raw.map(v=>known.includes(key(v))&&by.has(key(v))?clone(by.get(key(v))):clone(v))}
  if(/\/2\/profile\/me(?:\?|$)/.test(url)&&c.profileMe&&Array.isArray(original.items)){
-  if(x.fineProfile&&original.items.filter(v=>v&&v.itemId==='100505_-_top8').length===1){
+  if(x.fineProfile&&original.items.filter(v=>v&&v.itemId==='100505_-_top8').length<=1){
    let list=mergeItems(original.items,out.items,MODULE_IDS,v=>v&&v.itemId);const grid=list.find(v=>v.itemId==='100505_-_top8'),rawGrid=original.items.find(v=>v&&v.itemId==='100505_-_top8');
    if(grid&&Array.isArray(rawGrid.items)){grid.items=visible(clone(rawGrid.items),x.gridVisible,v=>v&&v.itemId);grid.items=ordered(grid.items,x.gridOrder,v=>v&&v.itemId);for(const cell of grid.items)if(GRID_IDS.includes(cell.itemId))textSlot(cell,(x.gridLabels||{})[cell.itemId],true)}
    list=visible(list,x.moduleVisible,v=>v&&v.itemId);list=ordered(list,x.moduleOrder,v=>v&&v.itemId);for(const item of list)if(MODULE_IDS.includes(item.itemId)&&item.itemId!=='profileme_mine')textSlot(item,(x.moduleLabels||{})[item.itemId]);if(list.length)out.items=list;
@@ -15,7 +15,7 @@ function applyFineCustom(input,original,url,c){
   if(x.hideProfileBadges&&Array.isArray(out.items))for(const module of out.items)if(module&&module.itemId==='100505_-_top8'&&Array.isArray(module.items))for(const item of module.items)if(item&&GRID_IDS.includes(item.itemId)){if(item.dot&&typeof item.dot.active==='boolean')item.dot.active=false;if(item.titleDot&&typeof item.titleDot.active==='boolean')item.titleDot.active=false;delete item.bottomRightBadge;}
  }
  if(/\/2\/groups\/allgroups\/v2(?:\?|$)/.test(url)&&c.tabs&&x.fineTabs&&Array.isArray(original.pageDatas)){
-  let tabs=clone(original.pageDatas);tabs=visible(tabs,x.tabVisible,v=>v&&v.pageDataType);if(!tabs.length)tabs=clone(original.pageDatas);tabs=ordered(tabs,x.tabOrder,v=>v&&v.pageDataType);
+  let tabs=clone(original.pageDatas).filter(v=>!(v&&v.pageDataType==='homeExtend'&&!x.retain__2_groups_allgroups_v2_355));tabs=visible(tabs,x.tabVisible,v=>v&&v.pageDataType);if(!tabs.length)tabs=clone(original.pageDatas);tabs=ordered(tabs,x.tabOrder,v=>v&&v.pageDataType);
   for(const tab of tabs){if(TAB_IDS.includes(tab.pageDataType)&&typeof (x.tabLabels||{})[tab.pageDataType]==='string'&&typeof tab.pageDataTitle==='string')tab.pageDataTitle=x.tabLabels[tab.pageDataType];if(Array.isArray(tab.categories))for(const cat of tab.categories)if(cat&&cat.title==='默认分组'&&Array.isArray(cat.pageDatas)){
    let list=visible(cat.pageDatas,x.subtabVisible,v=>v&&v.title);if(!list.length)list=cat.pageDatas;list=ordered(list,x.subtabOrder,v=>v&&v.title);for(const v of list)if(SUBTAB_IDS.includes(v.title)&&typeof (x.subtabLabels||{})[v.title]==='string')v.title=x.subtabLabels[v.title];cat.pageDatas=list;
   }}out.pageDatas=tabs;
